@@ -75,6 +75,9 @@ class="sub_page"
               <li class="nav-item">
                 <a class="nav-link" href="stafflogin.php">Staff Login</a>
               </li>
+			  <li class="nav-item">
+                <a class="nav-link" href="logout.php">Logout</a>
+              </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
               <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>

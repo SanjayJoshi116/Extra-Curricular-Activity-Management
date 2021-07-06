@@ -1,5 +1,26 @@
 <?php
 include("header.php");
+if(isset($_SESSION['student_id']))
+{
+	echo "<script>window.location='student-dashboard.php';</script>";
+}
+if(isset($_POST['btnsubmit']))
+{
+	$encpass = md5($_POST['student_password']);
+	$sql = "SELECT * FROM student where student_rollno='$_POST[student_rollno]' AND student_password='$encpass' AND student_status='Active'";
+	$qsql = mysqli_query($con,$sql);
+	echo mysqli_error($con);
+	if(mysqli_num_rows($qsql) == 1)
+	{
+		$rslogin = mysqli_fetch_array($qsql);
+		$_SESSION['student_id'] = $rslogin['student_id'];
+		echo "<script>window.location='student-dashboard.php';</script>";
+	}
+	else
+	{
+		echo "<script>alert('You have entered invalid Login credentials. Please try again...');</script>";
+	}
+}
 ?>
 </div>
 
@@ -11,15 +32,11 @@ include("header.php");
         <div class="col-md-6">
           <div class="detail-box">
             <h3>
-              GET ONLINE COURSES FOR FREE
+              STUDENT LOGIN PANEL
             </h3>
             <p>
-              Create your free account now and get immediate access to 100s of
-              online courses
+              Kindly enter Valid Login credentials to login website..
             </p>
-            <a href="">
-              REGISTER NOW
-            </a>
           </div>
         </div>
         <div class="col-md-6">
@@ -27,14 +44,14 @@ include("header.php");
             <h5>
               Login Now
             </h5>
-            <form action="">
+            <form action="" method="post">
               <div>
-                <input type="email" placeholder="Email " />
+                <input type="text" name="student_rollno" id="student_rollno" placeholder="Enter your Roll Number" />
               </div>
               <div>
-                <input type="password" placeholder="Password" />
+                <input type="password" name="student_password" id="student_password" placeholder="Student Password" />
               </div>
-              <button type="submit">Login</button>
+              <button type="submit" name="btnsubmit">Login</button>
             </form>
           </div>
         </div>
