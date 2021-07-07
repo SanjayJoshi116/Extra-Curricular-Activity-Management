@@ -26,6 +26,13 @@ include("dbconnection.php");
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+	.labelproperty
+	{
+		color: white;
+		padding-top: 15px;
+	}
+  </style>
 </head>
 
 <body
