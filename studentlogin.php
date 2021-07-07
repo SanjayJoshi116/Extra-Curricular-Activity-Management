@@ -8,6 +8,9 @@ if(isset($_POST['btnsubmit']))
 {
 	$encpass = md5($_POST['student_password']);
 	
+	
+	
+	
 	$sql = "SELECT * FROM student where student_rollno='$_POST[student_rollno]' AND student_password='$encpass' AND student_status='Active'";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
