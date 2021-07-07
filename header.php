@@ -87,3 +87,5 @@ class="sub_page"
       </div>
     </header>
     <!-- end header section -->
+	</body>
+	</html>
