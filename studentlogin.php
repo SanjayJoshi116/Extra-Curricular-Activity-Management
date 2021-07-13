@@ -7,10 +7,6 @@ if(isset($_SESSION['student_id']))
 if(isset($_POST['btnsubmit']))
 {
 	$encpass = md5($_POST['student_password']);
-	
-	
-	
-	
 	$sql = "SELECT * FROM student where student_rollno='$_POST[student_rollno]' AND student_password='$encpass' AND student_status='Active'";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
@@ -56,6 +52,7 @@ if(isset($_POST['btnsubmit']))
                 <input type="password" name="student_password" id="student_password" placeholder="Student Password" />
               </div>
               <button type="submit" name="btnsubmit">Login</button>
+			  <button type="reset" name="clear">Reset</button>
             </form>
           </div>
         </div>
