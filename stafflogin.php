@@ -47,13 +47,15 @@ if(isset($_POST['btnsubmit']))
             </h5>
             <form action="" method="post">
               <div>
-                <input name="login_id" id="login_id" type="text" placeholder="Staff Login ID" />
+                
+              </div>
+              <div>
+                <input name="login_id" id="login_id" type="text" placeholder="Staff Login ID " />
               </div>
               <div>
                 <input name="password"   id="password"  type="password" placeholder="Staff Password" />
               </div>
               <button type="submit" name="btnsubmit">Login</button>
-			  <button type="reset" name="clear">Reset</button>
             </form>
           </div>
         </div>

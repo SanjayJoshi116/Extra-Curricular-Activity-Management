@@ -52,7 +52,6 @@ if(isset($_POST['btnsubmit']))
                 <input type="password" name="student_password" id="student_password" placeholder="Student Password" />
               </div>
               <button type="submit" name="btnsubmit">Login</button>
-			  <button type="reset" name="clear">Reset</button>
             </form>
           </div>
         </div>

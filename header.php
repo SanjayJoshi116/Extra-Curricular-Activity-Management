@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set("Asia/Calcutta");
 include("dbconnection.php");
 ?>
 <!DOCTYPE html>
@@ -26,6 +27,7 @@ include("dbconnection.php");
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link href="css/jquery.dataTables.min.css" rel="stylesheet" />
   <style>
 	.labelproperty
 	{
@@ -77,14 +79,10 @@ class="sub_page"
                 <a class="nav-link" href="contact.php">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="studentlogin.php">Student Login</a>
+                <a class="nav-link" href="login.php">Login</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="stafflogin.php">Staff Login</a>
-              </li>
-			  <li class="nav-item">
-                <a class="nav-link" href="logout.php">Logout</a>
-              </li>
+
+			  
             </ul>
             <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
               <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>

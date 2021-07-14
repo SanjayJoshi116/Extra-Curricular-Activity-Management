@@ -68,14 +68,10 @@ if(isset($_POST['submit']))
                 <input type="number" name="thirdplace_point" id="thirdplace_point" placeholder="Enter Point" />
               </div>
 			  
-			  
               <div>
 				<label class="labelproperty">Points For others</label>
                 <input type="number" name="others_point" id="others_point" placeholder="Enter Point" />
               </div>
-			  
-			  
-			  
 			  
               <div>
 				<label class="labelproperty">Status</label>

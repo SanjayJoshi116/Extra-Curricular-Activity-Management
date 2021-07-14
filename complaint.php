@@ -1,12 +1,12 @@
 <?php
 include("header.php");
-if(!isset($_SESSION['student_id']))
+if(!isset($_SESSION['student_id']) && !isset($_SESSION['staff_id']))
 {
-	echo "<script>window.location='login.php';</script>";
+	echo "<script>window.location='index.php';</script>";
 }
 if(isset($_POST['submit']))
 {
-	$sql = "INSERT INTO complaint_report(student_id,staff_id,complaint_detail,complain_doc) VALUES('$_POST[student_id]','$_POST[staff_id]','$_POST[complaint_detail]','$_POST[complain_doc]')";
+	$sql = "INSERT INTO complaint_report(student_id,staff_id,reply_complaint_report_id,complaint_detail,complain_doc) VALUES('$_POST[student_id]','$_POST[staff_id]','','$_POST[complaint_detail]','$_POST[complain_doc]')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)

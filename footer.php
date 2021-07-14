@@ -75,9 +75,13 @@
  
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script>
+	$(document).ready( function () {
+		$('#datatableplugin').DataTable();
+	} );
+	</script>
 </body>
-
 </html>
