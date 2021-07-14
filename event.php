@@ -47,29 +47,6 @@ include("header.php");
         <?php
       }
         ?>
-       <?php /*<div class="box">
-          <div class="img-box">
-            <img src="images/event-img.jpg" alt="" />
-          </div>
-          <div class="detail-box">
-            <h4>
-              Education Events 2021
-            </h4>
-            <h6>
-              8:00 AM - 5:00 PM VENICE, ITALY
-            </h6>
-          </div>
-          <div class="date-box">
-            <h3>
-              <span>
-                15
-              </span>
-              February
-            </h3>
-          </div>
-        </div>\
-	</div>*/?>
-     
       <div class="btn-box">
         <a href="">
           Read More
