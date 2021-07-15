@@ -38,7 +38,7 @@ if(isset($_POST['submit']))
             <h5>
               Kindly enter the details
             </h5>
-            <form action="" method="post" name="frmevent_type" id="frmevent_type">
+            <form action="" method="post" name="registration" id="registration">
 			
               <div>
 				<label class="labelproperty">Name</label>

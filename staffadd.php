@@ -1,8 +1,21 @@
 <?php
 include("header.php");
-if(!isset($_SESSION['staff_id']))
+(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
+}
+if(isset($_POST['submit']))
+{
+	$staffimg  = rand() . $_FILES["staff_dp"]["name"];
+	move_uploaded_file($_FILES["staff_dp"]["tmp_name"],"staffimg/".$staffimg);
+	$sql = "INSERT INTO staff(staff_name,login_id,gender,dob,staff_type,department_id,staff_dp,password) VALUES('$_POST[staff_name]','$_POST[login_id]','$_POST[gender]','$_POST[dob]','$_POST[staff_type]','$_POST[department_id]',$staffimg,'$_POST[password]')";
+	$qsql = mysqli_query($con,$sql);
+	echo mysqli_error($con);
+	if(mysqli_affected_rows($con)==1)
+	{
+		echo "<script>alert('Registered successfully...');</script>";
+		//echo "<script>window.location='index.php';</script>";
+	}
 }
 ?>
 </div>
@@ -38,7 +51,7 @@ if(!isset($_SESSION['staff_id']))
 			  
               <div>
                 <label class="labelproperty">Staff ID</label>
-				<input type="text" name="staff_id" id="staff_id" class="form-control" placeholder="Enter Staff ID" required="" />
+				<input type="text" name="login_id" id="login_id" class="form-control" placeholder="Enter Staff ID" required="" />
               </div>
 			  
               <div>
@@ -63,6 +76,27 @@ if(!isset($_SESSION['staff_id']))
 				<option>Guest Lecturer
 				<option>Lab Assistant</select>
               </div>
+			  
+			  <div>
+				<label class="labelproperty">Department</label>
+                <select name="department_id" id="department_id" class="form-control" >
+				<option value="">Department</option>
+				<?php
+				$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
+				$qsqldepartment = mysqli_query($con,$sqldepartment);
+				echo mysqli_error($con);
+				while($rsdepartment = mysqli_fetch_array($qsqldepartment))
+				{
+					echo "<option value='$rsdepartment[department_id]'>$rsdepartment[department]</option>";
+				}
+				?>
+				</select>
+              </div>
+			  
+			  <div>
+                <label class="labelproperty">Upload Image</label>
+				<input type="file" name="staff_dp" id="staff_dp" placeholder="Upload Image"/>
+              </div>
 
 			  <div>
                 <label class="labelproperty">Password</label>
@@ -71,11 +105,8 @@ if(!isset($_SESSION['staff_id']))
 			  
               </div>
 			  
-			  
-			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
-				<button type="reset" name="clear" class="btn_on-hover">Reset</button>
               </div>
             </form>
           </div>
