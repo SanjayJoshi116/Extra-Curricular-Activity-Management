@@ -1,9 +1,9 @@
 <?php
 include("header.php");
-if(!isset($_SESSION['staff_id']))
+/*if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='stafflogin.php';</script>";
-}
+}*/
 if(isset($_POST['submit']))
 {
 	$sql = "INSERT INTO event_result(event_id,result_detail, event_documentry, staff_id) VALUES('$_POST[event_id]','$_POST[result_detail]','$_POST[event_documentry]','$_POST[staff_id]')";
