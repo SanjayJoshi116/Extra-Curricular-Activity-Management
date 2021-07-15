@@ -2,7 +2,7 @@
 include("header.php");
 if(!isset($_SESSION['student_id']) && !isset($_SESSION['staff_id']))
 {
-	echo "<script>window.location='index.php';</script>";
+	echo "<script>window.location='login.php';</script>";
 }
 if(isset($_POST['submit']))
 {
