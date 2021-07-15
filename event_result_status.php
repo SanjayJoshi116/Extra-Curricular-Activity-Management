@@ -18,7 +18,7 @@ include("header.php");
         <div class="">
 <!-- ####################VIEW TABLE STARTS HERE ######### ---->
 <table id="datatableplugin" class="table table-bordered">
-	<thead>
+<thead>
 		<tr>
 			<th>Event Result Id</th>
 			<th>Event Id</th>
