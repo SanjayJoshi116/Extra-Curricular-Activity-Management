@@ -1,9 +1,9 @@
 <?php
 include("header.php");
-(!isset($_SESSION['staff_id']))
+/*(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
-}
+}*/
 if(isset($_POST['submit']))
 {
 	$staffimg  = rand() . $_FILES["staff_dp"]["name"];
@@ -18,7 +18,6 @@ if(isset($_POST['submit']))
 	}
 }
 ?>
-</div>
 
   <!-- contact section -->
 
@@ -42,7 +41,7 @@ if(isset($_POST['submit']))
             <h5>
               Kindly Register to get benefits
             </h5>
-            <form action="" method="post" name="registration" id="registration">
+            <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data">
 			
               <div>
 				<label class="labelproperty">Name</label>
@@ -103,10 +102,11 @@ if(isset($_POST['submit']))
 				<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required="" />
               </div>
 			  
-              </div>
+              
 			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
+              </div>
               </div>
             </form>
           </div>
