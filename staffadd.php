@@ -18,7 +18,6 @@ if(isset($_POST['submit']))
 	}
 }
 ?>
-</div>
 
   <!-- contact section -->
 
@@ -103,10 +102,11 @@ if(isset($_POST['submit']))
 				<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required="" />
               </div>
 			  
-              </div>
+              
 			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
+              </div>
               </div>
             </form>
           </div>
