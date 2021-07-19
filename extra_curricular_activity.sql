@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2021 at 09:55 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Generation Time: Jul 19, 2021 at 11:42 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -119,23 +119,6 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`event_id`, `event_type_id`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `event_status`) VALUES
-(1, 0, 'test', 'test desc', 'abcd', 'asdfj', 0, 0, 'test', '0000-00-00 00:00:00', 'Bangalore', 0, '0'),
-(2, 0, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 0, 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 0, '0'),
-(3, 2, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 1, ''),
-(4, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(5, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(6, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(7, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(8, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(9, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(10, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(11, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(12, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(13, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(14, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1910729414Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(15, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1817510492Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(16, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1028989555Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(17, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1717883508Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
 (18, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1821207475Database Schema Diagram.png', 1, 2, 'Second Year', '2021-08-06 12:07:00', 'Bangalore', 1, 'Active');
 
 -- --------------------------------------------------------
@@ -221,11 +204,13 @@ INSERT INTO `event_type` (`event_type_id`, `event_type`, `event_type_info`, `fir
 
 CREATE TABLE `staff` (
   `staff_id` int(11) NOT NULL,
-  `staff_name` varchar(25) NOT NULL,
-  `staff_dp` varchar(300) NOT NULL,
-  `staff_type` varchar(20) NOT NULL,
+  `staff_name` varchar(50) NOT NULL,
+  `login_id` varchar(50) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `dob` date NOT NULL,
+  `staff_type` varchar(30) NOT NULL,
   `department_id` int(11) NOT NULL,
-  `login_id` varchar(25) NOT NULL,
+  `staff_dp` varchar(300) NOT NULL,
   `password` varchar(300) NOT NULL,
   `staff_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -234,8 +219,9 @@ CREATE TABLE `staff` (
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dp`, `staff_type`, `department_id`, `login_id`, `password`, `staff_status`) VALUES
-(1, 'Mr. Admin', 'admin.jpg', 'Admin', 0, 'admin', 'd94354ac9cf3024f57409bd74eec6b4c', 'Active');
+INSERT INTO `staff` (`staff_id`, `staff_name`, `login_id`, `gender`, `dob`, `staff_type`, `department_id`, `staff_dp`, `password`, `staff_status`) VALUES
+(2, 'Shailesh', 'admin', 'Male', '1966-01-23', 'Assistant Professor', 1, '652619501', '123456789', 'Active'),
+(3, 'Satheeshchandra P D', 'spd', 'Male', '1990-12-08', 'Assistant Professor', 0, 'no image', 'f6fdffe48c908deb0f4c3bd36c032e72', 'Active');
 
 -- --------------------------------------------------------
 
@@ -246,16 +232,16 @@ INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dp`, `staff_type`, `depart
 CREATE TABLE `student` (
   `student_id` int(11) NOT NULL,
   `student_name` varchar(30) NOT NULL,
-  `course_id` int(11) NOT NULL,
   `student_rollno` varchar(10) NOT NULL,
-  `student_password` varchar(300) NOT NULL,
   `st_class` varchar(20) NOT NULL,
-  `student_image` varchar(300) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `dob` date NOT NULL,
   `language` varchar(25) NOT NULL,
   `elective_paper` varchar(20) NOT NULL,
   `extension_activities` varchar(50) NOT NULL,
+  `student_image` varchar(300) NOT NULL,
+  `student_password` varchar(300) NOT NULL,
   `student_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -263,11 +249,9 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `student_name`, `course_id`, `student_rollno`, `student_password`, `st_class`, `student_image`, `gender`, `dob`, `language`, `elective_paper`, `extension_activities`, `student_status`) VALUES
-(1, 'Rajkiran', 1, '123456', '2df594b9710111099edbdb7edaa43301', 'First Semester', 'no image', 'Male', '2021-07-14', 'abc', 'test', 'xyz', 'Active'),
-(2, 'Mahesh kiran', 1, '789789', '2df594b9710111099edbdb7edaa43301', 'First Semester', 'no image', '', '2021-07-14', '', '', '', 'Active'),
-(4, 'Rupesh Kuamr', 1, '774411', '2df594b9710111099edbdb7edaa43301', 'First Semester', 'no image', '', '2021-07-14', '', '', '', 'Active'),
-(5, 'Raj krishna', 1, '7889665', '2df594b9710111099edbdb7edaa43301', 'First Semester', 'no image', '', '2021-07-14', '', '', '', 'Active');
+INSERT INTO `student` (`student_id`, `student_name`, `student_rollno`, `st_class`, `course_id`, `gender`, `dob`, `language`, `elective_paper`, `extension_activities`, `student_image`, `student_password`, `student_status`) VALUES
+(12, 'Sanjay Joshi', '180980', '1', 5, 'Male', '2000-08-29', 'Sanskrit', 'Sanskrit', 'NCC', '1028989555Database Schema Diagram.png', 'f6fdffe48c908deb0f4c3bd36c032e72', 'Active'),
+(13, 'Mahesh Gowda', '180924', 'Third Year', 1, 'Male', '2000-04-14', 'Kannada', 'Kannada', 'NCC', '11094230581028989555Database Schema Diagram.png', 'maheshgowda', '');
 
 --
 -- Indexes for dumped tables
@@ -402,13 +386,13 @@ ALTER TABLE `event_type`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
