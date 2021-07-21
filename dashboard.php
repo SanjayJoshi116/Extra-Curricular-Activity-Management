@@ -1,5 +1,5 @@
 <?php
-include("staff-header.php");
+include("header.php");
 if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
