@@ -81,9 +81,7 @@ class="sub_page"
 			  <li class="nav-item">
                 <a class="nav-link" href="student.php">Registration</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login.php">Login</a>
-              </li>
+
 			  <li class="nav-item">
 			    <a class="nav-link" href="logout.php">Logout</a>
 			  </li>

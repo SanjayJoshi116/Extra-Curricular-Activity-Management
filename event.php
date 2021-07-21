@@ -15,7 +15,7 @@ include("header.php");
         </p>
       </div>
       <?php
-		    $sqlview = "SELECT * FROM  event ";
+		    $sqlview = "SELECT * FROM  event where event_date_time>CURDATE()";
 		    $qsqlview = mysqli_query($con,$sqlview);
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {

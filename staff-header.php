@@ -70,20 +70,27 @@ class="sub_page"
                 <a class="nav-link" href="about.php"> About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="event.php"> Events </a>
+                <a class="nav-link" href="event.php"> Upcoming Events </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="course.php"> Result </a>
+                <a class="nav-link" href="event_result.php"> Result </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contact.php">Contact</a>
               </li>
+
 			  <li class="nav-item">
-                <a class="nav-link" href="student.php">Registration</a>
+                <a class="nav-link" href="addevent.php">Add Events</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login.php">Login</a>
+			  
+			  <li class="nav-item">
+                <a class="nav-link" href="event_type.php">Event Type</a>
               </li>
+			  
+			  <li class="nav-item">
+                <a class="nav-link" href="viewstudent.php">Students</a>
+              </li>
+			  
 			  <li class="nav-item">
 			    <a class="nav-link" href="logout.php">Logout</a>
 			  </li>

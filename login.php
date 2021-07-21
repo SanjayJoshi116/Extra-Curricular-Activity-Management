@@ -49,7 +49,6 @@ if(isset($_POST['btnsubmit']))
 	}
 }
 ?>
-</div>
 
   <!-- login section -->
   <section class="login_section layout_padding">
