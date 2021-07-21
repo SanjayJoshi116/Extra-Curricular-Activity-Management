@@ -67,7 +67,7 @@
   <footer class="container-fluid footer_section">
   
       <p>
-        Developed By Sajith Thomas, Sanjay Joshi, Tejas, Mahesh Gowda"
+        Developed By "Sajith Thomas, Sanjay Joshi, Tejas P C, Mahesh"
 
       </p>
   
