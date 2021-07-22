@@ -20,24 +20,24 @@ include("header.php");
 <table id="datatableplugin" class="table table-bordered">
 	<thead>
 		<tr>
-			<th>Course ID</th>
-			<th>Course Title</th>
-			<th>Course Description</th>
-			<th>Course Status</th>
+			<th>Department ID</th>
+			<th>Department</th>
+			<th>Department Details</th>
+			<th>Department Status</th>
 			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT * FROM  course ";
+		$sqlview = "SELECT * FROM  department ";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[course_id]</td>
-				<td>$rsview[course_title]</td>
-				<td>$rsview[course_description]</td>
-				<td>$rsview[course_status]</td>
+				<td>$rsview[department_id]</td>
+				<td>$rsview[department]</td>
+				<td>$rsview[department_detail]</td>
+				<td>$rsview[department_status]</td>
 				<td>Edit | Delete</td>
 			</tr>";
 		}

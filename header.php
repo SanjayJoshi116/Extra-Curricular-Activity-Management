@@ -71,15 +71,51 @@ class="sub_page"
               <li class="nav-item">
                 <a class="nav-link" href="about.php"> About </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="event.php"> Events </a>				
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="course.php"> Result </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.php">Contact</a>
-              </li>
+			  
+<?php
+if(isset($_SESSION['staff_id']))
+{
+?>	
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Events </a>				
+              				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="upcoming-event.php">Upcoming Events</a>
+					<a class="dropdown-item" href="live-event.php">Live Events</a>
+					<a class="dropdown-item" href="completed-event.php">Completed Events</a>
+					<a class="dropdown-item" href="addevent.php">Add Event</a>
+					<a class="dropdown-item" href="event_type.php">Add Event Type</a>
+				  </div>
+			  </li>
+			  <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Result </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			  <a class="dropdown-item" href="event_result.php">Add Event Result</a>
+			  <a class="dropdown-item" href="event_result_status.php">Add Event Result Status</a>
+			  </div>
+			  </li>
+<?php
+}
+else if(isset($_SESSION['student_id']))
+{
+?>
+<li class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Events </a>
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="student-dashboard.php">Upcoming Events</a>
+					<a class="dropdown-item" href="live-event.php">Live Events</a>
+					<a class="dropdown-item" href="completed-event.php">Completed Events</a>
+					<a class="dropdown-item" href="applyevent.php">Event Application</a>
+				  </div>
+			</li>	
+			<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Result </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			  <a class="dropdown-item" href="view_event_result_status.php">Event Result</a>
+			  </div>
+			  </li>
+			<?php
+}
+?>
 			  
 <?php
 if(isset($_SESSION['staff_id']))
@@ -89,9 +125,19 @@ if(isset($_SESSION['staff_id']))
 				  <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin Panel </a>
 				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="dashboard.php">Dashboard</a>
-					<a class="dropdown-item" href="#">Another action</a>
 					<a class="dropdown-item" href="courseentry.php">Add Course</a>
 					<a class="dropdown-item" href="viewcourse.php">View Course</a>
+					<a class="dropdown-item" href="department.php">Add Department</a>
+					<a class="dropdown-item" href="viewdepartment.php">View Department</a>
+					<a class="dropdown-item" href="departmentcourse.php">Add Department Course</a>
+					<a class="dropdown-item" href="view-departmentcourse.php">View Department Course</a>
+					<a class="dropdown-item" href="viewevent.php">View Events</a>
+					<a class="dropdown-item" href="view_event_apply.php">View Applications</a>
+					<a class="dropdown-item" href="view_event_result.php">View Event Result</a>
+					<a class="dropdown-item" href="view_event_result_status.php">View Event Result Status</a>
+					<a class="dropdown-item" href="view_event_type.php">View Event Type</a>
+					<a class="dropdown-item" href="viewstaff.php">View Staff</a>
+					<a class="dropdown-item" href="viewstudent.php">View Student</a>
 				  </div>
 			</li>
 			<li class="nav-item">
@@ -106,8 +152,6 @@ else if(isset($_SESSION['student_id']))
 				  <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Student Panel </a>
 				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="student-dashboard.php">Dashboard</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
 				  </div>
 			</li>
 			  <li class="nav-item">

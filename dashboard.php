@@ -56,7 +56,7 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Total - <?php
+              <?php
 			  $sqlcount = "SELECT * FROM complaint_report";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
 			  echo mysqli_num_rows($qsqlcount);
@@ -71,8 +71,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Your <br />
-              Complete Guide
+			<?php
+			  $sqlcount = "SELECT * FROM course";
+			  $qsqlcount = mysqli_query($con,$sqlcount);
+			  echo mysqli_num_rows($qsqlcount);
+			  ?>
+              <br />
+              Courses
             </h5>
           </div>
           <div class="box">
@@ -81,7 +86,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Photography
+              <?php
+			  $sqlcount = "SELECT * FROM department";
+			  $qsqlcount = mysqli_query($con,$sqlcount);
+			  echo mysqli_num_rows($qsqlcount);
+			  ?>
+			  <br />
+			  Departments
             </h5>
           </div>
         </div>
@@ -95,13 +106,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Total - <?php
-			  $sqlcount = "SELECT * FROM complaint_report";
+              <?php
+			  $sqlcount = "SELECT * FROM event";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
 			  echo mysqli_num_rows($qsqlcount);
 			  ?>
 			  <br />
-              Complaint Reports
+              Events
             </h5>
           </div>
           <div class="box">
@@ -110,8 +121,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Your <br />
-              Complete Guide
+              <?php
+			  $sqlcount = "SELECT * FROM event_participation";
+			  $qsqlcount = mysqli_query($con,$sqlcount);
+			  echo mysqli_num_rows($qsqlcount);
+			  ?>
+			  <br />
+              Event Applications
             </h5>
           </div>
           <div class="box">
@@ -120,7 +136,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Photography
+              <?php
+			  $sqlcount = "SELECT * FROM event_result";
+			  $qsqlcount = mysqli_query($con,$sqlcount);
+			  echo mysqli_num_rows($qsqlcount);
+			  ?>
+			  <br />
+			  Event Results Uploaded
             </h5>
           </div>
         </div>
@@ -134,13 +156,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Total - <?php
-			  $sqlcount = "SELECT * FROM complaint_report";
+              <?php
+			  $sqlcount = "SELECT * FROM event_result_status";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
 			  echo mysqli_num_rows($qsqlcount);
 			  ?>
 			  <br />
-              Complaint Reports
+              Event Results
             </h5>
           </div>
           <div class="box">
@@ -149,8 +171,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Your <br />
-              Complete Guide
+              <?php
+			  $sqlcount = "SELECT * FROM event_type";
+			  $qsqlcount = mysqli_query($con,$sqlcount);
+			  echo mysqli_num_rows($qsqlcount);
+			  ?>
+			  <br />
+			  Event Types
             </h5>
           </div>
           <div class="box">
@@ -159,7 +186,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Photography
+              <?php
+			  $sqlcount = "SELECT * FROM staff";
+			  $qsqlcount = mysqli_query($con,$sqlcount);
+			  echo mysqli_num_rows($qsqlcount);
+			  ?>
+			  <br />
+			  Staff
             </h5>
           </div>
         </div>
@@ -173,13 +206,13 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5>
-              Total - <?php
-			  $sqlcount = "SELECT * FROM complaint_report";
+              <?php
+			  $sqlcount = "SELECT * FROM student";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
 			  echo mysqli_num_rows($qsqlcount);
 			  ?>
 			  <br />
-              Complaint Reports
+              Students
             </h5>
           </div>
           <div class="box">
