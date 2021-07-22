@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ALL & ~E_NOTICE  &  ~E_STRICT  &  ~E_WARNING);
 date_default_timezone_set("Asia/Calcutta");
 include("dbconnection.php");
 ?>
@@ -33,6 +34,7 @@ include("dbconnection.php");
 	{
 		color: white;
 		padding-top: 15px;
+		margin-bottom: -4.5rem;
 	}
   </style>
 </head>
@@ -67,10 +69,10 @@ class="sub_page"
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.php"> About Us</a>
+                <a class="nav-link" href="about.php"> About </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="event.php"> Events </a>
+                <a class="nav-link" href="event.php"> Events </a>				
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="course.php"> Result </a>
@@ -78,16 +80,53 @@ class="sub_page"
               <li class="nav-item">
                 <a class="nav-link" href="contact.php">Contact</a>
               </li>
+			  
+<?php
+if(isset($_SESSION['staff_id']))
+{
+?>	
+			<li class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin Panel </a>
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="dashboard.php">Dashboard</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="courseentry.php">Add Course</a>
+					<a class="dropdown-item" href="viewcourse.php">View Course</a>
+				  </div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="logout.php">Logout</a>
+			</li>
+<?php
+}
+else if(isset($_SESSION['student_id']))
+{
+?>	
+			<li class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Student Panel </a>
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="student-dashboard.php">Dashboard</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+				  </div>
+			</li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="logout.php">Logout</a>
+			  </li>
+<?php
+}
+else
+{
+?>
 			  <li class="nav-item">
                 <a class="nav-link" href="student.php">Registration</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="login.php">Login</a>
               </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="logout.php">Logout</a>
-			  </li>
-			  
+<?php
+}
+?>
             </ul>
             <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
               <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>

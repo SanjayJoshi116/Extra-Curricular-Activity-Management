@@ -49,6 +49,7 @@ if(isset($_POST['btnsubmit']))
 	}
 }
 ?>
+</div>
 
   <!-- login section -->
   <section class="login_section layout_padding">
@@ -84,7 +85,7 @@ if(isset($_POST['btnsubmit']))
               </div>
               <div>
                 <input name="login_id" id="login_id" type="text" placeholder="Login ID " />
-              </div>
+              </div><br>
               <div>
                 <input name="password"   id="password"  type="password" placeholder="Password" />
               </div>

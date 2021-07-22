@@ -24,6 +24,7 @@ include("header.php");
 			<th>Event ID</th>
 			<th>Student ID</th>
 			<th>Apply Date & Time</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -37,6 +38,7 @@ include("header.php");
 				<td>$rsview[event_id]</td>
 				<td>$rsview[student_id]</td>
 				<td>$rsview[apply_dt_tim]</td>
+				<td>Delete</td>
 			</tr>";
 		}
 		?>

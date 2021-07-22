@@ -20,11 +20,11 @@ include("header.php");
 <table id="datatableplugin" class="table table-bordered">
 	<thead>
 		<tr>
-			<th>Event ID</th>
 			<th>Event Title</th>
 			<th>Event Date and Time</th>
 			<th>Department ID</th>
 			<th>Event Venue</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -34,11 +34,11 @@ include("header.php");
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[event_id]</td>
 				<td>$rsview[event_title]</td>
 				<td>$rsview[event_date_time]</td>
 				<td>$rsview[department_id]</td>
 				<td>$rsview[event_venue]</td>
+				<td>Edit | Delete</td>
 			</tr>";
 		}
 		?>

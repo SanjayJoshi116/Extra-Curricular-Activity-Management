@@ -531,7 +531,7 @@ a:focus {
   border: none;
   outline: none;
   border-radius: 5px;
-  margin: 10px 0;
+  /*margin: 10px 0;*/
 }
 
 .login_section .login_form form button {
@@ -928,6 +928,11 @@ a:focus {
 
 .footer_section a {
   color: #787878;
+}
+
+.mdtextalign
+{
+	text-align: left;
 }
 
 /* end footer section*/

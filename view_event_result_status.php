@@ -20,7 +20,6 @@ include("header.php");
 <table id="datatableplugin" class="table table-bordered">
 <thead>
 		<tr>
-			<th>Result Status ID</th>
 			<th>Event Result ID</th>
 			<th>Event ID</th>
 			<th>Student ID</th>
@@ -36,7 +35,6 @@ include("header.php");
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[event_status_id]</td>
 				<td>$rsview[event_result_id]</td>
 				<td>$rsview[event_id]</td>
 				<td>$rsview[student_id]</td>

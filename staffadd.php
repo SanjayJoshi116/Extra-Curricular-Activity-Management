@@ -1,20 +1,21 @@
 <?php
 include("header.php");
-/*(!isset($_SESSION['staff_id']))
+if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
-}*/
+}
 if(isset($_POST['submit']))
 {
 	$staffimg  = rand() . $_FILES["staff_dp"]["name"];
 	move_uploaded_file($_FILES["staff_dp"]["tmp_name"],"staffimg/".$staffimg);
-	$sql = "INSERT INTO staff(staff_name,login_id,gender,dob,staff_type,department_id,staff_dp,password) VALUES('$_POST[staff_name]','$_POST[login_id]','$_POST[gender]','$_POST[dob]','$_POST[staff_type]','$_POST[department_id]',$staffimg,'$_POST[password]')";
+	$pwd = md5($_POST['password']);
+	$sql = "INSERT INTO staff(staff_name,staff_dp,staff_type,department_id,login_id,password,staff_status) VALUES('$_POST[staff_name]','$staffimg','$_POST[staff_type]','$_POST[department_id]','$_POST[login_id]','$pwd','$_POST[staff_status]')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)
 	{
 		echo "<script>alert('Registered successfully...');</script>";
-		//echo "<script>window.location='index.php';</script>";
+		echo "<script>window.location='staffadd.php';</script>";
 	}
 }
 ?>
@@ -102,7 +103,25 @@ if(isset($_POST['submit']))
 				<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required="" />
               </div>
 			  
+			  <div>
+                <label class="labelproperty">Confirm Password</label>
+				<input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm the password" required="" />
+              </div>
+			  
               
+              <div>
+				<label class="labelproperty">Select Staff Account Status</label>
+				<select name="staff_status" id="staff_status" class="form-control" >
+				<option value="">Select Status</option>
+                <?php
+				$arr = array("Active","Inactive");
+				foreach($arr as $val)
+				{
+					echo "<option value='$val'>$val</option>";
+				}
+				?>
+				</select>
+              </div>
 			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
