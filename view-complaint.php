@@ -1,5 +1,15 @@
 <?php
 include("header.php");
+if(isset($_GET['delid']))
+{
+	$sqldel ="DELETE FROM complaint_report where complaint_report_id='$_GET[delid]'";
+	$qsqldel = mysqli_query($con,$sqldel);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('Complaint Record deleted successfully..');</script>";
+		echo "<script>window.location='view-complaint.php';</script>";
+	}
+}
 ?>
 </div>
 
@@ -25,6 +35,7 @@ include("header.php");
 			<th>Reply Complaint ID</th>
 			<th>Complaint Details</th>
 			<th>Complaint Document</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -39,6 +50,9 @@ include("header.php");
 				<td>$rsview[reply_complaint_report_id]</td>
 				<td>$rsview[complaint_detail]</td>
 				<td>$rsview[complain_doc]</td>
+				<td>Edit |
+				<a href='view-complaint.php?delid=$rsview[complaint_report_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
+				</td>
 			</tr>";
 		}
 		?>
@@ -55,3 +69,16 @@ include("header.php");
 <?php
 include("footer.php");
 ?>
+<script>
+function confirmdel()
+{
+	if(confirm("Are you sure want to delete this record?") == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>

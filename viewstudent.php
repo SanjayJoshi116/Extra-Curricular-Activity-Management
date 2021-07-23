@@ -1,5 +1,15 @@
 <?php
 include("header.php");
+if(isset($_GET['delid']))
+{
+	$sqldel ="DELETE FROM student where student_id='$_GET[delid]'";
+	$qsqldel = mysqli_query($con,$sqldel);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('Student Record deleted successfully..');</script>";
+		echo "<script>window.location='viewstudent.php';</script>";
+	}
+}
 ?>
 </div>
 
@@ -52,7 +62,9 @@ include("header.php");
 				<td>$rsview[elective_paper]</td>
 				<td>$rsview[extension_activities]</td>
 				<td>$rsview[student_status]</td>
-				<td>Edit | Delete</td>
+				<td>Edit | 
+				<a href='viewstudent.php?delid=$rsview[student_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
+				</td>
 			</tr>";
 		}
 		?>
@@ -69,3 +81,16 @@ include("header.php");
 <?php
 include("footer.php");
 ?>
+<script>
+function confirmdel()
+{
+	if(confirm("Are you sure want to delete this record?") == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>

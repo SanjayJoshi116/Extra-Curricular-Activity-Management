@@ -2,6 +2,7 @@
 session_start();
 error_reporting(E_ALL & ~E_NOTICE  &  ~E_STRICT  &  ~E_WARNING);
 date_default_timezone_set("Asia/Calcutta");
+$dt = date("Y-m-d");
 include("dbconnection.php");
 ?>
 <!DOCTYPE html>
@@ -81,7 +82,7 @@ if(isset($_SESSION['staff_id']))
               				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="upcoming-event.php">Upcoming Events</a>
 					<a class="dropdown-item" href="live-event.php">Live Events</a>
-					<a class="dropdown-item" href="completed-event.php">Completed Events</a>
+					<a class="dropdown-item" href="completed-event.php" >Completed Events</a>
 					<a class="dropdown-item" href="addevent.php">Add Event</a>
 					<a class="dropdown-item" href="event_type.php">Add Event Type</a>
 				  </div>
@@ -123,7 +124,7 @@ if(isset($_SESSION['staff_id']))
 ?>	
 			<li class="nav-item dropdown">
 				  <a class="nav-link dropdown-toggle" href="#"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin Panel </a>
-				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
 					<a class="dropdown-item" href="dashboard.php">Dashboard</a>
 					<a class="dropdown-item" href="courseentry.php">Add Course</a>
 					<a class="dropdown-item" href="viewcourse.php">View Course</a>

@@ -9,7 +9,8 @@ if(isset($_POST['submit']))
 	$imgbanner  = rand() . $_FILES["event_banner"]["name"];
 	move_uploaded_file($_FILES["event_banner"]["tmp_name"],"imgbanner/".$imgbanner);
 	$eventdttime =  str_replace("T"," ", $_POST['event_date_time']);
-	$sql = "INSERT INTO event(event_type_id,event_title,event_description,event_rules,event_banner,department_id,course_id, st_class, event_date_time, event_venue,staff_id,event_status) VALUES('$_POST[event_type_id]','$_POST[event_title]','$_POST[event_description]','$_POST[event_rules]','$imgbanner','$_POST[department_id]','$_POST[course_id]','$_POST[st_class]','$eventdttime','$_POST[event_venue]','$_SESSION[staff_id]','$_POST[event_status]')";
+	$eventrules = nl2br($_POST['event_rules']);
+	$sql = "INSERT INTO event(event_type_id,event_title,event_description,event_rules,event_banner,department_id,course_id, st_class, event_date_time, event_venue,staff_id,event_status) VALUES('$_POST[event_type_id]','$_POST[event_title]','$_POST[event_description]','$eventrules','$imgbanner','$_POST[department_id]','$_POST[course_id]','$_POST[st_class]','$eventdttime','$_POST[event_venue]','$_SESSION[staff_id]','$_POST[event_status]')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)

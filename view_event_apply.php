@@ -1,5 +1,15 @@
 <?php
 include("header.php");
+if(isset($_GET['delid']))
+{
+	$sqldel ="DELETE FROM event_participation where event_participation_id='$_GET[delid]'";
+	$qsqldel = mysqli_query($con,$sqldel);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('Event Participation Record deleted successfully..');</script>";
+		echo "<script>window.location='view_event_apply.php';</script>";
+	}
+}
 ?>
 </div>
 
@@ -20,7 +30,6 @@ include("header.php");
 <table id="datatableplugin" class="table table-bordered">
 	<thead>
 		<tr>
-			<th>Event Participation ID</th>
 			<th>Event ID</th>
 			<th>Student ID</th>
 			<th>Apply Date & Time</th>
@@ -34,11 +43,12 @@ include("header.php");
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[event_participation_id]</td>
 				<td>$rsview[event_id]</td>
 				<td>$rsview[student_id]</td>
 				<td>$rsview[apply_dt_tim]</td>
-				<td>Delete</td>
+				<td>Edit |
+				<a href='view_event_apply.php?delid=$rsview[event_participation_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
+				</td>
 			</tr>";
 		}
 		?>
@@ -55,3 +65,16 @@ include("header.php");
 <?php
 include("footer.php");
 ?>
+<script>
+function confirmdel()
+{
+	if(confirm("Are you sure want to delete this record?") == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>

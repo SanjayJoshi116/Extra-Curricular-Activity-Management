@@ -2,12 +2,12 @@
 include("header.php");
 if(isset($_GET['delid']))
 {
-	$sqldel ="DELETE FROM event_result_status where result_status_id='$_GET[delid]'";
+	$sqldel ="DELETE FROM event_type where event_type_id='$_GET[delid]'";
 	$qsqldel = mysqli_query($con,$sqldel);
 	if(mysqli_affected_rows($con) == 1)
 	{
-		echo "<script>alert('Event Result Status Record deleted successfully..');</script>";
-		echo "<script>window.location='view_event_result_status.php';</script>";
+		echo "<script>alert('Event Type Record deleted successfully..');</script>";
+		echo "<script>window.location='view_event_type.php';</script>";
 	}
 }
 ?>
@@ -18,41 +18,45 @@ if(isset($_GET['delid']))
     <div class="container">
       <div class="heading_container">
         <h3>
-         Results
+           View Event Type
         </h3>
         <p>
-         Check your results
+          View Event Type Records
         </p>
       </div>
       <div class="event_container">
         <div class="">
 <!-- ####################VIEW TABLE STARTS HERE ######### ---->
 <table id="datatableplugin" class="table table-bordered">
-<thead>
+	<thead>
 		<tr>
-			<th>Event Result ID</th>
-			<th>Event ID</th>
-			<th>Student ID</th>
-			<th>Event Participation ID</th>
-			<th>Winning Position</th>
-			<th>Points</th>
+			<th>Event Type</th>
+			<th>Event Type Info</th>
+			<th>First Place Points</th>
+			<th>Second Place Points</th>
+			<th>Third Place Points</th>
+			<th>Other Points</th>
+			<th>Event Type Status</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT * FROM  event_result_status ";
+		$sqlview = "SELECT * FROM  event_type ";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[event_result_id]</td>
-				<td>$rsview[event_id]</td>
-				<td>$rsview[student_id]</td>
-				<td>$rsview[event_participation_id]</td>
-				<td>$rsview[winning_position]</td>
-				<td>$rsview[point]</td>
-				<td>Edit |
-				<a href='view_event_result_status.php?delid=$rsview[result_status_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
+				<td>$rsview[event_type]</td>
+				<td>$rsview[event_type_info]</td>
+				<td>$rsview[firstplace_point]</td>
+				<td>$rsview[secondplace_point]</td>
+				<td>$rsview[thirdplace_point]</td>
+				<td>$rsview[others_point]</td>
+				<td>$rsview[event_type_status]</td>
+				<td>Edit | 
+				<a href='view_event_type.php?delid=$rsview[event_type_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
+				</td>
 			</tr>";
 		}
 		?>

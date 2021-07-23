@@ -1,5 +1,15 @@
 <?php
 include("header.php");
+if(isset($_GET['delid']))
+{
+	$sqldel ="DELETE FROM event_result where event_result_id='$_GET[delid]'";
+	$qsqldel = mysqli_query($con,$sqldel);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('Event Result Record deleted successfully..');</script>";
+		echo "<script>window.location='view_event_result.php';</script>";
+	}
+}
 ?>
 </div>
 
@@ -38,7 +48,8 @@ include("header.php");
 				<td>$rsview[staff_id]</td>
 				<td>$rsview[result_detail]</td>
 				<td>$rsview[event_documentry]</td>
-				<td>Delete</td>
+				<td>Edit |
+				<a href='view_event_result.php?delid=$rsview[course_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a></td>
 			</tr>";
 		}
 		?>
@@ -55,3 +66,16 @@ include("header.php");
 <?php
 include("footer.php");
 ?>
+<script>
+function confirmdel()
+{
+	if(confirm("Are you sure want to delete this record?") == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>
