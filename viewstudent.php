@@ -62,7 +62,7 @@ if(isset($_GET['delid']))
 				<td>$rsview[elective_paper]</td>
 				<td>$rsview[extension_activities]</td>
 				<td>$rsview[student_status]</td>
-				<td>Edit | 
+				<td>Approve | Edit | 
 				<a href='viewstudent.php?delid=$rsview[student_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";
