@@ -30,12 +30,13 @@ if(isset($_GET['delid']))
 <table id="datatableplugin" class="table table-bordered">
 <thead>
 		<tr>
-			<th>Event Result ID</th>
-			<th>Event ID</th>
-			<th>Student ID</th>
-			<th>Event Participation ID</th>
+			<th>Event Result</th>
+			<th>Event</th>
+			<th>Student</th>
+			<th>Event Participation</th>
 			<th>Winning Position</th>
 			<th>Points</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
