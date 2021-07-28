@@ -31,20 +31,20 @@ if(isset($_GET['delid']))
 	<thead>
 		<tr>
 			<th>Event ID</th>
-			<th>Student ID</th>
+			<th>Student Rollno</th>
 			<th>Apply Date & Time</th>
 			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT * FROM  event_participation";
+		$sqlview = "SELECT event_participation.*,student.student_rollno FROM  event_participation LEFT JOIN student ON event_participation.student_id=student.student_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
 				<td>$rsview[event_id]</td>
-				<td>$rsview[student_id]</td>
+				<td>$rsview[student_rollno]</td>
 				<td>$rsview[apply_dt_tim]</td>
 				<td>Edit |
 				<a href='view_event_apply.php?delid=$rsview[event_participation_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>

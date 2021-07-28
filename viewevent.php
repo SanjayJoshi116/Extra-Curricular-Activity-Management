@@ -32,21 +32,21 @@ if(isset($_GET['delid']))
 		<tr>
 			<th>Event Title</th>
 			<th>Event Date and Time</th>
-			<th>Department ID</th>
+			<th>Department</th>
 			<th>Event Venue</th>
 			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT * FROM  event";
+		$sqlview = "SELECT event.*,department.department FROM  event LEFT JOIN department ON event.department_id=department.department_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
 				<td>$rsview[event_title]</td>
 				<td>$rsview[event_date_time]</td>
-				<td>$rsview[department_id]</td>
+				<td>$rsview[department]</td>
 				<td>$rsview[event_venue]</td>
 				<td>Edit | 
 				<a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>

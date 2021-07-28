@@ -30,7 +30,7 @@ if(isset($_GET['delid']))
 <table id="datatableplugin" class="table table-bordered">
 	<thead>
 		<tr>
-			<th>Student ID</th>
+			<th>Student Rollno</th>
 			<th>Staff ID</th>
 			<th>Reply Complaint ID</th>
 			<th>Complaint Details</th>
@@ -40,12 +40,12 @@ if(isset($_GET['delid']))
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT * FROM  complaint_report";
+		$sqlview = "SELECT complaint_report.*,student.student_rollno FROM complaint_report LEFT JOIN student ON complaint_report.student_id=student.student_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[student_id]</td>
+				<td>$rsview[student_rollno]</td>
 				<td>$rsview[staff_id]</td>
 				<td>$rsview[reply_complaint_report_id]</td>
 				<td>$rsview[complaint_detail]</td>
