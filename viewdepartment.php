@@ -10,6 +10,19 @@ if(isset($_GET['delid']))
 		echo "<script>window.location='viewdepartment.php';</script>";
 	}
 }
+//Approve or Suspend department starts here
+if(isset($_GET['acid']))
+{
+	$sqlas ="UPDATE department SET department_status='$_GET[st]' WHERE department_id='$_GET[acid]'";
+	$qsqlas = mysqli_query($con,$sqlas);
+	echo mysqli_error($con);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('department status updated to $_GET[st]');</script>";
+		echo "<script>window.location='viewdepartment.php';</script>";
+	}
+}
+//Approve or Suspend department ends here
 ?>
 </div>
 
@@ -47,8 +60,16 @@ if(isset($_GET['delid']))
 				<td>$rsview[department_id]</td>
 				<td>$rsview[department]</td>
 				<td>$rsview[department_detail]</td>
-				<td>$rsview[department_status]</td>
-				<td>Edit | 
+				<td>$rsview[department_status]<br>";
+				if($rsview['department_status'] == "Active")
+				{
+				echo "<a href='viewdepartment.php?st=Suspended&acid=$rsview[department_id]' class='btn btn-secondary' onclick='return confirmst()' >Suspend</a>";
+				}	
+				else
+				{
+				echo "<a href='viewdepartment.php?st=Active&acid=$rsview[department_id]' class='btn btn-primary' onclick='return confirmst()'  >Approve</a>";
+				}
+				echo "</td><td>Edit | 
 				<a href='viewdepartment.php?delid=$rsview[department_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 			</tr>";
 		}
@@ -70,6 +91,19 @@ include("footer.php");
 function confirmdel()
 {
 	if(confirm("Are you sure want to delete this record?") == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>
+<script>
+function confirmst()
+{
+	if(confirm("Are you sure?") == true)
 	{
 		return true;
 	}
