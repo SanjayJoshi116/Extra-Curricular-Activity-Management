@@ -40,7 +40,7 @@ if(isset($_GET['delid']))
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT complaint_report.*,student.student_rollno FROM complaint_report LEFT JOIN student ON complaint_report.student_id=student.student_id";
+		$sqlview = "SELECT complaint_report.*,student.student_rollno FROM complaint_report LEFT JOIN student ON complaint_report.student_id=student.student_rollno";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
