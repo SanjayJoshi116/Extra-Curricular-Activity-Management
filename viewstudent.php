@@ -93,7 +93,10 @@ else
 	echo "<a href='viewstudent.php?st=Active&acid=$rsview[student_id]' class='btn btn-primary' onclick='return confirmst()'  >Approve</a>";
 }
 				echo "</td>
-				<td>Edit | 
+				<td>
+				
+				<a href='studentadd.php?editid=$rsview[student_id]' class='btn btn-info'>Edit</a>
+				
 				<a href='viewstudent.php?delid=$rsview[student_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";

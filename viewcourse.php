@@ -67,7 +67,10 @@ if(isset($_GET['acid']))
 				{
 				echo "<a href='viewcourse.php?st=Active&acid=$rsview[course_id]' class='btn btn-primary' onclick='return confirmst()'  >Approve</a>";
 				}
-				echo "</td><td>Edit | 
+				echo "</td><td> 
+				
+				<a href='courseentry.php?editid=$rsview[course_id]' class='btn btn-info' >Edit</a>
+				 
 				<a href='viewcourse.php?delid=$rsview[course_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";

@@ -40,13 +40,13 @@ if(isset($_GET['delid']))
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT complaint_report.*,student.student_rollno FROM complaint_report LEFT JOIN student ON complaint_report.student_id=student.student_rollno";
+		$sqlview = "SELECT complaint_report.*,student.student_rollno, student.student_name, staff.staff_name, staff.login_id FROM complaint_report LEFT JOIN student ON complaint_report.student_id=student.student_id LEFT JOIN staff ON staff.staff_id=complaint_report.staff_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[student_rollno]</td>
-				<td>$rsview[staff_id]</td>
+				<td>$rsview[student_name] ($rsview[student_rollno])</td>
+				<td>$rsview[staff_name] ($rsview[login_id])	</td>
 				<td>$rsview[reply_complaint_report_id]</td>
 				<td>$rsview[complaint_detail]</td>
 				<td>$rsview[complain_doc]</td>
