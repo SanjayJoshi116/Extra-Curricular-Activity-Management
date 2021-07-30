@@ -19,9 +19,6 @@ include("header.php");
                       <h1>
                         Extra Curricular Activities
                       </h1>
-                      <a href="about.php">
-                        Read More
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -37,9 +34,6 @@ include("header.php");
                       <h1>
                        Extra Curricular Activities
                       </h1>
-                      <a href="about.php">
-                        Read More
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -55,9 +49,6 @@ include("header.php");
                       <h1>
                         Extra Curricular Activities
                       </h1>
-                      <a href="about.php">
-                        Read More
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -147,11 +138,9 @@ include("header.php");
                 About Our College
               </h3>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more it
+                SDM College, Ujire is an autonomous college under Mangalore University. Founded in 1966, the college offers Bachelors and Masters Programmes in a serene campus at the foothills of the Western Ghats in Karnataka (India). The college is a recognized centre for research programmes of Mangalore University, Tumkur University and Kannada University Hampi. Managed by SDM Educational Society, it is headed by the visionary, Dr. D. Veerendra Heggade, Dharmadhikari of Shri Kshetra Dharmasthala. 
               </p>
-              <a href="">
+              <a href="about.php">
                 Read More
               </a>
             </div>

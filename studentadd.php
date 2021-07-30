@@ -27,6 +27,7 @@ if(isset($_POST['submit']))
 		if(mysqli_affected_rows($con) == 1)
 		{
 			echo "<script>alert('Student Record updated successfully..');</script>";
+			echo "<script>window.location='viewstudent.php';</script>";
 		}
 	}
 	else
@@ -37,6 +38,7 @@ if(isset($_POST['submit']))
 		if(mysqli_affected_rows($con)==1)
 		{
 			echo "<script>alert('Student Account Added successfully..');</script>";
+			echo "<script>window.location='viewstudent.php';</script>";
 		}
 	}
 }
