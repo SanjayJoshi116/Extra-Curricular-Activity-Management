@@ -60,7 +60,7 @@ if(isset($_GET['acid']))
 				<td>$rsview[department_id]</td>
 				<td>$rsview[department]</td>
 				<td>$rsview[department_detail]</td>
-				<td>$rsview[department_status]<br>";
+				<td>$rsview[department_status]";
 				if($rsview['department_status'] == "Active")
 				{
 				echo "<a href='viewdepartment.php?st=Suspended&acid=$rsview[department_id]' class='btn btn-secondary' onclick='return confirmst()' >Suspend</a>";
@@ -69,7 +69,8 @@ if(isset($_GET['acid']))
 				{
 				echo "<a href='viewdepartment.php?st=Active&acid=$rsview[department_id]' class='btn btn-primary' onclick='return confirmst()'  >Approve</a>";
 				}
-				echo "</td><td>Edit | 
+				echo "</td><td>
+				<a href='departmentupdate.php?editid=$rsview[department_id]' class='btn btn-info'>Edit</a> 
 				<a href='viewdepartment.php?delid=$rsview[department_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 			</tr>";
 		}

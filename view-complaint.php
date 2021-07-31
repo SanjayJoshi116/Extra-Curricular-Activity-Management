@@ -10,6 +10,17 @@ if(isset($_GET['delid']))
 		echo "<script>window.location='view-complaint.php';</script>";
 	}
 }
+if(isset($_GET['acid']))
+{
+	$sqlas ="UPDATE complaint_report SET complaint_status='$_GET[st]' WHERE complaint_report_id='$_GET[acid]'";
+	$qsqlas = mysqli_query($con,$sqlas);
+	echo mysqli_error($con);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('Complaint status updated to $_GET[st]');</script>";
+		echo "<script>window.location='view-complaint.php';</script>";
+	}
+}
 ?>
 </div>
 
@@ -35,12 +46,13 @@ if(isset($_GET['delid']))
 			<th>Reply Complaint ID</th>
 			<th>Complaint Details</th>
 			<th>Complaint Document</th>
+			<th>Status</th>
 			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT complaint_report.*,student.student_rollno, student.student_name, staff.staff_name, staff.login_id FROM complaint_report LEFT JOIN student ON complaint_report.student_id=student.student_id LEFT JOIN staff ON staff.staff_id=complaint_report.staff_id";
+		$sqlview = "SELECT complaint_report.*,student.student_name, student.student_rollno, staff.staff_name, staff.login_id FROM complaint_report LEFT JOIN student ON student.student_id=complaint_report.student_id LEFT JOIN staff ON complaint_report.staff_id=staff.staff_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
@@ -50,7 +62,13 @@ if(isset($_GET['delid']))
 				<td>$rsview[reply_complaint_report_id]</td>
 				<td>$rsview[complaint_detail]</td>
 				<td>$rsview[complain_doc]</td>
-				<td>Edit |
+				<td>$rsview[complaint_status] <br>";
+				if($rsview['complaint_status'] == "Active")
+{
+	echo "<a href='view-complaint.php?st=Resolved&acid=$rsview[complaint_report_id]' class='btn btn-primary' onclick='return confirmst()' >Resolve</a>";
+}
+				echo"</td>
+				<td>
 				<a href='view-complaint.php?delid=$rsview[complaint_report_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";
