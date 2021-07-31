@@ -66,8 +66,8 @@ if(isset($_GET['delid']))
 				<td>$rsview[gender]</td>
 				<td>$rsview[dob]</td>
 				<td>$rsview[staff_type]</td>
-				<td>$rsview[staff_status]</td>
-				<td>Edit |
+				<td>$rsview[staff_status]</td><td>
+				<a href='staffupdate.php?editid=$rsview[staff_id]' class='btn btn-info'>Edit</a>
 				<a href='viewstaff.php?delid=$rsview[staff_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";

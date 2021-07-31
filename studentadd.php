@@ -4,6 +4,7 @@ if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
 }
+//Insert & Update Statement condition starts here
 if(isset($_POST['submit']))
 {
 	$pwd = md5($_POST['student_password']);
