@@ -12,22 +12,22 @@ if(isset($_POST['submit']))
   if(isset($_GET['editid']))
 	{
 		$sql="UPDATE staff SET staff_name='$_POST[staff_name]'";
-		if($_FILES["student_image"]["name"] != "")
+		if($_FILES["staff_dp"]["name"] != "")
 		{
 		$sql = $sql . ",staff_dp='$staffimg'";
 		}
 		$sql = $sql . ",staff_type='$_POST[staff_type]',department_id='$_POST[department_id]',login_id='$_POST[login_id]'";
-    if($_POST['student_password'] != "")
+    if($_POST['password'] != "")
 		{
-		$sql = $sql . ",student_password='$pwd'";
+		$sql = $sql . ",password='$pwd'";
 		}
     $sql = $sql . ",staff_status='$_POST[staff_status]',gender='$_POST[gender]' WHERE staff_id='$_GET[editid]'";
     $qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);
 		if(mysqli_affected_rows($con) == 1)
 		{
-			echo "<script>alert('Student Record updated successfully..');</script>";
-			echo "<script>window.location='viewstudent.php';</script>";
+			echo "<script>alert('Staff Record updated successfully..');</script>";
+			echo "<script>window.location='viewstaff.php';</script>";
 		}
 	}
 	else
