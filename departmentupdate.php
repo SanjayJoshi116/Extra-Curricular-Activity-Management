@@ -6,31 +6,31 @@ if(!isset($_SESSION['staff_id']))
 }
 if(isset($_POST['submit']))
 {
-  if(isset($_GET['editid']))
+		if(isset($_GET['editid']))
 	{
 		$sql="UPDATE department SET department='$_POST[department]'";
 		$sql = $sql . ",department_id='$_POST[department_id]',department_detail='$_POST[department_detail]'";
-    $sql = $sql . ",department_status='$_POST[department_status]' WHERE department_id='$_GET[editid]'";
-    $qsql = mysqli_query($con,$sql);
-		echo mysqli_error($con);
-		if(mysqli_affected_rows($con) == 1)
+		$sql = $sql . ",department_status='$_POST[department_status]' WHERE department_id='$_GET[editid]'";
+		$qsql = mysqli_query($con,$sql);
+			echo mysqli_error($con);
+			if(mysqli_affected_rows($con) == 1)
+			{
+				echo "<script>alert('Department Record updated successfully..');</script>";
+				echo "<script>window.location='viewdepartment.php';</script>";
+			}
+		}
+		else
 		{
-			echo "<script>alert('Department Record updated successfully..');</script>";
-			echo "<script>window.location='viewdepartment.php';</script>";
+		$sql = "INSERT INTO department(department,department_detail,department_status) VALUES('$_POST[department]','$_POST[department_detail]','$_POST[department_status]')";
+		$qsql = mysqli_query($con,$sql);
+		echo mysqli_error($con);
+		if(mysqli_affected_rows($con)==1)
+		{
+			echo "<script>alert('Registered successfully...');</script>";
+			echo "<script>window.location='department.php';</script>";
 		}
 	}
-	else
-	{
-	$sql = "INSERT INTO department(department,department_detail,department_status) VALUES('$_POST[department]','$_POST[department_detail]','$_POST[department_status]')";
-	$qsql = mysqli_query($con,$sql);
-	echo mysqli_error($con);
-	if(mysqli_affected_rows($con)==1)
-	{
-		echo "<script>alert('Registered successfully...');</script>";
-		echo "<script>window.location='department.php';</script>";
-	}
 }
-  }
 if(isset($_GET['editid']))
 {
 	$sqledit= "SELECT * FROM department where department_id='$_GET[editid]'";

@@ -5,15 +5,37 @@ if(!isset($_SESSION['staff_id']))
 	echo "<script>window.location='login.php';</script>";
 }
 if(isset($_POST['submit']))
-{
-	$sql = "INSERT INTO department(department,department_detail,department_status) VALUES('$_POST[department]','$_POST[department_detail]','$_POST[department_status]')";
-	$qsql = mysqli_query($con,$sql);
-	echo mysqli_error($con);
-	if(mysqli_affected_rows($con)==1)
+{	
+	if(isset($_GET['editid']))
 	{
-		echo "<script>alert('Department Record Inserted successfully...');</script>";
-		echo "<script>window.location='department.php';</script>";
+		$sql="UPDATE department SET department='$_POST[department]'";
+		$sql = $sql . ",department_id='$_POST[department_id]',department_detail='$_POST[department_detail]'";
+		$sql = $sql . ",department_status='$_POST[department_status]' WHERE department_id='$_GET[editid]'";
+		$qsql = mysqli_query($con,$sql);
+		echo mysqli_error($con);
+		if(mysqli_affected_rows($con) == 1)
+		{
+			echo "<script>alert('Department Record updated successfully..');</script>";
+			echo "<script>window.location='viewdepartment.php';</script>";
+		}
 	}
+	else
+	{
+		$sql = "INSERT INTO department(department,department_detail,department_status) VALUES('$_POST[department]','$_POST[department_detail]','$_POST[department_status]')";
+		$qsql = mysqli_query($con,$sql);
+		echo mysqli_error($con);
+		if(mysqli_affected_rows($con)==1)
+		{
+			echo "<script>alert('Department Record Inserted successfully...');</script>";
+			echo "<script>window.location='department.php';</script>";
+		}
+	}
+}
+if(isset($_GET['editid']))
+{
+	$sqledit= "SELECT * FROM department where department_id='$_GET[editid]'";
+	$qsqledit = mysqli_query($con,$sqledit);
+	$rsedit = mysqli_fetch_array($qsqledit);
 }
 ?>
 </div>
@@ -44,12 +66,12 @@ if(isset($_POST['submit']))
 			
               <div>
 				<label class="labelproperty">Department</label>
-                <input type="text" name="department" id="department" placeholder="Enter Department title" />
+                <input type="text" name="department" id="department" placeholder="Enter Department title" value="<?php echo $rsedit['department']; ?>" />
               </div>
 			  
               <div>
                 <label class="labelproperty">Description</label>
-				<textarea name="department_detail" id="department_detail" class="form-control" placeholder="Enter Description"></textarea>
+				<textarea name="department_detail" id="department_detail" class="form-control" placeholder="Enter Description"><?php echo $rsedit['department_detail']; ?></textarea>
               </div>
 			  
               <div>
@@ -60,7 +82,14 @@ if(isset($_POST['submit']))
 				$arr = array("Active","Inactive");
 				foreach($arr as $val)
 				{
+					if($val == $rsedit['department_status'])
+					{
+					echo "<option value='$val' selected>$val</option>";
+					}
+					else
+					{
 					echo "<option value='$val'>$val</option>";
+					}
 				}
 				?>
 				</select>
