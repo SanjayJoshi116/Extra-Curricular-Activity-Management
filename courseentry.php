@@ -59,7 +59,7 @@ if(isset($_GET['editid']))
                 Course
               </h3>
               <p>
-                Add Course
+                Add/Edit Course
               </p>
             </div>
           </div>
