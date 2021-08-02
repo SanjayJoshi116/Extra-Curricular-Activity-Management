@@ -1,9 +1,9 @@
 <?php
 include("header.php");
-/*if(!isset($_SESSION['student_id']))
+if(!isset($_SESSION['student_id']))
 {
 	echo "<script>window.location='login.php';</script>";
-}*/
+	}
 if(isset($_POST['submit']))
 {
 	$apply_dt_tim=$_POST[date('Y-m-d H:i:s')];

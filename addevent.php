@@ -6,19 +6,44 @@ if(!isset($_SESSION['staff_id']))
 }
 if(isset($_POST['submit']))
 {
-	$imgbanner  = rand() . $_FILES["event_banner"]["name"];
-	move_uploaded_file($_FILES["event_banner"]["tmp_name"],"imgbanner/".$imgbanner);
-	$eventdttime =  str_replace("T"," ", $_POST['event_date_time']);
-	$eventrules = nl2br($_POST['event_rules']);
-	$sql = "INSERT INTO event(event_type_id,event_title,event_description,event_rules,event_banner,department_id,course_id, st_class, event_date_time, event_venue,staff_id,event_status) VALUES('$_POST[event_type_id]','$_POST[event_title]','$_POST[event_description]','$eventrules','$imgbanner','$_POST[department_id]','$_POST[course_id]','$_POST[st_class]','$eventdttime','$_POST[event_venue]','$_SESSION[staff_id]','$_POST[event_status]')";
-	$qsql = mysqli_query($con,$sql);
-	echo mysqli_error($con);
-	if(mysqli_affected_rows($con)==1)
+	if(isset($_GET['editid']))
 	{
-		echo "<script>alert('Event added successfully...');</script>";
-		//echo "<script>window.location='addevent.php';</script>";
+		// Update statement starts here
+		$sql = "UPDATE event SET event_type_id='$_POST[event_type_id]',event_title='$_POST[event_title]',event_description='$_POST[event_description]',event_rules='$_POST[event_rules]',event_banner='$_POST[event_banner]',department_id='$_POST[department_id]',course_id='$_POST[course_id]',st_class='$_POST[st_class]',event_date_time='$_POST[event_date_time]',event_venue='$_POST[event_venue]',event_status='$_POST[event_status]' WHERE event_id='$_GET[editid]'";
+		$qsql = mysqli_query($con,$sql);
+		echo mysqli_error($con);
+		if(mysqli_affected_rows($con) == 1)
+		{
+			echo "<script>alert('Event record updated successfully...');</script>";
+			echo "<script>window.location='viewevent.php';</script>";
+		}
+		//Step: 3 - Update statement starts here
+	}
+	else
+	{
+		$imgbanner  = rand() . $_FILES["event_banner"]["name"];
+		move_uploaded_file($_FILES["event_banner"]["tmp_name"],"imgbanner/".$imgbanner);
+		$eventdttime =  str_replace("T"," ", $_POST['event_date_time']);
+		$eventrules = nl2br($_POST['event_rules']);
+		$sql = "INSERT INTO event(event_type_id,event_title,event_description,event_rules,event_banner,department_id,course_id, st_class, event_date_time, event_venue,staff_id,event_status) VALUES('$_POST[event_type_id]','$_POST[event_title]','$_POST[event_description]','$eventrules','$imgbanner','$_POST[department_id]','$_POST[course_id]','$_POST[st_class]','$eventdttime','$_POST[event_venue]','$_SESSION[staff_id]','$_POST[event_status]')";
+		$qsql = mysqli_query($con,$sql);
+		echo mysqli_error($con);
+		if(mysqli_affected_rows($con)==1)
+		{
+			echo "<script>alert('Event added successfully...');</script>";
+			//echo "<script>window.location='addevent.php';</script>";
+		}
 	}
 }
+//Insert & Update Statement condition ends here
+//Step2: for Edit statement starts here
+if(isset($_GET['editid']))
+{
+	$sqledit = "SELECT * FROM event where event_id='$_GET[editid]'";
+	$qsqledit = mysqli_query($con,$sqledit);
+	$rsedit = mysqli_fetch_array($qsqledit);
+}
+//Step2: for edit statement ends here
 ?>
 </div>
 
@@ -34,7 +59,7 @@ if(isset($_POST['submit']))
                 Events
               </h3>
               <p>
-                Add Events
+                Add/Edit Events
               </p>
             </div>
           </div>
@@ -48,7 +73,7 @@ if(isset($_POST['submit']))
 			
               <div>
 	<label class="labelproperty">Event Type</label>
-	<select class="form-control" name="event_type_id" id="event_type_id">
+	<select class="form-control" name="event_type_id" id="event_type_id" value="<?php echo $rsedit['event_type_id']; ?>" >
 		<option value="">Select Event Type</option>
 		<?php
 		$sqleventtype = "SELECT * FROM event_type WHERE event_type_status='Active'";
@@ -64,28 +89,28 @@ if(isset($_POST['submit']))
 			  
               <div>
 				<label class="labelproperty">Event Title</label>
-                <input type="text" name="event_title" id="event_title" placeholder="Enter Event Title" />
+                <input type="text" name="event_title" id="event_title" placeholder="Enter Event Title"  value="<?php echo $rsedit['event_title']; ?>" />
               </div>
 			  
               <div>
                 <label class="labelproperty">Event Description</label>
-				<textarea name="event_description" id="event_description" class="form-control" placeholder="Enter Event Description"></textarea>
+				<textarea name="event_description" id="event_description" class="form-control" placeholder="Enter Event Description" value="<?php echo $rsedit['event_description']; ?>" ></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Event Rules</label>
-				<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules"></textarea>
+				<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules" value="<?php echo $rsedit['event_rules']; ?>" ></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Event Banner</label>
-                <input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" />
+                <input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" value="<?php echo $rsedit['event_banner']; ?>" />
               </div>
 			  
 			  
               <div>
 				<label class="labelproperty">Department</label>
-                <select name="department_id" id="department_id" class="form-control" >
+                <select name="department_id" id="department_id" class="form-control" value="<?php echo $rsedit['department_id']; ?>" >
 					<option value="">All Department</option>
 		<?php
 		$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
@@ -101,7 +126,7 @@ if(isset($_POST['submit']))
 			  
               <div>
 				<label class="labelproperty">Course</label>
-        <select name="course_id" id="course_id" class="form-control" >
+        <select name="course_id" id="course_id" class="form-control" value="<?php echo $rsedit['course_id']; ?>" >
 		<option value="">All Course</option>
 		<?php
 		$sqlcourse = "SELECT * FROM course WHERE course_status='Active'";
@@ -117,7 +142,7 @@ if(isset($_POST['submit']))
 			  
               <div>
 				<label class="labelproperty">Class</label>
-				<select name="st_class" id="st_class" class="form-control" >
+				<select name="st_class" id="st_class" class="form-control" value="<?php echo $rsedit['st_class']; ?>" >
 				<option value="">All Class</option>
                 <?php
 				$arr = array("First Year","Second Year","Third Year");
@@ -131,17 +156,17 @@ if(isset($_POST['submit']))
 			  
               <div>
 				<label class="labelproperty">Event Date & Time</label>
-                <input type="datetime-local" name="event_date_time" id="event_date_time" placeholder="Enter Date & Time" min="<?php echo  date("Y-m-d") . "T" .date("H:i"); ?>" />
+                <input type="datetime-local" name="event_date_time" id="event_date_time" placeholder="Enter Date & Time" min="<?php echo  date("Y-m-d") . "T" .date("H:i"); ?>" value="<?php echo $rsedit['event_date_time']; ?>" />
               </div>
 			  
               <div>
                 <label class="labelproperty">Venue</label>
-				<textarea name="event_venue" id="event_venue" class="form-control" placeholder="Enter Venue"></textarea>
+				<textarea name="event_venue" id="event_venue" class="form-control" placeholder="Enter Venue" value="<?php echo $rsedit['event_venue']; ?>" ></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Select Event Status</label>
-				<select name="event_status" id="event_status" class="form-control" >
+				<select name="event_status" id="event_status" class="form-control" value="<?php echo $rsedit['event_status']; ?>" >
 				<option value="">Select Status</option>
                 <?php
 				$arr = array("Active","Inactive");
