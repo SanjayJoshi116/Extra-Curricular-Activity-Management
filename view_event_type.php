@@ -10,6 +10,17 @@ if(isset($_GET['delid']))
 		echo "<script>window.location='view_event_type.php';</script>";
 	}
 }
+if(isset($_GET['acid']))
+{
+	$sqlas ="UPDATE event_type SET event_type_status='$_GET[st]' WHERE event_type_id='$_GET[acid]'";
+	$qsqlas = mysqli_query($con,$sqlas);
+	echo mysqli_error($con);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('Event type status updated to $_GET[st]');</script>";
+		echo "<script>window.location='view_event_type.php';</script>";
+	}
+}
 ?>
 </div>
 
@@ -53,8 +64,18 @@ if(isset($_GET['delid']))
 				<td>$rsview[secondplace_point]</td>
 				<td>$rsview[thirdplace_point]</td>
 				<td>$rsview[others_point]</td>
-				<td>$rsview[event_type_status]</td>
-				<td>Edit | 
+				<td>$rsview[event_type_status] <br>";
+				if($rsview['event_type_status'] == "Active")
+{
+	echo "<a href='view_event_type.php?st=Suspend&acid=$rsview[event_type_id]' class='btn btn-secondary' onclick='return confirmst()' >Suspend</a>";
+}
+else
+{
+	echo "<a href='view_event_type.php?st=Active&acid=$rsview[event_type_id]' class='btn btn-primary' onclick='return confirmst()'  >Activate</a>";
+}
+				echo"
+				<td>
+				<a href='event_type.php?editid=$rsview[event_type_id]' class='btn btn-info'>Edit</a>
 				<a href='view_event_type.php?delid=$rsview[event_type_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";

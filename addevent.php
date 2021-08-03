@@ -73,7 +73,7 @@ if(isset($_GET['editid']))
 			
               <div>
 	<label class="labelproperty">Event Type</label>
-	<select class="form-control" name="event_type_id" id="event_type_id" required="">
+	<select class="form-control" name="event_type_id" id="event_type_id" >
 		<option value="">Select Event Type</option>
 		<?php
 		$sqleventtype = "SELECT * FROM event_type WHERE event_type_status='Active'";
@@ -104,7 +104,7 @@ if(isset($_GET['editid']))
 			  
               <div>
 				<label class="labelproperty">Event Banner</label>
-                <input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" />
+                <input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" value="<?php echo $rsedit['event_banner'];?>" />
 				<?php
 					if(isset($_GET['editid']))
 					{
@@ -127,7 +127,7 @@ if(isset($_GET['editid']))
 			  
               <div>
 				<label class="labelproperty">Department</label>
-                <select name="department_id" id="department_id" class="form-control" required=""/>
+                <select name="department_id" id="department_id" class="form-control" />
 					<option value="">All Department</option>
 		<?php
 		$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
@@ -159,7 +159,7 @@ if(isset($_GET['editid']))
 			  
               <div>
 				<label class="labelproperty">Class</label>
-				<select name="st_class" id="st_class" class="form-control" required="" />
+				<select name="st_class" id="st_class" class="form-control" />
 				<option value="">All Class</option>
                 <?php
 				$arr = array("First Year","Second Year","Third Year");
@@ -183,7 +183,7 @@ if(isset($_GET['editid']))
 			  
               <div>
 				<label class="labelproperty">Select Event Status</label>
-				<select name="event_status" id="event_status" class="form-control" required="" />
+				<select name="event_status" id="event_status" class="form-control" />
 				<option value="">Select Status</option>
                 <?php
 				$arr = array("Active","Inactive");
