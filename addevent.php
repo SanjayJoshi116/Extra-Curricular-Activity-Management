@@ -73,7 +73,7 @@ if(isset($_GET['editid']))
 			
               <div>
 	<label class="labelproperty">Event Type</label>
-	<select class="form-control" name="event_type_id" id="event_type_id" value="<?php echo $rsedit['event_type_id']; ?>" >
+	<select class="form-control" name="event_type_id" id="event_type_id" required="">
 		<option value="">Select Event Type</option>
 		<?php
 		$sqleventtype = "SELECT * FROM event_type WHERE event_type_status='Active'";
@@ -94,23 +94,40 @@ if(isset($_GET['editid']))
 			  
               <div>
                 <label class="labelproperty">Event Description</label>
-				<textarea name="event_description" id="event_description" class="form-control" placeholder="Enter Event Description" value="<?php echo $rsedit['event_description']; ?>" ></textarea>
+				<textarea name="event_description" id="event_description" class="form-control" placeholder="Enter Event Description" ></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Event Rules</label>
-				<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules" value="<?php echo $rsedit['event_rules']; ?>" ></textarea>
+				<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules" ></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Event Banner</label>
-                <input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" value="<?php echo $rsedit['event_banner']; ?>" />
+                <input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" />
+				<?php
+					if(isset($_GET['editid']))
+					{
+						if($rsedit['event_banner'] == "")
+						{
+							echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
+						}
+						else if(file_exists("imgbanner/" . $rsedit['event_banner']))
+						{
+							echo "<img src='imgbanner/" . $rsedit['event_banner'] . "' style='width: 170px;height:200px;' />";
+						}
+						else
+						{
+							echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
+						}
+					}
+					?>
               </div>
 			  
 			  
               <div>
 				<label class="labelproperty">Department</label>
-                <select name="department_id" id="department_id" class="form-control" value="<?php echo $rsedit['department_id']; ?>" >
+                <select name="department_id" id="department_id" class="form-control" required=""/>
 					<option value="">All Department</option>
 		<?php
 		$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
@@ -126,7 +143,7 @@ if(isset($_GET['editid']))
 			  
               <div>
 				<label class="labelproperty">Course</label>
-        <select name="course_id" id="course_id" class="form-control" value="<?php echo $rsedit['course_id']; ?>" >
+        <select name="course_id" id="course_id" class="form-control" required="" />
 		<option value="">All Course</option>
 		<?php
 		$sqlcourse = "SELECT * FROM course WHERE course_status='Active'";
@@ -142,7 +159,7 @@ if(isset($_GET['editid']))
 			  
               <div>
 				<label class="labelproperty">Class</label>
-				<select name="st_class" id="st_class" class="form-control" value="<?php echo $rsedit['st_class']; ?>" >
+				<select name="st_class" id="st_class" class="form-control" required="" />
 				<option value="">All Class</option>
                 <?php
 				$arr = array("First Year","Second Year","Third Year");
@@ -161,12 +178,12 @@ if(isset($_GET['editid']))
 			  
               <div>
                 <label class="labelproperty">Venue</label>
-				<textarea name="event_venue" id="event_venue" class="form-control" placeholder="Enter Venue" value="<?php echo $rsedit['event_venue']; ?>" ></textarea>
+				<textarea name="event_venue" id="event_venue" class="form-control" placeholder="Enter Venue" ></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Select Event Status</label>
-				<select name="event_status" id="event_status" class="form-control" value="<?php echo $rsedit['event_status']; ?>" >
+				<select name="event_status" id="event_status" class="form-control" required="" />
 				<option value="">Select Status</option>
                 <?php
 				$arr = array("Active","Inactive");

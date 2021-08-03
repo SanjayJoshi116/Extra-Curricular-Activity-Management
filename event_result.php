@@ -10,6 +10,21 @@ include("header.php");
 }*/
 if(isset($_POST['submit']))
 {
+		//Update statement Starts here
+	if(isset($_GET['editid']))
+	{
+		//Step: 3 - Update statement starts here
+		$sql = "UPDATE event_result SET event_id='$_POST[event_id]',result_detail='$_POST[result_detail]',event_documentry='$_POST[event_documentry],staff_id='$_POST[staff_id]' WHERE event_result_id='$_GET[editid]'";
+		$qsql = mysqli_query($con,$sql);
+		echo mysqli_error($con);
+		if(mysqli_affected_rows($con) == 1)
+		{
+			echo "<script>alert('Event Result record updated successfully...');</script>";
+			echo "<script>window.location='view_event_result.php';</script>";
+		}
+	}
+	else
+	{
 	$sql = "INSERT INTO event_result(event_id,result_detail, event_documentry, staff_id) VALUES('$_POST[event_id]','$_POST[result_detail]','$_POST[event_documentry]','$_POST[staff_id]')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
@@ -18,7 +33,16 @@ if(isset($_POST['submit']))
 		echo "<script>alert('Event Result Published successfully...');</script>";
 		echo "<script>window.location='event_result.php';</script>";
 	}
+	}
 }
+//Step2: for Edit statement starts here
+if(isset($_GET['editid']))
+{
+	$sqledit = "SELECT * FROM event_result where event_result_id='$_GET[editid]'";
+	$qsqledit = mysqli_query($con,$sqledit);
+	$rsedit = mysqli_fetch_array($qsqledit);
+}
+//Step2: for edit statement ends here
 ?>
 </div>
 
@@ -34,7 +58,7 @@ if(isset($_POST['submit']))
                 Event Result
               </h3>
               <p>
-                Enter Event Result
+                Enter/Edit Event Result
               </p>
             </div>
           </div>
@@ -53,11 +77,11 @@ if(isset($_POST['submit']))
               </div>
               <div>
                 <label class="labelproperty">About  Event Result</label>
-				<textarea name="result_detail" id="result_detail" class="form-control"></textarea>
+				<textarea name="result_detail" id="result_detail" class="form-control" ></textarea>
               </div>
               <div>
                 <label class="labelproperty">Event Document</label>
-				<textarea name="event_documentry" id="event_documentry" class="form-control"></textarea>
+				<textarea name="event_documentry" id="event_documentry" class="form-control" ></textarea>
               </div>
               <div>
 				<label class="labelproperty">Staff</label>

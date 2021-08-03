@@ -30,10 +30,10 @@ if(isset($_GET['delid']))
 <table id="datatableplugin" class="table table-bordered">
 <thead>
 		<tr>
-			<th>Event Result Id</th>
+			<th>Event Result ID</th>
 			<th>Event Id</th>
 			<th>Student Rollno</th>
-			<th>Event Participation Id</th>
+			<th>Event Participation ID</th>
 			<th>Winning Position</th>
 			<th>Points</th>
 			<th>Action</th>
@@ -41,18 +41,19 @@ if(isset($_GET['delid']))
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT event_result_status.*,student.student_rollno FROM  event_result_status LEFT JOIN student ON event_result_status.student_id=student.student_id";
+		$sqlview = "SELECT event_result_status.*,student.student_rollno,student.student_name FROM  event_result_status LEFT JOIN student ON event_result_status.student_id=student.student_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
 				<td>$rsview[event_result_id]</td>
 				<td>$rsview[event_id]</td>
-				<td>$rsview[student_rollno]</td>
+				<td>$rsview[student_rollno] ($rsview[student_name])</td>
 				<td>$rsview[event_participation_id]</td>
 				<td>$rsview[winning_position]</td>
 				<td>$rsview[point]</td>
-				<td>Edit |
+				<td>
+				<a href='event_result_status.php?editid=$rsview[result_status_id]' class='btn btn-info'>Edit</a>
 				<a href='view_event_result_status.php?delid=$rsview[result_status_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 			</tr>";
 		}
