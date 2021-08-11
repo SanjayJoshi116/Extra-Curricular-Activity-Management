@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2021 at 01:28 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Generation Time: Aug 11, 2021 at 05:35 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -141,6 +141,10 @@ CREATE TABLE `event` (
   `event_date_time` datetime NOT NULL,
   `event_venue` text NOT NULL,
   `staff_id` int(11) NOT NULL,
+  `firstplace_point` int(11) NOT NULL,
+  `secondplace_point` int(11) NOT NULL,
+  `thirdplace_point` int(11) NOT NULL,
+  `participation_point` int(11) NOT NULL,
   `event_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -148,27 +152,27 @@ CREATE TABLE `event` (
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`event_id`, `event_type_id`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `event_status`) VALUES
-(1, 0, 'test', 'test desc', 'abcd', 'asdfj', 0, 0, 'test', '0000-00-00 00:00:00', 'Bangalore', 0, '0'),
-(2, 0, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 0, 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 0, '0'),
-(3, 2, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 1, ''),
-(4, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(5, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(6, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(7, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(8, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(9, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(10, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(11, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(12, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 'Active'),
-(13, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(14, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1910729414Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(15, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1817510492Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(16, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1028989555Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(17, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1717883508Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 'Active'),
-(18, 2, 'State Level Competition', 'Competition can arise between entities such as organisms, individuals, economic and social groups, etc. ... Competition is a major tenet of market economies and business, often associated with business competition as companies are in competition with at least one other firm over the same group of customers.', 'Event rules are stored in the Event Rule [em_match_rule] table. Configure and customize event rules to manage events and alert generation. Event rules do not change the event records in the Event table. Changes to event data are stored in the ServiceNow instance memory.', '1821207475Database Schema Diagram.png', 1, 2, 'Second Year', '2021-07-20 12:07:00', 'Bangalore', 2, 'Active'),
-(19, 2, 'abcd', 'test record', 'test reules', '1587422358basmati-rice-1kg-500x500.jpg', 0, 1, 'Second Year', '2021-07-23 10:15:00', 'Bangalore', 1, 'Active'),
-(20, 3, 'Unichess', 'unichess competition', 'This is quick chess', '2001974180arhar-dal-500x500 (1).jpg', 1, 1, 'First Year', '2021-07-30 16:16:00', 'test', 1, 'Active');
+INSERT INTO `event` (`event_id`, `event_type_id`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `firstplace_point`, `secondplace_point`, `thirdplace_point`, `participation_point`, `event_status`) VALUES
+(1, 0, 'test', 'test desc', 'abcd', 'asdfj', 0, 0, 'test', '0000-00-00 00:00:00', 'Bangalore', 0, 0, 0, 0, 0, '0'),
+(2, 0, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 0, 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 0, 0, 0, 0, 0, '0'),
+(3, 2, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, ''),
+(4, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(5, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(6, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(7, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(8, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(9, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(10, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(11, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(12, 3, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 'Active'),
+(13, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, 'Active'),
+(14, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1910729414Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, 'Active'),
+(15, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1817510492Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, 'Active'),
+(16, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1028989555Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, 'Active'),
+(17, 2, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1717883508Database Schema Diagram.png', 1, 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, 'Active'),
+(18, 2, 'State Level Competition', 'Competition can arise between entities such as organisms, individuals, economic and social groups, etc. ... Competition is a major tenet of market economies and business, often associated with business competition as companies are in competition with at least one other firm over the same group of customers.', 'Event rules are stored in the Event Rule [em_match_rule] table. Configure and customize event rules to manage events and alert generation. Event rules do not change the event records in the Event table. Changes to event data are stored in the ServiceNow instance memory.', '1821207475Database Schema Diagram.png', 1, 2, 'Second Year', '2021-07-20 12:07:00', 'Bangalore', 2, 0, 0, 0, 0, 'Active'),
+(19, 2, 'abcd', 'test record', 'test reules', '1587422358basmati-rice-1kg-500x500.jpg', 0, 1, 'Second Year', '2021-07-23 10:15:00', 'Bangalore', 1, 0, 0, 0, 0, 'Active'),
+(20, 3, 'Unichess', 'unichess competition', 'This is quick chess', '2001974180arhar-dal-500x500 (1).jpg', 1, 1, 'First Year', '2021-07-30 16:16:00', 'test', 1, 0, 0, 0, 0, 'Active');
 
 -- --------------------------------------------------------
 
@@ -180,18 +184,19 @@ CREATE TABLE `event_participation` (
   `event_participation_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `apply_dt_tim` datetime NOT NULL
+  `apply_dt_tim` datetime NOT NULL,
+  `event_particiaption_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `event_participation`
 --
 
-INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `apply_dt_tim`) VALUES
-(2, 18, 34, '2021-07-22 05:50:29'),
-(3, 18, 34, '2021-07-22 05:50:29'),
-(4, 18, 34, '2021-07-22 05:50:29'),
-(5, 18, 34, '2021-07-22 05:50:29');
+INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `apply_dt_tim`, `event_particiaption_status`) VALUES
+(2, 18, 34, '2021-07-22 05:50:29', 'P'),
+(3, 18, 34, '2021-07-22 05:50:29', 'A'),
+(4, 18, 34, '2021-07-22 05:50:29', 'P'),
+(5, 18, 34, '2021-07-22 05:50:29', 'P');
 
 -- --------------------------------------------------------
 
@@ -247,10 +252,6 @@ CREATE TABLE `event_type` (
   `event_type_id` int(11) NOT NULL,
   `event_type` varchar(30) NOT NULL,
   `event_type_info` text NOT NULL,
-  `firstplace_point` int(11) NOT NULL,
-  `secondplace_point` int(11) NOT NULL,
-  `thirdplace_point` int(11) NOT NULL,
-  `others_point` int(11) NOT NULL,
   `event_type_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -258,10 +259,10 @@ CREATE TABLE `event_type` (
 -- Dumping data for table `event_type`
 --
 
-INSERT INTO `event_type` (`event_type_id`, `event_type`, `event_type_info`, `firstplace_point`, `secondplace_point`, `thirdplace_point`, `others_point`, `event_type_status`) VALUES
-(2, 'Dance Competition', 'Dance competition with western and traditional', 10, 5, 3, 1, 'Active'),
-(3, 'Chess', 'Chess masters', 20, 10, 5, 3, 'Active'),
-(4, 'Break Dance', 'Break dance competition', 25, 15, 10, 5, 'Active');
+INSERT INTO `event_type` (`event_type_id`, `event_type`, `event_type_info`, `event_type_status`) VALUES
+(2, 'Dance Competition', 'Dance competition with western and traditional', 'Active'),
+(3, 'Chess', 'Chess masters', 'Active'),
+(4, 'Break Dance', 'Break dance competition', 'Active');
 
 -- --------------------------------------------------------
 
