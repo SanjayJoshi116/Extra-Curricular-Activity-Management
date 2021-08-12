@@ -24,7 +24,6 @@ if(isset($_GET['acid']))
 }
 //Approve or Suspend Student Account ends here
 ?>
-</div>
 
   <!-- event section -->
   <section class="event_section layout_padding">

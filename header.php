@@ -55,3 +55,5 @@ include("testmenu.php");
 <?php
 include("headerpage.php");
 ?>
+</body>
+</html>
