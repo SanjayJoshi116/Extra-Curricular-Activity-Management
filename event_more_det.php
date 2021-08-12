@@ -71,8 +71,19 @@ if(isset($_POST['btnsubmit']))
           <div class="img_container">
             <div class="img-box b1">
 <?php
-$imge=$rsviewevent['event_banner'];
-echo '<img src="imgbanner/' .$imge .'" >';
+if($rsviewevent['event_banner'] == "")
+			{
+				$filename= "images/defaultimage.png";
+			}
+			else if(file_exists("imgbanner/" .$rsviewevent['event_banner']))
+			{
+				$filename= "imgbanner/" .$rsviewevent['event_banner'];
+			}
+			else
+			{
+				$filename= "images/defaultimage.png";
+			}
+echo "<img src='$filename'>";
 ?>			  
             </div>
           </div>
