@@ -86,13 +86,14 @@
             <div class="collapse navbar-collapse" id="navbartoggle">
 <div class="nav-fostrap">
 	<ul>
-		<li><a href="index.php">Home</a></li>
+		<li><a href="index.php">Home <span class="sr-only">(current)</span> </a> </li>
 		<li><a href="about.php">About</a></li>
+		<li><a href="complaint.php">Complaint</a></li>
+
 <?php
 if(isset($_SESSION['staff_id']))
 {
 ?>	
-
 		<li><a href="javascript:void(0)">Events<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
@@ -110,8 +111,11 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="event_result_status.php">Add Event Result Status</a></li>
 			</ul>
 		</li>
+
 <?php
 }
+else if(isset($_SESSION['student_id']))
+{
 ?>
 		<li><a href="javascript:void(0)">Events<span class="arrow-down"></span></a>
 		<!-- drop menu -->
@@ -119,22 +123,67 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="upcoming-event.php">Upcoming Events</a></li>
 				<li><a href="live-event.php">Live Events</a></li>
 				<li><a href="completed-event.php">Completed Events</a></li>
-				<li><a href="addevent.php">Add Event</a></li>
-				<li><a href="event_type.php">Add Event Type</a></li>
-			</ul>
+				<li><a href="applyevent.php">Event Application</a></li>
+				</ul>
 		</li>
 		
-		
-		<li><a href="javascript:void(0)">Blogger<span class="arrow-down"></span></a>
+		<li><a href="javascript:void(0)">Result<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 		<ul class="dropdown">
-			<li><a href="#">Widget</a></li>
-			<li><a href="#">Tips</a></li>
+				<li><a href="view_event_result_status.php">Event Result</a></li>
+				</ul>
+		</li>
+		<?php 
+		}
+		if(isset($_SESSION['staff_id']))
+		{
+		?>
+							
+		<li><a href="javascript:void(0)">Admin Panel<span class="arrow-down"></span></a>
+		<!-- drop menu -->
+		<ul class="dropdown">
+			<li><a href="dashboard.php">Dashboard</a></li>
+			<li><a href="courseentry.php">Add Course</a></li>
+			<li><a href="viewcourse.php">View Course</a></li>
+			<li><a href="department.php">Add Department</a></li>
+			<li><a href="viewdepartment.php">View Department</a></li>
+			<li><a href="departmentcourse.php">Add Department Course</a></li>
+			<li><a href="view-departmentcourse.php">View Department Course</a></li>
+			<li><a href="viewevent.php">View Events</a></li>
+			<li><a href="view_event_apply.php">View Applications</a></li>
+			<li><a href="view_event_result.php">View Event Result</a></li>
+			<li><a href="view_event_result_status.php">View Event Result Status</a></li>
+			<li><a href="view_event_type.php">View Event Type</a></li>
+			<li><a href="viewstaff.php">View Staff</a></li>
+			<li><a href="viewstudent.php">View Student</a></li>
+			
 		</ul>
 		</li>
 		
-		<li><a href="#">Business</a></li>
+		<li><a href="logout.php">Logout</a></li>
 		
+<?php
+}
+else if(isset($_SESSION['student_id']))
+{
+?>	
+	<li><a href="javascript:void(0)">Student Panel<span class="arrow-down"></span></a>
+		<!-- drop menu -->
+		<ul class="dropdown">
+		<li><a href="student-dashboard.php">Dashboard</a></li>
+		<li><a href="logout.php">Logout</a></li>
+		</ul>
+		</li>
+<?php
+}
+else
+{
+?>
+	<li><a href="student.php">Registration</a></li>
+	<li><a href="login.php">Login</a></li>
+<?php
+}
+?>
 	</ul>
 </div>
             </div>
