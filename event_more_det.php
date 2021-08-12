@@ -8,11 +8,23 @@ where event.event_id='$_GET[event_id]'";
 $qsqlviewevent = mysqli_query($con,$sqlviewevent);
 echo mysqli_error($con);
 $rsviewevent = mysqli_fetch_array($qsqlviewevent);
+if(isset($_POST['btnsubmit']))
+{
+	$apply_dt_tim=date('Y-m-d H:i:s');
+	$sql = "INSERT INTO event_participation(event_id,student_id,apply_dt_tim) VALUES('$_GET[event_id]','$_SESSION[student_id]','$apply_dt_tim')";
+	$qsql = mysqli_query($con,$sql);
+	echo mysqli_error($con);
+	if(mysqli_affected_rows($con)==1)
+	{
+		echo "<script>alert('Event application success...');</script>";
+		//echo "<script>window.location='upcoming-event.php';</script>";
+	}
+}
 ?>
 </div>
 <br>
   <!-- special section -->
-
+<form action="" method="post" enctype="multipart/form-data">
   <section class="special_section">
     <div class="container">
       <div class="special_container">
@@ -136,7 +148,7 @@ $last_date = strtotime($stop_date);
 if($last_date >= $eventdate)
 {
 ?>
-<a href="">Click Here to participate</a>
+<button type="submit" name="btnsubmit" id="submit" class="btn_on-hover">Click Here to participate</button>
 <?php
 }
 else
@@ -153,11 +165,8 @@ else
 	  </div>
     </div>
   </section>
-
+</form>
   <!-- end login section -->
-
-
-
 <?php
 include("footer.php");
 ?>

@@ -171,9 +171,9 @@ else if(isset($_SESSION['student_id']))
 		<!-- drop menu -->
 		<ul class="dropdown">
 		<li><a href="student-dashboard.php">Dashboard</a></li>
-		<li><a href="logout.php">Logout</a></li>
 		</ul>
 		</li>
+		<li><a href="logout.php">Logout</a></li>
 <?php
 }
 else
