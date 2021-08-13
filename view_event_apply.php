@@ -31,6 +31,7 @@ if(isset($_GET['delid']))
 	<thead>
 		<tr>
 			<th>Event ID</th>
+			<th>Event Name</th>
 			<th>Student Rollno</th>
 			<th>Apply Date & Time</th>
 			<th>Action</th>
@@ -38,12 +39,13 @@ if(isset($_GET['delid']))
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT event_participation.*,student.student_rollno,student.student_name FROM  event_participation LEFT JOIN student ON event_participation.student_id=student.student_id";
+		$sqlview = "SELECT event_participation.*,student.student_rollno,student.student_name, event.event_title FROM  event_participation LEFT JOIN student ON event_participation.student_id=student.student_id LEFT JOIN event ON event.event_id=event_participation.event_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
 				<td>$rsview[event_id]</td>
+				<td>$rsview[event_title]</td>
 				<td>$rsview[student_rollno] ($rsview[student_name])</td>
 				<td>$rsview[apply_dt_tim]</td>
 				<td>
