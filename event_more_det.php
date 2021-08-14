@@ -156,23 +156,25 @@ echo "<img src='$filename'>";
 $stop_date = date('Y-m-d', strtotime($rsviewevent['event_date_time'] . ' -2 day'));
 $eventdate  = strtotime($dt);
 $last_date = strtotime($stop_date);
+if(isset($_SESSION['student_id']))
+{
 if($last_date >= $eventdate)
 {
 ?>
-<button type="submit" name="btnsubmit" id="submit" class="btn_on-hover">Click Here to participate</button>
+<button type="submit" name="btnsubmit" id="submit" class="btn btn-primary">Click Here to participate</button>
 <?php
+}
 }
 else
 {
 ?>
-<a href="#" onclick="alert('Participation not allowed..')" class="btn btn-secondary">Participation Option Closed</a>
+<button onclick="alert('Participation not allowed..')" class="btn btn-secondary">Participation Option Closed</button>
 <?php
 }
 ?>
 			</center>
           </div>
         </div>
-
 	  </div>
     </div>
   </section>

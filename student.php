@@ -95,7 +95,7 @@ if(isset($_POST['btnsubmit']))
 				<select name="st_class" id="st_class" class="form-control" >
 				<option value="">--Select--</option>
                 <?php
-				$arr = array("All Class","First Year","Second Year","Third Year");
+				$arr = array("First Year","Second Year","Third Year");
 				foreach($arr as $val)
 				{
 					echo "<option value='$val'>$val</option>";

@@ -4,7 +4,7 @@
     color: #ef4211;
 }
 #header nav{
-  padding: 15px 0px;
+  padding: 20px 0px;
 }
 #header .navbar-light .navbar-nav .nav-link {
   color: #5a5a5a;
@@ -13,7 +13,7 @@
 #header {
     border-bottom: 1px solid #ddd;
     background-color: #3498db;
-    float: left;
+    float: center;
     width: 100%;
 }
 #header ul.navbar-nav {
