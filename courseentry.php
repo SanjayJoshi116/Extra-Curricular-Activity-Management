@@ -84,7 +84,7 @@ if(isset($_GET['editid']))
               <div>
 				<label class="labelproperty">Course Status</label>
 				<select name="course_status" id="course_status" class="form-control" >
-				<option value="">Select Status</option>
+				<option value="">--Select--</option>
                 <?php
 				$arr = array("Active","Inactive");
 				foreach($arr as $val)

@@ -25,9 +25,21 @@ include("header.php");
           <div class="img-box">
            <h5>
 		  <?php
-      $imge=$rsview['event_banner'];
-      echo '<img src="imgbanner/' .$imge .'" width="150" height="150">';
-      ?>
+			$rsjsonarr = json_encode($rsview);
+			if($rsview['event_banner'] == "")
+			{
+				$filename= "images/defaultimage.png";
+			}
+			else if(file_exists("imgbanner/" .$rsview['event_banner']))
+			{
+				$filename= "imgbanner/" .$rsview['event_banner'];
+			}
+			else
+			{
+				$filename= "images/defaultimage.png";
+			}
+			echo "<img src='$filename' style='width: 100px;height:100px;' >";
+			?>
 		   </h5>
           </div>
           <div class="detail-box">

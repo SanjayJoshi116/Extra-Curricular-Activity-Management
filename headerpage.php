@@ -88,9 +88,14 @@
 	<ul>
 		<li><a href="index.php">Home <span class="sr-only">(current)</span> </a> </li>
 		<li><a href="about.php">About</a></li>
+		<?php
+		if(isset($_SESSION['student_id']))
+		{
+		?>
 		<li><a href="complaint.php">Complaint</a></li>
 
 <?php
+		}
 if(isset($_SESSION['staff_id']))
 {
 ?>	

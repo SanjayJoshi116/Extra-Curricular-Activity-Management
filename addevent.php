@@ -74,7 +74,7 @@ if(isset($_GET['editid']))
               <div>
 	<label class="labelproperty">Event Type</label>
 	<select class="form-control" name="event_type_id" id="event_type_id" >
-		<option value="">Select Event Type</option>
+		<option value="">--Select--</option>
 		<?php
 		$sqleventtype = "SELECT * FROM event_type WHERE event_type_status='Active'";
 		$qsqleventtype = mysqli_query($con,$sqleventtype);
@@ -128,7 +128,7 @@ if(isset($_GET['editid']))
               <div>
 				<label class="labelproperty">Department</label>
                 <select name="department_id" id="department_id" class="form-control" />
-					<option value="">All Department</option>
+					<option value="">--Select--</option>
 		<?php
 		$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
 		$qsqldepartment = mysqli_query($con,$sqldepartment);
@@ -144,7 +144,7 @@ if(isset($_GET['editid']))
               <div>
 				<label class="labelproperty">Course</label>
         <select name="course_id" id="course_id" class="form-control" required="" />
-		<option value="">All Course</option>
+		<option value="">--Select--</option>
 		<?php
 		$sqlcourse = "SELECT * FROM course WHERE course_status='Active'";
 		$qsqlcourse = mysqli_query($con,$sqlcourse);
@@ -160,9 +160,9 @@ if(isset($_GET['editid']))
               <div>
 				<label class="labelproperty">Class</label>
 				<select name="st_class" id="st_class" class="form-control" />
-				<option value="">All Class</option>
+				<option value="">--Select--</option>
                 <?php
-				$arr = array("First Year","Second Year","Third Year");
+				$arr = array("All Class","First Year","Second Year","Third Year");
 				foreach($arr as $val)
 				{
 					echo "<option value='$val'>$val</option>";
@@ -184,7 +184,7 @@ if(isset($_GET['editid']))
               <div>
 				<label class="labelproperty">Select Event Status</label>
 				<select name="event_status" id="event_status" class="form-control" />
-				<option value="">Select Status</option>
+				<option value="">--Select--</option>
                 <?php
 				$arr = array("Active","Inactive");
 				foreach($arr as $val)

@@ -15,7 +15,7 @@ if(isset($_POST['btnsubmit']))
 	$pwd = md5($_POST['student_password']);
 	$studentimg  = rand() . $_FILES["student_image"]["name"];
 	move_uploaded_file($_FILES["student_image"]["tmp_name"],"studentimg/".$studentimg);
-	$sql = "INSERT INTO student(student_name,course_id,student_rollno,student_password,st_class,student_image,gender,dob,language,elective_paper,extension_activities,student_status) VALUES('$_POST[student_name]','$_POST[course_id]','$_POST[student_rollno]','$pwd','$_POST[st_class]','$studentimg','$_POST[gender]','$_POST[dob]','$_POST[language]','$_POST[elective_paper]','$_POST[extension_activities]','Pending')";
+	$sql = "INSERT INTO student(student_name,course_id,student_rollno,student_password,email,st_class,student_image,gender,dob,language,elective_paper,extension_activities,student_status) VALUES('$_POST[student_name]','$_POST[course_id]','$_POST[student_rollno]','$pwd','$_POST[email]','$_POST[st_class]','$studentimg','$_POST[gender]','$_POST[dob]','$_POST[language]','$_POST[elective_paper]','$_POST[extension_activities]','Pending')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)
@@ -64,12 +64,20 @@ if(isset($_POST['btnsubmit']))
 					<label class="labelproperty">Confirm Password</label>
 					<input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm Password"  />
 				</div>
-			</div>
+				<div class="col-md-6">
+					<label class="labelproperty">E-Mail ID</label>
+					<input type="mail" name="email" id="email" class="form-control" placeholder="Enter your E-Mail ID"  />
+				</div>
+				<div class="col-md-6">
+					<label class="labelproperty">Confirm E-Mail ID</label>
+					<input type="mail" name="cemail" id="cemail" class="form-control" placeholder="Confirm your E-Mail ID"  />
+				</div>
+				</div>
 			<div class="row mdtextalign">
               <div class="col-md-6">
 				<label class="labelproperty">Course</label>
 				<select name="course_id" id="course_id" class="form-control" >
-				<option value="">All Course</option>
+				<option value="">--Select--</option>
 				<?php
 					$sqlcourse = "SELECT * FROM course WHERE course_status='Active'";
 					$qsqlcourse = mysqli_query($con,$sqlcourse);
@@ -85,9 +93,9 @@ if(isset($_POST['btnsubmit']))
 			   <div class="col-md-6">
 				<label class="labelproperty">Class</label>
 				<select name="st_class" id="st_class" class="form-control" >
-				<option value="">All Class</option>
+				<option value="">--Select--</option>
                 <?php
-				$arr = array("First Year","Second Year","Third Year");
+				$arr = array("All Class","First Year","Second Year","Third Year");
 				foreach($arr as $val)
 				{
 					echo "<option value='$val'>$val</option>";
@@ -177,5 +185,17 @@ if(isset($_POST['btnsubmit']))
 
   <!-- end login section -->
 <?php
+/*$to_email="receipient@gmail.com";
+$subject="Registration";
+$body="Registration successful. We'll notify you after the approval. Thank You for registering.";
+$headers="From: sender email";
+if(mail($to_email,$subject,$body,$headers))
+{
+	echo "E-mail successfully sent to $to_email...";
+}
+else
+{
+	echo "Failed to send E-mail";
+}*/
 include("footer.php");
 ?>
