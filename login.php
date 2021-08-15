@@ -1,5 +1,15 @@
 <?php
 include("header.php");
+if($_SESSION['sessionid'] == $_SESSION['resetsession'])
+{
+	$sqlupd = "UPDATE student SET student_status='Active' WHERE student_id='$_GET[studentid]'";
+	$qsqlupd = mysqli_query($con,$sqlupd);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('Account activated successfully...');</script>";
+		echo "<script>window.location='login.php';</script>";
+	}
+}
 //This code checks whether staff already logged in or not.
 if(isset($_SESSION['staff_id']))
 {
@@ -49,8 +59,8 @@ if(isset($_POST['btnsubmit']))
 	}
 }
 ?>
-</div>
-
+<br>
+<br>
   <!-- login section -->
   <section class="login_section layout_padding">
     <div class="container">
@@ -90,6 +100,8 @@ if(isset($_POST['btnsubmit']))
                 <input name="password"   id="password"  type="password" placeholder="Password" />
               </div>
               <button type="submit" name="btnsubmit">Login</button>
+			  <hr>
+			  Did you forget password - <a href="forgotpassword.php" class="btn-info">&nbsp; Click Here &nbsp;</a>
             </form>
           </div>
         </div>

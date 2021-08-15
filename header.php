@@ -50,10 +50,8 @@ class="sub_page"
 }
 ?>>
 <?php
-include("testmenu.php");
+include("topmenu.php");
 ?>
 <?php
 include("headerpage.php");
 ?>
-</body>
-</html>
