@@ -7,7 +7,7 @@ if(!isset($_SESSION['student_id']))
 if(isset($_POST['submit']))
 {
 	$apply_dt_tim=$_POST[date('Y-m-d H:i:s')];
-	$sql = "INSERT INTO event_participation() VALUES('$_POST[event_id]','$_SESSION[student_id]',$apply_dt_tim')";
+	$sql = "INSERT INTO event_participation() VALUES('$_POST[event_id]','$_SESSION[student_id]','$apply_dt_tim')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)

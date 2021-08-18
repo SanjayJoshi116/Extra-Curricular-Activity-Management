@@ -135,6 +135,14 @@
 			if(isset($_SESSION['student_id']))
 			{
 ?>
+<li><a href="javascript:void(0)">Events<span class="arrow-down"></span></a>
+		<!-- drop menu -->
+			<ul class="dropdown">
+				<li><a href="upcoming-event.php">Upcoming Events</a></li>
+				<li><a href="live-event.php">Live Events</a></li>
+				<li><a href="completed-event.php">Completed Events</a></li>
+				</ul>
+				</li>
 		<li><a href="student-dashboard.php">Dashboard</a></li>
 		
 		<li><a href="view_event_result_status.php">Result</a></li>

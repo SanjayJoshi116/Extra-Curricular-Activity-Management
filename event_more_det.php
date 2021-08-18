@@ -136,7 +136,9 @@ $last_date = strtotime($stop_date);
 if($last_date >= $eventdate)
 {
 ?>
-<a href="">Click Here to participate</a>
+<form method="post" action="">
+<button type="submit" name="submit" id="submit" class="btn_on-hover" onclick>Click Here to participate</button>
+</form>
 <?php
 }
 else
@@ -159,5 +161,17 @@ else
 
 
 <?php
+if(isset($_POST['submit']))
+{
+	$apply_dt_tim=date('Y-m-d H:i:s');
+	$sql = "INSERT INTO event_participation(event_id,student_id,event_participation_type,team,apply_dt_tim,event_participation_status) VALUES ('$_GET[event_id]','$_SESSION[student_id]','$_POST[event_participation_type]','$_POST[team]','$apply_dt_tim','Present')";
+	$qsql = mysqli_query($con,$sql);
+	echo mysqli_error($con);
+		if(mysqli_affected_rows($con)==1)
+		{
+			echo "<script>alert('Enrolled successfully...');</script>";
+			echo "<script>window.location='upcoming-event.php';</script>";
+		}
+}
 include("footer.php");
 ?>
