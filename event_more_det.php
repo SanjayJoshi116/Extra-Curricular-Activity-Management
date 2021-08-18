@@ -11,14 +11,14 @@ $rsviewevent = mysqli_fetch_array($qsqlviewevent);
 if(isset($_POST['submit']))
 {
 	$apply_dt_tim=date('Y-m-d H:i:s');
-	$sql = "INSERT INTO event_participation(event_id,student_id,event_participation_type,team,apply_dt_tim,event_participation_status) VALUES ('$_GET[event_id]','$_SESSION[student_id]','$_POST[event_participation_type]','$_POST[team]','$apply_dt_tim','Present')";
+	$sql = "INSERT INTO event_participation(event_id,student_id,event_participation_type,team,apply_dt_tim,event_participation_status) VALUES ('$_GET[event_id]','$_SESSION[student_id]','$rsviewevent[event_participation_type]','0','$apply_dt_tim','Applied')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
-		if(mysqli_affected_rows($con)==1)
-		{
-			echo "<script>alert('Enrolled successfully...');</script>";
-			echo "<script>window.location='upcoming-event.php';</script>";
-		}
+	if(mysqli_affected_rows($con)==1)
+	{
+		echo "<script>alert('You have Enrolled successfully...');</script>";
+		echo "<script>window.location='upcoming-event.php';</script>";
+	}
 }
 ?>
 </div>
@@ -42,7 +42,7 @@ if(isset($_POST['submit']))
           </div>
           <div class="detail-box">
             <h4>
-              <?php echo  $rsviewevent['event_title']; ?>
+              <?php echo $rsviewevent['event_title']; ?>
             </h4>
           </div>
         </div>
@@ -80,22 +80,51 @@ echo '<img src="imgbanner/' .$imge .'" >';
         <div class="col-md-7">
           <div class="detail-box">
             <div class="heading_container">
-              <h3>
-                <?php echo  $rsviewevent['event_title']; ?> 
-              </h3>
+              <h3> &nbsp;  <?php echo  $rsviewevent['event_title']; ?></h3>
             <p>
-				<table class="table table-bordered" style="width: 80%;">
+				<table class="table table-bordered table-striped" style="width: 100%;">
 					<tr>
-						<th>Event Type : </th><td><?php echo  $rsviewevent['event_type']; ?> </td>
+						<th style="width: 40%;">Event Type : </th><td><?php echo  $rsviewevent['event_type']; ?> </td>
 					</tr>
 					<tr>
-						<th>Deparment : </th><td><?php echo  $rsviewevent['department']; ?> </td>
+						<th>Event Participation Type : </th><td><?php echo  $rsviewevent['event_participation_type']; ?> </td>
+					</tr>
+					<?php
+					if($rsviewevent['event_participation_type'] == "Team")
+					{
+					?>
+					<tr>
+						<th>Number of Members in the Team : </th><td><?php echo  $rsviewevent['no_of_participants']; ?> </td>
+					</tr>
+					<?php
+					}
+					?>
+					<tr>
+						<th>Department : </th><td><?php echo  $rsviewevent['department']; ?> </td>
 					</tr>
 					<tr>
-						<th>Course : </th><td><?php echo  $rsviewevent['course_title']; ?> </td>
+						<th>Course : </th><td><?php
+						if($rsviewevent['course_id'] == 0)
+						{
+							echo "All Courses";
+						}
+						else
+						{
+							echo $rsviewevent['course_title']; 
+						}
+							?> </td>
 					</tr>
 					<tr>
-						<th>Class : </th><td><?php echo  $rsviewevent['st_class']; ?> </td>
+						<th>Class : </th><td><?php
+						if($rsviewevent['st_class'] == 0)
+						{
+							echo "All Class";
+						}
+						else
+						{
+							echo $rsviewevent['st_class']; 
+						}
+							?></td>
 					</tr>
 					<tr>
 						<th>Staff Incharge : </th><td><?php echo  $rsviewevent['staff_name']; ?> (<?php echo  $rsviewevent['staff_type']; ?>) </td>
@@ -103,9 +132,22 @@ echo '<img src="imgbanner/' .$imge .'" >';
 					<tr>
 						<th>Last date for Participation: </th><td><?php echo $stop_date = date('d-m-Y', strtotime($rsviewevent['event_date_time'] . ' -2 day')); ?> </td>
 					</tr>
+					<tr>
+						<th>Maximum Limit: </th><td><?php echo $rsviewevent['participation_limit']; ?> </td>
+					</tr>
+					<tr>
+						<th>Club: </th><td><?php echo $rsviewevent['club']; ?> </td>
+					</tr>
+					<tr>
+						<th>Points: </th><td><?php 
+							echo "First Place - " . $rsviewevent['firstplace_point'] . "<br>"; 
+							echo "Second Place - " . $rsviewevent['secondplace_point'] . "<br>"; 
+							echo "Third Place - " . $rsviewevent['thirdplace_point'] . "<br>"; 
+							echo "Participation Point - " . $rsviewevent['participation_point'] . "<br>"; 
+							?> </td>
+					</tr>
 				</table> 
 			</p>
-              <p><?php echo  $rsviewevent['event_description']; ?>  </p>
             </div>
           </div>
         </div>
@@ -114,11 +156,18 @@ echo '<img src="imgbanner/' .$imge .'" >';
     <div class="container  table table-bordered" >
       <div class="heading_container">
         <h3>
-          Event Rules
+           &nbsp;  Event Details
+        </h3>
+        <p><?php echo  $rsviewevent['event_description']; ?></p>
+      </div>
+    </div>
+    <div class="container  table table-bordered" >
+      <div class="heading_container">
+        <h3>
+          &nbsp;   Event Rules
         </h3>
         <p><?php echo  $rsviewevent['event_rules']; ?></p>
       </div>
-
     </div>
   </section>
 
@@ -139,21 +188,37 @@ echo '<img src="imgbanner/' .$imge .'" >';
 			  $qsqlparticipantscount = mysqli_query($con,$sqlparticipantscount);
 			  echo mysqli_num_rows($qsqlparticipantscount);
 			  ?>
-            </p>
-            
+            </p>       
 <?php
-$stop_date = date('Y-m-d', strtotime($rsviewevent['event_date_time'] . ' -2 day'));
-$eventdate  = strtotime($dt);
-$last_date = strtotime($stop_date);
-if($last_date >= $eventdate)
+$sqlchkparticipation = "SELECT * FROM event_participation WHERE event_id='$_GET[event_id]' AND student_id='$_SESSION[student_id]'";
+$qsqlchkparticipation = mysqli_query($con,$sqlchkparticipation);
+if(mysqli_num_rows($qsqlchkparticipation) >= 1)
 {
-	if(isset($_SESSION['student_id']))
-	{
 ?>
-<form method="post" action="">
-<button type="submit" name="submit" id="submit" class="btn_on-hover" onclick>Click Here to participate</button>
-</form>
+<a href="#" onclick="alert('You have already applied for this Event..')" class="btn btn-danger">You have already applied for this Event</a>
 <?php
+}
+else
+{
+	$stop_date = date('Y-m-d', strtotime($rsviewevent['event_date_time'] . ' -2 day'));
+	$eventdate  = strtotime($dt);
+	$last_date = strtotime($stop_date);
+	if($last_date >= $eventdate)
+	{
+		if(isset($_SESSION['student_id']))
+		{
+	?>
+	<form method="post" action="">
+	<button type="submit" name="submit" id="submit" class="btn btn-info" onclick="return confirmparticipation()">Click Here to participate</button>
+	</form>
+	<?php
+		}
+		else
+		{
+		?>
+		<a href="#" onclick="alert('Participation not allowed..')" class="btn btn-secondary">Participation Option Closed</a>
+		<?php
+		}
 	}
 	else
 	{
@@ -161,11 +226,7 @@ if($last_date >= $eventdate)
 	<a href="#" onclick="alert('Participation not allowed..')" class="btn btn-secondary">Participation Option Closed</a>
 	<?php
 	}
-}
-else
-{
-?>
-<a href="#" onclick="alert('Participation not allowed..')" class="btn btn-secondary">Participation Option Closed</a>
+	?>
 <?php
 }
 ?>
@@ -184,3 +245,16 @@ else
 <?php
 include("footer.php");
 ?>
+<script>
+function confirmparticipation()
+{
+	if(confirm("Are you sure want to participate?") == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>

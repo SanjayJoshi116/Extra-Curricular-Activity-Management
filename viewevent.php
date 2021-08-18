@@ -67,7 +67,7 @@ if(isset($_GET['acid']))
 				<td>$rsview[event_status] <br>";
 				if($rsview['event_status'] == "Active")
 {
-	echo "<a href='viewevent.php?st=Completed&acid=$rsview[event_id]' class='btn btn-primary' onclick='return confirmst()' >Completed</a>";
+	echo "<a href='viewevent.php?st=Inactive&acid=$rsview[event_id]' class='btn btn-primary' onclick='return confirmst()' >Deactivte</a>";
 }
 else
 {

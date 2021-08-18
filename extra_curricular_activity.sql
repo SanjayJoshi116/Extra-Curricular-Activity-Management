@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 09:31 AM
+-- Generation Time: Aug 18, 2021 at 03:41 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -158,7 +158,7 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `no_of_participants`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `club`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `firstplace_point`, `secondplace_point`, `thirdplace_point`, `participation_point`, `participation_limit`, `event_status`) VALUES
 (1, 0, '', 0, 'test', 'test desc', 'abcd', 'asdfj', 0, '', 0, 'test', '0000-00-00 00:00:00', 'Bangalore', 0, 0, 0, 0, 0, 0, '0'),
-(2, 0, '', 0, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 0, '', 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 0, 0, 0, 0, 0, 0, '0'),
+(2, 0, '', 0, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 0, '', 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 0, 0, 0, 0, 0, 0, 'Inactive'),
 (3, 2, '', 0, 'International Dance Competition', 'Come and Participate for International Dance competition', 'Kindly bring all the materials', '', 1, '', 0, 'First Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, 0, ''),
 (4, 3, '', 0, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, '', 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 0, 'Active'),
 (5, 3, '', 0, 'State Level Chess Competiton', 'Come and Make your entry for State Level Chess Competiton', 'Kindly pay Rs. 500 entry fees', '', 1, '', 0, 'First Year', '0000-00-00 00:00:00', 'Test', 1, 0, 0, 0, 0, 0, 'Active'),
@@ -176,7 +176,10 @@ INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `n
 (17, 2, '', 0, 'State Level Competition', 'State Level Competition for Talents', 'Kindly attend one hour before', '1717883508Database Schema Diagram.png', 1, '', 2, 'Second Year', '0000-00-00 00:00:00', 'Bangalore', 1, 0, 0, 0, 0, 0, 'Active'),
 (18, 2, '', 0, 'State Level Competition', 'Competition can arise between entities such as organisms, individuals, economic and social groups, etc. ... Competition is a major tenet of market economies and business, often associated with business competition as companies are in competition with at least one other firm over the same group of customers.', 'Event rules are stored in the Event Rule [em_match_rule] table. Configure and customize event rules to manage events and alert generation. Event rules do not change the event records in the Event table. Changes to event data are stored in the ServiceNow instance memory.', '1821207475Database Schema Diagram.png', 1, '', 2, 'Second Year', '2021-07-20 12:07:00', 'Bangalore', 2, 0, 0, 0, 0, 0, 'Active'),
 (19, 2, '', 0, 'abcd', 'test record', 'test reules', '1587422358basmati-rice-1kg-500x500.jpg', 0, '', 1, 'Second Year', '2021-07-23 10:15:00', 'Bangalore', 1, 0, 0, 0, 0, 0, 'Active'),
-(20, 3, '', 0, 'Unichess', 'unichess competition', 'This is quick chess', '2001974180arhar-dal-500x500 (1).jpg', 1, '', 1, 'First Year', '2021-07-30 16:16:00', 'test', 1, 0, 0, 0, 0, 0, 'Active');
+(20, 3, '', 0, 'Unichess', 'unichess competition', 'This is quick chess', '2001974180arhar-dal-500x500 (1).jpg', 1, '', 1, 'First Year', '2021-07-30 16:16:00', 'test', 1, 0, 0, 0, 0, 0, 'Active'),
+(21, 2, '', 1, 'LITKIDS Open Mic 4', 'LITKIDS Open Mic Season 4 is India\'s largest online talent hunt for school kids. Participate to showcase your talent on a global platform! Be it singing, instrumental, story telling or something unique! We got a category for all! <br />\r\n<br />\r\nThe contest is open to all school going kids<br />\r\nMultiple entries are allowed from one individual in same competition as well as different<br />\r\ncompetitions<br />\r\nEach entry be of any duration (between 3 to 5 minutes preferable)<br />\r\nEntries can be in any language<br />\r\nIt is a solo event', 'Singing – any song with/without background music. Any language. Perform an original song or your version of an existing song<br />\r\nInstrumental – can be any musical instrument. Perform an original piece or your version or an existing piece<br />\r\nActing – Participants can enact a sequence of their choice from a movie, play, book, etc. Can be mimicry or mime as well<br />\r\nElocution – the participant can speak on any topic or recite a popular speech or poem. Mention the theme and why you chose it<br />\r\nPoetry Slam – Poem must be original – written and recited by the participant<br />\r\nStorytelling – Recite a story (existing or original) with expressions, props, costumes, etc.<br />\r\nYour View – Participants can review any book, film, show, article, etc of their choice. Mention the source / book / author. Cover as many aspects as you can and give your opinion about it. Mention what you liked / disliked about it. You could even rate it<br />\r\nNursery Rhymes – Recite your favorite rhyme in an interesting way. Use expressions, props, costumes or anything else you want to enhance your performance<br />\r\nDress-up –Dress up as your favorite character from a book, film, history or real life. Use props. Say a few lines as that character<br />\r\nMixed Bag – An open category to showcase a talent other than the ones mentioned above. It can be any talent of your choice.<br />\r\n', '1610961865image (2).jpg', 0, 'Nil', 0, '0', '2021-08-28 17:29:00', 'Technopusle', 1, 0, 0, 0, 0, 22, 'Active'),
+(22, 2, '', 1, 'LITKIDS Open Mic 4', 'LITKIDS Open Mic Season 4 is India\'s largest online talent hunt for school kids. Participate to showcase your talent on a global platform! Be it singing, instrumental, story telling or something unique! We got a category for all! <br />\r\n<br />\r\nThe contest is open to all school going kids<br />\r\nMultiple entries are allowed from one individual in same competition as well as different<br />\r\ncompetitions<br />\r\nEach entry be of any duration (between 3 to 5 minutes preferable)<br />\r\nEntries can be in any language<br />\r\nIt is a solo event', 'Singing – any song with/without background music. Any language. Perform an original song or your version of an existing song<br />\r\nInstrumental – can be any musical instrument. Perform an original piece or your version or an existing piece<br />\r\nActing – Participants can enact a sequence of their choice from a movie, play, book, etc. Can be mimicry or mime as well<br />\r\nElocution – the participant can speak on any topic or recite a popular speech or poem. Mention the theme and why you chose it<br />\r\nPoetry Slam – Poem must be original – written and recited by the participant<br />\r\nStorytelling – Recite a story (existing or original) with expressions, props, costumes, etc.<br />\r\nYour View – Participants can review any book, film, show, article, etc of their choice. Mention the source / book / author. Cover as many aspects as you can and give your opinion about it. Mention what you liked / disliked about it. You could even rate it<br />\r\nNursery Rhymes – Recite your favorite rhyme in an interesting way. Use expressions, props, costumes or anything else you want to enhance your performance<br />\r\nDress-up –Dress up as your favorite character from a book, film, history or real life. Use props. Say a few lines as that character<br />\r\nMixed Bag – An open category to showcase a talent other than the ones mentioned above. It can be any talent of your choice.<br />\r\n', '426854814image (2).jpg', 0, 'Nil', 0, '0', '2021-08-28 17:29:00', 'Technopusle', 1, 0, 0, 0, 0, 22, 'Active'),
+(23, 2, 'Single', 1, 'Cruise with the Stars', 'This remarkable event is named \"Celebfie - Cruise with the Stars\" and is nothing less dreamy than it sounds. The cruise will depart from the coasts of Mumbai on September 16th, sail around in the International Waters, and then return on the morning of September 18th. Celebfie has partnered with Cordelia Cruises, with a super luxurious ship “The Empress” offering a plethora of entertainment that one can dream of. You can spend the evening onboard at the bars and lounges or even visit the casino.', 'This event is destined to project the value of the brand on an amplified scale, \"Connecting Fans and brands with their choicest celebrities to create unforgettable memories.\" With this experience, Celebfie aims to break the limits of the online space and enter the physical realm with its core message headstrong.', '1365734856image (2).jpg', 1, 'None', 0, '0', '2021-09-09 17:38:00', 'Technopulose,<br />\r\nMangalore', 1, 10, 5, 3, 1, 10, 'Active');
 
 -- --------------------------------------------------------
 
@@ -191,18 +194,18 @@ CREATE TABLE `event_participation` (
   `event_participation_type` varchar(25) NOT NULL,
   `team` varchar(25) NOT NULL,
   `apply_dt_tim` datetime NOT NULL,
-  `event_particiaption_status` varchar(10) NOT NULL
+  `event_participation_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `event_participation`
 --
 
-INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `event_participation_type`, `team`, `apply_dt_tim`, `event_particiaption_status`) VALUES
-(2, 18, 34, '', '', '2021-07-22 05:50:29', 'P'),
-(3, 18, 34, '', '', '2021-07-22 05:50:29', 'A'),
-(4, 18, 34, '', '', '2021-07-22 05:50:29', 'P'),
-(5, 18, 34, '', '', '2021-07-22 05:50:29', 'P');
+INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `event_participation_type`, `team`, `apply_dt_tim`, `event_participation_status`) VALUES
+(9, 23, 1, 'Single', '0', '2021-08-18 18:07:14', 'Applied'),
+(10, 23, 13, 'Single', '0', '2021-08-18 18:16:06', 'Applied'),
+(11, 23, 10, 'Single', '0', '2021-08-18 18:07:14', 'Applied'),
+(12, 23, 11, 'Single', '0', '2021-08-18 18:16:06', 'Applied');
 
 -- --------------------------------------------------------
 
@@ -249,7 +252,10 @@ CREATE TABLE `event_result_status` (
 --
 
 INSERT INTO `event_result_status` (`result_status_id`, `event_result_id`, `event_id`, `student_id`, `event_participation_id`, `winning_position`, `point`, `event_participation_type`, `team`, `attend_status`) VALUES
-(1, 12, 34, 45, 12, 'test', 3, '', '', '');
+(16, 0, 23, 1, 9, '', 0, '', '', 'Absent'),
+(17, 0, 23, 13, 10, '', 0, '', '', 'Absent'),
+(18, 0, 23, 10, 11, '', 0, '', '', 'Present'),
+(19, 0, 23, 11, 12, '', 0, '', '', 'Present');
 
 -- --------------------------------------------------------
 
@@ -286,6 +292,13 @@ CREATE TABLE `point_settings` (
   `thirdplace_point` int(11) NOT NULL,
   `participation_point` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `point_settings`
+--
+
+INSERT INTO `point_settings` (`point_set_id`, `firstplace_point`, `secondplace_point`, `thirdplace_point`, `participation_point`) VALUES
+(1, 10, 5, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -347,7 +360,7 @@ INSERT INTO `student` (`student_id`, `student_name`, `course_id`, `student_rolln
 (10, 'Iliyas', 3, '78978911', 'c62d929e7b7e7b6165923a5dfc60cb56', 'Second Year', '1226100850basmati-rice-1kg-500x500.jpg', 'Male', '2014-07-07', 'Sanskrit', 'Hindi', 'Rovers & Rangers', 'Pending'),
 (11, 'Peter king', 3, '1458', 'c62d929e7b7e7b6165923a5dfc60cb56', 'First Year', '1877291930arhar-dal-500x500 (1).jpg', 'Male', '2002-07-08', 'Hindi', 'Journalism', 'Rovers & Rangers', 'Pending'),
 (12, 'Mahesh', 1, '789456', '9f30ef107518fb8579c51273be77827e', 'First Year', '1847893256toor-dal-250x250.jpeg', 'Male', '2021-12-31', 'Sanskrit', 'Sanskrit', 'NCC', 'Active'),
-(13, 'Mahesh prasad', 1, '1234567890', 'c62d929e7b7e7b6165923a5dfc60cb56', 'First Year', '18618478492322b995-2ce8-4b5c-8485-738785b1616b.jpg', 'Male', '1999-05-04', 'Sanskrit', 'Physics', 'NCC', 'Suspended'),
+(13, 'Mahesh prasad', 1, '1234567890', 'a46857f0ecc21f0a06ea434b94d9cf1d', 'First Year', '18618478492322b995-2ce8-4b5c-8485-738785b1616b.jpg', 'Male', '1999-05-04', 'Sanskrit', 'Physics', 'NCC', 'Active'),
 (15, 'Mahesh kumar', 1, '789789', 'c62d929e7b7e7b6165923a5dfc60cb56', 'First Year', '21360444892322b995-2ce8-4b5c-8485-738785b1616b.jpg', 'Male', '2004-12-29', 'Sanskrit', 'Hindi', 'NCC', 'Active'),
 (16, 'Alok kumar Bangalore', 2, '7418529633', 'b78d35416d192189aee5ef82ce37db24', 'First Year', '1058773050IMG-20200703-WA0040.jpg', 'Male', '2004-11-30', 'Sanskrit', 'Kannada', 'NCC', 'Active');
 
@@ -460,13 +473,13 @@ ALTER TABLE `dept_course`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `event_participation`
 --
 ALTER TABLE `event_participation`
-  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `event_result`
@@ -478,7 +491,7 @@ ALTER TABLE `event_result`
 -- AUTO_INCREMENT for table `event_result_status`
 --
 ALTER TABLE `event_result_status`
-  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `event_type`
@@ -490,7 +503,7 @@ ALTER TABLE `event_type`
 -- AUTO_INCREMENT for table `point_settings`
 --
 ALTER TABLE `point_settings`
-  MODIFY `point_set_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `point_set_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `staff`

@@ -99,12 +99,15 @@
 				<li><a href="live-event.php">Live Events</a></li>
 				<li><a href="completed-event.php">Completed Events</a></li>
 				<li><a href="addevent.php">Add Event</a></li>
+				<li><a href="viewevent.php">View Events</a></li>
 				<li><a href="event_type.php">Add Event Type</a></li>
+				<li><a href="view_event_type.php">View Event Type</a></li>
 			</ul>
 		</li>
 		<li><a href="javascript:void(0)">Result<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
+				<li><a href="display_event.php">Attendance Entry</a></li>
 				<li><a href="event_result.php">Add Event Result</a></li>
 				<li><a href="event_result_status.php">Add Event Result Status</a></li>
 				<li><a href="view_event_result_status.php">Event Result</a></li>
@@ -121,11 +124,9 @@
 				<li><a href="viewdepartment.php">View Department</a></li>
 				<li><a href="departmentcourse.php">Add Department Course</a></li>
 				<li><a href="view-departmentcourse.php">View Department Course</a></li>
-				<li><a href="viewevent.php">View Events</a></li>
 				<li><a href="view_event_apply.php">View Applications</a></li>
 				<li><a href="view_event_result.php">View Event Result</a></li>
 				<li><a href="view_event_result_status.php">View Event Result Status</a></li>
-				<li><a href="view_event_type.php">View Event Type</a></li>
 				<li><a href="viewstaff.php">View Staff</a></li>
 				<li><a href="viewstudent.php">View Student</a></li>
 			</ul>

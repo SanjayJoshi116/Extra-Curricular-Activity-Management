@@ -42,7 +42,7 @@ include("header.php");
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
-			<a href="event_more_det.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info">View More</a>
+			<a href="attendance.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">Submit Attendance</a>
           </div>
         </div>
         <?php
