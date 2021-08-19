@@ -127,6 +127,7 @@
 				<li><a href="view_event_apply.php">View Applications</a></li>
 				<li><a href="view_event_result.php">View Event Result</a></li>
 				<li><a href="view_event_result_status.php">View Event Result Status</a></li>
+				<li><a href="staffupdate.php">Add Staff</a></li>
 				<li><a href="viewstaff.php">View Staff</a></li>
 				<li><a href="viewstudent.php">View Student</a></li>
 			</ul>

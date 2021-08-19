@@ -21,7 +21,7 @@ if(isset($_POST['submit']))
 		{
 		$sql = $sql . ",password='$pwd'";
 		}
-    $sql = $sql . ",staff_status='$_POST[staff_status]',gender='$_POST[gender]' WHERE staff_id='$_GET[editid]'";
+    $sql = $sql . ",gender='$_POST[gender]',dob='$_POST[dob]',staff_status='$_POST[staff_status]' WHERE staff_id='$_GET[editid]'";
     $qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);
 		if(mysqli_affected_rows($con) == 1)
@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
 	}
 	else
 	{
-	$sql = "INSERT INTO staff(staff_name,staff_dp,staff_type,department_id,login_id,password,staff_status,gender) VALUES('$_POST[staff_name]','$staffimg','$_POST[staff_type]','$_POST[department_id]','$_POST[login_id]','$pwd','$_POST[staff_status]','$_POST[gender]')";
+	$sql = "INSERT INTO staff(staff_name,staff_dp,staff_type,department_id,login_id,password,gender,dob,staff_status) VALUES('$_POST[staff_name]','$staffimg','$_POST[staff_type]','$_POST[department_id]','$_POST[login_id]','$pwd','$_POST[gender]','$_POST[dob]','$_POST[staff_status]')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)

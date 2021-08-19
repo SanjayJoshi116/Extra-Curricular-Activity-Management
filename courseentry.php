@@ -17,6 +17,7 @@ if(isset($_POST['submit']))
 		if(mysqli_affected_rows($con) == 1)
 		{
 			echo "<script>alert('Course record updated successfully...');</script>";
+			echo "<script>window.location='viewcourse.php';</script>";
 		}
 		//Step: 3 - Update statement starts here
 	}

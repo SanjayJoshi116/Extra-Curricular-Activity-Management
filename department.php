@@ -9,7 +9,7 @@ if(isset($_POST['submit']))
 	if(isset($_GET['editid']))
 	{
 		$sql="UPDATE department SET department='$_POST[department]'";
-		$sql = $sql . ",department_id='$_POST[department_id]',department_detail='$_POST[department_detail]'";
+		$sql = $sql . ",department_detail='$_POST[department_detail]'";
 		$sql = $sql . ",department_status='$_POST[department_status]' WHERE department_id='$_GET[editid]'";
 		$qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);
