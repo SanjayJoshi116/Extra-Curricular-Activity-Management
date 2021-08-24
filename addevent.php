@@ -35,6 +35,25 @@ if(isset($_POST['submit']))
 		echo mysqli_error($con);
 		if(mysqli_affected_rows($con)==1)
 		{
+			$insid = mysqli_insert_id($con);
+			$_SESSION['sessioncode'] = rand(111111,999999);
+			include("phpmailer.php");
+			$protocol = 'http'.(!empty($_SERVER['HTTPS']) ? 's' : '');
+			$root = $protocol.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+			$link = $root . "/upcoming-event.php?sessionid=".$_SESSION['sessioncode']."&studentid=".$insid;
+			$email = $_POST['student_rollno'] . "@sdmcujire.in";
+			//$email = "aravinda@technopulse.in";
+			$subject="New Event Notification";
+			$message = "<b>Hi $_POST[student_name],<br><br>
+			Notification!!! New event was added today. Check it here...
+			Regards,<br>SDM College Extra Curricular Activity Management
+			<br>
+			<a href='$link'>Click Here to Visit</a></b>
+			<br><br>
+			SDM College (Autonomous), Ujire, 574240<br>
+			sdmcollege@sdmcujire.in<br>
+			Call : 08256-236221, 225";
+			sendmail($email,$_POST['student_name'],$subject,$message);
 			echo "<script>alert('Event published successfully...');</script>";
 			echo "<script>window.location='addevent.php';</script>";
 		}
