@@ -52,7 +52,7 @@ if(isset($_GET['editid']))
                 Club
               </h3>
               <p>
-                Add Club
+                Add/Edit Club
               </p>
             </div>
           </div>

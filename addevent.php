@@ -232,7 +232,18 @@ if(isset($_GET['editid']))
 
   <div class="col-md-6">
 	<label class="labelproperty">Club</label>
-	<input type="text" name="club" id="club" placeholder="Enter club name"  value="<?php echo $rsedit['club']; ?>" />
+	<select class="form-control" name="club" id="club" />
+				<option value="">--Select--</option>
+				<?php
+				$sqlevent = "SELECT * FROM club WHERE club_status='Active'";
+				$qsqlevent = mysqli_query($con,$sqlevent);
+				echo mysqli_error($con);
+				while($rsevent = mysqli_fetch_array($qsqlevent))
+				{
+					echo "<option value='$rsevent[club_id]'>$rsevent[club]</option>";
+				}
+				?>
+				</select>
   </div>
   
 			  

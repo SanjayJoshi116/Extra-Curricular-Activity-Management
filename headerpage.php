@@ -124,6 +124,8 @@
 				<li><a href="viewdepartment.php">View Department</a></li>
 				<li><a href="departmentcourse.php">Add Department Course</a></li>
 				<li><a href="view-departmentcourse.php">View Department Course</a></li>
+				<li><a href="addclub.php">Add Club</a></li>
+				<li><a href="viewclub.php">View Club</a></li>
 				<li><a href="view_event_apply.php">View Applications</a></li>
 				<li><a href="view_event_result.php">View Event Result</a></li>
 				<li><a href="view_event_result_status.php">View Event Result Status</a></li>
