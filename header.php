@@ -4,6 +4,13 @@ error_reporting(E_ALL & ~E_NOTICE  &  ~E_STRICT  &  ~E_WARNING);
 date_default_timezone_set("Asia/Calcutta");
 $dt = date("Y-m-d");
 include("dbconnection.php");
+if(isset($_SESSION['staff_id']))
+{
+	$sqlstaffprofile = "SELECT * FROM staff where staff_id ='" . $_SESSION['staff_id'] . "'";
+	$qsqlstaffprofile = mysqli_query($con,$sqlstaffprofile);
+	echo mysqli_error($con);
+	$rsstaffprofile = mysqli_fetch_array($qsqlstaffprofile);
+}
 ?>
 <!DOCTYPE html>
 <html>

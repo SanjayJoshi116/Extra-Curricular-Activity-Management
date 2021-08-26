@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2021 at 01:03 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Aug 26, 2021 at 06:00 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,8 @@ CREATE TABLE `club` (
 
 INSERT INTO `club` (`club_id`, `department_id`, `club`, `club_details`, `club_status`) VALUES
 (2, 1, 'IT Club', 'This is the club under Computer Science Department', 'Active'),
-(3, 2, 'Kannada Sangha', 'Sirigannadam Gelge', 'Active');
+(4, 7, 'English Club', 'English Club', 'Active'),
+(5, 5, 'Math Club', 'Math Club', 'Active');
 
 -- --------------------------------------------------------
 
@@ -59,19 +60,6 @@ CREATE TABLE `complaint_report` (
   `complain_doc` varchar(300) NOT NULL,
   `complaint_status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `complaint_report`
---
-
-INSERT INTO `complaint_report` (`complaint_report_id`, `student_id`, `staff_id`, `reply_complaint_report_id`, `complaint_date_tim`, `complaint_detail`, `complain_doc`, `complaint_status`) VALUES
-(1, 16, 2, 0, '2021-07-31 14:30:14', '2342\r\n', '34', ''),
-(2, 0, 0, 0, '2021-07-31 14:30:14', 'sadfsf', 'toor-dal-250x250.jpeg', ''),
-(3, 0, 1, 0, '2021-07-31 14:30:14', 'hELLO', 'arhar-dal-500x500 (1).jpg', ''),
-(4, 0, 1, 0, '2021-07-31 14:30:14', 'test', 'arhar-dal-500x500.jpg', ''),
-(5, 0, 1, 0, '2021-07-31 14:30:14', 'test', 'arhar-dal-500x500.jpg', ''),
-(6, 0, 1, 0, '2021-07-31 14:30:14', 'test', '1792047249', ''),
-(7, 0, 1, 0, '2021-07-31 14:30:14', 'test test', '961952892Online grocery store Detailed design.docx', '');
 
 -- --------------------------------------------------------
 
@@ -92,10 +80,11 @@ CREATE TABLE `course` (
 
 INSERT INTO `course` (`course_id`, `course_title`, `course_description`, `course_status`) VALUES
 (1, 'BCA', 'Bachelor of Computer Application', 'Active'),
-(2, 'BCOM', '', 'Active'),
-(3, 'BSc', '', 'Active'),
-(7, 'MCA Course', 'Master in Computer Application', 'Inactive'),
-(8, 'Bzc', 'Bzc course', 'Active');
+(2, 'BCOM', 'BCOM', 'Active'),
+(9, 'Bsc', 'Bsc', 'Active'),
+(10, 'BA', 'BA', 'Active'),
+(11, 'BBA', 'BBA', 'Active'),
+(12, 'BVoc', 'BVoc', 'Active');
 
 -- --------------------------------------------------------
 
@@ -115,11 +104,9 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`department_id`, `department`, `department_detail`, `department_status`) VALUES
-(1, 'Computer', 'Computer Science Department', 'Active'),
-(2, 'Kannada', 'Kannada Department', 'Active'),
-(3, 'Commerce', 'Commerce Department', 'Active'),
-(4, 'Economics', 'Department of Economics Studies', 'Active'),
-(5, 'Mathematics', 'Department of Mathematics', 'Active');
+(1, 'Computer Science Departme', 'Computer Science Department', 'Active'),
+(5, 'Mathematics', 'Department of Mathematics', 'Active'),
+(7, 'English Department', 'English Department', 'Active');
 
 -- --------------------------------------------------------
 
@@ -139,9 +126,6 @@ CREATE TABLE `dept_course` (
 --
 
 INSERT INTO `dept_course` (`dept_course_id`, `department_id`, `course_id`, `dept_status`) VALUES
-(30, 1, 1, 'Active'),
-(31, 1, 2, 'Active'),
-(32, 1, 3, 'Active'),
 (36, 3, 1, 'Active'),
 (37, 3, 8, 'Active'),
 (42, 0, 2, 'Active'),
@@ -153,7 +137,12 @@ INSERT INTO `dept_course` (`dept_course_id`, `department_id`, `course_id`, `dept
 (50, 2, 8, 'Active'),
 (51, 2, 8, 'Active'),
 (52, 4, 2, 'Active'),
-(53, 5, 3, 'Active');
+(55, 1, 1, 'Active'),
+(56, 1, 9, 'Active'),
+(57, 5, 9, 'Active'),
+(61, 7, 1, 'Active'),
+(62, 7, 2, 'Active'),
+(63, 7, 9, 'Active');
 
 -- --------------------------------------------------------
 
@@ -171,9 +160,9 @@ CREATE TABLE `event` (
   `event_rules` text NOT NULL,
   `event_banner` varchar(300) NOT NULL,
   `department_id` int(11) NOT NULL,
-  `club` varchar(25) NOT NULL COMMENT 'if department not selected then it will come under club',
-  `course_id` int(11) NOT NULL,
-  `st_class` varchar(20) NOT NULL,
+  `club_id` int(11) NOT NULL,
+  `course_id` text NOT NULL,
+  `st_class` text NOT NULL,
   `event_date_time` datetime NOT NULL,
   `event_venue` text NOT NULL,
   `staff_id` int(11) NOT NULL,
@@ -185,13 +174,11 @@ CREATE TABLE `event` (
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `no_of_participants`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `club`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `participation_limit`, `event_status`) VALUES
-(21, 2, '', 1, 'LITKIDS Open Mic 4', 'LITKIDS Open Mic Season 4 is India\'s largest online talent hunt for school kids. Participate to showcase your talent on a global platform! Be it singing, instrumental, story telling or something unique! We got a category for all! <br />\r\n<br />\r\nThe contest is open to all school going kids<br />\r\nMultiple entries are allowed from one individual in same competition as well as different<br />\r\ncompetitions<br />\r\nEach entry be of any duration (between 3 to 5 minutes preferable)<br />\r\nEntries can be in any language<br />\r\nIt is a solo event', 'Singing – any song with/without background music. Any language. Perform an original song or your version of an existing song<br />\r\nInstrumental – can be any musical instrument. Perform an original piece or your version or an existing piece<br />\r\nActing – Participants can enact a sequence of their choice from a movie, play, book, etc. Can be mimicry or mime as well<br />\r\nElocution – the participant can speak on any topic or recite a popular speech or poem. Mention the theme and why you chose it<br />\r\nPoetry Slam – Poem must be original – written and recited by the participant<br />\r\nStorytelling – Recite a story (existing or original) with expressions, props, costumes, etc.<br />\r\nYour View – Participants can review any book, film, show, article, etc of their choice. Mention the source / book / author. Cover as many aspects as you can and give your opinion about it. Mention what you liked / disliked about it. You could even rate it<br />\r\nNursery Rhymes – Recite your favorite rhyme in an interesting way. Use expressions, props, costumes or anything else you want to enhance your performance<br />\r\nDress-up –Dress up as your favorite character from a book, film, history or real life. Use props. Say a few lines as that character<br />\r\nMixed Bag – An open category to showcase a talent other than the ones mentioned above. It can be any talent of your choice.<br />\r\n', '1610961865image (2).jpg', 0, 'Nil', 0, '0', '2021-08-28 17:29:00', 'Technopusle', 1, 22, 'Active'),
-(22, 2, '', 1, 'LITKIDS Open Mic 4', 'LITKIDS Open Mic Season 4 is India\'s largest online talent hunt for school kids. Participate to showcase your talent on a global platform! Be it singing, instrumental, story telling or something unique! We got a category for all! <br />\r\n<br />\r\nThe contest is open to all school going kids<br />\r\nMultiple entries are allowed from one individual in same competition as well as different<br />\r\ncompetitions<br />\r\nEach entry be of any duration (between 3 to 5 minutes preferable)<br />\r\nEntries can be in any language<br />\r\nIt is a solo event', 'Singing – any song with/without background music. Any language. Perform an original song or your version of an existing song<br />\r\nInstrumental – can be any musical instrument. Perform an original piece or your version or an existing piece<br />\r\nActing – Participants can enact a sequence of their choice from a movie, play, book, etc. Can be mimicry or mime as well<br />\r\nElocution – the participant can speak on any topic or recite a popular speech or poem. Mention the theme and why you chose it<br />\r\nPoetry Slam – Poem must be original – written and recited by the participant<br />\r\nStorytelling – Recite a story (existing or original) with expressions, props, costumes, etc.<br />\r\nYour View – Participants can review any book, film, show, article, etc of their choice. Mention the source / book / author. Cover as many aspects as you can and give your opinion about it. Mention what you liked / disliked about it. You could even rate it<br />\r\nNursery Rhymes – Recite your favorite rhyme in an interesting way. Use expressions, props, costumes or anything else you want to enhance your performance<br />\r\nDress-up –Dress up as your favorite character from a book, film, history or real life. Use props. Say a few lines as that character<br />\r\nMixed Bag – An open category to showcase a talent other than the ones mentioned above. It can be any talent of your choice.<br />\r\n', '426854814image (2).jpg', 0, 'Nil', 0, '0', '2021-08-28 17:29:00', 'Technopusle', 1, 22, 'Active'),
-(23, 2, 'Single', 1, 'Cruise with the Stars', 'This remarkable event is named \"Celebfie - Cruise with the Stars\" and is nothing less dreamy than it sounds. The cruise will depart from the coasts of Mumbai on September 16th, sail around in the International Waters, and then return on the morning of September 18th. Celebfie has partnered with Cordelia Cruises, with a super luxurious ship “The Empress” offering a plethora of entertainment that one can dream of. You can spend the evening onboard at the bars and lounges or even visit the casino.', 'This event is destined to project the value of the brand on an amplified scale, \"Connecting Fans and brands with their choicest celebrities to create unforgettable memories.\" With this experience, Celebfie aims to break the limits of the online space and enter the physical realm with its core message headstrong.', '1365734856image (2).jpg', 1, 'None', 0, '0', '2021-09-09 17:38:00', 'Technopulose,<br />\r\nMangalore', 1, 10, 'Active'),
-(24, 5, 'Team', 2, 'Coding', 'coding ', 'c++', '1673265618', 1, '', 1, '0', '2021-08-22 10:00:00', 'CS Lab', 1, 2, 'Active'),
-(25, 2, 'Single', 0, 'Dance Competition', 'College Level Dance Competition', 'Single Participant Dance Event<br />\r\nEnroll before 2 days ', '1828950821772716073testing.jpg', 1, 'IT Club', 0, '0', '2021-08-31 09:30:00', 'Indraprastha Auditorium, Ujire', 1, 70, 'Active'),
-(26, 2, 'Single', 0, 'Classical Dance', 'Classical Dance', 'Time allotted is 4+1 minutes', '1880007195517910812testing.jpg', 2, '3', 0, '0', '2021-08-30 14:00:00', 'Seminar Hall, SDM College, Ujire', 1, 50, 'Active');
+INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `no_of_participants`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `club_id`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `participation_limit`, `event_status`) VALUES
+(29, 2, 'Single', 1, 'All India Dance Competition', 'This is for dance competiton', 'Attend before one hour', '507561290Bigg-Boss.jpg', 1, 2, 'a:2:{i:0;s:1:\"1\";i:1;s:1:\"9\";}', 'a:2:{i:0;s:10:\"First Year\";i:1;s:10:\"Third Year\";}', '2021-09-05 07:00:00', 'Bangalore', 1, 25, 'Active'),
+(30, 6, 'Team', 11, 'IPL Competition', 'Premier league', 'Round robbin league', '2127189323Take_in_the_Scenery.jpg', 1, 2, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-05 06:00:00', 'Mangalore', 1, 10, 'Active'),
+(32, 2, 'Single', 1, 'abc competition', 'This is for dance competiton', 'Attend before one hour', '507561290Bigg-Boss.jpg', 1, 2, 'a:2:{i:0;s:1:\"1\";i:1;s:1:\"9\";}', 'a:2:{i:0;s:10:\"First Year\";i:1;s:10:\"Third Year\";}', '2021-08-25 07:00:00', 'Bangalore', 1, 25, 'Active'),
+(33, 2, 'Single', 1, 'Tech talks', 'This is for dance competiton', 'Attend before one hour', '507561290Bigg-Boss.jpg', 1, 2, 'a:2:{i:0;s:1:\"1\";i:1;s:1:\"9\";}', 'a:2:{i:0;s:10:\"First Year\";i:1;s:10:\"Third Year\";}', '2021-08-20 07:00:00', 'Bangalore', 1, 25, 'Active');
 
 -- --------------------------------------------------------
 
@@ -214,11 +201,12 @@ CREATE TABLE `event_participation` (
 --
 
 INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `event_participation_type`, `team`, `apply_dt_tim`, `event_participation_status`) VALUES
-(9, 23, 1, 'Single', '0', '2021-08-18 18:07:14', 'Applied'),
-(10, 23, 13, 'Single', '0', '2021-08-18 18:16:06', 'Applied'),
-(11, 23, 10, 'Single', '0', '2021-08-18 18:07:14', 'Applied'),
-(12, 23, 11, 'Single', '0', '2021-08-18 18:16:06', 'Applied'),
-(13, 24, 17, 'Team', '0', '2021-08-19 11:34:36', 'Applied');
+(14, 29, 18, 'Single', '0', '2021-08-25 20:16:06', 'Present'),
+(15, 29, 1, 'Single', '0', '2021-08-25 20:18:35', 'Present'),
+(16, 29, 12, 'Single', '0', '2021-08-25 20:18:35', 'Present'),
+(17, 29, 13, 'Single', '0', '2021-08-25 20:18:35', 'Absent'),
+(18, 29, 15, 'Single', '0', '2021-08-25 20:18:35', 'Present'),
+(19, 29, 17, 'Single', '0', '2021-08-25 20:18:35', 'Present');
 
 -- --------------------------------------------------------
 
@@ -256,20 +244,19 @@ CREATE TABLE `event_result_status` (
   `winning_position` varchar(25) NOT NULL,
   `point` int(11) NOT NULL,
   `event_participation_type` varchar(25) NOT NULL,
-  `team` varchar(25) NOT NULL,
-  `attend_status` varchar(15) NOT NULL COMMENT 'Present or Absent or Suspended'
+  `team` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `event_result_status`
 --
 
-INSERT INTO `event_result_status` (`result_status_id`, `event_result_id`, `event_id`, `student_id`, `event_participation_id`, `winning_position`, `point`, `event_participation_type`, `team`, `attend_status`) VALUES
-(16, 0, 23, 1, 9, '', 0, '', '', 'Absent'),
-(17, 0, 23, 13, 10, '', 0, '', '', 'Absent'),
-(18, 0, 23, 10, 11, '', 0, '', '', 'Present'),
-(19, 0, 23, 11, 12, '', 0, '', '', 'Present'),
-(23, 0, 24, 17, 13, '', 0, '', '', 'Present');
+INSERT INTO `event_result_status` (`result_status_id`, `event_result_id`, `event_id`, `student_id`, `event_participation_id`, `winning_position`, `point`, `event_participation_type`, `team`) VALUES
+(16, 0, 23, 1, 9, '', 0, '', ''),
+(17, 0, 23, 13, 10, '', 0, '', ''),
+(18, 0, 23, 10, 11, '', 0, '', ''),
+(19, 0, 23, 11, 12, '', 0, '', ''),
+(23, 0, 24, 17, 13, '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -292,7 +279,8 @@ INSERT INTO `event_type` (`event_type_id`, `event_type`, `event_type_info`, `eve
 (2, 'Dance Competition', 'Dance competition with western and traditional', 'Active'),
 (3, 'Chess', 'Chess masters', 'Active'),
 (4, 'Break Dance', 'Break dance competition', 'Active'),
-(5, 'IT Fest', 'organized by CS Dept', 'Active');
+(5, 'IT Fest', 'organized by CS Dept', 'Active'),
+(6, 'Cricket', 'Cricket Sports with 11 members in a team', 'Active');
 
 -- --------------------------------------------------------
 
@@ -313,7 +301,7 @@ CREATE TABLE `point_settings` (
 --
 
 INSERT INTO `point_settings` (`point_set_id`, `firstplace_point`, `secondplace_point`, `thirdplace_point`, `participation_point`) VALUES
-(1, 10, 5, 3, 1);
+(1, 25, 10, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -341,8 +329,8 @@ CREATE TABLE `staff` (
 INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dp`, `staff_type`, `department_id`, `login_id`, `password`, `gender`, `dob`, `staff_status`) VALUES
 (1, 'Mr. Admin', '1366570305689938320basmati-rice-1kg-500x500.jpg', 'Assistant Professor', 1, 'admin', 'd94354ac9cf3024f57409bd74eec6b4c', 'Male', '1960-04-12', 'Active'),
 (2, 'Mohit', '689938320basmati-rice-1kg-500x500.jpg', 'HOD', 1, '789456123', 'c62d929e7b7e7b6165923a5dfc60cb56', 'Male', '2021-07-12', 'Active'),
-(3, 'Mahesh kumar', '1211209911arhar-dal-500x500.jpg', 'Assistant Professor', 2, '741852963', 'c62d929e7b7e7b6165923a5dfc60cb56', '', '0000-00-00', 'Active'),
-(9, 'Keerthan', '10808155531999504256480607.jpg', 'Lab Assistant', 1, 'keerthu', 'c740dd8f6fba4cb05d8a1282367c9577', 'Male', '1987-12-08', 'Active');
+(9, 'Keerthan', '10808155531999504256480607.jpg', 'Lab Assistant', 1, 'keerthu', 'c740dd8f6fba4cb05d8a1282367c9577', 'Male', '1987-12-08', 'Active'),
+(11, 'Super Admin', '29844347images (2).jfif', 'Admin', 1, 'suuperadmin', 'd41d8cd98f00b204e9800998ecf8427e', 'Male', '1992-07-27', 'Active');
 
 -- --------------------------------------------------------
 
@@ -379,7 +367,8 @@ INSERT INTO `student` (`student_id`, `student_name`, `course_id`, `student_rolln
 (13, 'Mahesh prasad', 1, '1234567890', 'a46857f0ecc21f0a06ea434b94d9cf1d', 'First Year', '18618478492322b995-2ce8-4b5c-8485-738785b1616b.jpg', 'Male', '1999-05-04', 'Sanskrit', 'Physics', 'NCC', 'Active'),
 (15, 'Mahesh kumar', 1, '789789', 'c62d929e7b7e7b6165923a5dfc60cb56', 'First Year', '21360444892322b995-2ce8-4b5c-8485-738785b1616b.jpg', 'Male', '2004-12-29', 'Sanskrit', 'Hindi', 'NCC', 'Active'),
 (16, 'Alok kumar Bangalore', 2, '7418529633', 'b78d35416d192189aee5ef82ce37db24', 'First Year', '1058773050IMG-20200703-WA0040.jpg', 'Male', '2004-11-30', 'Sanskrit', 'Kannada', 'NCC', 'Active'),
-(17, 'spd', 1, '180980', '1e59132c5c434e25e01a39e0e1bbe9f3', 'First Year', '16516864691690768110basmati-rice-1kg-500x500.jpg', 'Male', '1990-01-11', 'Kannada', 'Economics and Rural ', 'None', 'Active');
+(17, 'spd', 1, '1809801', '1e59132c5c434e25e01a39e0e1bbe9f3', 'First Year', '16516864691690768110basmati-rice-1kg-500x500.jpg', 'Male', '1990-01-11', 'Kannada', 'Economics and Rural ', 'None', 'Active'),
+(18, 'Aravinda M V', 1, '18098078', '25f9e794323b453885f5181f1b624d0b', 'First Year', '1752835243sundar-pichai-1.jpg', 'Male', '1990-08-05', 'Sanskrit', 'Hindi', 'NSS', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -455,7 +444,8 @@ ALTER TABLE `point_settings`
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
-  ADD PRIMARY KEY (`staff_id`);
+  ADD PRIMARY KEY (`staff_id`),
+  ADD UNIQUE KEY `login_id` (`login_id`);
 
 --
 -- Indexes for table `student`
@@ -472,7 +462,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `club`
 --
 ALTER TABLE `club`
-  MODIFY `club_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `club_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `complaint_report`
@@ -484,31 +474,31 @@ ALTER TABLE `complaint_report`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `dept_course`
 --
 ALTER TABLE `dept_course`
-  MODIFY `dept_course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `dept_course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `event_participation`
 --
 ALTER TABLE `event_participation`
-  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `event_result`
@@ -526,7 +516,7 @@ ALTER TABLE `event_result_status`
 -- AUTO_INCREMENT for table `event_type`
 --
 ALTER TABLE `event_type`
-  MODIFY `event_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `event_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `point_settings`
@@ -538,13 +528,13 @@ ALTER TABLE `point_settings`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

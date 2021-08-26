@@ -29,10 +29,10 @@ if(isset($_GET['acid']))
     <div class="container">
       <div class="heading_container">
         <h3>
-           View Event Type
+           View Event Category
         </h3>
         <p>
-          View Event Type Records
+          View Event Category Records
         </p>
       </div>
       <div class="event_container">
@@ -41,13 +41,9 @@ if(isset($_GET['acid']))
 <table id="datatableplugin" class="table table-bordered">
 	<thead>
 		<tr>
-			<th>Event Type</th>
-			<th>Event Type Info</th>
-			<th>First Place Points</th>
-			<th>Second Place Points</th>
-			<th>Third Place Points</th>
-			<th>Other Points</th>
-			<th>Event Type Status</th>
+			<th>Event Category</th>
+			<th>Event Category Info</th>
+			<th>Event Category Status</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -60,10 +56,6 @@ if(isset($_GET['acid']))
 			echo "<tr>
 				<td>$rsview[event_type]</td>
 				<td>$rsview[event_type_info]</td>
-				<td>$rsview[firstplace_point]</td>
-				<td>$rsview[secondplace_point]</td>
-				<td>$rsview[thirdplace_point]</td>
-				<td>$rsview[others_point]</td>
 				<td>$rsview[event_type_status] <br>";
 				if($rsview['event_type_status'] == "Active")
 {

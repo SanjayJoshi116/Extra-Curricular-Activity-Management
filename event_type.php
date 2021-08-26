@@ -47,10 +47,10 @@ if(isset($_GET['editid']))
           <div class="detail-box">
             <div class="heading_container">
               <h3>
-                Event Type
+                Event Category
               </h3>
               <p>
-                Add/Edit Event Type
+                Add/Edit Event Category
               </p>
             </div>
           </div>
@@ -58,18 +58,18 @@ if(isset($_GET['editid']))
         <div class="col-md-6">
           <div class="contact-form">
             <h5>
-              Kindly enter Event type 
+              Kindly enter Event Category 
             </h5>
             <form action="" method="post" name="frmevent_type" id="frmevent_type">
 			
               <div>
-				<label class="labelproperty">Event Type</label>
-                <input type="text" name="event_type" id="event_type" placeholder="Enter Event Type" value="<?php echo $rsedit['event_type'];?>" />
+				<label class="labelproperty">Event Category</label>
+                <input type="text" name="event_type" id="event_type" placeholder="Enter Event Category" value="<?php echo $rsedit['event_type'];?>" />
               </div>
 			  
               <div>
-                <label class="labelproperty">Info about Event Type</label>
-				<textarea name="event_type_info" id="event_type_info" class="form-control"></textarea>
+                <label class="labelproperty">Info about Event Category</label>
+				<textarea name="event_type_info" id="event_type_info" class="form-control"><?php echo $rsedit['event_type_info'];?></textarea>
               </div>
 			  
               <div>
@@ -80,7 +80,14 @@ if(isset($_GET['editid']))
 					$arr = array("Active","Inactive");
 					foreach($arr as $val)
 					{
+						if($val == $rsedit['event_type_status'])
+						{
+						echo "<option value='$val' selected>$val</option>";
+						}
+						else
+						{
 						echo "<option value='$val'>$val</option>";
+						}
 					}
 					?>
 				</select>

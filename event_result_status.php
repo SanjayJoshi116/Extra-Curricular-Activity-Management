@@ -23,7 +23,7 @@ if(isset($_POST['submit']))
 	}
 	else
 	{
-	$sql = "INSERT INTO event_result_status(event_id, student_id,winning_position, point) VALUES('$_POST[event_result_id]','$_POST[event_id]','$_POST[student_id]','$_POST[event_participation_id]','$_POST[winning_position]','$_POST[point]')";
+	$sql = "INSERT INTO event_result_status(event_result_id,event_id, student_id, event_participation_id, winning_position, point) VALUES('$_POST[event_result_id]','$_POST[event_id]','$_POST[student_id]','$_POST[event_participation_id]','$_POST[winning_position]','$_POST[point]')";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)
@@ -66,25 +66,29 @@ if(isset($_GET['editid']))
             </h5>
             <form action="" method="post" name="frmevent_result" id="frmevent_result">
               <div>
-                <label class="labelproperty">Event</label>
-				<select class="form-control" name="event_id" id="event_id" />
-				<option value="">--Select--</option>
-				<?php
-				$sqlevent = "SELECT * FROM event WHERE event_status='Active'";
-				$qsqlevent = mysqli_query($con,$sqlevent);
-				echo mysqli_error($con);
-				while($rsevent = mysqli_fetch_array($qsqlevent))
-				{
-					echo "<option value='$rsevent[event_id]'>$rsevent[event_title]</option>";
-				}
-				?>
-				</select>
-			  </div>
+				<label class="labelproperty">Event Result ID</label>
+                <input type="text" name="event_result_id" id="event_result_id" class="form-control" value="<?php echo $rsedit['event_result_id'] ?>"/>
+              </div>
               <div>
-                <label class="labelproperty"></label>
+                <label class="labelproperty">Event ID</label>
+				<input type="text" name="event_id" id="event_id" class="form-control" value="<?php echo $rsedit['event_id'] ?>" />
+              </div>
+              <div>
+                <label class="labelproperty">Student ID</label>
 				<input type="text" name="student_id" id="student_id" class="form-control" value="<?php echo $rsedit['student_id'] ?>" />
               </div>
-
+              <div>
+				<label class="labelproperty">Event Participation ID</label>
+                <input type="text" name="event_participation_id" id="event_participation_id" class="form-control" value="<?php echo $rsedit['event_participation_id'] ?>"/>
+              </div>
+			  <div>
+                <label class="labelproperty">Winning Position</label>
+				<input type="text" name="winning_position" id="winning_position" class="form-control" value="<?php echo $rsedit['winning_position'] ?>"/>
+              </div>
+			  <div>
+                <label class="labelproperty">Points</label>
+				<input type="text" name="point" id="point" class="form-control" value="<?php echo $rsedit['point'] ?>"/>
+              </div>
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
               </div>

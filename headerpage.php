@@ -92,20 +92,21 @@
 			if(isset($_SESSION['staff_id']))
 			{
 			?>
+			
 		<li><a href="javascript:void(0)">Events<span class="arrow-down"></span></a>
-		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="upcoming-event.php">Upcoming Events</a></li>
 				<li><a href="live-event.php">Live Events</a></li>
 				<li><a href="completed-event.php">Completed Events</a></li>
 				<li><a href="addevent.php">Add Event</a></li>
 				<li><a href="viewevent.php">View Events</a></li>
-				<li><a href="event_type.php">Add Event Type</a></li>
-				<li><a href="view_event_type.php">View Event Type</a></li>
+				<li><a href="event_type.php">Add Event Category</a></li>
+				<li><a href="view_event_type.php">View Event Category</a></li>
+				<li><a href="point_update.php">Point Settings</a></li>
 			</ul>
 		</li>
+		
 		<li><a href="javascript:void(0)">Result<span class="arrow-down"></span></a>
-		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="display_event.php">Attendance Entry</a></li>
 				<li><a href="event_result.php">Add Event Result</a></li>
@@ -114,26 +115,37 @@
 			</ul>
 		</li>
 
-		<li><a href="javascript:void(0)">Admin Panel<span class="arrow-down"></span></a>
+		<li><a href="javascript:void(0)">Report<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
-				<li><a href="dashboard.php">Dashboard</a></li>
+				<li><a href="view_event_apply.php">View Applications</a></li>
+				<li><a href="view_event_result.php">View Event Result</a></li>
+				<li><a href="view_event_result_status.php">View Event Result Status</a></li>
+				<li><a href="viewstudent.php">Student Accounts</a></li>
+			</ul>
+		</li>
+
+		<li><a href="javascript:void(0)">Settings<span class="arrow-down"></span></a>
+		<!-- drop menu -->
+			<ul class="dropdown">
 				<li><a href="courseentry.php">Add Course</a></li>
 				<li><a href="viewcourse.php">View Course</a></li>
 				<li><a href="department.php">Add Department</a></li>
 				<li><a href="viewdepartment.php">View Department</a></li>
-				<li><a href="departmentcourse.php">Add Department Course</a></li>
-				<li><a href="view-departmentcourse.php">View Department Course</a></li>
 				<li><a href="addclub.php">Add Club</a></li>
 				<li><a href="viewclub.php">View Club</a></li>
-				<li><a href="view_event_apply.php">View Applications</a></li>
-				<li><a href="view_event_result.php">View Event Result</a></li>
-				<li><a href="view_event_result_status.php">View Event Result Status</a></li>
-				<li><a href="staffupdate.php">Add Staff</a></li>
-				<li><a href="viewstaff.php">View Staff</a></li>
-				<li><a href="viewstudent.php">View Student</a></li>
 			</ul>
 		</li>
+		
+		<li><a href="javascript:void(0)">Staff Account<span class="arrow-down"></span></a>
+		<!-- drop menu -->
+			<ul class="dropdown">
+				<li><a href="dashboard.php">Dashboard</a></li>
+				<li><a href="staffupdate.php">Add Staff</a></li>
+				<li><a href="viewstaff.php">View Staff</a></li>
+			</ul>
+		</li>
+		
 <?php
 			}
 			if(isset($_SESSION['student_id']))

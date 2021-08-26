@@ -31,7 +31,7 @@ if(isset($_GET['acid']))
     <div class="container">
       <div class="heading_container">
         <h3>
-         Event
+         View Events
         </h3>
         <p>
          Check all events
@@ -43,8 +43,9 @@ if(isset($_GET['acid']))
 <table id="datatableplugin" class="table table-bordered">
 	<thead>
 		<tr>
+			<th>Banner</th>
+			<th>Event Category</th>
 			<th>Event Title</th>
-			<th>Event Type</th>
 			<th>Event Date and Time</th>
 			<th>Department</th>
 			<th>Event Venue</th>
@@ -59,9 +60,25 @@ if(isset($_GET['acid']))
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
-				<td>$rsview[event_title]</td>
+				<td>";
+			if($rsview['event_banner'] == "")
+			{
+				echo "<img src='images/noimage.jpg' style='width: 75px;height: 75px;'>";
+			}
+			else if(file_exists("imgbanner/" . $rsview['event_banner']))
+			{
+				echo "<img src='imgbanner/$rsview[event_banner]' style='width: 50px;height: 50px;'>";
+			}
+			else
+			{
+				echo "<img src='images/noimage.jpg' style='width: 75px;height: 75px;'>";
+			}				
+			echo "</td>
 				<td>$rsview[event_type]</td>
-				<td>$rsview[event_date_time]</td>
+				<td>$rsview[event_title]";
+			echo "<br><a href='event_more_det.php?event_id=$rsview[0]' class='btn btn-warning' target='_blank'>View More</a>";
+			echo "</td>
+				<td>" . date("d-m-Y h:i A",strtotime($rsview['event_date_time'])) . "</td>
 				<td>$rsview[department]</td>
 				<td>$rsview[event_venue]</td>
 				<td>$rsview[event_status] <br>";

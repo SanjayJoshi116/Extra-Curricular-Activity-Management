@@ -11,11 +11,12 @@ include("header.php");
           Events
         </h3>
         <p>
-          Upcoming Events
+          Live Events
         </p>
       </div>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time=CURDATE()";
+	  $dt = date("Y-m-d");
+		    $sqlview = "SELECT * FROM  event where event_date_time BETWEEN '$dt 00:00:00' AND '$dt 23:59:59'";
 		    $qsqlview = mysqli_query($con,$sqlview);
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {

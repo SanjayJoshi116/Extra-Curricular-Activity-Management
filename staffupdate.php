@@ -38,7 +38,7 @@ if(isset($_POST['submit']))
 	if(mysqli_affected_rows($con)==1)
 	{
 		echo "<script>alert('Registered successfully...');</script>";
-		echo "<script>window.location='staffadd.php';</script>";
+		echo "<script>window.location='staffupdate.php';</script>";
 	}
 }
   }
@@ -49,89 +49,55 @@ if(isset($_GET['editid']))
 	$rsedit = mysqli_fetch_array($qsqledit);
 }
 ?>
-
+<style>
+.contact_section::before {
+    width: 10%;
+}
+.sub_page .contact_section {
+    margin: 25px 0;
+}
+</style>
   <!-- contact section -->
 
   <section class="contact_section">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h3>
-               Staff Account
-              </h3>
-              <p>
-                Add/Edit Staff
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="contact-form">
+			 <center><h3 style="color: white;">Staff Account</h3></center>
             <h5>
               Kindly Register to get benefits
             </h5>
             <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data">
-			
-              <div>
-				<label class="labelproperty">Name</label>
-                <input type="text" name="staff_name" id="staff_name" placeholder="Enter Name" required="" value="<?php echo $rsedit['staff_name']; ?>" />
-              </div>
-			  
-              <div>
-                <label class="labelproperty">Staff ID</label>
-				<input type="text" name="login_id" id="login_id" class="form-control" placeholder="Enter Staff ID" required="" value="<?php echo $rsedit['staff_id']; ?>"/>
-              </div>
-			  
-              <div>
-				<label class="labelproperty">Gender</label>
-                <select name="gender" id="gender" class="form-control" required="">
-				<option hidden value="">--Select--</option>
-				<?php 
-				$arr = array("Male","Female");
-				foreach($arr as $val)
+<div class="row">			
+	  <div class="col-md-6">
+		<label class="labelproperty">Name</label>
+		<input type="text" name="staff_name" id="staff_name" placeholder="Enter Name" class="form-control" value="<?php echo $rsedit['staff_name']; ?>" />
+	  </div>
+	  
+	<div class="col-md-6">
+		<label class="labelproperty">Upload Image</label>
+		<input type="file" name="staff_dp" id="staff_dp" placeholder="Upload Image" class="form-control"/>
+		<?php
+			if(isset($_GET['editid']))
+			{
+				if($rsedit['staff_dp'] == "")
 				{
-					if($val == $rsedit['gender'])
-					{
-					echo "<option value='$val' selected>$val</option>";
-					}
-					else
-					{
-					echo "<option value='$val'>$val</option>";
-					}
+					echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
 				}
-				?>
-				</select>
-              </div>
-			  
-              <div>
-				<label class="labelproperty">Date of Birth</label>
-                <input type="date" name="dob" id="dob" required="" value="<?php echo $rsedit['dob']; ?>"/>
-              </div>
-			  
-              <div>
-				<label class="labelproperty">Staff Type</label>
-				<select name="staff_type" id="staff_type" class="form-control" required="">
-				<option hidden value="">--Select--</option>
-				<?php
-				$arr = array("Assistant Professor","Lecturer","Guest Lecturer","Lab Assistant");
-				foreach($arr as $val)
+				else if(file_exists("staffimg/" . $rsedit['staff_dp']))
 				{
-					if($val == $rsedit['staff_type'])
-					{
-					echo "<option value='$val' selected>$val</option>";
-					}
-					else
-					{
-					echo "<option value='$val'>$val</option>";
-					}
+					echo "<img src='staffimg/" . $rsedit['staff_dp'] . "' style='width: 170px;height:200px;' />";
 				}
-				?>
-				</select>
-              </div>
+				else
+				{
+					echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
+				}
+			}
+			?>
+	</div>
 			  
-			  <div>
+			  <div class="col-md-6">
 				<label class="labelproperty">Department</label>
                 <select name="department_id" id="department_id" class="form-control" >
 				<option value="">Department</option>
@@ -154,40 +120,74 @@ if(isset($_GET['editid']))
 				</select>
               </div>
 			  
-			  <div>
-                <label class="labelproperty">Upload Image</label>
-				<input type="file" name="staff_dp" id="staff_dp" placeholder="Upload Image" class="form-control"/>
-				<?php
-					if(isset($_GET['editid']))
-					{
-						if($rsedit['staff_dp'] == "")
-						{
-							echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
-						}
-						else if(file_exists("staffimg/" . $rsedit['staff_dp']))
-						{
-							echo "<img src='staffimg/" . $rsedit['staff_dp'] . "' style='width: 170px;height:200px;' />";
-						}
-						else
-						{
-							echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
-						}
-					}
-					?>
-              </div>
+	  <div class="col-md-6">
+		<label class="labelproperty">Staff Type</label>
+		<select name="staff_type" id="staff_type" class="form-control">
+		<option hidden value="">--Select--</option>
+		<?php
+		$arr = array("Admin","HOD","Assistant Professor","Lecturer","Guest Lecturer","Lab Assistant");
+		foreach($arr as $val)
+		{
+			if($val == $rsedit['staff_type'])
+			{
+			echo "<option value='$val' selected>$val</option>";
+			}
+			else
+			{
+			echo "<option value='$val'>$val</option>";
+			}
+		}
+		?>
+		</select>
+	  </div>
+			  
+	  <div class="col-md-6">
+		<label class="labelproperty">Staff ID</label>
+		<input type="text" name="login_id" id="login_id" class="form-control" placeholder="Enter Staff ID" required="" value="<?php echo $rsedit['staff_id']; ?>"/>
+	  </div>
+	  
+	  <div class="col-md-6">
 
-			  <div>
-                <label class="labelproperty">Password</label>
-				<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required="" />
-              </div>
+	  </div>
+	  <div class="col-md-6">
+		<label class="labelproperty">Password</label>
+		<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password"  />
+	  </div>
+	  
+	  <div class="col-md-6">
+		<label class="labelproperty">Confirm Password</label>
+		<input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm the password" />
+	  </div>
+			   
+	   <div class="col-md-6">
+				<label class="labelproperty">Gender</label>
+                <select name="gender" id="gender" class="form-control" >
+				<option hidden value="">--Select--</option>
+				<?php 
+				$arr = array("Male","Female");
+				foreach($arr as $val)
+				{
+					if($val == $rsedit['gender'])
+					{
+					echo "<option value='$val' selected>$val</option>";
+					}
+					else
+					{
+					echo "<option value='$val'>$val</option>";
+					}
+				}
+				?>
+				</select>
+        </div>
+		
 			  
-			  <div>
-                <label class="labelproperty">Confirm Password</label>
-				<input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm the password" required="" />
-              </div>
-			  
+	  <div class="col-md-6">
+		<label class="labelproperty">Date of Birth</label>
+		<input type="date" name="dob" id="dob" required="" value="<?php echo $rsedit['dob']; ?>"/>
+	  </div>
+	  
               
-              <div>
+              <div  class="col-md-6">
 				<label class="labelproperty">Select Staff Account Status</label>
 				<select name="staff_status" id="staff_status" class="form-control" >
 				<option value="">Select Status</option>
@@ -207,7 +207,9 @@ if(isset($_GET['editid']))
 				?>
 				</select>
               </div>
-			  
+</div>
+
+
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
               </div>

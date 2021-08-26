@@ -1,15 +1,38 @@
 <?php
 include("header.php");
-/*if(!isset($_SESSION['staff_id']))
+if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
-}*/
+}
+if(isset($_POST['submit']))
+{
+	$sqlps = "SELECT * FROM point_settings WHERE point_set_id='1'";
+	$qsqlps = mysqli_query($con,$sqlps);
+	if(mysqli_num_rows($qsqlps) >= 1)
+	{
+		$sql = "UPDATE point_settings SET firstplace_point='$_POST[firstplace_point]',secondplace_point='$_POST[secondplace_point]',thirdplace_point='$_POST[thirdplace_point]',participation_point='$_POST[participation_point]' where point_set_id='1'";
+		$qsql = mysqli_query($con,$sql);
+		if(mysqli_affected_rows($con) == 1)
+		{
+			echo "<script>alert('Point settings done successfully...');</script>";
+		}
+	}
+	else
+	{
+		$sql = "INSERT INTO point_settings (firstplace_point,secondplace_point,thirdplace_point,participation_point) VALUES ('$_POST[firstplace_point]','$_POST[secondplace_point]','$_POST[thirdplace_point]','$_POST[participation_point]')";
+		$qsql = mysqli_query($con,$sql);
+		if(mysqli_affected_rows($con) == 1)
+		{
+			echo "<script>alert('Point settings done successfully...');</script>";
+		}
+	}
+}
 $point_set_id = $_GET['point_set_id'];
 $sel = "SELECT * FROM point_settings";
 $result = mysqli_query($con,$sel);
 if(mysqli_num_rows($result) > 0)
 {
-	$row = mysqli_fetch_assoc($result);
+$row = mysqli_fetch_assoc($result);
 $firstplace_point = $row['firstplace_point'];
 $secondplace_point = $row['secondplace_point'];
 $thirdplace_point = $row['thirdplace_point'];
@@ -42,38 +65,39 @@ $participation_point = $row['participation_point'];
             </h5>
             <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data">
 			
-              <div>
+              <div class="row">
+			  
+              <div class="col-md-6">
 				<label class="labelproperty">Firstplace Points</label>
-                <input type="text" name="firstplace_point" id="firstplace_point" placeholder="Enter Firstplace Points" 
+                <input type="number" name="firstplace_point" id="firstplace_point" placeholder="Enter Firstplace Points" 
 				value="<?php echo $firstplace_point ?>" />
               </div>
-			  
-              <div>
+              <div class="col-md-6">
                 <label class="labelproperty">Secondplace Points</label>
 				<input type="text" name="secondplace_point" id="secondplace_point" placeholder="Enter Secondplace Points"
 				value="<?php echo $secondplace_point ?>" />
               </div>
 			  
-			  <div>
+			  <div class="col-md-6">
                 <label class="labelproperty">Thirdplace Points</label>
 				<input type="text" name="thirdplace_point" id="thirdplace_point" placeholder="Enter Thirdplace Points"
 				value="<?php echo $thirdplace_point ?>" />
               </div>
 			  
-			  <div>
+			  <div class="col-md-6">
                 <label class="labelproperty">Participation Points</label>
 				<input type="text" name="participation_point" id="participation_point" placeholder="Enter Participation Points"
 				value="<?php echo $participation_point ?>" />
               </div>
-			  
+			  </div>
              </div>
 			  
 			 
-			  
-			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn btn-info">Click Here to Submit</button>
               </div>
+			  <br>
+			  <br>
             </form>
           </div>
         </div>

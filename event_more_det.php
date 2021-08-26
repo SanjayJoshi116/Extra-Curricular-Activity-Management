@@ -1,13 +1,15 @@
 <?php
 include("header.php");
-$sqlviewevent = "SELECT event.*, event_type.event_type, department.department,course.course_title, staff.staff_name, staff.staff_type FROM event 
+$sqlviewevent = "SELECT event.*, event_type.event_type, department.department, staff.staff_name, staff.staff_type, club.club FROM event 
 LEFT JOIN event_type ON event.event_type_id=event_type.event_type_id 
-LEFT JOIN department ON department.department_id=event.department_id LEFT JOIN course ON course.course_id=event.course_id 
-LEFT JOIN  staff ON staff.staff_id=event.staff_id
+LEFT JOIN department ON department.department_id=event.department_id 
+LEFT JOIN  staff ON staff.staff_id=event.staff_id LEFT JOIN club ON club.club_id=event.club_id
 where event.event_id='$_GET[event_id]'";
 $qsqlviewevent = mysqli_query($con,$sqlviewevent);
 echo mysqli_error($con);
 $rsviewevent = mysqli_fetch_array($qsqlviewevent);
+$course_id = unserialize($rsviewevent['course_id']);
+$st_class = unserialize($rsviewevent['st_class']);
 if(isset($_POST['submit']))
 {
 	$apply_dt_tim=date('Y-m-d H:i:s');
@@ -19,6 +21,16 @@ if(isset($_POST['submit']))
 		echo "<script>alert('You have Enrolled successfully...');</script>";
 		echo "<script>window.location='upcoming-event.php';</script>";
 	}
+}
+$sel = "SELECT * FROM point_settings";
+$result = mysqli_query($con,$sel);
+if(mysqli_num_rows($result) > 0)
+{
+$row = mysqli_fetch_assoc($result);
+$firstplace_point = $row['firstplace_point'];
+$secondplace_point = $row['secondplace_point'];
+$thirdplace_point = $row['thirdplace_point'];
+$participation_point = $row['participation_point'];
 }
 ?>
 </div>
@@ -84,7 +96,7 @@ echo '<img src="imgbanner/' .$imge .'" >';
             <p>
 				<table class="table table-bordered table-striped" style="width: 100%;">
 					<tr>
-						<th style="width: 40%;">Event Type : </th><td><?php echo  $rsviewevent['event_type']; ?> </td>
+						<th style="width: 40%;">Event Category : </th><td><?php echo  $rsviewevent['event_type']; ?></td>
 					</tr>
 					<tr>
 						<th>Event Participation Type : </th><td><?php echo  $rsviewevent['event_participation_type']; ?> </td>
@@ -99,11 +111,46 @@ echo '<img src="imgbanner/' .$imge .'" >';
 					<?php
 					}
 					?>
+					<?php
+					if($rsviewevent['department_id'] != 0)
+					{
+					?>
 					<tr>
 						<th>Department : </th><td><?php echo  $rsviewevent['department']; ?> </td>
 					</tr>
+					<?php
+					}
+					?>
+					<?php
+					if($rsviewevent['club_id'] != "")
+					{
+					?>
+					<tr>
+						<th>Club : </th><td><?php echo  $rsviewevent['club']; ?> </td>
+					</tr>
+					<?php
+					}
+					?>
 					<tr>
 						<th>Course : </th><td><?php
+if($course_id[0]== 0)
+{
+	echo "all Courses";
+}
+else
+{
+	$sqlcourse = "SELECT * FROM course WHERE course_status='Active' AND course_id in (";
+	foreach($course_id as $cid)
+	{
+		$sqlcourse = $sqlcourse . "$cid,";
+	}
+	$sqlcourse = $sqlcourse .  "0)";
+	$qsqlcourse = mysqli_query($con,$sqlcourse);
+	while($rscourse= mysqli_fetch_array($qsqlcourse))
+	{
+		echo $rscourse['course_title'] . " ";
+	}
+}
 						if($rsviewevent['course_id'] == 0)
 						{
 							echo "All Courses";
@@ -116,13 +163,18 @@ echo '<img src="imgbanner/' .$imge .'" >';
 					</tr>
 					<tr>
 						<th>Class : </th><td><?php
-						if($rsviewevent['st_class'] == 0)
+						if($st_class[0] == 0)
 						{
-							echo "All Class";
+							echo "All Classes";
 						}
 						else
 						{
-							echo $rsviewevent['st_class']; 
+$cl = "";
+foreach($st_class as $cls)
+{
+	$cl = $cl . $cls . ", ";
+}
+echo rtrim($cl, ", ");
 						}
 							?></td>
 					</tr>
@@ -133,17 +185,20 @@ echo '<img src="imgbanner/' .$imge .'" >';
 						<th>Last date for Participation: </th><td><?php echo $stop_date = date('d-m-Y', strtotime($rsviewevent['event_date_time'] . ' -2 day')); ?> </td>
 					</tr>
 					<tr>
-						<th>Maximum Limit: </th><td><?php echo $rsviewevent['participation_limit']; ?> </td>
+						<th>Participants Limit: </th><td>Maximum <?php echo $rsviewevent['participation_limit']; ?> </td>
 					</tr>
 					<tr>
 						<th>Club: </th><td><?php echo $rsviewevent['club']; ?> </td>
 					</tr>
 					<tr>
+						<th>Event Date & Time: </th><td> <?php echo date("d-m-Y h:i A",strtotime($rsviewevent['event_date_time'])) ?></td>
+					</tr>
+					<tr>
 						<th>Points: </th><td><?php 
-							echo "First Place - " . $rsviewevent['firstplace_point'] . "<br>"; 
-							echo "Second Place - " . $rsviewevent['secondplace_point'] . "<br>"; 
-							echo "Third Place - " . $rsviewevent['thirdplace_point'] . "<br>"; 
-							echo "Participation Point - " . $rsviewevent['participation_point'] . "<br>"; 
+							echo "First Place - " . $firstplace_point  . "<br>"; 
+							echo "Second Place - " . $secondplace_point . "<br>"; 
+							echo "Third Place - " . $thirdplace_point  . "<br>"; 
+							echo "Participation Point - " . $participation_point . "<br>"; 
 							?> </td>
 					</tr>
 				</table> 
@@ -161,7 +216,10 @@ echo '<img src="imgbanner/' .$imge .'" >';
         <p><?php echo  $rsviewevent['event_description']; ?></p>
       </div>
     </div>
-    <div class="container  table table-bordered" >
+	
+    <div class="container" >
+<div class="row">
+    <div class="col-md-6 container  table table-bordered" >
       <div class="heading_container">
         <h3>
           &nbsp;   Event Rules
@@ -169,6 +227,18 @@ echo '<img src="imgbanner/' .$imge .'" >';
         <p><?php echo  $rsviewevent['event_rules']; ?></p>
       </div>
     </div>
+	
+	<div class="col-md-6 container  table table-bordered" >
+      <div class="heading_container">
+        <h3>
+          &nbsp;   Event Venue
+        </h3>
+        <p><?php echo  $rsviewevent['event_venue']; ?></p>
+      </div>
+    </div>
+</div>
+	</div>
+
   </section>
 
 
@@ -182,12 +252,21 @@ echo '<img src="imgbanner/' .$imge .'" >';
               Participate Event
             </h3>
             <p>
-              No. of Participants - 
 			  <?php
 			  $sqlparticipantscount  = "SELECT * FROM `event_participation` WHERE event_id='$_GET[event_id]'";
 			  $qsqlparticipantscount = mysqli_query($con,$sqlparticipantscount);
 			  echo mysqli_num_rows($qsqlparticipantscount);
-			  ?>
+			  ?>  
+				<?php
+				if($rsviewevent['event_participation_type'] == "Team")
+				{
+					echo " Teams joined";
+				}
+				else
+				{
+					echo " Participants joined";
+				}
+				?>
             </p>       
 <?php
 $sqlchkparticipation = "SELECT * FROM event_participation WHERE event_id='$_GET[event_id]' AND student_id='$_SESSION[student_id]'";
@@ -207,11 +286,22 @@ else
 	{
 		if(isset($_SESSION['student_id']))
 		{
+			if($rsviewevent['event_participation_type'] == "Team")
+				{
 	?>
 	<form method="post" action="">
-	<button type="submit" name="submit" id="submit" class="btn btn-info" onclick="return confirmparticipation()">Click Here to participate</button>
+	<button type="submit" name="submit" id="submit" class="btn btn-info btn-lg" onclick="return confirmparticipation()">Click Here to Add Team</button>
 	</form>
 	<?php
+				}
+				else
+				{
+	?>
+	<form method="post" action="">
+	<button type="submit" name="submit" id="submit" class="btn btn-info btn-lg" onclick="return confirmparticipation()">Click Here to participate</button>
+	</form>
+	<?php
+				}
 		}
 		else
 		{

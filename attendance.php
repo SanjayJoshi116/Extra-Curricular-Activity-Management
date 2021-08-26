@@ -4,17 +4,17 @@ if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
 }
-if(!isset($_GET['attendanceentry']))
+if(isset($_GET['attendanceentry']))
 {
-	$sqlsel = "SELECT * FROM event_result_status WHERE event_id='$_GET[event_id]'";
-	$qsqlsel = mysqli_query($con,$sqlsel);
-	if(mysqli_num_rows($qsqlsel) == 0)
+	$sqlatt = "SELECT * FROM event_participation WHERE event_id='$_GET[event_id]' AND event_participation_status='Applied'";
+	$qsqlatt  = mysqli_query($con,$sqlatt);
+	$rsatt = mysqli_fetch_array($qsqlatt);
+	if(mysqli_num_rows($qsqlatt) >= 1)
 	{
-	$sqlins = "INSERT INTO event_result_status(event_id,student_id,event_participation_id,attend_status)  select event_id,student_id,event_participation_id,'Present' from event_participation WHERE event_id='$_GET[event_id]'";
-	$qsqlins = mysqli_query($con,$sqlins);
-	echo mysqli_error($con);
+	$sqlattendance = "UPDATE event_participation SET event_participation_status='Present' WHERE event_id='$_GET[event_id]'";
+	$qsqlattendance = mysqli_query($con,$sqlattendance);
 	}
-	echo "<script>window.location='attendance.php?event_id=$_GET[event_id]&attendanceentry=$_GET[attendanceentry]';</script>";
+	echo "<script>window.location='attendance.php?event_id=$_GET[event_id]';</script>";
 }
 ?>
 </div>
@@ -59,7 +59,6 @@ if(!isset($_GET['attendanceentry']))
 </table>
 <hr>
 <!-- ####################VIEW TABLE STARTS HERE ######### ---->
-<span class="success">Thank's for submitting the form</span>
 <table id="datatableplugin" class="table table-bordered">
 <thead>
 		<tr>
@@ -74,24 +73,20 @@ if(!isset($_GET['attendanceentry']))
 	$qsqlview = mysqli_query($con,$sqlview);
 	while($rsview = mysqli_fetch_array($qsqlview))
 		{
-	
-	$sqlsel = "SELECT * FROM event_result_status WHERE event_participation_id='$rsview[event_participation_id]'";
-	$qsqlsel = mysqli_query($con,$sqlsel);
-	$rssel = mysqli_fetch_array($qsqlsel);
 			echo "<tr>
 				<td>$rsview[student_rollno]</td>
 				<td>$rsview[student_name]</td>
 				<td>";
 				echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]'  style='-ms-transform: scale(1.5);
     -webkit-transform: scale(1.5); transform: scale(1.5);'  onclick='fadeToZero($rsview[0],`Present`)' ";
-	if($rssel['attend_status'] == "Present")
+	if($rsview['event_participation_status'] == "Present")
 	{
 		echo "checked";
 	}
 	echo "> Present &nbsp; ";
 				echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]' style='-ms-transform: scale(1.5);
     -webkit-transform: scale(1.5); transform: scale(1.5);' onclick='fadeToZero($rsview[0],`Absent`)' ";
-	if($rssel['attend_status'] == "Absent")
+	if($rsview['event_participation_status'] == "Absent")
 	{
 		echo "checked";
 	}

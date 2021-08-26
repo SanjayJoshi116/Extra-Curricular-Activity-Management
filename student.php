@@ -103,7 +103,7 @@ if(isset($_POST['btnsubmit']))
 			   <div class="col-md-6">
 				<label class="labelproperty">Class</label>
 				<select name="st_class" id="st_class" class="form-control" >
-				<option value="">All Class</option>
+				<option value="">Select Class</option>
                 <?php
 				$arr = array("First Year","Second Year","Third Year");
 				foreach($arr as $val)
