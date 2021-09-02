@@ -51,11 +51,11 @@ if(!isset($_SESSION['staff_id']))
       <div class="course_container">
         <div class="course_content">
           <div class="box">
-            <img src="images/complaint.jpg" style="width: 353px;height: 322px;" alt="" />
+            <img src="images/complaint.cms" style="width: 353px;height: 322px;" alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM complaint_report";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -66,11 +66,11 @@ if(!isset($_SESSION['staff_id']))
             </h5>
           </div>
           <div class="box">
-            <img src="images/c-4.jpg" alt="" />
+            <img src="images/course.jpg" alt="" style="height: 322px;" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5  style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
 			<?php
 			  $sqlcount = "SELECT * FROM course";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -81,11 +81,11 @@ if(!isset($_SESSION['staff_id']))
             </h5>
           </div>
           <div class="box">
-            <img src="images/c-5.jpg" alt="" />
+            <img src="images/department.jpg" alt="" style="height: 322px;"/>
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM department";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -101,11 +101,11 @@ if(!isset($_SESSION['staff_id']))
       <div class="course_container">
         <div class="course_content">
           <div class="box">
-            <img src="images/complaint.jpg" style="width: 353px;height: 322px;" alt="" />
+            <img src="images/events.jpg" style="width: 353px;height: 322px;" alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM event";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -116,11 +116,11 @@ if(!isset($_SESSION['staff_id']))
             </h5>
           </div>
           <div class="box">
-            <img src="images/c-4.jpg" alt="" />
+            <img src="images/application.jpg" style="width: 353px;height: 322px;" alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM event_participation";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -131,11 +131,11 @@ if(!isset($_SESSION['staff_id']))
             </h5>
           </div>
           <div class="box">
-            <img src="images/c-5.jpg" alt="" />
+            <img src="images/eventresult.jpg" style="width: 353px;height: 322px;" alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM event_result";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -151,26 +151,11 @@ if(!isset($_SESSION['staff_id']))
       <div class="course_container">
         <div class="course_content">
           <div class="box">
-            <img src="images/complaint.jpg" style="width: 353px;height: 322px;" alt="" />
+            <img src="images/sportsandgames.jpg" style="width: 353px;height: 322px;"  alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
-              <?php
-			  $sqlcount = "SELECT * FROM event_result_status";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
-              Event Results
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/c-4.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM event_type";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -181,11 +166,11 @@ if(!isset($_SESSION['staff_id']))
             </h5>
           </div>
           <div class="box">
-            <img src="images/c-5.jpg" alt="" />
+            <img src="images/staff.jpg" style="width: 353px;height: 322px;" alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM staff";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -195,17 +180,12 @@ if(!isset($_SESSION['staff_id']))
 			  Staff
             </h5>
           </div>
-        </div>
-      </div>
- 	 
-      <div class="course_container">
-        <div class="course_content">
           <div class="box">
-            <img src="images/complaint.jpg" style="width: 353px;height: 322px;" alt="" />
+            <img src="images/students.jpg" style="width: 353px;height: 322px;" alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
-            <h5>
+            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
 			  $sqlcount = "SELECT * FROM student";
 			  $qsqlcount = mysqli_query($con,$sqlcount);
@@ -215,28 +195,9 @@ if(!isset($_SESSION['staff_id']))
               Students
             </h5>
           </div>
-          <div class="box">
-            <img src="images/c-4.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
-              Your <br />
-              Complete Guide
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/c-5.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
-              Photography
-            </h5>
-          </div>
         </div>
       </div>
- 
+
     </div>
   </section>
 

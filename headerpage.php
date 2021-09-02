@@ -82,9 +82,27 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartoggle" aria-controls="navbartoggle" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbartoggle">
-<div class="nav-fostrap">
+<?php
+if(isset($_SESSION['staff_id']))
+{
+?>
+<style>
+.nav-fostrap li a {
+    padding: 15px 10px;
+    font-size: 14px;
+    color: #def1f0;
+    display: inline-block;
+    outline: 0;
+    font-weight: 400;
+    text-decoration: none;
+}
+</style>
+<?php
+}
+?>
+            <div lass="collapse navbar-collapse" id="navbartoggle">
+<div class="nav-fostrap" style="  position: absolute;
+  top: 15px;right: 0;">
 	<ul>
 		<li><a href="index.php">Home</a></li>
 		<li><a href="about.php">About</a></li>
@@ -100,16 +118,23 @@
 				<li><a href="completed-event.php">Completed Events</a></li>
 				<li><a href="addevent.php">Add Event</a></li>
 				<li><a href="viewevent.php">View Events</a></li>
+				<?php
+				if($rsstaffprofile['staff_type'] == "Admin")
+				{
+				?>
 				<li><a href="event_type.php">Add Event Category</a></li>
 				<li><a href="view_event_type.php">View Event Category</a></li>
 				<li><a href="point_update.php">Point Settings</a></li>
+				<?php
+				}
+				?>
 			</ul>
 		</li>
 		
 		<li><a href="javascript:void(0)">Result<span class="arrow-down"></span></a>
 			<ul class="dropdown">
 				<li><a href="display_event.php">Attendance Entry</a></li>
-				<li><a href="event_result.php">Add Event Result</a></li>
+				<li><a href="display_eventforresult.php">Add Event Result</a></li>
 				<li><a href="event_result_status.php">Add Event Result Status</a></li>
 				<li><a href="view_event_result_status.php">Event Result</a></li>
 			</ul>
@@ -124,7 +149,10 @@
 				<li><a href="viewstudent.php">Student Accounts</a></li>
 			</ul>
 		</li>
-
+				<?php
+				if($rsstaffprofile['staff_type'] == "Admin")
+				{
+				?>
 		<li><a href="javascript:void(0)">Settings<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
@@ -136,13 +164,24 @@
 				<li><a href="viewclub.php">View Club</a></li>
 			</ul>
 		</li>
-		
+				<?php
+				}
+				?>
 		<li><a href="javascript:void(0)">Staff Account<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="dashboard.php">Dashboard</a></li>
+				<li><a href="staffprofile.php">Staff Profile</a></li>
+				<li><a href="staffchangepassword.php">Change Password</a></li>
+				<?php
+				if($rsstaffprofile['staff_type'] == "Admin")
+				{
+				?>
 				<li><a href="staffupdate.php">Add Staff</a></li>
 				<li><a href="viewstaff.php">View Staff</a></li>
+				<?php
+				}
+				?>
 			</ul>
 		</li>
 		

@@ -6,13 +6,21 @@ if(!isset($_SESSION['staff_id']))
 }
 if(isset($_GET['attendanceentry']))
 {
-	$sqlatt = "SELECT * FROM event_participation WHERE event_id='$_GET[event_id]' AND event_participation_status='Applied'";
+	$sqlatt = "SELECT * FROM event_result_status WHERE event_id='$_GET[event_id]' AND event_participation_status='Applied'";
 	$qsqlatt  = mysqli_query($con,$sqlatt);
 	$rsatt = mysqli_fetch_array($qsqlatt);
 	if(mysqli_num_rows($qsqlatt) >= 1)
 	{
-	$sqlattendance = "UPDATE event_participation SET event_participation_status='Present' WHERE event_id='$_GET[event_id]'";
-	$qsqlattendance = mysqli_query($con,$sqlattendance);
+		$sqlattendance = "UPDATE event_participation SET event_participation_status='Present' WHERE event_id='$_GET[event_id]'";
+		$qsqlattendance = mysqli_query($con,$sqlattendance);
+		$sql = "INSERT INTO event_result(event_id,result_detail, event_documentry, staff_id) VALUES('$_GET[event_id]','','','0')";
+		$qsql = mysqli_query($con,$sql);
+		$insid = mysqli_insert_id($con);
+		$sqlpoint_settings = "SELECT * from point_settings";
+		$qsqlpoint_settings = mysqli_query($con,$sqlpoint_settings);
+		$rspoint_settings = mysqli_fetch_array($qsqlpoint_settings);
+		$sqlevent_result_status="INSERT INTO event_result_status(event_result_id,event_id,student_id,event_participation_id,winning_position,point,event_participation_type,team) SELECT '$insid', '$_GET[event_id]',student_id ,event_participation_id, '0', '$rspoint_settings[participation_point]',event_participation_type,team FROM event_participation";
+		mysqli_query($con,$sqlevent_result_status);
 	}
 	echo "<script>window.location='attendance.php?event_id=$_GET[event_id]';</script>";
 }
@@ -62,6 +70,7 @@ if(isset($_GET['attendanceentry']))
 <table id="datatableplugin" class="table table-bordered">
 <thead>
 		<tr>
+			<th>Image</th>
 			<th>Student Rollno</th>
 			<th>Student Name</th>
 			<th>Attendance</th>
@@ -69,15 +78,16 @@ if(isset($_GET['attendanceentry']))
 	</thead>
 	<tbody>
   <?php 
-  	$sqlview = "SELECT event_participation.*,event.event_title,student.student_name,student.student_rollno FROM event_participation LEFT JOIN event ON event.event_id=event_participation.event_id LEFT JOIN student ON event_participation.student_id=student.student_id WHERE event_participation.event_id='$_GET[event_id]' ORDER BY event_id";
+  	$sqlview = "SELECT event_participation.*,event.event_title,student.student_name,student.student_image,student.student_rollno FROM event_participation LEFT JOIN event ON event.event_id=event_participation.event_id LEFT JOIN student ON event_participation.student_id=student.student_id WHERE event_participation.event_id='$_GET[event_id]' ORDER BY event_id";
 	$qsqlview = mysqli_query($con,$sqlview);
 	while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
+				<td><img src='studentimg/$rsview[student_image]' style='width: 50px;height: 50px;' ></td>
 				<td>$rsview[student_rollno]</td>
 				<td>$rsview[student_name]</td>
 				<td>";
-				echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]'  style='-ms-transform: scale(1.5);
+				echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]' style='-ms-transform: scale(1.5);
     -webkit-transform: scale(1.5); transform: scale(1.5);'  onclick='fadeToZero($rsview[0],`Present`)' ";
 	if($rsview['event_participation_status'] == "Present")
 	{

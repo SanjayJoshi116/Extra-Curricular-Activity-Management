@@ -241,7 +241,10 @@ echo rtrim($cl, ", ");
 
   </section>
 
-
+			<?php
+			if(!isset($_SESSION['staff_id']))
+			{
+			?>
   <section class="login_section layout_padding">
     <div class="container">
       <div class="row">
@@ -266,7 +269,8 @@ echo rtrim($cl, ", ");
 				{
 					echo " Participants joined";
 				}
-				?>
+				?> / 
+				<?php echo $rsviewevent['participation_limit'] - mysqli_num_rows($qsqlparticipantscount); ?> left
             </p>       
 <?php
 $sqlchkparticipation = "SELECT * FROM event_participation WHERE event_id='$_GET[event_id]' AND student_id='$_SESSION[student_id]'";
@@ -327,7 +331,9 @@ else
 	  </div>
     </div>
   </section>
-
+			<?php
+			}
+			?>
   <!-- end login section -->
 
 

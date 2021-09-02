@@ -234,7 +234,7 @@ if(isset($_GET['editid']))
 			  
               <div class="col-md-6">
 				<label class="labelproperty">Course 
-        <select name="course_id[]" id="course_id" class="form-control" multiple  >
+        <select name="course_id[]" id="course_id" class="form-control" multiple   >
 		<option value="0" 
 		<?php
 		if($course_id[0] == 0)
@@ -250,9 +250,16 @@ if(isset($_GET['editid']))
 		echo mysqli_error($con);
 		while($rscourse = mysqli_fetch_array($qsqlcourse))
 		{
-			if (in_array($rscourse['course_id'], $course_id))
+			if(isset($_GET['editid']))
 			{
-				echo "<option value='$rscourse[course_id]' selected>$rscourse[course_title]</option>";
+				if(in_array($rscourse['course_id'], $course_id))
+				{
+					echo "<option value='$rscourse[course_id]' selected>$rscourse[course_title]</option>";
+				}
+				else
+				{
+					echo "<option value='$rscourse[course_id]'>$rscourse[course_title]</option>";
+				}
 			}
 			else
 			{
@@ -278,13 +285,20 @@ if(isset($_GET['editid']))
 				$arr = array("First Year","Second Year","Third Year");
 				foreach($arr as $val)
 				{
-					if (in_array($val, $st_class))
+					if(isset($_GET['editid']))
 					{
-						echo "<option value='$val' selected>$val</option>";
+						if (in_array($val, $st_class))
+						{
+							echo "<option value='$val' selected>$val</option>";
+						}
+						else
+						{
+							echo "<option value='$val'>$val</option>";
+						}
 					}
 					else
 					{
-						echo "<option value='$val'>$val</option>";
+							echo "<option value='$val'>$val</option>";
 					}
 				}
 				?>
