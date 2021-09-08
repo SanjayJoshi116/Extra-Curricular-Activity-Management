@@ -8,10 +8,10 @@ include("header.php");
     <div class="container">
       <div class="heading_container">
         <h3>
-          Event Result
+          Event Participants
         </h3>
         <p>
-          Publish Event Result
+          View Event Participants
         </p>
       </div>
       <?php
@@ -42,7 +42,12 @@ include("header.php");
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
-			<a href="event_result.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">Publish Result</a>
+			<a href="view_event_participant_list.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">View Participant List</a>
+			<b>No. of Participants <?php 
+			$sqlpart = "SELECT * FROM event_participation where event_id='$rsview[event_id]'";
+			$qsqlpart = mysqli_query($con,$sqlpart);
+			echo  mysqli_num_rows($qsqlpart)
+			?></b>
           </div>
         </div>
         <?php

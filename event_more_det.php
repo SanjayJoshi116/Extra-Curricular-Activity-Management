@@ -293,8 +293,9 @@ else
 			if($rsviewevent['event_participation_type'] == "Team")
 				{
 	?>
-	<form method="post" action="">
-	<button type="submit" name="submit" id="submit" class="btn btn-info btn-lg" onclick="return confirmparticipation()">Click Here to Add Team</button>
+	<form method="get" action="teambuilder.php">
+		<input type="hidden" name="event_id" id="event_id" value="<?php echo $_GET['event_id']; ?>" >
+		<button type="submit" name="submit" id="submit" value="submit" class="btn btn-info btn-lg" >Click Here to Create new Team</button>
 	</form>
 	<?php
 				}

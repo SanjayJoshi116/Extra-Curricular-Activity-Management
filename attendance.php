@@ -6,20 +6,21 @@ if(!isset($_SESSION['staff_id']))
 }
 if(isset($_GET['attendanceentry']))
 {
-	$sqlatt = "SELECT * FROM event_result_status WHERE event_id='$_GET[event_id]' AND event_participation_status='Applied'";
+	$sqlatt = "SELECT * FROM event_result_status WHERE event_id='$_GET[event_id]'";
 	$qsqlatt  = mysqli_query($con,$sqlatt);
 	$rsatt = mysqli_fetch_array($qsqlatt);
-	if(mysqli_num_rows($qsqlatt) >= 1)
+	if(mysqli_num_rows($qsqlatt) == 0)
 	{
-		$sqlattendance = "UPDATE event_participation SET event_participation_status='Present' WHERE event_id='$_GET[event_id]'";
-		$qsqlattendance = mysqli_query($con,$sqlattendance);
+		$sqlevent_participation = "UPDATE event_participation SET event_participation_status='Present' WHERE event_id='$_GET[event_id]'";
+		$qsqlevent_participation = mysqli_query($con,$sqlevent_participation);
+		echo mysqli_error($con);
 		$sql = "INSERT INTO event_result(event_id,result_detail, event_documentry, staff_id) VALUES('$_GET[event_id]','','','0')";
 		$qsql = mysqli_query($con,$sql);
 		$insid = mysqli_insert_id($con);
 		$sqlpoint_settings = "SELECT * from point_settings";
 		$qsqlpoint_settings = mysqli_query($con,$sqlpoint_settings);
 		$rspoint_settings = mysqli_fetch_array($qsqlpoint_settings);
-		$sqlevent_result_status="INSERT INTO event_result_status(event_result_id,event_id,student_id,event_participation_id,winning_position,point,event_participation_type,team) SELECT '$insid', '$_GET[event_id]',student_id ,event_participation_id, '0', '$rspoint_settings[participation_point]',event_participation_type,team FROM event_participation";
+		$sqlevent_result_status="INSERT INTO event_result_status(event_result_id,event_id,student_id,event_participation_id,winning_position,point,event_participation_type,team) SELECT '$insid', '$_GET[event_id]',student_id ,event_participation_id, '0', '$rspoint_settings[participation_point]',event_participation_type,team FROM event_participation WHERE event_id='$_GET[event_id]'";
 		mysqli_query($con,$sqlevent_result_status);
 	}
 	echo "<script>window.location='attendance.php?event_id=$_GET[event_id]';</script>";
@@ -93,14 +94,14 @@ if(isset($_GET['attendanceentry']))
 	{
 		echo "checked";
 	}
-	echo "> Present &nbsp; ";
+	echo "> <label for='attstatus$rsview[0]'>Present</label> &nbsp; ";
 				echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]' style='-ms-transform: scale(1.5);
     -webkit-transform: scale(1.5); transform: scale(1.5);' onclick='fadeToZero($rsview[0],`Absent`)' ";
 	if($rsview['event_participation_status'] == "Absent")
 	{
 		echo "checked";
 	}
-	echo "> Absent";
+	echo "> <label for='attstatus$rsview[0]'>Absent</label>";
 				echo "&nbsp;<span id='attst$rsview[0]' style='right: 0;color: green;display: none;'><i class='fa fa-hand-o-right' aria-hidden='true'></i> Submitted</span>";
 			echo"</td></tr>";
 		}
@@ -111,7 +112,6 @@ if(isset($_GET['attendanceentry']))
 </div>
 </div>
 </section>
-
 <?php
 include "footer.php";
 ?>	

@@ -270,98 +270,11 @@ include("slider.php");
           </div>
         </div>
       </div>
-      <div class="btn-box">
-        <a href="">
-          Read More
-        </a>
-      </div>
     </div>
   </section>
 
   <!-- end event section -->
 
-  <!-- client section -->
-
-  <section class="client_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container">
-        <h3>
-          What People Say
-        </h3>
-        <p>
-          It is a long established fact that a reader will be distracted
-        </p>
-      </div>
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/client.png" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Distracted by
-                </h5>
-                <p>
-                  It is a long established fact that a reader will be
-                  distracted by the readable content of a page when looking at
-                  its layout. The point of using Lorem Ipsum is that it has a
-                  more-or-less normal distribution of letters
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/client.png" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Distracted by
-                </h5>
-                <p>
-                  It is a long established fact that a reader will be
-                  distracted by the readable content of a page when looking at
-                  its layout. The point of using Lorem Ipsum is that it has a
-                  more-or-less normal distribution of letters
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/client.png" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Distracted by
-                </h5>
-                <p>
-                  It is a long established fact that a reader will be
-                  distracted by the readable content of a page when looking at
-                  its layout. The point of using Lorem Ipsum is that it has a
-                  more-or-less normal distribution of letters
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="btn-box">
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end client section -->
 
   <!-- contact section -->
 

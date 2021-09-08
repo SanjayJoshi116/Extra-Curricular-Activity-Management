@@ -135,17 +135,14 @@ if(isset($_SESSION['staff_id']))
 			<ul class="dropdown">
 				<li><a href="display_event.php">Attendance Entry</a></li>
 				<li><a href="display_eventforresult.php">Add Event Result</a></li>
-				<li><a href="event_result_status.php">Add Event Result Status</a></li>
-				<li><a href="view_event_result_status.php">Event Result</a></li>
+				<li><a href="display_event_result_report.php">View Event Report</a></li>
 			</ul>
 		</li>
 
 		<li><a href="javascript:void(0)">Report<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
-				<li><a href="view_event_apply.php">View Applications</a></li>
-				<li><a href="view_event_result.php">View Event Result</a></li>
-				<li><a href="view_event_result_status.php">View Event Result Status</a></li>
+				<li><a href="display_event_participant.php">View Participants</a></li>
 				<li><a href="viewstudent.php">Student Accounts</a></li>
 			</ul>
 		</li>
@@ -184,13 +181,12 @@ if(isset($_SESSION['staff_id']))
 				?>
 			</ul>
 		</li>
-		
 <?php
 			}
 			if(isset($_SESSION['student_id']))
 			{
 ?>
-<li><a href="javascript:void(0)">Events<span class="arrow-down"></span></a>
+		<li><a href="javascript:void(0)">Events<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="upcoming-event.php">Upcoming Events</a></li>
@@ -201,6 +197,13 @@ if(isset($_SESSION['staff_id']))
 		<li><a href="student-dashboard.php">Dashboard</a></li>
 		
 		<li><a href="view_event_result_status.php">Result</a></li>
+			
+			<li><a href="javascript:void(0)">My Account<span class="arrow-down"></span></a>
+				<ul class="dropdown">
+					<li><a href="studentprofile.php">My Profile</a></li>
+					<li><a href="studentchangepassword.php">Change Password</a></li>
+				</ul>
+			</li>
 		<?php
 			}
 		?>

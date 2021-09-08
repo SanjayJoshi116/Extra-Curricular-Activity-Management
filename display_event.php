@@ -8,14 +8,14 @@ include("header.php");
     <div class="container">
       <div class="heading_container">
         <h3>
-          Events
+          Attendance Entry
         </h3>
         <p>
-          Upcoming Events
+          Enter Attendance records
         </p>
       </div>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time > CURDATE()";
+		    $sqlview = "SELECT * FROM  event where event_date_time > CURDATE() ORDER BY event_id DESC";
 		    $qsqlview = mysqli_query($con,$sqlview);
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {

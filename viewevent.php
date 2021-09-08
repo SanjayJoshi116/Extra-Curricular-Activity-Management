@@ -79,17 +79,26 @@ if(isset($_GET['acid']))
 			echo "<br><a href='event_more_det.php?event_id=$rsview[0]' class='btn btn-warning' target='_blank'>View More</a>";
 			echo "</td>
 				<td>" . date("d-m-Y h:i A",strtotime($rsview['event_date_time'])) . "</td>
-				<td>$rsview[department]</td>
+				<td>";
+			if($rsview['department_id'] == 0)
+			{
+				echo "All Departments";
+			}
+			else
+			{
+				echo $rsview['department'];
+			}
+			echo "</td>
 				<td>$rsview[event_venue]</td>
 				<td>$rsview[event_status] <br>";
 				if($rsview['event_status'] == "Active")
-{
-	echo "<a href='viewevent.php?st=Inactive&acid=$rsview[event_id]' class='btn btn-primary' onclick='return confirmst()' >Deactivte</a>";
-}
-else
-{
-	echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
-}
+				{
+					echo "<a href='viewevent.php?st=Inactive&acid=$rsview[event_id]' class='btn btn-primary' onclick='return confirmst()' >Deactivte</a>";
+				}
+				else
+				{
+					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
+				}
 			echo"<td>
 				<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a>
 				<a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>

@@ -8,10 +8,10 @@ include("header.php");
     <div class="container">
       <div class="heading_container">
         <h3>
-          Event Result
+          View Event Result
         </h3>
         <p>
-          Publish Event Result
+          View Event Result Reports
         </p>
       </div>
       <?php
@@ -42,7 +42,7 @@ include("header.php");
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
-			<a href="event_result.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">Publish Result</a>
+			<a href="event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">View Result</a>
           </div>
         </div>
         <?php

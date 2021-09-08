@@ -20,7 +20,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="info_course">
             <h5>
               About Us
@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class="col-md-5 offset-md-1">
+        <div class="col-md-5">
           <div class="info_news">
             <h5>
               FOR ANY QUERY, PLEASE WRITE TO US

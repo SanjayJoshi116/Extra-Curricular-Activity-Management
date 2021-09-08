@@ -3,6 +3,7 @@ session_start();
 error_reporting(E_ALL & ~E_NOTICE  &  ~E_STRICT  &  ~E_WARNING);
 date_default_timezone_set("Asia/Calcutta");
 $dt = date("Y-m-d");
+$dttim = date("Y-m-d H:i:s");
 include("dbconnection.php");
 if(isset($_SESSION['staff_id']))
 {

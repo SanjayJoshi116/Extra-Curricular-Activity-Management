@@ -32,10 +32,10 @@ if(isset($_SESSION['staff_id']))
 ?>
 <style>
 .contact_section::before {
-    width: 10%;
+    width: 1%;
 }
 .sub_page .contact_section {
-    margin: 25px 0;
+    margin: 15px 0;
 }
 </style>
   <!-- contact section -->
