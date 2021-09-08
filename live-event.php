@@ -41,7 +41,7 @@ include("header.php");
           </div>
           <div class="date-box">
             <h3>
-            <?php echo "{$rsview['event_date_time']}";?>
+            <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
           </div>
         </div>
