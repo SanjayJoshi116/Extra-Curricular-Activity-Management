@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2021 at 06:25 AM
+-- Generation Time: Sep 08, 2021 at 07:15 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -179,7 +179,9 @@ INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `n
 (30, 6, 'Team', 11, 'IPL Competition', 'Premier league', 'Round robbin league', '2127189323Take_in_the_Scenery.jpg', 1, 2, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-05 06:00:00', 'Mangalore', 1, 10, 'Active'),
 (32, 2, 'Single', 1, 'abc competition', 'This is for dance competiton', 'Attend before one hour', '507561290Bigg-Boss.jpg', 1, 2, 'a:2:{i:0;s:1:\"1\";i:1;s:1:\"9\";}', 'a:2:{i:0;s:10:\"First Year\";i:1;s:10:\"Third Year\";}', '2021-08-25 07:00:00', 'Bangalore', 1, 25, 'Active'),
 (33, 2, 'Single', 1, 'Tech talks', 'This is for dance competiton', 'Attend before one hour', '507561290Bigg-Boss.jpg', 1, 2, 'a:2:{i:0;s:1:\"1\";i:1;s:1:\"9\";}', 'a:2:{i:0;s:10:\"First Year\";i:1;s:10:\"Third Year\";}', '2021-08-20 07:00:00', 'Bangalore', 1, 25, 'Active'),
-(34, 7, 'Single', 1, 'Baseball event', 'Baseball event in Chinnaswamy ground', 'NO foul play', '113617494015-75-x11-81-beautiful-scenery-5d-diy-diamond-painting-kit-full-original-imaf66kewnc9s69t.jpeg', 1, 2, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-12 04:51:00', 'Hash gate', 11, 25, 'Active');
+(34, 7, 'Single', 1, 'Baseball event', 'Baseball event in Chinnaswamy ground', 'NO foul play', '113617494015-75-x11-81-beautiful-scenery-5d-diy-diamond-painting-kit-full-original-imaf66kewnc9s69t.jpeg', 1, 2, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-12 04:51:00', 'Hash gate', 11, 25, 'Active'),
+(35, 5, 'Team', 3, 'Quiz Competition in IT Fest', 'This event has IT related quiz competition', 'Competition Through online', '678197377home-insurance-getty.jpg', 0, 2, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-10 15:00:00', '3rd floor,<br />\r\ncity light', 11, 3, 'Active'),
+(36, 5, 'Team', 3, 'e-Game Competition', 'e-Game competiton', 'Every competitor should bring Smart phones', '18968342427045882-ASOOTCXI-7.jpg', 0, 2, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-15 02:15:00', '5th Floor,<br />\r\nCity Light,<br />\r\nMangalore', 11, 5, 'Active');
 
 -- --------------------------------------------------------
 
@@ -202,15 +204,15 @@ CREATE TABLE `event_participation` (
 --
 
 INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `event_participation_type`, `team`, `apply_dt_tim`, `event_participation_status`) VALUES
-(14, 29, 18, 'Single', '0', '2021-08-25 20:16:06', 'Present'),
-(15, 29, 1, 'Single', '0', '2021-08-25 20:18:35', 'Absent'),
-(16, 29, 12, 'Single', '0', '2021-08-25 20:18:35', 'Present'),
-(17, 29, 13, 'Single', '0', '2021-08-25 20:18:35', 'Absent'),
-(18, 29, 15, 'Single', '0', '2021-08-25 20:18:35', 'Present'),
-(19, 29, 17, 'Single', '0', '2021-08-25 20:18:35', 'Present'),
+(14, 29, 18, 'Single', '0', '2021-08-25 20:16:06', 'Applied'),
+(15, 29, 1, 'Single', '0', '2021-08-25 20:18:35', 'Applied'),
+(16, 29, 12, 'Single', '0', '2021-08-25 20:18:35', 'Applied'),
+(17, 29, 13, 'Single', '0', '2021-08-25 20:18:35', 'Applied'),
+(18, 29, 15, 'Single', '0', '2021-08-25 20:18:35', 'Applied'),
+(19, 29, 17, 'Single', '0', '2021-08-25 20:18:35', 'Applied'),
 (21, 34, 1, 'Single', '0', '2021-09-02 05:07:54', 'Absent'),
 (22, 34, 4, 'Single', '0', '2021-09-02 05:08:20', 'Present'),
-(23, 34, 12, 'Single', '0', '2021-09-02 05:14:19', 'Absent'),
+(23, 34, 12, 'Single', '0', '2021-09-02 05:14:19', 'Present'),
 (24, 34, 13, 'Single', '0', '2021-09-02 05:14:46', 'Present'),
 (25, 34, 15, 'Single', '0', '2021-09-02 05:15:07', 'Present'),
 (26, 34, 16, 'Single', '0', '2021-09-02 05:15:33', 'Present'),
@@ -231,6 +233,13 @@ CREATE TABLE `event_result` (
   `staff_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `event_result`
+--
+
+INSERT INTO `event_result` (`event_result_id`, `event_id`, `result_detail`, `event_documentry`, `staff_id`) VALUES
+(6, 34, 'GFor mod event', 'a:4:{i:0;s:30:\"file_example_MP4_1920_18MG.mp4\";i:1;s:28:\"SampleVideo_1280x720_5mb.mp4\";i:2;s:11:\"scenery.jpg\";i:3;s:23:\"Take_in_the_Scenery.jpg\";}', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -248,6 +257,20 @@ CREATE TABLE `event_result_status` (
   `event_participation_type` varchar(25) NOT NULL,
   `team` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event_result_status`
+--
+
+INSERT INTO `event_result_status` (`result_status_id`, `event_result_id`, `event_id`, `student_id`, `event_participation_id`, `winning_position`, `point`, `event_participation_type`, `team`) VALUES
+(83, 6, 34, 1, 21, '', 0, 'Single', '0'),
+(84, 6, 34, 4, 22, '0', 1, 'Single', '0'),
+(85, 6, 34, 12, 23, '3', 5, 'Single', '0'),
+(86, 6, 34, 13, 24, '2', 10, 'Single', '0'),
+(87, 6, 34, 15, 25, '1', 25, 'Single', '0'),
+(88, 6, 34, 16, 26, '0', 1, 'Single', '0'),
+(89, 6, 34, 17, 27, '', 0, 'Single', '0'),
+(90, 6, 34, 18, 28, '0', 1, 'Single', '0');
 
 -- --------------------------------------------------------
 
@@ -322,7 +345,7 @@ INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dp`, `staff_type`, `depart
 (1, 'Sachin', '1621369585Sachin_tendulkar1.jpg', 'Assistant Professor', 1, 'sachin', 'd94354ac9cf3024f57409bd74eec6b4c', 'Male', '1960-04-12', 'Active'),
 (2, 'Mohit', '689938320basmati-rice-1kg-500x500.jpg', 'HOD', 1, '789456123', 'c62d929e7b7e7b6165923a5dfc60cb56', 'Male', '2021-07-12', 'Active'),
 (9, 'Keerthan', '10808155531999504256480607.jpg', 'Lab Assistant', 1, 'keerthu', 'c740dd8f6fba4cb05d8a1282367c9577', 'Male', '1987-12-08', 'Active'),
-(11, 'Super Admin', '29844347images (2).jfif', 'Admin', 1, 'suuperadmin', '460dea3f96ee9ebfc6add13db03057f3', 'Male', '1992-07-27', 'Active');
+(11, 'Super Admin', '29844347images (2).jfif', 'Admin', 1, 'superadmin', 'c517b462594cf43eca9f3f4b17517c75', 'Male', '1992-07-27', 'Active');
 
 -- --------------------------------------------------------
 
@@ -351,7 +374,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_name`, `course_id`, `student_rollno`, `student_password`, `st_class`, `student_image`, `gender`, `dob`, `language`, `elective_paper`, `extension_activities`, `student_status`) VALUES
-(1, 'Rajkiran', 1, '123456', '2df594b9710111099edbdb7edaa43301', 'First Semester', 'no image', 'Male', '2021-07-14', 'abc', 'test', 'xyz', 'Active'),
+(1, 'Rajkiran', 1, '123456', '2df594b9710111099edbdb7edaa43301', '', '1181254765images.jpg', 'Male', '2021-07-14', 'Sanskrit', 'Journalism', 'Cultural', 'Active'),
 (4, 'Rupesh Kumar', 2, '201568', 'af78e43891766f29545ac78f4f74859e', 'First Year', '2326773111999504256480607.jpg', 'Male', '2002-05-15', 'Hindi', 'History', 'Sports', 'Active'),
 (10, 'Iliyas', 3, '78978911', 'ce816fc208a39d5f79a2aa2f6e285e4b', 'Second Year', '1226100850basmati-rice-1kg-500x500.jpg', 'Male', '2014-07-07', 'Sanskrit', 'Hindi', 'Rovers & Rangers', 'Pending'),
 (11, 'Peter king', 3, '1458', 'fe7c33705bed081ec082d575e46eb058', 'First Year', '1877291930arhar-dal-500x500 (1).jpg', 'Male', '2002-07-08', 'Hindi', 'Journalism', 'Rovers & Rangers', 'Pending'),
@@ -360,7 +383,8 @@ INSERT INTO `student` (`student_id`, `student_name`, `course_id`, `student_rolln
 (15, 'Mahesh kumar', 1, '789789', '50f45e244c6e9fa89dbf8743d4aca927', 'First Year', '21360444892322b995-2ce8-4b5c-8485-738785b1616b.jpg', 'Male', '2004-12-29', 'Sanskrit', 'Hindi', 'NCC', 'Active'),
 (16, 'Alok kumar Bangalore', 2, '7418529633', 'd68ddc83a7beaa15ea5ad5f970633743', 'First Year', '1058773050IMG-20200703-WA0040.jpg', 'Male', '2004-11-30', 'Sanskrit', 'Kannada', 'NCC', 'Active'),
 (17, 'spd', 1, '1809801', 'a455e6f20cb048b30988dec30dcffd74', 'First Year', '16516864691690768110basmati-rice-1kg-500x500.jpg', 'Male', '1990-01-11', 'Kannada', 'Economics and Rural ', 'None', 'Active'),
-(18, 'Aravinda M V', 1, '18098078', '03b372fd1df39363f1dec0ed19a67e26', 'First Year', '1752835243sundar-pichai-1.jpg', 'Male', '1990-08-05', 'Sanskrit', 'Hindi', 'NSS', 'Active');
+(18, 'Aravinda M V', 1, '18098078', '03b372fd1df39363f1dec0ed19a67e26', 'First Year', '1752835243sundar-pichai-1.jpg', 'Male', '1990-08-05', 'Sanskrit', 'Hindi', 'NSS', 'Active'),
+(19, 'Aravinda M V', 1, '123456789', '03cce43f8b49ea165c6effeb3e141e08', 'First Year', '272314989sundar-pichai-1.jpg', 'Male', '1986-05-04', 'Sanskrit', 'Hindi', 'NCC', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -484,7 +508,7 @@ ALTER TABLE `dept_course`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `event_participation`
@@ -496,13 +520,13 @@ ALTER TABLE `event_participation`
 -- AUTO_INCREMENT for table `event_result`
 --
 ALTER TABLE `event_result`
-  MODIFY `event_result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `event_result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `event_result_status`
 --
 ALTER TABLE `event_result_status`
-  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `event_type`
@@ -526,7 +550,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
