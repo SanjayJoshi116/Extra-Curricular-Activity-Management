@@ -1,5 +1,22 @@
 <?php
 include("header.php");
+if(isset($_POST['submit']))
+{
+	$arr_student_rollno = $_POST['student_rollno'];
+	$arr_student_id = $_POST['student_id'];
+	$team = "Team Leader";
+	for($i=0;$i<count($arr_student_rollno);$i++)
+	{
+		$sql ="INSERT INTO event_participation(event_id,student_id,event_participation_type,team,apply_dt_tim,event_participation_status) VALUES('$_GET[event_id]','$arr_student_id[$i]','Team','$team','$dttim','Entered')";
+		mysqli_query($con,$sql);
+		if($i == 0)
+		{
+		$team  = mysqli_insert_id($con);
+		}
+	}
+	echo "<script>alert('Team Added successfully');</script>";
+	echo "<script>window.location='upcoming-event.php';</script>";
+}
 ?>
 </div>
 <style>
@@ -95,7 +112,7 @@ ul.dropdown ul li a:hover{
   border-right: 5px solid transparent;
 }
 </style>
-
+<form method="post" action="">
   <!-- event section -->
   <section class="event_section layout_padding">
     <div class="container">
@@ -108,7 +125,7 @@ ul.dropdown ul li a:hover{
         </p>
       </div>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time > '$dttim' ";
+	    $sqlview = "SELECT * FROM  event where event_date_time > '$dttim' ";
         if($_GET['eventtype'] == "Single")
         {
           $sqlview = $sqlview . " AND  event.event_participation_type='Single' ";
@@ -167,13 +184,35 @@ ul.dropdown ul li a:hover{
                         <?php
                         for($i=0;$i<$rsview['no_of_participants'];$i++)
                         {
+							if($i == 0)
+							{
+						?>
+                        <tr>
+                          <td style="width: 100px;"><?php echo $i+1; ?></td>
+                          <td><input type="text" name="student_rollno[]" id="student_rollno<?php echo $i; ?>" size="15" class="form-control" value="<?php echo $rsstudentprofile['student_rollno']; ?>" readonly /></td>
+                          <td>
+						  <input type="text"  size="15" class="form-control" value="Team Leader" readonly />
+						  </td>
+                          <td>
+                            <input type="button" name="validate" id="validate" onclick="alert('Team Leader Verification not required..')" value="Verify" class="btn btn-secondary" >
+                          </td>
+                          <td>
+                            <div id="divstudent<?php echo $i; ?>">
+							<i class="btn btn-success fa fa-hand-o-right fa-lg" aria-hidden="true"> Verified</i></div>
+                            <input type="hidden" name="student_id[]" id="student_id<?php echo $i; ?>" value="<?php echo $rsstudentprofile['student_id']; ?>" class="form-control" />
+                          </td>
+                        </tr>
+						<?php
+							}
+							else
+							{
                         ?>
                         <tr>
                           <td style="width: 100px;"><?php echo $i+1; ?></td>
                           <td><input type="text" name="student_rollno[]" id="student_rollno<?php echo $i; ?>" size="15" class="form-control" /></td>
                           <td><input type="text" name="token_key[]" id="token_key<?php echo $i; ?>" size="15"  class="form-control" /></td>
                           <td>
-                            <input type="button" name="validate" id="validate" onclick="fun_validate_student(<?php echo "student_rollno" . $i; ?>.value,<?php echo "token_key" . $i; ?>.value)" value="Verify" class="btn btn-info" >
+                            <input type="button" name="validate" id="validate" onclick="fun_validate_student(<?php echo "student_rollno" . $i; ?>.value,<?php echo "token_key" . $i; ?>.value,<?php echo $i; ?>)" value="Verify" class="btn btn-info" >
                           </td>
                           <td>
                             <div id="divstudent<?php echo $i; ?>"></div>
@@ -181,28 +220,42 @@ ul.dropdown ul li a:hover{
                           </td>
                         </tr>
                         <?php
+							}
                         }
                         ?>
                     </table>
+					<hr>
+					<center><input type="submit" name="submit" id="submit" value="Click here to Submit" class="btn btn-info btn-lg" ></center>
                   </div>
               </div>
           </div>
         </div>
   </section>
   <!-- end event section -->
+</form>
 <?php
 include("footer.php");
 ?>
 <script>
-function fun_validate_student(student_rollno,token_key)
+function fun_validate_student(student_rollno,token_key,ivalue)
 {
     $.post("js_validate_student.php",
     {
       student_rollno: student_rollno,
       token_key: token_key
     },
-    function(data, status){
-      alert("Test");
+    function(data){
+      if(data == 0)
+	  {
+		  alert("Not valid...");
+		  $('#divstudent'+ivalue).html("<i class='btn btn-danger fa fa fa-thumbs-down fa-lg' aria-hidden='true'> Failed to Verify</i>");
+		  $('#student_id'+ivalue).val(0);
+	  }
+	  else
+	  {
+		  $('#divstudent'+ivalue).html("<i class='btn btn-success fa fa-hand-o-right fa-lg' aria-hidden='true'> Verified</i>");
+		  $('#student_id'+ivalue).val(data);
+	  }
     });
 }
 </script>

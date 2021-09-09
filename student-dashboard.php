@@ -6,16 +6,71 @@ if(!isset($_SESSION['student_id']))
 }
 ?>
   </div>
+
+  <!-- login section -->
+  <section class="login_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="detail-box">
+            <h3>
+              STUDENT DASHBOARD
+            </h3>
+            <p>
+              View my Statistics
+            </p>
+            <a href="viewpointstable.php">
+            <center>View Points Table</center>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="login_form">
+            <h3>
+             MY POINTS
+            </h3>
+            <form action="">
+              <div class="mypointslabel">
+<?php
+$sqlpoint= "SELECT ifnull(sum(point),0) FROM event_result_status WHERE student_id='$_SESSION[student_id]' ";
+$qsqlpoint = mysqli_query($con,$sqlpoint);
+$rspoint = mysqli_fetch_array($qsqlpoint);
+echo $rspoint[0];
+?>               
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="login_form">
+            <h3>
+             MY RANKING
+            </h3>
+            <form action="">
+              <div class="mypointslabel">
+<?php
+$sqlpoint= "SELECT z.rank FROM (SELECT student_id, student_name, student_rollno, ifnull((SELECT sum(point) FROM event_result_status WHERE student_id=student.student_id),0) as totalpoint, @rownum := @rownum + 1 AS rank FROM `student`, (SELECT @rownum := 0) r ORDER BY `totalpoint` DESC) as z WHERE student_id='$_SESSION[student_id]' ";
+$qsqlpoint = mysqli_query($con,$sqlpoint);
+$rspoint = mysqli_fetch_array($qsqlpoint);
+echo $rspoint[0];
+?>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end login section -->
 <br>
+
   <!-- special section -->
 
   <section class="special_section">
     <div class="container">
       <div class="special_container">
 <span style="width: 300px;">Team Token Code :</span>
- <input type="text" name="token_code" id="token_code" class="form-control" style="background-color: #e1dddd;" value="<?php
- echo md5($_SESSION['student_id'].$hm);
- ?>">
+ <input type="text" name="token_code" id="token_code" class="form-control" style="background-color: #e1dddd;" value="<?php echo md5($_SESSION['student_id'].$hr); ?>">
  <input type="button" name="btn_token_code" id="btn_token_code" class="btn btn-info" value="Copy to Clipboard" onclick="fun_copy_to_clipboard()" >
 <script>
 function fun_copy_to_clipboard() {
@@ -36,8 +91,10 @@ function fun_copy_to_clipboard() {
       </div>
     </div>
   </section>
-
   <!-- end special section -->
+  <br>
+  
+
 
   <!-- about section -->
   <section class="about_section layout_padding">
@@ -92,28 +149,7 @@ function fun_copy_to_clipboard() {
         </p>
       </div>
       <div class="course_container">
-        <div class="course_content">
-          <div class="box">
-            <img src="images/c-1.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
-              LMS <br />
-              Content
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/c-2.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
-              From <br />
-              Zero to Hero
-            </h5>
-          </div>
-        </div>
+
         <div class="course_content">
           <div class="box">
             <img src="images/c-3.jpg" alt="" />
@@ -153,49 +189,7 @@ function fun_copy_to_clipboard() {
       </div>
     </div>
   </section>
-
   <!-- end course section -->
-
-  <!-- login section -->
-
-  <section class="login_section layout_padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="detail-box">
-            <h3>
-              GET ONLINE COURSES FOR FREE
-            </h3>
-            <p>
-              Create your free account now and get immediate access to 100s of
-              online courses
-            </p>
-            <a href="">
-              REGISTER NOW
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="login_form">
-            <h5>
-              Login Now
-            </h5>
-            <form action="">
-              <div>
-                <input type="email" placeholder="Email " />
-              </div>
-              <div>
-                <input type="password" placeholder="Password" />
-              </div>
-              <button type="submit">Login</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end login section -->
 
   <!-- event section -->
   <section class="event_section layout_padding">
@@ -262,88 +256,7 @@ function fun_copy_to_clipboard() {
 
   <!-- end event section -->
 
-  <!-- client section -->
 
-  <section class="client_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container">
-        <h3>
-          What People Say
-        </h3>
-        <p>
-          It is a long established fact that a reader will be distracted
-        </p>
-      </div>
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/client.png" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Distracted by
-                </h5>
-                <p>
-                  It is a long established fact that a reader will be
-                  distracted by the readable content of a page when looking at
-                  its layout. The point of using Lorem Ipsum is that it has a
-                  more-or-less normal distribution of letters
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/client.png" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Distracted by
-                </h5>
-                <p>
-                  It is a long established fact that a reader will be
-                  distracted by the readable content of a page when looking at
-                  its layout. The point of using Lorem Ipsum is that it has a
-                  more-or-less normal distribution of letters
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/client.png" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Distracted by
-                </h5>
-                <p>
-                  It is a long established fact that a reader will be
-                  distracted by the readable content of a page when looking at
-                  its layout. The point of using Lorem Ipsum is that it has a
-                  more-or-less normal distribution of letters
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="btn-box">
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end client section -->
 
   <!-- contact section -->
 

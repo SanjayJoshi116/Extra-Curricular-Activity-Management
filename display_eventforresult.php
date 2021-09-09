@@ -43,6 +43,7 @@ include("header.php");
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
 			<a href="event_result.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">Publish Result</a>
+            (<?php echo $rsview['event_participation_type'];?> Event)
           </div>
         </div>
         <?php

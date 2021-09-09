@@ -937,3 +937,15 @@ a:focus {
 
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */
+.mypointslabel
+{
+	display: inline-block;
+    padding: 7px 45px;
+    background-color: #252525;
+    border: 1px solid #252525;
+    color: #ffffff;
+    margin-top: 25px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}

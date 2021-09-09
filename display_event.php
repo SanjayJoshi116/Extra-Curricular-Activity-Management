@@ -42,7 +42,21 @@ include("header.php");
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
-			<a href="attendance.php?event_id=<?php echo $rsview['event_id']; ?>&attendanceentry=Submit" class="btn btn-success">Submit Attendance</a>
+			<?php
+			if($rsview['event_participation_type'] == "Team")
+			{
+			?>
+			<a href="attendance_team.php?event_id=<?php echo $rsview['event_id']; ?>&attendanceentry=Submit" class="btn btn-success">Attendance Entry</a>
+			<?php
+			}
+			else
+			{
+			?>
+			<a href="attendance.php?event_id=<?php echo $rsview['event_id']; ?>&attendanceentry=Submit" class="btn btn-success">Attendance Entry</a>
+			<?php
+			}
+			?>
+            (<?php echo $rsview['event_participation_type'];?> Event)
           </div>
         </div>
         <?php

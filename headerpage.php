@@ -144,6 +144,7 @@ if(isset($_SESSION['staff_id']))
 			<ul class="dropdown">
 				<li><a href="display_event_participant.php">View Participants</a></li>
 				<li><a href="viewstudent.php">Student Accounts</a></li>
+				<li><a href="viewpointstable.php">View Points table</a></li>
 			</ul>
 		</li>
 				<?php
@@ -194,12 +195,12 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="completed-event.php">Completed Events</a></li>
 				</ul>
 				</li>
-		<li><a href="student-dashboard.php">Dashboard</a></li>
 		
-		<li><a href="view_event_result_status.php">Result</a></li>
+		<li><a href="display_event_result_report.php">Result</a></li>
 			
 			<li><a href="javascript:void(0)">My Account<span class="arrow-down"></span></a>
 				<ul class="dropdown">
+					<li><a href="student-dashboard.php">My Dashboard</a></li>
 					<li><a href="studentprofile.php">My Profile</a></li>
 					<li><a href="studentchangepassword.php">Change Password</a></li>
 				</ul>

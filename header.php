@@ -3,6 +3,7 @@ session_start();
 error_reporting(E_ALL & ~E_NOTICE  &  ~E_STRICT  &  ~E_WARNING);
 date_default_timezone_set("Asia/Calcutta");
 $dt = date("Y-m-d");
+$hr = date("H");
 $dttim = date("Y-m-d H:i:s");
 include("dbconnection.php");
 if(isset($_SESSION['staff_id']))
@@ -11,6 +12,13 @@ if(isset($_SESSION['staff_id']))
 	$qsqlstaffprofile = mysqli_query($con,$sqlstaffprofile);
 	echo mysqli_error($con);
 	$rsstaffprofile = mysqli_fetch_array($qsqlstaffprofile);
+}
+if(isset($_SESSION['student_id']))
+{
+	$sqlstudentprofile = "SELECT * FROM student where student_id ='" . $_SESSION['student_id'] . "'";
+	$qsqlstudentprofile = mysqli_query($con,$sqlstudentprofile);
+	echo mysqli_error($con);
+	$rsstudentprofile = mysqli_fetch_array($qsqlstudentprofile);
 }
 ?>
 <!DOCTYPE html>
