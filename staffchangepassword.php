@@ -14,7 +14,7 @@ if(isset($_POST['submit']))
 	if(mysqli_affected_rows($con) == 1)
 	{
 		echo "<script>alert('Password updated successfully..');</script>";
-		echo "<script>window.location='dashboard.php';</script>";
+		echo "<script>window.location='staffchangepassword.php';</script>";
 	}
 	else
 	{

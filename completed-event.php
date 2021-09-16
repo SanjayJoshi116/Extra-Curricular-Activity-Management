@@ -39,10 +39,9 @@ include("header.php");
             </h6>
           </div>
           <div class="date-box">
-		  <h3>
-		  <?php echo date("d-M-Y",strtotime($rsview['event_date_time']));?>
-		  </h3>
-            <a href="view_event_result_status?event_id=<?php $rsview['event_id']; ?>" class="btn btn-info">View Result</a>
+            <h3>
+            <?php echo "{$rsview['event_date_time']}";?>
+            </h3>
           </div>
         </div>
         <?php

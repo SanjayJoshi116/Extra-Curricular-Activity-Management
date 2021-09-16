@@ -53,8 +53,28 @@ if(isset($_SESSION['student_id']))
 		color: white;
 		padding-top: 15px;
 		margin-bottom: -4.5rem;
+	}	
+	.errormessage
+	{
+		color: #ffe000;
+		//Blinking Text starts Here
+		  animation: blink-animation 3s steps(5, start) infinite;
+		-webkit-animation: blink-animation 3s steps(5, start) infinite;
+		//Blinking Text endsHere
 	}
-  </style>
+	//Blinking Text starts Here
+	@keyframes blink-animation {
+	to {
+		visibility: hidden;
+	}
+	}
+	@-webkit-keyframes blink-animation {
+	to {
+		visibility: hidden;
+	}
+	}
+	//Blinking Text endsHere
+</style>
 </head>
 
 <body
