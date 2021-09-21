@@ -10,6 +10,7 @@ if(isset($_GET['delid']))
 		echo "<script>window.location='viewevent.php';</script>";
 	}
 }
+$date = date('d-m-Y H:i:s a', time());
 //Approve or Suspend Event Details starts here
 if(isset($_GET['acid']))
 {
@@ -55,7 +56,7 @@ if(isset($_GET['acid']))
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT event.*,department.department,event_type.event_type FROM  event LEFT JOIN department ON event.department_id=department.department_id LEFT JOIN event_type ON event.event_type_id=event_type.event_type_id";
+		$sqlview = "SELECT event.*,department.department,event_type.event_type FROM  event LEFT JOIN department ON event.department_id=department.department_id LEFT JOIN event_type ON event.event_type_id=event_type.event_type_id ORDER BY event_date_time DESC";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
@@ -99,8 +100,16 @@ if(isset($_GET['acid']))
 				{
 					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
 				}
-			echo"<td>
-				<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a>
+			echo"<td>";
+			if($rsview['event_date_time'] > '$date')
+			{
+				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a>";
+			}
+			else
+			{
+				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a>";
+			}				
+			echo "
 				<a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";
