@@ -10,7 +10,6 @@ if(isset($_GET['delid']))
 		echo "<script>window.location='viewevent.php';</script>";
 	}
 }
-$date = date('d-m-Y H:i:s a', time());
 //Approve or Suspend Event Details starts here
 if(isset($_GET['acid']))
 {
@@ -101,14 +100,14 @@ if(isset($_GET['acid']))
 					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
 				}
 			echo"<td>";
-			if($rsview['event_date_time'] > '$date')
+			if($rsview['event_date_time'] < strtotime('now'))
 			{
-				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a>";
+				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a>";
 			}
 			else
 			{
-				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a>";
-			}				
+				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a>";
+			}
 			echo "
 				<a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
