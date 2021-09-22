@@ -32,7 +32,7 @@ if(!isset($_SESSION['student_id']))
 	</thead>
 	<tbody>
 	<?php
-		$sql = "SELECT event_result_status.*,event.*,department.department,event_participation.event_participation_status FROM event_result_status LEFT JOIN event ON event.event_id = event_result_status.event_id LEFT JOIN department ON department.department_id = event.department_id LEFT JOIN event_participation ON event_participation.event_id = event_result_status.event_id";
+		$sql = "SELECT event_result_status.*,event.*,department.department,event_participation.* FROM event_result_status LEFT JOIN event ON event.event_id = event_result_status.event_id LEFT JOIN department ON department.department_id = event.department_id LEFT JOIN event_participation ON event_participation.event_id = event_result_status.event_id AND event_participation.student_id='$_SESSION[student_id]'";
 		$qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);	
 		while($rsview = mysqli_fetch_array($qsql))
