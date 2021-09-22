@@ -100,17 +100,13 @@ if(isset($_GET['acid']))
 					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
 				}
 			echo"<td>";
-			if($rsview['event_date_time'] >= date('d-m-Y'))
+			if(date("d-m-Y h:i A",strtotime($rsview['event_date_time'])) <= date('d-m-Y'))
 			{
-				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a>";
-			}
-			else if($rsview['event_date_time'] < date('d-m-Y'))
-			{
-				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a>";
+				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
 			}
 			else
 			{
-				echo "<a href='event_result.php?event_id=$rsview[event_id]' class='btn btn-success'>Publish Result</a>";
+				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a><br>";
 			}
 			echo "
 				<a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
