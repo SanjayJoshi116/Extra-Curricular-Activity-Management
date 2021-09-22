@@ -109,52 +109,17 @@ if(!isset($_SESSION['staff_id']))
             </h5>
           </div>
           <div class="box">
-            <img src="images/department.jpg" alt="" style="height: 322px;"/>
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-			  $sqlcount = "SELECT * FROM department";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
-			  Departments
-            </h5>
-          </div>
-        </div>
-      </div>
- 	 
-      <div class="course_container">
-        <div class="course_content">
-          <div class="box">
-            <img src="images/events.jpg" style="width: 353px;height: 322px;" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-			  $sqlcount = "SELECT * FROM event";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
-              Events
-            </h5>
-          </div>
-          <div class="box">
             <img src="images/application.jpg" style="width: 353px;height: 322px;" alt="" />
             <a href="" class="">
               <img src="images/link.png" alt="" />
             </a>
             <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
-			  $sqlcount = "SELECT * FROM event_participation";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
+        $sqlcount = "SELECT * FROM event_participation";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?>
+        <br />
               Event Applications
             </h5>
           </div>
@@ -165,19 +130,14 @@ if(!isset($_SESSION['staff_id']))
             </a>
             <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
-			  $sqlcount = "SELECT * FROM event_result";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
-			  Event Results Uploaded
+        $sqlcount = "SELECT * FROM event_result";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?>
+        <br />
+        Event Results Uploaded
             </h5>
           </div>
-        </div>
-      </div>
- 	 
-      <div class="course_container">
-        <div class="course_content">
           <div class="box">
             <img src="images/sportsandgames.jpg" style="width: 353px;height: 322px;"  alt="" />
             <a href="" class="">
@@ -185,42 +145,12 @@ if(!isset($_SESSION['staff_id']))
             </a>
             <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
-			  $sqlcount = "SELECT * FROM event_type";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
-			  Event Types
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/staff.jpg" style="width: 353px;height: 322px;" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-			  $sqlcount = "SELECT * FROM staff";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
-			  Staff
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/students.jpg" style="width: 353px;height: 322px;" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-			  $sqlcount = "SELECT * FROM student";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
-              Students
+        $sqlcount = "SELECT * FROM event_type";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?>
+        <br />
+        Event Types
             </h5>
           </div>
         </div>
