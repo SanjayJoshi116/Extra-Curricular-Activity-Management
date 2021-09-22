@@ -10,7 +10,7 @@ if(!isset($_SESSION['staff_id']))
 
   <!-- special section -->
 
-  <section class="special_section">
+  <?php /*<section class="special_section">
     <div class="container">
       <div class="special_container">
         <div class="box b1">
@@ -35,11 +35,42 @@ if(!isset($_SESSION['staff_id']))
         </div>
       </div>
     </div>
-  </section>
+  </section> */ ?>
 
   <!-- end special section -->
-
-
+        
+<div id="countingbox" style = "position:relative;left:200px; top:20px; background-color:red;"><span class="count">
+        <?php
+        $sqlcount = "SELECT * FROM student";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?></span></div>
+<div id="countingbox" style = "position:relative;left:300px; top:20px; background-color:red;"><span class="count">    
+        <?php
+        $sqlcount = "SELECT * FROM staff";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?></span></div>
+<div id="countingbox" style = "position:relative;left:400px; top:20px; background-color:red;"><span class="count">
+        <?php
+        $sqlcount = "SELECT * FROM event_participation";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?>
+</span></div>
+<div id="countingbox" style = "position:relative;left:500px; top:20px; background-color:red;"><span class="count">
+       <?php
+        $sqlcount = "SELECT * FROM department";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?>
+</span></div>
+<div style="clear:both"></div>
+<br />
+<h2 style = "position:relative;left:200px; top:10px;"><b>STUDENTS</b></h2>
+<h2 style = "position:relative;left:500px; top:-36px;"><b>STAFF</b></h2>
+<h2 style = "position:relative;left:750px; top:-83px;"><b>EVENTS</b></h2>
+<h2 style = "position:relative;left:1000px; top:-130px;"><b>DEPARTMENT</b></h2>
   <!-- course section -->
 
   <section class="course_section layout_padding-bottom">
@@ -206,3 +237,41 @@ if(!isset($_SESSION['staff_id']))
 <?php
 include("footer.php");
 ?>
+<style>
+  #countingbox
+{
+  width: 150px;
+  height: 150px;
+  background: red;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  float:left;
+  margin:5px;
+}
+.count
+{
+  line-height: 100px;
+  color:white;
+  margin-left:20px;
+  font-size:70px;
+}
+.linker
+{
+  font-size : 20px;
+  font-color: black;
+}
+</style>
+<script>
+  $('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 4000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});
+</script>
