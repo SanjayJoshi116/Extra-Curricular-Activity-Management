@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2021 at 02:00 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Generation Time: Sep 23, 2021 at 12:58 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -153,16 +153,19 @@ CREATE TABLE `event` (
   `event_venue` text NOT NULL,
   `staff_id` int(11) NOT NULL,
   `participation_limit` int(11) NOT NULL,
-  `event_status` varchar(10) NOT NULL
+  `event_status` varchar(10) NOT NULL,
+  `updated_event_status` varchar(30) NOT NULL,
+  `updated_event_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `no_of_participants`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `club_id`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `participation_limit`, `event_status`) VALUES
-(1, 1, 'Single', 1, 'Dancing Competition', 'In this event students can participate in dancing competitions where they have to perform their classic dancing skills. ', '*Only Classic dance has to be performed<br />\r\n*Competitors are not allowed to play any other musics than classic<br />\r\n*Music should be submitted before starting the events<br />\r\n*Fire, knife or anything that is harmful is prohibuted', '1389879318Danceposter.jpg', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-13 14:30:00', 'AV Room', 14, 20, 'Active'),
-(2, 2, 'Single', 1, 'Coding Competition', 'This competition is about  programming knowledge in C and C++. Students who are interested in programming can participate.', '*Programming languages is used to this competition are C and C++.<br />\r\n*Students are not allowed to bring any books, sheets etc. <br />\r\n*Covid rules should be followed compulsory.', '525519386blue-programming-competition-custom-template-design-01efe9889793f251eab8080aa652010e.jpg', 1, 86, 'a:1:{i:0;s:1:\"0\";}', 'a:2:{i:0;s:11:\"Second Year\";i:1;s:10:\"Third Year\";}', '2021-09-20 15:30:00', 'Computer Lab, 2nd Floor.', 13, 20, 'Active');
+INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `no_of_participants`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `club_id`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `participation_limit`, `event_status`, `updated_event_status`, `updated_event_date`) VALUES
+(1, 1, 'Single', 1, 'Dancing Competition', 'In this event students can participate in dancing competitions where they have to perform their classic dancing skills. ', '*Only Classic dance has to be performed<br />\r\n*Competitors are not allowed to play any other musics than classic<br />\r\n*Music should be submitted before starting the events<br />\r\n*Fire, knife or anything that is harmful is prohibuted', '1389879318Danceposter.jpg', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-13 14:30:00', 'AV Room', 14, 20, 'Active', '', NULL),
+(2, 2, 'Single', 1, 'Coding Competition', 'This competition is about  programming knowledge in C and C++. Students who are interested in programming can participate.', '*Programming languages is used to this competition are C and C++.<br />\r\n*Students are not allowed to bring any books, sheets etc. <br />\r\n*Covid rules should be followed compulsory.', '525519386blue-programming-competition-custom-template-design-01efe9889793f251eab8080aa652010e.jpg', 1, 86, 'a:1:{i:0;s:1:\"0\";}', 'a:2:{i:0;s:11:\"Second Year\";i:1;s:10:\"Third Year\";}', '2021-09-20 15:30:00', 'Computer Lab, 2nd Floor.', 13, 20, 'Active', '', NULL),
+(3, 3, 'Single', 1, 'Music Competition', 'This is a classic music competition . Interested students can participate.', '*Musical instruments are not allowed<br />\r\n*NO BGM<br />\r\n*Maximum 5 min are allowed to each participants', '360915919music.jfif', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-30 10:30:00', 'AV Room, ground floor', 14, 20, 'Active', 'edited', '2021-09-15');
 
 -- --------------------------------------------------------
 
@@ -186,8 +189,9 @@ CREATE TABLE `event_participation` (
 
 INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `event_participation_type`, `team`, `apply_dt_tim`, `event_participation_status`) VALUES
 (1, 1, 1, 'Single', '0', '2021-09-11 13:24:30', 'Applied'),
-(2, 2, 2, 'Single', '0', '2021-09-16 16:57:29', 'Applied'),
-(3, 2, 1, 'Single', '0', '2021-09-16 17:14:09', 'Applied');
+(2, 2, 2, 'Single', '0', '2021-09-16 16:57:29', 'Present'),
+(3, 2, 1, 'Single', '0', '2021-09-16 17:14:09', 'Present'),
+(4, 3, 1, 'Single', '0', '2021-09-17 16:06:39', 'Present');
 
 -- --------------------------------------------------------
 
@@ -202,6 +206,14 @@ CREATE TABLE `event_result` (
   `event_documentry` text NOT NULL,
   `staff_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event_result`
+--
+
+INSERT INTO `event_result` (`event_result_id`, `event_id`, `result_detail`, `event_documentry`, `staff_id`) VALUES
+(1, 3, '', '', 0),
+(2, 2, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -220,6 +232,15 @@ CREATE TABLE `event_result_status` (
   `event_participation_type` varchar(25) NOT NULL,
   `team` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event_result_status`
+--
+
+INSERT INTO `event_result_status` (`result_status_id`, `event_result_id`, `event_id`, `student_id`, `event_participation_id`, `winning_position`, `point`, `event_participation_type`, `team`) VALUES
+(1, 1, 3, 1, 4, '0', 3, 'Single', '0'),
+(2, 2, 2, 2, 2, '0', 3, 'Single', '0'),
+(3, 2, 2, 1, 3, '0', 3, 'Single', '0');
 
 -- --------------------------------------------------------
 
@@ -242,7 +263,8 @@ INSERT INTO `event_type` (`event_type_id`, `event_type`, `event_type_info`, `eve
 (1, 'Dance', 'Students can participate in dance ', 'Active'),
 (2, 'Programming', 'Students can participate in programming who has programming knowledge', 'Active'),
 (3, 'Music', 'This is the event which involves in western and classsic musics', 'Active'),
-(4, 'football', 'this category comes under sports and games', 'Active');
+(4, 'football', 'this category comes under sports and games', 'Active'),
+(5, 'Art', 'This event is about drawing ,painting and sketching.', 'Active');
 
 -- --------------------------------------------------------
 
@@ -322,7 +344,8 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`student_id`, `student_name`, `course_id`, `student_rollno`, `student_password`, `st_class`, `student_image`, `gender`, `dob`, `language`, `elective_paper`, `extension_activities`, `student_status`) VALUES
 (1, 'Sajith Thomas', 1, '180937', 'e95aad3a10b270ef22560dae9c2b0817', 'Third Year', '19623721420210320_180759.jpg', 'Male', '2000-09-04', 'Kannada', 'Hindi', 'None', 'Active'),
-(2, 'mahesh', 1, '180924', '8e34cd6bedab9f18eb47b6772d16dc95', 'Third Year', '553978729DSC_0710.JPG', 'Male', '2000-12-04', 'Kannada', 'Sanskrit', 'None', 'Active');
+(2, 'mahesh', 1, '180924', '8e34cd6bedab9f18eb47b6772d16dc95', 'Third Year', '553978729DSC_0710.JPG', 'Male', '2000-12-04', 'Kannada', 'Sanskrit', 'None', 'Active'),
+(4, 'Kousthub Shetty', 1, '180923', '25d55ad283aa400af464c76d713c07ad', 'Third Year', '1230483184Kousthub.jpeg', 'Male', '2000-06-05', 'Kannada', 'Political Science', 'None', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -446,31 +469,31 @@ ALTER TABLE `dept_course`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `event_participation`
 --
 ALTER TABLE `event_participation`
-  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `event_result`
 --
 ALTER TABLE `event_result`
-  MODIFY `event_result_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `event_result_status`
 --
 ALTER TABLE `event_result_status`
-  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `event_type`
 --
 ALTER TABLE `event_type`
-  MODIFY `event_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `event_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `point_settings`
@@ -488,7 +511,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
