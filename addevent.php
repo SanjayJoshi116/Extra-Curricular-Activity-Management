@@ -17,6 +17,7 @@ if(isset($_POST['submit']))
 	$eventrules = nl2br($_POST['event_rules']);
 	$event_description = mysqli_real_escape_string($con,nl2br($_POST['event_description']));
 	$event_venue = mysqli_real_escape_string($con,nl2br($_POST['event_venue']));
+	$u_date=strtotime(date('d-m-Y',strtotime('now')));
 	if(isset($_GET['editid']))
 	{
 		// Update statement starts here
@@ -25,7 +26,7 @@ if(isset($_POST['submit']))
 		{
 		$sql = $sql . ", event_banner='$imgbanner'";
 		}
-		$sql = $sql . ", department_id='$_POST[department_id]', club_id='$_POST[club_id]', course_id='$course_id', st_class='$st_class', event_date_time='$eventdttime', event_venue='$event_venue', staff_id='$_SESSION[staff_id]', participation_limit='$_POST[participation_limit]', event_status='$_POST[event_status]' WHERE event_id='$_GET[editid]'";
+		$sql = $sql . ", department_id='$_POST[department_id]', club_id='$_POST[club_id]', course_id='$course_id', st_class='$st_class', event_date_time='$eventdttime', event_venue='$event_venue', staff_id='$_SESSION[staff_id]', participation_limit='$_POST[participation_limit]', event_status='$_POST[event_status]', updated_event_status='edited',updated_event_date='$u_date' WHERE event_id='$_GET[editid]'";
 		$qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);
 		if(mysqli_affected_rows($con) == 1)

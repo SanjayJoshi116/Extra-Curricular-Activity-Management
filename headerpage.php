@@ -169,7 +169,7 @@ if(isset($_SESSION['staff_id']))
 		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="dashboard.php">Dashboard</a></li>
-				<li><a href="staffprofile.php">Staff Profile</a></li>
+				<li><a href="view_staff_profile.php">Staff Profile</a></li>
 				<li><a href="staffchangepassword.php">Change Password</a></li>
 				<?php
 				if($rsstaffprofile['staff_type'] == "Admin")
@@ -205,6 +205,48 @@ if(isset($_SESSION['staff_id']))
 					<li><a href="studentchangepassword.php">Change Password</a></li>
 				</ul>
 			</li>
+			<li>	<button type="button" class="icon-button" id="myBtn">
+    <span class="material-icons">notifications</span>
+  </button>
+  <?php include("notification.php"); ?>
+  <style>
+    .icon-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  color: #333333;
+  background: #dddddd;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+}
+
+.icon-button:hover {
+  cursor: pointer;
+}
+
+.icon-button:active {
+  background: #cccccc;
+}
+
+.icon-button__badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 25px;
+  height: 25px;
+  background: red;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+</style></li>
+
 		<?php
 			}
 		?>

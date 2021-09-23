@@ -63,7 +63,6 @@ echo $rspoint[0];
   </section>
   <!-- end login section -->
 <br>
-
   <!-- special section -->
 
   <section class="special_section">
