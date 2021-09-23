@@ -132,7 +132,7 @@ ul.dropdown ul li a:hover{
         }
         if($_GET['eventtype'] == "Team")
         {
-          $sqlview = $sqlview . " AND  event.event_participation_type='Team' ";
+          $sqlview = $sqlview . " AN D  event.event_participation_type='Team' ";
         }
         $sqlview = $sqlview . " AND event.event_id='$_GET[event_id]' ";
         $sqlview = $sqlview. " ORDER BY event_date_time DESC";

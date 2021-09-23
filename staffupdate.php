@@ -68,11 +68,10 @@ if(isset($_GET['editid']))
             <h5>
               Kindly Register to get benefits
             </h5>
-            <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data" onsubmit="return validateform()">
+            <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data">
 <div class="row">			
 	  <div class="col-md-6">
 		<label class="labelproperty">Name</label>
-		<span class="errormessage" id="id_staff_name"></span>
 		<input type="text" name="staff_name" id="staff_name" placeholder="Enter Name" class="form-control" value="<?php echo $rsedit['staff_name']; ?>" />
 	  </div>
 	  
@@ -100,7 +99,6 @@ if(isset($_GET['editid']))
 			  
 			  <div class="col-md-6">
 				<label class="labelproperty">Department</label>
-				<span class="errormessage" id="id_department_id"></span>
                 <select name="department_id" id="department_id" class="form-control" >
 				<option value="">Department</option>
 				<?php
@@ -124,7 +122,6 @@ if(isset($_GET['editid']))
 			  
 	  <div class="col-md-6">
 		<label class="labelproperty">Staff Type</label>
-		<span class="errormessage" id="id_staff_type"></span>
 		<select name="staff_type" id="staff_type" class="form-control">
 		<option hidden value="">--Select--</option>
 		<?php
@@ -146,7 +143,6 @@ if(isset($_GET['editid']))
 			  
 	  <div class="col-md-6">
 		<label class="labelproperty">Staff ID</label>
-		<span class="errormessage" id="id_login_id"></span>
 		<input type="text" name="login_id" id="login_id" class="form-control" placeholder="Enter Staff ID" required="" value="<?php echo $rsedit['staff_id']; ?>"/>
 	  </div>
 	  
@@ -155,19 +151,16 @@ if(isset($_GET['editid']))
 	  </div>
 	  <div class="col-md-6">
 		<label class="labelproperty">Password</label>
-		<span class="errormessage" id="id_password"></span>
 		<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password"  />
 	  </div>
 	  
 	  <div class="col-md-6">
 		<label class="labelproperty">Confirm Password</label>
-		<span class="errormessage" id="id_cpassword"></span>
 		<input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm the password" />
 	  </div>
 			   
 	   <div class="col-md-6">
 				<label class="labelproperty">Gender</label>
-				<span class="errormessage" id="id_gender"></span>
                 <select name="gender" id="gender" class="form-control" >
 				<option hidden value="">--Select--</option>
 				<?php 
@@ -190,14 +183,12 @@ if(isset($_GET['editid']))
 			  
 	  <div class="col-md-6">
 		<label class="labelproperty">Date of Birth</label>
-		<span class="errormessage" id="id_dob"></span>
 		<input type="date" name="dob" id="dob" required="" value="<?php echo $rsedit['dob']; ?>"/>
 	  </div>
 	  
               
               <div  class="col-md-6">
 				<label class="labelproperty">Select Staff Account Status</label>
-				<span class="errormessage" id="id_staff_status"></span>
 				<select name="staff_status" id="staff_status" class="form-control" >
 				<option value="">Select Status</option>
 				<?php
@@ -234,94 +225,3 @@ if(isset($_GET['editid']))
 <?php
 include("footer.php");
 ?>
-<script>
-function validateform()
-{
-	//Regex Starts Here
-	var numericExpression = /^[0-9]+$/;
-	var alphaExp = /^[a-zA-Z]+$/;
-	var alphaSpaceExp = /^[a-zA-Z\s]+$/;
-	var alphaNumericExp = /^[0-9a-zA-Z]+$/;
-	var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-	//Regex Ends Here
-	$('.errormessage').html('');
-	var errmsg = "No";
-	staff_name
-department_id
-staff_type
-login_id
-password
-cpassword
-gender
-dob
-staff_status
-	if(!$('#staff_name').val().match(alphaSpaceExp))
-	{
-		$('#id_staff_name').html("Staff name should contain charcter values...");
-		errmsg = "Yes";
-	} 
-	if($('#staff_name').val() == "")
-	{
-		$('#id_staff_name').html("Staff name should not be empty..");
-		errmsg = "Yes";
-	} 
-	if($('#department_id').val() == "")
-	{
-		$('#id_department_id').html("Kindly select the department..");
-		errmsg = "Yes";
-	}
-	if(!$('#login_id').val().match(emailExp))
-	{
-		$('#id_login_id').html("Enter valid email id...");
-		errmsg = "Yes";
-	} 
-	if($('#login_id').val() == "")
-	{
-		$('#id_login_id').html("Enter email id ..");
-		errmsg = "Yes";
-	} 
-	if($('#password').val().length < 8 )
-	{
-		$('#id_password').html("Password should contain more than 8 characters..");
-		errmsg = "Yes";
-	} 
-	if($('#password').val() == "")
-	{
-		$('#id_password').html("Password should not be empty..");
-		errmsg = "Yes";
-	} 
-	if($('#password').val()  != $('#cpassword').val())
-	{
-		$('#id_cpassword').html("Password and Confirm Password not matching...");
-		errmsg = "Yes";
-	}
-	if($('#cpassword').val() == "")
-	{
-		$('#id_cpassword').html("Confirm Password should not be empty..");
-		errmsg = "Yes";
-	}
-	if($('#gender').val() == "")
-	{
-		$('#id_gender').html("Gender should not be empty..");
-		errmsg = "Yes";
-	}
-	if($('#dob').val() == "")
-	{
-		$('#id_dob').html("Date of Birth should not be empty..");
-		errmsg = "Yes";
-	}
-	if($('#staff_status').val() == "")
-	{
-		$('#id_staff_status').html("Kindly select staff status..");
-		errmsg = "Yes";
-	}
-	if(errmsg == "Yes")
-	{
-		return false;
-	}
-	if(errmsg == "No")
-	{
-		return true;
-	}
-} 
-</script>

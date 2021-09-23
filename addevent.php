@@ -102,12 +102,11 @@ if(isset($_GET['editid']))
             <h5>
               Kindly enter Event details 
             </h5>
-            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data" onsubmit="return validateform()">
+            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data">
  <div class="row">
     
 	<div class="col-md-6">
 		<label class="labelproperty">Event Category</label>
-		<span class="errormessage" id="id_event_type_id"></span>
 		<select class="form-control" name="event_type_id" id="event_type_id" >
 			<option value="">Select Event Category</option>
 			<?php
@@ -132,19 +131,16 @@ if(isset($_GET['editid']))
 			  
   <div class="col-md-6">
 	<label class="labelproperty">Event Date & Time</label>
-	<span class="errormessage" id="id_event_type_id"></span>
 	<input type="datetime-local" name="event_date_time" id="event_date_time" placeholder="Enter Date & Time" min="<?php echo  date("Y-m-d") . "T" .date("H:i"); ?>" value="<?php echo str_replace(" ","T", $rsedit['event_date_time']); ?>" />
   </div>
   
   <div class="col-md-12">
 	<label class="labelproperty">Event Title</label>
-	<span class="errormessage" id="id_event_title"></span>
 	<input type="text" name="event_title" id="event_title" placeholder="Enter Event Title"  value="<?php echo $rsedit['event_title']; ?>" />
   </div>
   
 <div class="col-md-6">
 	<label class="labelproperty">Event Type</label>
-	<span class="errormessage" id="id_event_participation_type"></span>
 	<select name="event_participation_type" id="event_participation_type" class="form-control" onchange="fun_check_event_type(this.value)" >
 	<option value="">Select Type</option>
 	<?php
@@ -166,32 +162,27 @@ if(isset($_GET['editid']))
 
 <div class="col-md-6">
 	<label class="labelproperty">No. of Members in Team</label>
-	<span class="errormessage" id="id_no_of_participants"></span>
 	<input type="number" name="no_of_participants" id="no_of_participants" value="<?php echo $rsedit['no_of_participants']; ?>" > 
 </div>
 
   
   <div class="col-md-6">
 	<label class="labelproperty">Event Venue</label>
-	<span class="errormessage" id="id_event_venue"></span>
 	<textarea name="event_venue" id="event_venue" class="form-control" placeholder="Enter Venue" ><?php echo $rsedit['event_venue']; ?></textarea>
   </div>  
   
   <div class="col-md-6">
 	<label class="labelproperty">Max Participant Limit for this Event</label>
-	<span class="errormessage" id="id_participation_limit"></span>
 	<input type="number" name="participation_limit" id="participation_limit" value="<?php echo $rsedit['participation_limit']; ?>" > 
   </div>
 			  
   <div class="col-md-6">
 	<label class="labelproperty">Event Description</label>
-	<span class="errormessage" id="id_event_description"></span>
 	<textarea name="event_description" id="event_description" class="form-control" placeholder="Enter Event Description" ><?php echo $rsedit['event_description']; ?></textarea>
   </div>
   
   <div class="col-md-6">
 	<label class="labelproperty">Event Rules</label>
-	<span class="errormessage" id="id_event_rules"></span>
 	<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules" ><?php echo $rsedit['event_rules']; ?></textarea>
   </div>
 			  
@@ -220,7 +211,6 @@ if(isset($_GET['editid']))
 			  
               <div class="col-md-6">
 				<label class="labelproperty">Department</label>
-				<span class="errormessage" id="id_department_id"></span>
                 <select name="department_id" id="department_id" class="form-control" />
 					<option value="">All Department</option>
 		<?php
@@ -244,7 +234,6 @@ if(isset($_GET['editid']))
 			  
               <div class="col-md-6">
 				<label class="labelproperty">Course 
-					<span class="errormessage" id="id_course_id"></span>
         <select name="course_id[]" id="course_id" class="form-control" multiple   >
 		<option value="0" 
 		<?php
@@ -283,7 +272,6 @@ if(isset($_GET['editid']))
 			  
               <div class="col-md-6">
 				<label class="labelproperty">Class</label>
-				<span class="errormessage" id="id_st_class"></span>
 				<select name="st_class[]" id="st_class" class="form-control" multiple >
 				<option value="0" 
 		<?php
@@ -319,7 +307,6 @@ if(isset($_GET['editid']))
 
   <div class="col-md-6">
 	<label class="labelproperty">Club</label>
-	<span class="errormessage" id="id_club_id"></span>
 	<select class="form-control" name="club_id" id="club_id" />
 				<option value="">--Select--</option>
 				<?php
@@ -344,7 +331,6 @@ if(isset($_GET['editid']))
 			  
               <div class="col-md-6">
 				<label class="labelproperty">Select Event Status</label>
-				<span class="errormessage" id="id_event_status"></span>
 				<select name="event_status" id="event_status" class="form-control" />
 				<option value="">Select Status</option>
                 <?php
@@ -398,90 +384,4 @@ function fun_check_event_type(event_participation_type)
 		$("#no_of_participants").css({"background-color": "#ffffff"});
 	}
 }
-function validateform()
-{
-	//Regex Starts Here
-	var numericExpression = /^[0-9]+$/;
-	var alphaExp = /^[a-zA-Z]+$/;
-	var alphaSpaceExp = /^[a-zA-Z\s]+$/;
-	var alphaNumericExp = /^[0-9a-zA-Z]+$/;
-	var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-	//Regex Ends Here
-	$('.errormessage').html('');
-	var errmsg = "No";
-	if($('#event_type_id').val() == "")
-	{
-		$('#id_event_type_id').html("Event Type should not be empty..");
-		errmsg = "Yes";
-	} 
-	if(!$('#event_date_time').val().match(numericExpression))
-	{
-		$('#id_event_date_time').html("Please enter valid date..");
-		errmsg = "Yes";
-	} 
-	if($('#event_date_time').val() == "")
-	{
-		$('#id_event_date_time').html("Event date and time should not be empty..");
-		errmsg = "Yes";
-	}
-	if($('#event_title').val() == "")
-	{
-		$('#id_event_title').html("Event title should not be empty..");
-		errmsg = "Yes";
-	}
-	if($('#event_participation_type').val() == "")
-	{
-		$('#id_event_participation_type').html("Kindly select event participation type..");
-		errmsg = "Yes";
-	} 
-	    
-	if($('#no_of_participants').val() == "")
-	{
-		$('#id_no_of_participants').html("Number of participants in a team should not be empty..");
-		errmsg = "Yes";
-	}  
-	if($('#event_venue').val() == "")
-	{
-		$('#id_event_venue').html("Event venue should not be empty..");
-		errmsg = "Yes";
-	}
-	if($('#event_description').val() == "")
-	{
-		$('#id_event_description').html("Event discription should not be empty..");
-		errmsg = "Yes";
-	}
-	if($('#participation_limit').val() == "")
-	{
-		$('#id_participation_limit').html("Enter participation limit to the event..");
-		errmsg = "Yes";
-	}
-	if($('#event_rules').val() == "")
-	{
-		$('#id_event_rules').html("Kindly enter event rules..");
-		errmsg = "Yes";
-	}     
-	if($('#course_id').val() == "")
-	{
-		$('#id_course_id').html("Kindly select courses ...");
-		errmsg = "Yes";
-	}
-	if($('#st_class').val() == "")
-	{
-		$('#id_st_class').html("Kindly select the class ...");
-		errmsg = "Yes";
-	}
-	if($('#event_status').val() == "")
-	{
-		$('#id_event_status').html("Kindly select the event status ...");
-		errmsg = "Yes";
-	}
-	if(errmsg == "Yes")
-	{
-		return false;
-	}
-	if(errmsg == "No")
-	{
-		return true;
-	}
-} 
 </script>

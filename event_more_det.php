@@ -36,7 +36,7 @@ $participation_point = $row['participation_point'];
 </div>
 <br>
   <!-- special section -->
-<?php /*
+
   <section class="special_section">
     <div class="container">
       <div class="special_container">
@@ -71,7 +71,7 @@ $participation_point = $row['participation_point'];
       </div>
     </div>
   </section>
-*/ ?>
+
   <!-- end special section -->
 
   <!-- about section -->

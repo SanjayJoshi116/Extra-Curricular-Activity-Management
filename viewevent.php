@@ -43,6 +43,7 @@ if(isset($_GET['acid']))
 <table id="datatableplugin" class="table table-bordered">
 	<thead>
 		<tr>
+			<th>SL No.</th>
 			<th>Banner</th>
 			<th>Event Category</th>
 			<th>Event Title</th>
@@ -55,11 +56,13 @@ if(isset($_GET['acid']))
 	</thead>
 	<tbody>
 		<?php
-		$sqlview = "SELECT event.*,department.department,event_type.event_type FROM  event LEFT JOIN department ON event.department_id=department.department_id LEFT JOIN event_type ON event.event_type_id=event_type.event_type_id ORDER BY event_date_time DESC";
+		$slno = 1;
+		$sqlview = "SELECT event.*,department.department,event_type.event_type FROM  event LEFT JOIN department ON event.department_id=department.department_id LEFT JOIN event_type ON event.event_type_id=event_type.event_type_id";
 		$qsqlview = mysqli_query($con,$sqlview);
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
 			echo "<tr>
+				<td>$slno</td>
 				<td>";
 			if($rsview['event_banner'] == "")
 			{
@@ -99,19 +102,12 @@ if(isset($_GET['acid']))
 				{
 					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
 				}
-			echo"<td>";
-			if(date("d-m-Y",strtotime($rsview['event_date_time'])) <= date('d-m-Y',strtotime('now')))
-			{
-				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
-			}
-			else
-			{
-				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a><br>";
-			}
-			echo "
+			echo"<td>
+				<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a>
 				<a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
 				</td>
 			</tr>";
+			$slno = $slno + 1;
 		}
 		?>
 	</tbody>
