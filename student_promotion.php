@@ -1,5 +1,9 @@
 <?php 
 include "header.php";
+if(!isset($_SESSION['staff_id']))
+{
+	echo "<script>window.location='login.php';</script>";
+}
 if(isset($_POST['submit1']))
 {
 	$sql = "UPDATE student SET st_class='Passed Out' AND student_status='Inactive'";
@@ -13,7 +17,7 @@ if(isset($_POST['submit1']))
 }
 if(isset($_POST['submit2']))
 {
-	$sqll = "UPDATE student SET st_class='Third Year'";
+	$sqll = "UPDATE student SET st_class='Third Year' WHERE st_class='Second Year'";
 	$qsqll = mysqli_query($con,$sqll);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con) == 1)
@@ -42,10 +46,10 @@ if(isset($_POST['submit3']))
     <div class="container">
       <div class="heading_container">
         <h3>
-          Promote Students
+          3rd Year Students
         </h3>
         <p>
-          View Student Records
+          Student Records
         </p>
       </div>
       <div class="event_container">
@@ -113,10 +117,10 @@ echo "<button type='button' class='btn btn-warning' data-toggle='modal' data-tar
     <div class="container">
       <div class="heading_container">
         <h3>
-          Promote Students
+          2nd Year Students
         </h3>
         <p>
-          View Student Records
+          Student Records
         </p>
       </div>
       <div class="event_container">
@@ -183,10 +187,10 @@ echo "<button type='button' class='btn btn-warning' data-toggle='modal' data-tar
   <div class="container">
       <div class="heading_container">
         <h3>
-          Promote Students
+          1st Year Students
         </h3>
         <p>
-          View Student Records
+          Student Records
         </p>
       </div>
       <div class="event_container">
