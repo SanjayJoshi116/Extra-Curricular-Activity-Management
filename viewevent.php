@@ -100,7 +100,7 @@ if(isset($_GET['acid']))
 					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
 				}
 			echo"<td>";
-			if(date("d-m-Y h:i A",strtotime($rsview['event_date_time'])) <= date('d-m-Y'))
+			if(date("d-m-Y",strtotime($rsview['event_date_time'])) <= date('d-m-Y',strtotime('now')))
 			{
 				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
 			}
