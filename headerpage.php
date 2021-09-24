@@ -205,9 +205,9 @@ if(isset($_SESSION['staff_id']))
 					<li><a href="studentchangepassword.php">Change Password</a></li>
 				</ul>
 			</li>
-			<li>	<button type="button" class="icon-button" id="myBtn">
-    <span class="material-icons">notifications</span>
-  </button>
+			<li><button type="button" class="icon-button" id="myBtn">
+   			<span class="material-icons">notifications</span>
+  			</button></li>
   <?php include("notification.php"); ?>
   <style>
     .icon-button {
