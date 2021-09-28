@@ -27,8 +27,7 @@ if(isset($_SESSION['student_id']))
 					{
 						echo "<img src='images/defaultimage.png' alt='Avatar' style='width: 270px;height:350px;' />";
 					}
-		?>
-		      <h1><b><?php echo $rsedit['student_name']; ?></b></h1>
+		?><br>
 		      <h1><b><?php echo $rsedit['student_rollno']; ?></b></h1>
 		      <h1><b><?php 
 				$arr = array("First Year","Second Year","Third Year");
@@ -49,12 +48,11 @@ if(isset($_SESSION['student_id']))
 							echo " $rscourse[course_title] ";
 						}
 					}
-					?></b></h1>
-				<p>Class</p>
-					<h2><b><?php echo $rsedit['dob']; ?></b></h2>
-					<p>Date of birth</p></div>
+					?></h1>
+				<p>Class</p><br>
+			</div>
 					<div class="flip-card-back">
-      <b><h1><?php
+   			<h1><?php
 				$arr = array("Male","Female");
 				foreach($arr as $val)
 				{
@@ -102,9 +100,6 @@ if(isset($_SESSION['student_id']))
 				?></h1>
 				<p>Extension Activities</p></b>
 
-
-
-
 		  </div>
 		</div>
 	</div>
@@ -116,7 +111,7 @@ if(isset($_SESSION['student_id']))
   height: 800px;
    position: relative;
    left: 450px;
-  border: 20px solid #f1f1f1;
+ border: 10px solid #96c8ff;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -146,15 +141,17 @@ if(isset($_SESSION['student_id']))
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #007bffbd;
+  background-color: #3498db;
   color: white;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 /* Style the back side */
 .flip-card-back {
-  background-color: dodgerblue;
+  background-color: #3498db;
   color: white;
   transform: rotateY(180deg);
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 </style>
 <br><br>

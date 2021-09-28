@@ -170,7 +170,7 @@ if(isset($_SESSION['staff_id']))
 		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="dashboard.php">Dashboard</a></li>
-				<li><a href="staffprofile.php">Staff Profile</a></li>
+				<li><a href="view_staff_profile.php">Staff Profile</a></li>
 				<li><a href="staffchangepassword.php">Change Password</a></li>
 				<?php
 				if($rsstaffprofile['staff_type'] == "Admin")
@@ -205,7 +205,7 @@ if(isset($_SESSION['staff_id']))
 		<li><a href="javascript:void(0)">My Account<span class="arrow-down"></span></a>
 			<ul class="dropdown">
 				<li><a href="student-dashboard.php">My Dashboard</a></li>
-				<li><a href="studentprofile.php">My Profile</a></li>
+				<li><a href="view_student_profile.php">My Profile</a></li>
 				<li><a href="studentchangepassword.php">Change Password</a></li>
 				<li><a href="view-complaint.php">Complaint box</a></li>
 			</ul>

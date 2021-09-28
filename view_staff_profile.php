@@ -29,9 +29,7 @@ if(isset($_SESSION['staff_id']))
         {
           echo "<img src='images/defaultimage.png' style='width: 300px;height:300px;' />";
         } ?>
-      <h1><b><?php echo $rsedit['staff_name']; ?></b></h1>
-    </div>
-    <div class="flip-card-back">
+      <b><h1 style="font-size: 400%";><br><b><?php echo $rsedit['staff_name']; ?></b></h1>
       <h1><?php
         $sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
         $qsqldepartment = mysqli_query($con,$sqldepartment);
@@ -45,8 +43,10 @@ if(isset($_SESSION['staff_id']))
         }
 
           ?></h1>
-      <p>department</p>
-      <h1><?php
+      <p>department</p></b>
+    </div>
+    <div class="flip-card-back">
+      <b><h1><?php
     $arr = array("Admin","HOD","Assistant Professor","Lecturer","Guest Lecturer","Lab Assistant");
     foreach($arr as $val)
     {
@@ -72,7 +72,7 @@ if(isset($_SESSION['staff_id']))
     ?></h1>
     <p>Gender</p>
     <h1><?php echo $rsedit['dob']; ?></h1>
-    <p>Date of Birth</p>
+    <p>Date of Birth</p></b>
     </div>
   </div>
 </div><!-- HTML !-->
@@ -137,10 +137,10 @@ if(isset($_SESSION['staff_id']))
 .flip-card {
   background-color: transparent;
   width: 600px;
-  height: 500px;
+  height: 700px;
    position: relative;
    left: 450px;
-  border: 20px solid #f1f1f1;
+  border: 10px solid #96c8ff;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -170,8 +170,9 @@ if(isset($_SESSION['staff_id']))
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #bbb;
-  color: black;
+  background-color: #3498db;
+  color: white;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 /* Style the back side */
@@ -179,6 +180,10 @@ if(isset($_SESSION['staff_id']))
   background-color: dodgerblue;
   color: white;
   transform: rotateY(180deg);
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+.p3 {
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 </style>
 <br><br>
