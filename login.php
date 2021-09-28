@@ -23,7 +23,7 @@ if(isset($_SESSION['student_id']))
 if(isset($_POST['btnsubmit']))
 {
 	//login_type login_id password btnsubmit
-	if($_POST['login_type'] == "Student")
+	if(isset($_POST['login_id']))
 	{
 		$encpass = md5($_POST['password']);
 		$sql = "SELECT * FROM student where student_rollno='$_POST[login_id]' AND student_password='$encpass' AND student_status='Active'";
@@ -35,13 +35,6 @@ if(isset($_POST['btnsubmit']))
 			$_SESSION['student_id'] = $rslogin['student_id'];
 			echo "<script>window.location='student-dashboard.php';</script>";
 		}
-		else
-		{
-			echo "<script>alert('You have entered invalid Login credentials. Please try again...');</script>";
-		}
-	}
-	if($_POST['login_type'] == "Staff")
-	{
 		$encpass = md5($_POST['password']);
 		$sql = "SELECT * FROM staff where login_id='$_POST[login_id]' AND password='$encpass' AND staff_status='Active'";
 		$qsql = mysqli_query($con,$sql);
@@ -78,24 +71,15 @@ if(isset($_POST['btnsubmit']))
             <h5>
               Login Now
             </h5>
-            <form action="" method="post">
+            <form action="" method="post" onsubmit="return validateform()">
               <div>
-                <select name="login_type" id="login_type" class="form-control">
-					<option value="">Select Login Type</option>
-					<?php
-					$arr = array("Student","Staff");
-					foreach($arr as $val)
-					{
-						echo "<option value='$val'>$val</option>";
-					}
-					?>
-				</select><br>
-              </div>
               <div>
+			  <span class="errormessage" id="id_login_id"></span>
                 <input name="login_id" id="login_id" type="text" placeholder="Login ID " />
               </div><br>
               <div>
-                <input name="password"   id="password"  type="password" placeholder="Password" />
+			  <span class="errormessage" id="id_password"></span>
+                <input name="password" id="password"  type="password" placeholder="Password" />
               </div>
               <button type="submit" name="btnsubmit">Login</button>
 			  <hr>
@@ -113,3 +97,28 @@ if(isset($_POST['btnsubmit']))
 <?php
 include("footer.php");
 ?>
+<script>
+function validateform()
+{
+	$('.errormessage').html('');
+	var errmsg = "No";
+if($('#login_id').val() == "")
+	{
+		$('#id_login_id').html("Enter the valid Login ID..");
+		errmsg= "Yes";
+	}
+	if($('#password').val() == "")
+	{
+		$('#id_password').html("Enter the valid Password..");
+		errmsg= "Yes";
+	}
+	if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+}
+</script>

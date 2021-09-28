@@ -70,20 +70,22 @@ if(isset($_GET['editid']))
             <h5>
               Kindly enter Course details 
             </h5>
-            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data">
-			
+            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data" onsubmit="return validateform()">
               <div>
-				<label class="labelproperty">Course title</label>
+				<label class="labelproperty">Course Title</label>
+				<span class="errormessage" id="id_course_title"></span>
                 <input type="text" name="course_title" id="course_title" placeholder="Enter Course title" value="<?php echo $rsedit['course_title']; ?>" />
               </div>
 			  
               <div>
                 <label class="labelproperty">Course Description</label>
+				<span class="errormessage" id="id_course_description"></span>
 				<textarea name="course_description" id="course_description" class="form-control" placeholder="Enter Course Description"><?php echo $rsedit['course_description'];?></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Course Status</label>
+				<span class="errormessage" id="id_course_status"></span>
 				<select name="course_status" id="course_status" class="form-control" >
 				<option value="">Select Status</option>
                 <?php
@@ -103,8 +105,6 @@ if(isset($_GET['editid']))
 				</select>
               </div>
 			  
-			  
-			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
               </div>
@@ -119,3 +119,39 @@ if(isset($_GET['editid']))
 <?php
 include("footer.php");
 ?>
+<script>
+function validateform()
+{
+	var alphaSpaceExp = /^[a-zA-Z\s]+$/;
+	$('.errormessage').html('');
+	var errmsg = "No";
+	if(!$('#course_title').val().match(alphaSpaceExp))
+	{
+		$('#id_student_name').html("Course Title should contain charcter values...");
+		errmsg = "Yes";
+	} 
+	if($('#course_title').val() == "")
+	{
+		$('#id_course_title').html("Course Title should not be empty..");
+		errmsg = "Yes";
+	} 
+	if($('#course_description').val() == "")
+	{
+		$('#id_course_description').html("Course description should not be empty..");
+		errmsg = "Yes";
+	} 
+	if($('#course_status').val() == "")
+	{
+		$('#id_course_status').html("Kindly select course status..");
+		errmsg = "Yes";
+	} 
+	if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+}
+</script>

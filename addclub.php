@@ -62,16 +62,18 @@ if(isset($_GET['editid']))
             <h5>
               Kindly enter club details
             </h5>
-            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data">
+            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data" onsubmit="return validateform()">
 			
               <div>
 				<label class="labelproperty">Club</label>
+				<span class="errormessage" id="id_club"></span>
                 <input type="text" name="club" id="club" placeholder="Enter Club Name" value="<?php echo $rsedit['club']; ?>" />
               </div>
 			  
 			  <div>
 			    <label class="labelproperty">Department</label>
-				<select name="department_id" id="department_id" class="form-control" />
+				<span class="errormessage" id="id_department_id"></span>
+				<select name="department_id" id="department_id" class="form-control" >
 				<option value="">--Select--</option>
 				<?php
 				$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
@@ -87,11 +89,13 @@ if(isset($_GET['editid']))
 				
               <div>
                 <label class="labelproperty">Description</label>
+				<span class="errormessage" id="id_club_details"></span>
 				<textarea name="club_details" id="club_details" class="form-control" placeholder="Enter Club Details"><?php echo $rsedit['club_details']; ?></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Club Status</label>
+				<span class="errormessage" id="id_club_status"></span>
 				<select name="club_status" id="club_status" class="form-control" >
 				<option value="">--Select--</option>
                 <?php
@@ -111,8 +115,6 @@ if(isset($_GET['editid']))
 				</select>
               </div>
 			  
-			  
-			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
               </div>
@@ -127,3 +129,46 @@ if(isset($_GET['editid']))
 <?php
 include("footer.php");
 ?>
+<script>
+function validateform()
+{
+	//Regex Starts Here
+	var alphaSpaceExp = /^[a-zA-Z\s]+$/;
+	//Regex Ends Here
+	$('.errormessage').html('');
+	var errmsg = "No";
+	if(!$('#club').val().match(alphaSpaceExp))
+	{
+		$('#id_club').html("Club name should contain charcter values...");
+		errmsg = "Yes";
+	} 
+	if($('#club').val() == "")
+	{
+		$('#id_club').html("Club Name should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#department_id').val() == "")
+	{
+		$('#id_department_id').html("Kindly select the department..");
+		errmsg= "Yes";
+	}
+	if($('#club_details').val() == "")
+	{
+		$('#id_club_details').html("Club details should not be empty..");
+		errmsg= "Yes";
+	}
+	if($('#club_status').val() == "")
+	{
+		$('#id_club_status').html("Kindly select the club status..");
+		errmsg= "Yes";
+	}
+	if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+}
+</script>

@@ -246,7 +246,7 @@ function validateform()
 	} 
 	if($('#student_password').val() == "")
 	{
-		$('#id_student_password').html("Student Name should not be empty..");
+		$('#id_student_password').html("Student Password should not be empty..");
 		errmsg = "Yes";
 	} 
 	if($('#student_password').val()  != $('#cpassword').val())

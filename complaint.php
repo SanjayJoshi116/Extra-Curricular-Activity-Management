@@ -42,8 +42,9 @@ if(isset($_POST['submit']))
             <h5>
             
             </h5>
-            <form action="" method="post" name="frmcomplaint_report" id="frmcomplaint_report" enctype="multipart/form-data">
+            <form action="" method="post" name="frmcomplaint_report" id="frmcomplaint_report" enctype="multipart/form-data" onsubmit="return validateform()">
               <div>
+			  <span class="errormessage" id="id_complaint_detail"></span>
                 <label class="labelproperty">COMPLAINT DETAILS</label>
 				<textarea name="complaint_detail" id="complaint_detail" class="form-control"></textarea>
               </div>
@@ -79,3 +80,23 @@ if(isset($_POST['submit']))
 <?php
 include("footer.php");
 ?>
+<script>
+function validateform()
+{
+	$('.errormessage').html('');
+	var errmsg = "No";
+	if($('#complaint_detail').val() == "")
+	{
+		$('#id_complaint_detail').html("Kindly enter the complaint details..");
+		errmsg = "Yes";
+	}
+if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+}
+</script>
