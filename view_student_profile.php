@@ -28,7 +28,9 @@ if(isset($_SESSION['student_id']))
 						echo "<img src='images/defaultimage.png' alt='Avatar' style='width: 270px;height:350px;' />";
 					}
 		?><br>
+		      <h1><b><?php echo $rsedit['student_name']; ?></b></h1><br>
 		      <h1><b><?php echo $rsedit['student_rollno']; ?></b></h1>
+		      <p><b>Roll Number</b></p><br>
 		      <h1><b><?php 
 				$arr = array("First Year","Second Year","Third Year");
 				foreach($arr as $val)
