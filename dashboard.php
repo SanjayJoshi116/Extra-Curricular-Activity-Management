@@ -5,56 +5,26 @@ if(!isset($_SESSION['staff_id']))
   echo "<script>window.location='login.php';</script>";
 }
 ?>
-  <!-- special section -->
-
-  <section class="special_section">
-    <div class="container">
-      <div class="special_container">
-        <div class="box b1">
-          <div class="img-box">
-          </div>
-          <div class="detail-box">
-          </div>
-        </div>
-        <div class="box b2">
-          <div class="img-box">
-            <img src="images/award.png" alt="" />
-          </div>
-          <div class="detail-box">
-              <H4>ADMIN DASHBOARD</H4>
-          </div>
-        </div>
-        <div class="box b3">
-          <div class="img-box">
-          </div>
-          <div class="detail-box">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end special section -->
-<a href="viewstudent.php"><div id="countingbox" style = "position:relative;left:200px; top:20px; background-color:red;"><span class="count">
+<a href="viewstudent.php"><div id="countingbox" style = "position:relative;left:200px; top:20px;"><span class="count">
         <?php
         $sqlcount = "SELECT * FROM student";
         $qsqlcount = mysqli_query($con,$sqlcount);
         echo mysqli_num_rows($qsqlcount);
         ?></span></div></a>
-<a href="viewstaff.php"><div id="countingbox" style = "position:relative;left:300px; top:20px; background-color:red;"><span class="count">    
+<a href="viewstaff.php"><div id="countingbox" style = "position:relative;left:300px; top:20px;"><span class="count">    
         <?php
         $sqlcount = "SELECT * FROM staff";
         $qsqlcount = mysqli_query($con,$sqlcount);
         echo mysqli_num_rows($qsqlcount);
         ?></span></div></a>
-<a href="viewevent.php"><div id="countingbox" style = "position:relative;left:400px; top:20px; background-color:red;"><span class="count">
+<a href="viewevent.php"><div id="countingbox" style = "position:relative;left:400px; top:20px;"><span class="count">
         <?php
         $sqlcount = "SELECT * FROM event";
         $qsqlcount = mysqli_query($con,$sqlcount);
         echo mysqli_num_rows($qsqlcount);
         ?>
 </span></div></a>
-<a href="viewdepartment.php"><div id="countingbox" style = "position:relative;left:500px; top:20px; background-color:red;"><span class="count">
+<a href="viewdepartment.php"><div id="countingbox" style = "position:relative;left:500px; top:20px;"><span class="count">
        <?php
         $sqlcount = "SELECT * FROM department";
         $qsqlcount = mysqli_query($con,$sqlcount);
@@ -63,11 +33,10 @@ if(!isset($_SESSION['staff_id']))
 </span></div></a>
 <div style="clear:both"></div>
 <br />
-<h2 style = "position:relative;left:200px; top:10px;"><b>STUDENTS</b></h2>
-<h2 style = "position:relative;left:500px; top:-36px;"><b>STAFF</b></h2>
-<h2 style = "position:relative;left:750px; top:-83px;"><b>EVENTS</b></h2>
-<h2 style = "position:relative;left:1000px; top:-130px;"><b>DEPARTMENT</b></h2>
-
+<h2 style = "position:relative;left:200px; top:10px;font-family:Times New Roman, Times,serif;"><b>STUDENTS</b></h2>
+<h2 style = "position:relative;left:500px; top:-36px;font-family:Times New Roman, Times,serif;"><b>STAFF</b></h2>
+<h2 style = "position:relative;left:750px; top:-83px;font-family:Times New Roman, Times,serif;"><b>EVENTS</b></h2>
+<h2 style = "position:relative;left:1000px; top:-130px;font-family:Times New Roman, Times,serif;"><b>DEPARTMENT</b></h2>
   <!-- course section -->
 
   <section class="course_section layout_padding-bottom">
@@ -169,7 +138,7 @@ include("footer.php");
 {
   width: 150px;
   height: 150px;
-  background: red;
+  background: #3b95dc;
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
