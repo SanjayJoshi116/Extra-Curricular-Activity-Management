@@ -14,12 +14,12 @@ include("header.php");
           Enter Attendance records
         </p>
       </div>
-      <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time > CURDATE() ORDER BY event_id DESC";
-		    $qsqlview = mysqli_query($con,$sqlview);
-	    	while($rsview = mysqli_fetch_array($qsqlview))
-		    {
-          ?>
+<?php
+$sqlview = "SELECT * FROM  event where event_date_time <= CURDATE() ORDER BY event_id DESC";
+$qsqlview = mysqli_query($con,$sqlview);
+while($rsview = mysqli_fetch_array($qsqlview))
+{
+?>
       <div class="event_container">
         <div class="box">
           <div class="img-box">
@@ -59,9 +59,9 @@ include("header.php");
             (<?php echo $rsview['event_participation_type'];?> Event)
           </div>
         </div>
-        <?php
-      }
-        ?>
+<?php
+}
+?>
     </div>
   </section>
 

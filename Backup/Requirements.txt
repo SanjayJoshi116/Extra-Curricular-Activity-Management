@@ -1,7 +1,22 @@
-1) Set Warning for repeated ranking
-2) Team Event Pending, Edit Option for Team Event
-3) Generate Certificate for 1st , 2nd, 3rd and All participants.
-4) Mail should send to the admin after posting New event by staff members. Admin needs to Approve event.
+###3) Generate Certificate for 1st , 2nd, 3rd and All participants.
+###2) Team Event Pending, Edit Option for Team Event
+###6) Change Student class year auto update.
+###4) Mail should send to the admin after posting New event by staff members. Admin needs to Approve event.
+###5) Password Recovery for Staff
 
-5) Password Recovery for Staff
-6) Change Student class year auto update.
+1) Set Warning for repeated ranking
+
+
+6) Event Plan Report (Option)
+
+Co Ordinator in club
+
+
+
+Club - Hide club from add event  but value should retrive from staff
+
+if there is not club under staff then it should retrieve records of department
+hide department from event
+
+
+

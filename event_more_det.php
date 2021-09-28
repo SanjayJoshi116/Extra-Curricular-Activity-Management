@@ -1,5 +1,12 @@
 <?php
 include("header.php");
+if(isset($_GET['st']))
+{
+	$sql = "UPDATE event SET event_status='$_GET[st]' WHERE event_id='$_GET[event_id]'";
+	$qsql = mysqli_query($con,$sql);
+	echo "<script>alert('Event Status updated successfully');</script>";
+	echo "<script>window.location='event_more_det.php?event_id=$_GET[event_id]';</script>";
+}
 $sqlviewevent = "SELECT event.*, event_type.event_type, department.department, staff.staff_name, staff.staff_type, club.club FROM event 
 LEFT JOIN event_type ON event.event_type_id=event_type.event_type_id 
 LEFT JOIN department ON department.department_id=event.department_id 
@@ -36,13 +43,13 @@ $participation_point = $row['participation_point'];
 </div>
 <br>
   <!-- special section -->
-<?php /*
+
   <section class="special_section">
     <div class="container">
       <div class="special_container">
-        <div class="box b1">
+		  <div class="box b1">
           <div class="img-box">
-            <img src="images/award.png" alt="" />
+            <img src="images/award.png" alt="" >
           </div>
           <div class="detail-box">
             <h4><?php echo  $rsviewevent['event_type']; ?></h4>
@@ -71,7 +78,7 @@ $participation_point = $row['participation_point'];
       </div>
     </div>
   </section>
-*/ ?>
+
   <!-- end special section -->
 
   <!-- about section -->
@@ -151,14 +158,6 @@ else
 		echo $rscourse['course_title'] . " ";
 	}
 }
-						if($rsviewevent['course_id'] == 0)
-						{
-							echo "All Courses";
-						}
-						else
-						{
-							echo $rsviewevent['course_title']; 
-						}
 							?> </td>
 					</tr>
 					<tr>
@@ -256,14 +255,28 @@ echo rtrim($cl, ", ");
             </h3>
             <p>
 			  <?php
-			  $sqlparticipantscount  = "SELECT * FROM `event_participation` WHERE event_id='$_GET[event_id]'";
-			  $qsqlparticipantscount = mysqli_query($con,$sqlparticipantscount);
+if($rsviewevent['event_participation_type'] == "Team")
+{			  
+$sqlparticipantscount  = "SELECT * FROM `event_participation` WHERE event_id='$_GET[event_id]' AND team='Team Leader'";
+}
+else
+{
+$sqlparticipantscount  = "SELECT * FROM `event_participation` WHERE event_id='$_GET[event_id]'";
+}
+$qsqlparticipantscount = mysqli_query($con,$sqlparticipantscount);
 			  echo mysqli_num_rows($qsqlparticipantscount);
 			  ?>  
 				<?php
 				if($rsviewevent['event_participation_type'] == "Team")
 				{
-					echo " Teams joined";
+					if(mysqli_num_rows($qsqlparticipantscount) == 1)
+					{
+						echo " Team Joined";
+					}
+					else
+					{
+						echo " Teams joined";
+					}
 				}
 				else
 				{
@@ -328,7 +341,6 @@ else
 			</center>
           </div>
         </div>
-
 	  </div>
     </div>
   </section>
@@ -336,9 +348,15 @@ else
 			}
 			?>
   <!-- end login section -->
-
-
-
+<?php
+if($rsstaffprofile['staff_type'] == "Admin")
+{
+?><hr>
+<center>Current Status - <?php echo $rsviewevent['event_status']; ?> | <a href="event_more_det.php?event_id=<?php echo $_GET['event_id']; ?>&st=Active" class="btn btn-success">Approve</a> | <a href="event_more_det.php?event_id=<?php echo $_GET['event_id']; ?>&st=Rejected" class="btn btn-danger">Reject</a></center>
+<hr>
+<?php
+}
+?>
 <?php
 include("footer.php");
 ?>

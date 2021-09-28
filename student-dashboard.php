@@ -63,6 +63,7 @@ echo $rspoint[0];
   </section>
   <!-- end login section -->
 <br>
+
   <!-- special section -->
 
   <section class="special_section">
@@ -91,221 +92,111 @@ function fun_copy_to_clipboard() {
     </div>
   </section>
   <!-- end special section -->
-  <br>
   
-
-
-  <!-- about section -->
-  <section class="about_section layout_padding">
-    <div class="side_img">
-      <img src="images/side-img.png" alt="" />
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="img_container">
-            <div class="img-box b1">
-              <img src="images/a-1.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h3>
-                About Our College
-              </h3>
-              <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more it
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end about section -->
-
-  <!-- course section -->
-
-  <section class="course_section layout_padding-bottom">
-    <div class="side_img">
-      <img src="images/side-img.png" alt="" />
-    </div>
-    <div class="container">
-      <div class="heading_container">
-        <h3>
-          POPULAR COURSES
-        </h3>
-        <p>
-          It is a long established fact that a reader will be distracted
-        </p>
-      </div>
-      <div class="course_container">
-
-        <div class="course_content">
-          <div class="box">
-            <img src="images/c-3.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
-              Learn <br />
-              Python – Interactive
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/c-4.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
-              Your <br />
-              Complete Guide
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/c-5.jpg" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5>
-              Photography
-            </h5>
-          </div>
-        </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          Read More
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- end course section -->
+<hr>
 
   <!-- event section -->
-  <section class="event_section layout_padding">
+  <section class="event_section">
     <div class="container">
       <div class="heading_container">
-        <h3>
-          Events
+       <h3>
+          My Participation on Upcoming Event
         </h3>
-        <p>
-          Upcoming Education Events to feed your brain.
-        </p>
       </div>
-      <div class="event_container">
-        <div class="box">
-          <div class="img-box">
-            <img src="images/event-img.jpg" alt="" />
-          </div>
-          <div class="detail-box">
-            <h4>
-              Education Events 2021
-            </h4>
-            <h6>
-              8:00 AM - 5:00 PM VENICE, ITALY
-            </h6>
-          </div>
-          <div class="date-box">
-            <h3>
-              <span>
-                15
-              </span>
-              March
-            </h3>
-          </div>
-        </div>
-        <div class="box">
-          <div class="img-box">
-            <img src="images/event-img.jpg" alt="" />
-          </div>
-          <div class="detail-box">
-            <h4>
-              Education Events 2021
-            </h4>
-            <h6>
-              8:00 AM - 5:00 PM VENICE, ITALY
-            </h6>
-          </div>
-          <div class="date-box">
-            <h3>
-              <span>
-                15
-              </span>
-              February
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          Read More
-        </a>
-      </div>
+<?php
+$sqlview = "SELECT * FROM  event_participation LEFT JOIN event ON event_participation.event_id=event.event_id where event.event_date_time > '$dttim' AND student_id='$_SESSION[student_id]'";
+$sqlview = $sqlview. " ORDER BY event_date_time DESC limit 1";
+$qsqlview = mysqli_query($con,$sqlview);
+while($rsview = mysqli_fetch_array($qsqlview))
+{
+?>
+<div class="event_container">
+	<div class="box">
+		<div class="img-box">
+		<h5>
+			<?php
+			$imge=$rsview['event_banner'];
+			echo '<img src="imgbanner/' .$imge .'" width="150" height="150">';
+			?>
+		</h5>
+		</div>
+		<div class="detail-box">
+			<h4>
+				<?php echo $rsview['event_title'];?>
+			</h4>
+		<h6>
+		  <?php echo $rsview['event_venue'];?>
+		</h6>
+		</div>
+		<div class="date-box">
+		<h3>
+		<?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
+		</h3>
+			  <a href="event_more_det.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info">View More</a>
+		(<?php echo $rsview['event_participation_type'];?> Event)
+		</div>
+	</div>
+</div>
+<?php
+}
+?>
     </div>
   </section>
 
   <!-- end event section -->
 
+<hr>
 
-
-  <!-- contact section -->
-
-  <section class="contact_section ">
+  <!-- event section -->
+  <section class="event_section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h3>
-                Contact Us
-              </h3>
-              <p>
-                It is a long established fact that a reader will be distracted
-                by the readable
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="contact-form">
-            <h5>
-              Get In Touch
-            </h5>
-            <form action="">
-              <div>
-                <input type="text" placeholder="Full Name " />
-              </div>
-              <div>
-                <input type="text" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="email" placeholder="Email Address" />
-              </div>
-              <div>
-                <input type="text" placeholder="Message" class="input_message" />
-              </div>
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="btn_on-hover">
-                  Send
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+      <div class="heading_container">
+       <h3>
+          My Recent Participation Result
+        </h3>
       </div>
+<?php
+$sqlview = "SELECT * FROM  event_participation LEFT JOIN event ON event_participation.event_id=event.event_id where event.event_date_time < '$dttim' AND student_id='$_SESSION[student_id]'";
+$sqlview = $sqlview. " ORDER BY event_date_time DESC limit 1";
+$qsqlview = mysqli_query($con,$sqlview);
+while($rsview = mysqli_fetch_array($qsqlview))
+{
+?>
+<div class="event_container">
+	<div class="box">
+		<div class="img-box">
+		<h5>
+			<?php
+			$imge=$rsview['event_banner'];
+			echo '<img src="imgbanner/' .$imge .'" width="150" height="150">';
+			?>
+		</h5>
+		</div>
+		<div class="detail-box">
+			<h4>
+				<?php echo $rsview['event_title'];?>
+			</h4>
+		<h6>
+		  <?php echo $rsview['event_venue'];?>
+		</h6>
+		</div>
+		<div class="date-box">
+		<h3>
+		<?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
+		</h3>
+			  <a href="team_event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info">View Result</a>
+		(<?php echo $rsview['event_participation_type'];?> Event)
+		</div>
+	</div>
+</div>
+<?php
+}
+?>
     </div>
   </section>
 
-  <!-- end contact section -->
+  <!-- end event section -->
+
 <?php
 include("footer.php");
 ?>

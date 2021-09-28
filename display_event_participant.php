@@ -32,7 +32,7 @@ include("header.php");
           </div>
           <div class="detail-box">
             <h4>
-            <?php echo $rsview['event_title'];?>
+            <?php echo $rsview['event_title'];?> <br><center><span style="font-size: 12px;">(<?php echo $rsview['event_participation_type'];?> Event)</span></center>
             </h4>
             <h6>
               <?php echo $rsview['event_venue'];?>
@@ -43,8 +43,17 @@ include("header.php");
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
 			<a href="view_event_participant_list.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">View Participant List</a>
-			<b>No. of Participants <?php 
+			<b>No. of  <?php
+			if($rsview['event_participation_type'] == "Team")
+			{
+				echo " Teams - ";
+			$sqlpart = "SELECT * FROM event_participation where event_id='38' AND event_participation_type='Team' AND team='Team Leader' and event_id='$rsview[event_id]'";
+			}
+			else
+			{
+				echo " Participants - ";
 			$sqlpart = "SELECT * FROM event_participation where event_id='$rsview[event_id]'";
+			}
 			$qsqlpart = mysqli_query($con,$sqlpart);
 			echo  mysqli_num_rows($qsqlpart)
 			?></b>

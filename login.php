@@ -99,7 +99,9 @@ if(isset($_POST['btnsubmit']))
               </div>
               <button type="submit" name="btnsubmit">Login</button>
 			  <hr>
-			  Did you forget password - <a href="forgotpassword.php" class="btn-info">&nbsp; Click Here &nbsp;</a>
+			  Did you forget password?<br>
+			  <a href="forgotpassword.php" class="btn-info">&nbsp; Student - Recover Password &nbsp;</a>
+			  <a href="staffforgotpassword.php" class="btn-info">&nbsp; Staff - Recover Password &nbsp;</a>
             </form>
           </div>
         </div>

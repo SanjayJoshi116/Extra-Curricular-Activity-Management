@@ -15,7 +15,7 @@ include("header.php");
         </p>
       </div>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time > CURDATE()  ORDER BY event_id DESC";
+		    $sqlview = "SELECT * FROM  event where event_date_time <= CURDATE()  ORDER BY event_id DESC";
 		    $qsqlview = mysqli_query($con,$sqlview);
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {
@@ -42,8 +42,22 @@ include("header.php");
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
-			<a href="event_result.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">Publish Result</a>
-            (<?php echo $rsview['event_participation_type'];?> Event)
+<?php
+if($rsview['event_participation_type'] == "Team")
+{
+?>
+<a href="event_team_result.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">Publish Result</a>
+(<?php echo $rsview['event_participation_type'];?> Event)
+<?php
+}
+else
+{
+?>
+<a href="event_result.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">Publish Result</a>
+(<?php echo $rsview['event_participation_type'];?> Event)
+<?php
+}
+?>
           </div>
         </div>
         <?php

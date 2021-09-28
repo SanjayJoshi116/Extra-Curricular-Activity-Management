@@ -112,7 +112,7 @@ ul.dropdown ul li a:hover{
     <th style="vertical-align: middle;"><h2>Select Event Type :- </h2></th>
     <th>
     <nav>
-      <ul class="dropdown">
+      <ul class="dropdown" style="z-index: 0;">
         <li><a href="upcoming-event.php?eventtype=All" 
         <?php
         if($_GET['eventtype'] != "Single" && $_GET['eventtype'] != "Team" )
@@ -187,10 +187,10 @@ ul.dropdown ul li a:hover{
             (<?php echo $rsview['event_participation_type'];?> Event)
           </div>
         </div>
+    </div>
         <?php
       }
         ?>
-    </div>
   </section>
 
   <!-- end event section -->

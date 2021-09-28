@@ -15,8 +15,14 @@ include("header.php");
                 Contact Us
               </h3>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable
+SDM College(Autonomous),<br>
+Ujire, D.K- 574240<br>
+Karnataka<br><br>
+<b>Phone:</b><br>08256 – 236101, 236488
+<br><br>
+<b>Email</b><br>
+sdmcollege@sdmcujire.in<br>
+pgcenter@sdmcujire.in
               </p>
             </div>
           </div>

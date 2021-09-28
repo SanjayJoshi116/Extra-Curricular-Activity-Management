@@ -64,7 +64,7 @@ if(isset($_POST['btnsubmit']))
             </h5>
             <form action="" method="post">
               <div>
-                <input name="login_id" id="login_id" type="text" placeholder="Roll No."  readonly value="<?php echo $_GET['studentid']; ?>" />
+                <input name="login_id" id="login_id" type="hidden" placeholder="Roll No."  readonly value="<?php echo $_GET['studentid']; ?>" />
               </div><br>
               <div>
                 <input name="npassword"   id="npassword"  type="password" placeholder="New Password" />

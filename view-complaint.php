@@ -1,81 +1,95 @@
 <?php
 include("header.php");
-if(isset($_GET['delid']))
-{
-	$sqldel ="DELETE FROM complaint_report where complaint_report_id='$_GET[delid]'";
-	$qsqldel = mysqli_query($con,$sqldel);
-	if(mysqli_affected_rows($con) == 1)
-	{
-		echo "<script>alert('Complaint Record deleted successfully..');</script>";
-		echo "<script>window.location='view-complaint.php';</script>";
-	}
-}
-if(isset($_GET['acid']))
-{
-	$sqlas ="UPDATE complaint_report SET complaint_status='$_GET[st]' WHERE complaint_report_id='$_GET[acid]'";
-	$qsqlas = mysqli_query($con,$sqlas);
-	echo mysqli_error($con);
-	if(mysqli_affected_rows($con) == 1)
-	{
-		echo "<script>alert('Complaint status updated to $_GET[st]');</script>";
-		echo "<script>window.location='view-complaint.php';</script>";
-	}
-}
 ?>
 </div>
+  <!-- login section -->
+  <section class="login_section">
+    <div class="container"><br>
+      <div class="row">
+		  
+        <div class="col-md-12"><br>
+          <centeR><div class="detail-box">
+            <h3>
+              Complaint Box
+            </h3>
+          </div></center>
+        </div>
+		
+		</div>
+    </div><br>
+  </section>
+  <!-- end contact section -->
 
   <!-- event section -->
   <section class="event_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h3>
-         Complaints
-        </h3>
-        <p>
-         Check complaints
-        </p>
-      </div>
+<?php
+	if(isset($_SESSION['student_id']))
+	{
+?>
+<center><a class="btn btn-info"  href="complaint.php">New Complaint</a></center><hr>
+<?php
+	}
+?>
       <div class="event_container">
         <div class="">
 <!-- ####################VIEW TABLE STARTS HERE ######### ---->
-<table id="datatableplugin" class="table table-bordered">
-	<thead>
-		<tr>
-			<th>Student Rollno</th>
-			<th>Staff ID</th>
-			<th>Reply Complaint ID</th>
-			<th>Complaint Details</th>
-			<th>Complaint Document</th>
-			<th>Status</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php
-		$sqlview = "SELECT complaint_report.*,student.student_name, student.student_rollno, staff.staff_name, staff.login_id FROM complaint_report LEFT JOIN student ON student.student_id=complaint_report.student_id LEFT JOIN staff ON complaint_report.staff_id=staff.staff_id";
-		$qsqlview = mysqli_query($con,$sqlview);
-		while($rsview = mysqli_fetch_array($qsqlview))
-		{
-			echo "<tr>
-				<td>$rsview[student_name] ($rsview[student_rollno])</td>
-				<td>$rsview[staff_name] ($rsview[login_id])	</td>
-				<td>$rsview[reply_complaint_report_id]</td>
-				<td>$rsview[complaint_detail]</td>
-				<td>$rsview[complain_doc]</td>
-				<td>$rsview[complaint_status] <br>";
-				if($rsview['complaint_status'] == "Active")
+<?php
+$sqlview = "SELECT complaint_report.*,student.student_name, student.student_rollno, staff.staff_name, staff.login_id,event.event_title,event.event_date_time  FROM complaint_report LEFT JOIN student ON student.student_id=complaint_report.student_id LEFT JOIN staff ON complaint_report.staff_id=staff.staff_id LEFT JOIN event ON event.event_id=complaint_report.event_id ORDER BY complaint_report.complaint_report_id DESC";
+$qsqlview = mysqli_query($con,$sqlview);
+echo mysqli_error($con);
+while($rsview = mysqli_fetch_array($qsqlview))
 {
-	echo "<a href='view-complaint.php?st=Resolved&acid=$rsview[complaint_report_id]' class='btn btn-primary' onclick='return confirmst()' >Resolve</a>";
+?>
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-12">
+
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            <div class="card-header"><b>Complaint No.</b> <?php echo $rsview[0]; ?> | <b>Published on</b>  <?php echo date("d-m-Y h:i A",strtotime($rsview['complaint_date_tim'])); ?> |  <b>Sent By</b>  <?php echo $rsview['student_name']; ?> (<b>Roll No.</b> <?php echo $rsview['student_rollno']; ?>)</div>
+			<?php
+			if($rsview['event_id'] != 0)
+			{
+			?>
+            <div class="card-header" style="background-color: rgb(255 240 240 / 3%);"><b>Event : </b> <?php echo $rsview['event_title']; ?> - <?php echo date("d-m-Y h:i A",strtotime($rsview['event_date_time'])); ?></div>
+			<?php
+			}
+			?>
+            <div class="card-body">
+              <p class="card-text">
+			  <?php echo $rsview['complaint_detail']; ?><br>
+				 <?php
+				 if(file_exists("doccomplaint/" . $rsview['complain_doc']))
+				 {
+					echo "<a href='doccomplaint/$rsview[complain_doc]' download class='btn-warning' style='padding-left: 10px;padding-right:10px;'>Download</a>";
+				 }
+				 ?>
+				</p>
+            </div>
+            <div class="card-footer text-muted">
+              <a href="viewcomplaintdetail.php?complaint_report_id=<?php echo $rsview[0]; ?>" class="btn btn-primary">View More</a> | Complaint Status - <?php echo $rsview['complaint_status']; ?>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        </div>
+          
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+<?php
 }
-				echo"</td>
-				<td>
-				<a href='view-complaint.php?delid=$rsview[complaint_report_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
-				</td>
-			</tr>";
-		}
-		?>
-	</tbody>
-</table>
+?>
 <!-- ####################VIEW TABLE ENDS HERE ######### ---->
         </div>
 		

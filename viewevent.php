@@ -47,7 +47,7 @@ if(isset($_GET['acid']))
 			<th>Event Category</th>
 			<th>Event Title</th>
 			<th>Event Date and Time</th>
-			<th>Department</th>
+			<th>Course</th>
 			<th>Event Venue</th>
 			<th>Status</th>
 			<th>Action</th>
@@ -76,18 +76,28 @@ if(isset($_GET['acid']))
 			echo "</td>
 				<td>$rsview[event_type]</td>
 				<td>$rsview[event_title]";
+			echo "<br><b>$rsview[event_participation_type]</b>";
 			echo "<br><a href='event_more_det.php?event_id=$rsview[0]' class='btn btn-warning' target='_blank'>View More</a>";
 			echo "</td>
 				<td>" . date("d-m-Y h:i A",strtotime($rsview['event_date_time'])) . "</td>
 				<td>";
-			if($rsview['department_id'] == 0)
-			{
-				echo "All Departments";
-			}
-			else
-			{
-				echo $rsview['department'];
-			}
+$courseid = unserialize($rsview['course_id']);
+if(count($courseid) > 1)
+{
+	foreach($courseid as $courseid)
+	{
+		$sqlviewcourse = "SELECT * FROM  course  WHERE course_id='$courseid'";
+		$qsqlviewcourse = mysqli_query($con,$sqlviewcourse);
+		while($rsviewcourse = mysqli_fetch_array($qsqlviewcourse))
+		{
+			echo $rsviewcourse['course_title'] . " ";
+		}
+	}
+}
+else
+{
+	echo "All Courses";
+}
 			echo "</td>
 				<td>$rsview[event_venue]</td>
 				<td>$rsview[event_status] <br>";
@@ -102,14 +112,21 @@ if(isset($_GET['acid']))
 			echo"<td>";
 			if(date("d-m-Y",strtotime($rsview['event_date_time'])) <= date('d-m-Y',strtotime('now')))
 			{
+				if($rsview['event_participation_type'] == "Team")
+				{
+				echo "<a href='team_event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
+				}
+				else
+				{
 				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
+				}
 			}
 			else
 			{
-				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a><br>";
+				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a><br><a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>";
 			}
 			echo "
-				<a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>
+				
 				</td>
 			</tr>";
 		}

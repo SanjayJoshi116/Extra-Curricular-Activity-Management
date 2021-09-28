@@ -28,7 +28,7 @@ if(isset($_POST['submit']))
     width: 10%;
 }
 .sub_page .contact_section {
-    margin: 25px 0;
+    margin: 1px 0;
 }
 </style>
   <!-- contact section -->
@@ -37,7 +37,7 @@ if(isset($_POST['submit']))
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="contact-form">
+          <div class="contact-form" style="padding-left: 225px;padding-right: 225px;">
 			 <center><h3 style="color: white;">Change Password</h3></center>
             <h5>
               Current Password by entering Old Password and New password

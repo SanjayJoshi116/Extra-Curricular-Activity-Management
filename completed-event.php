@@ -11,11 +11,11 @@ include("header.php");
           Events
         </h3>
         <p>
-          Completed Events
+          Completed	 Events
         </p>
       </div>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time < CURDATE()";
+		    $sqlview = "SELECT * FROM  event where event_date_time<CURDATE() ORDER BY event_date_time DESC";
 		    $qsqlview = mysqli_query($con,$sqlview);
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {
@@ -32,21 +32,17 @@ include("header.php");
           </div>
           <div class="detail-box">
             <h4>
-            <?php echo "{$rsview['event_title']}";?>
+            <?php echo $rsview['event_title'];?>
             </h4>
             <h6>
-              <?php echo "{$rsview['event_venue']}";?>
+              <?php echo $rsview['event_venue'];?>
             </h6>
           </div>
           <div class="date-box">
             <h3>
-            <?php echo date("d-M-Y",strtotime($rsview['event_date_time']));?>
+            <?php echo date("d-m-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
           </div>
-		  <div>
-		  <a href="event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">View Result</a>
-		  (<?php echo $rsview['event_participation_type'];?> Event)
-		  </div>
         </div>
         <?php
       }

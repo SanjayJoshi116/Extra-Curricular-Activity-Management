@@ -4,6 +4,19 @@ if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
 }
+?>
+<style>
+.contact_section .contact-form input {
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    width: 100%;
+    margin: 0 0;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+</style>
+<?php
 if(isset($_POST['submit']))
 {
 	$staffimg  = rand() . $_FILES["staff_dp"]["name"];
@@ -63,20 +76,19 @@ if(isset($_GET['editid']))
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="contact-form">
+          <div class="contact-form" style="padding: 45px 100px;">
 			 <center><h3 style="color: white;">Staff Account</h3></center>
             <h5>
               Kindly Register to get benefits
             </h5>
-            <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data" onsubmit="return validateform()">
-<div class="row">			
+   <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data" onsubmit="return validateform()">
+	<div class="row">			
 	  <div class="col-md-6">
 		<label class="labelproperty">Name</label>
 		<span class="errormessage" id="id_staff_name"></span>
 		<input type="text" name="staff_name" id="staff_name" placeholder="Enter Name" class="form-control" value="<?php echo $rsedit['staff_name']; ?>" />
 	  </div>
-	  
-	<div class="col-md-6">
+	  <div class="col-md-6">
 		<label class="labelproperty">Upload Image</label>
 		<input type="file" name="staff_dp" id="staff_dp" placeholder="Upload Image" class="form-control"/>
 		<?php
@@ -216,12 +228,10 @@ if(isset($_GET['editid']))
 				?>
 				</select>
               </div>
-</div>
-
-
-              <div class="d-flex justify-content-center">
+			</div>
+			<div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
-              </div>
+             </div>
               </div>
             </form>
           </div>
@@ -246,15 +256,6 @@ function validateform()
 	//Regex Ends Here
 	$('.errormessage').html('');
 	var errmsg = "No";
-	staff_name
-department_id
-staff_type
-login_id
-password
-cpassword
-gender
-dob
-staff_status
 	if(!$('#staff_name').val().match(alphaSpaceExp))
 	{
 		$('#id_staff_name').html("Staff name should contain charcter values...");
@@ -277,7 +278,7 @@ staff_status
 	} 
 	if($('#login_id').val() == "")
 	{
-		$('#id_login_id').html("Enter email id ..");
+		$('#id_login_id').html("Enter valid email id ..");
 		errmsg = "Yes";
 	} 
 	if($('#password').val().length < 8 )

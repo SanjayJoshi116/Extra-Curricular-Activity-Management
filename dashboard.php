@@ -2,12 +2,12 @@
 include("header.php");
 if(!isset($_SESSION['staff_id']))
 {
-	echo "<script>window.location='login.php';</script>";
+  echo "<script>window.location='login.php';</script>";
 }
 ?>
   <!-- special section -->
 
-  <?php /*<section class="special_section">
+  <section class="special_section">
     <div class="container">
       <div class="special_container">
         <div class="box b1">
@@ -32,10 +32,9 @@ if(!isset($_SESSION['staff_id']))
         </div>
       </div>
     </div>
-  </section> */ ?>
+  </section>
 
   <!-- end special section -->
-      
 <a href="viewstudent.php"><div id="countingbox" style = "position:relative;left:200px; top:20px; background-color:red;"><span class="count">
         <?php
         $sqlcount = "SELECT * FROM student";
@@ -68,6 +67,7 @@ if(!isset($_SESSION['staff_id']))
 <h2 style = "position:relative;left:500px; top:-36px;"><b>STAFF</b></h2>
 <h2 style = "position:relative;left:750px; top:-83px;"><b>EVENTS</b></h2>
 <h2 style = "position:relative;left:1000px; top:-130px;"><b>DEPARTMENT</b></h2>
+
   <!-- course section -->
 
   <section class="course_section layout_padding-bottom">
@@ -75,7 +75,7 @@ if(!isset($_SESSION['staff_id']))
       <img src="images/side-img.png" alt="" />
     </div>
     <div class="container">
-	 
+   
       <div class="course_container">
         <div class="course_content">
           <div class="box">
@@ -85,11 +85,11 @@ if(!isset($_SESSION['staff_id']))
             </a>
             <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
               <?php
-			  $sqlcount = "SELECT * FROM complaint_report";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
-			  <br />
+        $sqlcount = "SELECT * FROM complaint_report";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?>
+        <br />
               Complaint Reports
             </h5>
           </div>
@@ -99,11 +99,11 @@ if(!isset($_SESSION['staff_id']))
               <img src="images/link.png" alt="" />
             </a>
             <h5  style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-			<?php
-			  $sqlcount = "SELECT * FROM course";
-			  $qsqlcount = mysqli_query($con,$sqlcount);
-			  echo mysqli_num_rows($qsqlcount);
-			  ?>
+      <?php
+        $sqlcount = "SELECT * FROM course";
+        $qsqlcount = mysqli_query($con,$sqlcount);
+        echo mysqli_num_rows($qsqlcount);
+        ?>
               <br />
               Courses
             </h5>

@@ -145,6 +145,7 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="display_event_participant.php">View Participants</a></li>
 				<li><a href="viewstudent.php">Student Accounts</a></li>
 				<li><a href="viewpointstable.php">View Points table</a></li>
+				<li><a href="view-complaint.php">Complaint Report</a></li>
 			</ul>
 		</li>
 				<?php
@@ -169,7 +170,7 @@ if(isset($_SESSION['staff_id']))
 		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="dashboard.php">Dashboard</a></li>
-				<li><a href="view_staff_profile.php">Staff Profile</a></li>
+				<li><a href="staffprofile.php">Staff Profile</a></li>
 				<li><a href="staffchangepassword.php">Change Password</a></li>
 				<?php
 				if($rsstaffprofile['staff_type'] == "Admin")
@@ -193,60 +194,22 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="upcoming-event.php">Upcoming Events</a></li>
 				<li><a href="live-event.php">Live Events</a></li>
 				<li><a href="completed-event.php">Completed Events</a></li>
-				</ul>
-				</li>
-		
-		<li><a href="display_event_result_report.php">Result</a></li>
-			
-			<li><a href="javascript:void(0)">My Account<span class="arrow-down"></span></a>
-				<ul class="dropdown">
-					<li><a href="student-dashboard.php">My Dashboard</a></li>
-					<li><a href="studentprofile.php">My Profile</a></li>
-					<li><a href="studentchangepassword.php">Change Password</a></li>
-				</ul>
-			</li>
-			<li><button type="button" class="icon-button" id="myBtn">
-   			<span class="material-icons">notifications</span>
-  			</button></li>
-  <?php include("notification.php"); ?>
-  <style>
-    .icon-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  color: #333333;
-  background: #dddddd;
-  border: none;
-  outline: none;
-  border-radius: 50%;
-}
-
-.icon-button:hover {
-  cursor: pointer;
-}
-
-.icon-button:active {
-  background: #cccccc;
-}
-
-.icon-button__badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 25px;
-  height: 25px;
-  background: red;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
-</style></li>
-
+			</ul>
+		</li>			
+		<li><a href="javascript:void(0)">My Stats<span class="arrow-down"></span></a>
+			<ul class="dropdown">
+				<li><a href="display_event_result_report.php">My Result</a></li>
+				<li><a href="pointshistory.php">Points History</a></li>
+			</ul>
+		</li>
+		<li><a href="javascript:void(0)">My Account<span class="arrow-down"></span></a>
+			<ul class="dropdown">
+				<li><a href="student-dashboard.php">My Dashboard</a></li>
+				<li><a href="studentprofile.php">My Profile</a></li>
+				<li><a href="studentchangepassword.php">Change Password</a></li>
+				<li><a href="view-complaint.php">Complaint box</a></li>
+			</ul>
+		</li>
 		<?php
 			}
 		?>

@@ -40,30 +40,40 @@ if(isset($_POST['submit']))
 		$sql = "INSERT INTO event(event_type_id, event_participation_type, no_of_participants, event_title, event_description, event_rules, event_banner, department_id, club_id, course_id, st_class, event_date_time, event_venue, staff_id, participation_limit, event_status) VALUES('$_POST[event_type_id]','$_POST[event_participation_type]','$_POST[no_of_participants]','$_POST[event_title]','$event_description','$eventrules','$imgbanner','$_POST[department_id]','$_POST[club_id]','$course_id','$st_class','$eventdttime','$event_venue','$_SESSION[staff_id]','$_POST[participation_limit]','$_POST[event_status]')";
 		$qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);
+		$insid = mysqli_insert_id($con);
 		if(mysqli_affected_rows($con)==1)
 		{
-			$insid = mysqli_insert_id($con);
+	//#################################################################
+	$sqladminstaff = "SELECT * FROM staff where staff_type ='Admin'";
+	$qsqladminstaff = mysqli_query($con,$sqladminstaff);
+	echo mysqli_error($con);
+	$rsadminstaff = mysqli_fetch_array($qsqladminstaff);
+	//#################################################################
+			
 			$_SESSION['sessioncode'] = rand(111111,999999);
-			/*
 			include("phpmailer.php");
 			$protocol = 'http'.(!empty($_SERVER['HTTPS']) ? 's' : '');
 			$root = $protocol.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-			$link = $root . "/upcoming-event.php?sessionid=".$_SESSION['sessioncode']."&studentid=".$insid;
+			$link = $root . "/event_more_det.php?event_id=".$insid;
 			$email = $_POST['student_rollno'] . "@sdmcujire.in";
-			//$email = "aravinda@technopulse.in";
 			$subject="New Event Notification";
-			$message = "<b>Hi $_POST[student_name],<br><br>
-			Notification!!! New event was added today. Check it here...
-			Regards,<br>SDM College Extra Curricular Activity Management
-			<br>
-			<a href='$link'>Click Here to Visit</a></b>
+			$message = "<b>Hi Admin,<br><br>
+			New Event published by " . $rsstaffprofile['staff_name'] . " ( "  . $rsstaffprofile['login_id'] . " ) .<br>";
+			$message = $message . "Event Title is : " . $_POST['event_title'] . " and it is scheduled on "  . date("d-m-Y h:i A",strtotime($eventdttime));
+			$message = $message . "<br><br><a href='$link'>Click Here to View</a></b>
 			<br><br>
-			SDM College (Autonomous), Ujire, 574240<br>
+			SDM College (Autonomous), Ujire, PIN - 574240<br>
 			sdmcollege@sdmcujire.in<br>
 			Call : 08256-236221, 225";
-			sendmail($email,$_POST['student_name'],$subject,$message);
-			*/
-			echo "<script>alert('Event published successfully...');</script>";
+			sendmail($rsadminstaff['login_id'],$rsadminstaff['staff_name'],$subject,$message);
+			if($rsstaffprofile['staff_type'] == "Admin")
+			{
+				echo "<script>alert('Event published successfully...');</script>";
+			}
+			else
+			{
+				echo "<script>alert('Event record inserted successfully. Admin verification required to publish the event...');</script>";
+			}			
 			echo "<script>window.location='addevent.php';</script>";
 		}
 	}
@@ -102,7 +112,7 @@ if(isset($_GET['editid']))
             <h5>
               Kindly enter Event details 
             </h5>
-            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data" onsubmit="return validateform()">
+             <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data" onsubmit="return validateform()">
  <div class="row">
     
 	<div class="col-md-6">
@@ -244,7 +254,7 @@ if(isset($_GET['editid']))
 			  
               <div class="col-md-6">
 				<label class="labelproperty">Course 
-					<span class="errormessage" id="id_course_id"></span>
+				<span class="errormessage" id="id_course_id"></span>
         <select name="course_id[]" id="course_id" class="form-control" multiple   >
 		<option value="0" 
 		<?php
@@ -341,29 +351,48 @@ if(isset($_GET['editid']))
 				</select>
   </div>
   
-			  
-              <div class="col-md-6">
-				<label class="labelproperty">Select Event Status</label>
-				<span class="errormessage" id="id_event_status"></span>
-				<select name="event_status" id="event_status" class="form-control" />
-				<option value="">Select Status</option>
-                <?php
-				$arr = array("Active","Inactive");
-				foreach($arr as $val)
-				{
-					if($val == $rsedit['event_status'])
-					{
-					echo "<option value='$val' selected>$val</option>";
-					}
-					else
-					{
-					echo "<option value='$val'>$val</option>";
-					}
-				}
-				?>
-				</select>
-              </div>
-			  
+<?php
+if($rsstaffprofile['staff_type'] == "Admin")
+{
+?>
+<div class="col-md-6">
+	<label class="labelproperty">Select Event Status</label>
+	<select name="event_status" id="event_status" class="form-control" />
+	<option value="">Select Status</option>
+	<?php
+	$arr = array("Active","Inactive");
+	foreach($arr as $val)
+	{
+		if($val == $rsedit['event_status'])
+		{
+		echo "<option value='$val' selected>$val</option>";
+		}
+		else
+		{
+		echo "<option value='$val'>$val</option>";
+		}
+	}
+	?>
+	</select>
+</div>
+<?php
+}
+else
+{
+	if(isset($_GET['editid']))
+	{
+?>
+<input type="hidden" name="event_status" id="event_status" value="<?php echo $rsedit['event_status']; ?>" />
+<?php
+	}
+	else
+	{
+?>
+<input type="hidden" name="event_status" id="event_status" class="form-control" value="Inactive"  />
+<?php
+	}
+}
+?>
 </div>
 			  
 			  
@@ -468,11 +497,6 @@ function validateform()
 	if($('#st_class').val() == "")
 	{
 		$('#id_st_class').html("Kindly select the class ...");
-		errmsg = "Yes";
-	}
-	if($('#event_status').val() == "")
-	{
-		$('#id_event_status').html("Kindly select the event status ...");
 		errmsg = "Yes";
 	}
 	if(errmsg == "Yes")

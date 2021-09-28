@@ -68,46 +68,72 @@ if(isset($_GET['attendanceentry']))
 </table>
 <hr>
 <!-- ####################VIEW TABLE STARTS HERE ######### ---->
-<table class="table table-bordered">
-<thead>
-		<tr>
-			<th>Image</th>
-			<th>Student Rollno</th>
-			<th>Student Name</th>
-			<th>Attendance</th>
-		</tr>
-	</thead>
-	<tbody>
-  <?php 
-  	$sqlview = "SELECT event_participation.*,event.event_title,student.student_name,student.student_image,student.student_rollno FROM event_participation LEFT JOIN event ON event.event_id=event_participation.event_id LEFT JOIN student ON event_participation.student_id=student.student_id WHERE event_participation.event_id='$_GET[event_id]' ORDER BY event_id";
+  <?php
+	$count = 1;
+  	$sqlview = "SELECT event_participation.*,event.event_title,student.student_name,student.student_image,student.student_rollno FROM event_participation LEFT JOIN event ON event.event_id=event_participation.event_id LEFT JOIN student ON event_participation.student_id=student.student_id WHERE event_participation.event_id='$_GET[event_id]' AND event_participation.event_participation_type='Team' AND team='Team Leader' ORDER BY event_id";
 	$qsqlview = mysqli_query($con,$sqlview);
 	while($rsview = mysqli_fetch_array($qsqlview))
-		{	
-			echo "<tr>
-				<td><img src='studentimg/$rsview[student_image]' style='width: 50px;height: 50px;' ></td>
-				<td>$rsview[student_rollno]</td>
-				<td>$rsview[student_name]</td>
-				<td>";
-				echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]' style='-ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5); transform: scale(1.5);'  onclick='fadeToZero($rsview[0],`Present`)' ";
-	if($rsview['event_participation_status'] == "Present")
-	{
-		echo "checked";
-	}
-	echo "> <label for='attstatus$rsview[0]'>Present</label> &nbsp; ";
-				echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]' style='-ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5); transform: scale(1.5);' onclick='fadeToZero($rsview[0],`Absent`)' ";
-	if($rsview['event_participation_status'] == "Absent")
-	{
-		echo "checked";
-	}
-	echo "> <label for='attstatus$rsview[0]'>Absent</label>";
-				echo "&nbsp;<span id='attst$rsview[0]' style='right: 0;color: green;display: none;'><i class='fa fa-hand-o-right' aria-hidden='true'></i> Submitted</span>";
-			echo"</td></tr>";
+		{
+?>
+<div style="border: 1px solid #ccc;padding:15px;">
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th>Team <?php echo $count; ?></th>
+			<th><?php
+			echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]' style='-ms-transform: scale(1.5);
+		-webkit-transform: scale(1.5); transform: scale(1.5);'  onclick='fadeToZero($rsview[0],`Present`)' ";
+		if($rsview['event_participation_status'] == "Present")
+		{
+			echo "checked";
 		}
-  ?>
-	</tbody>
-</table>
+		echo "> <label for='attstatus$rsview[0]'>Present</label> &nbsp; ";
+					echo "<input type='radio' name='attstatus$rsview[0]' id='attstatus$rsview[0]' style='-ms-transform: scale(1.5);
+		-webkit-transform: scale(1.5); transform: scale(1.5);' onclick='fadeToZero($rsview[0],`Absent`)' ";
+		if($rsview['event_participation_status'] == "Absent")
+		{
+			echo "checked";
+		}
+		echo "> <label for='attstatus$rsview[0]'>Absent</label>";
+					echo "&nbsp;<span id='attst$rsview[0]' style='right: 0;color: green;display: none;'><i class='fa fa-hand-o-right' aria-hidden='true'></i> Submitted</span>";
+				?></th>
+		</tr>
+		</thead>
+	</table>
+	<table class="table table-bordered">
+	<thead>
+			<tr>
+				<th>Image</th>
+				<th>Student Rollno</th>
+				<th>Student Name</th>
+			</tr>
+		</thead>
+		<tbody>
+	<?php
+				echo "<tr>
+					<td><img src='studentimg/$rsview[student_image]' style='width: 50px;height: 50px;' ></td>
+					<td>$rsview[student_rollno]</td>
+					<td>$rsview[student_name] <b style='color: green;'>(Team Leader)</b></td></tr>";
+					//################################
+					$sqlviewteammembers = "SELECT event_participation.*,event.event_title,student.student_name,student.student_image,student.student_rollno FROM event_participation LEFT JOIN event ON event.event_id=event_participation.event_id LEFT JOIN student ON event_participation.student_id=student.student_id WHERE event_participation.event_id='$_GET[event_id]' AND event_participation.team='$rsview[0]' AND event_participation.event_participation_type='Team' AND team!='Team Leader' ORDER BY event_id";
+					$qsqlviewteammembers = mysqli_query($con,$sqlviewteammembers);
+					while($rsviewteammembers = mysqli_fetch_array($qsqlviewteammembers))
+					{
+						echo "<tr>
+						<td><img src='studentimg/$rsviewteammembers[student_image]' style='width: 50px;height: 50px;' ></td>
+						<td>$rsviewteammembers[student_rollno]</td>
+						<td>$rsviewteammembers[student_name]</td></tr>";
+					}
+					//################################
+	?>
+		</tbody>
+	</table>
+</div>
+<hr>
+<?php
+	$count = $count +1;
+		}
+?>
 </div>
 </div>
 </div>
@@ -127,7 +153,7 @@ function fadeToZero(viewid, attendance)
 		}, 3000);
 	  }
 	};
-	xmlhttp.open("GET","ajaxattendance.php?viewid="+viewid+"&attendance="+attendance,true);
+	xmlhttp.open("GET","ajaxteamattendance.php?viewid="+viewid+"&attendance="+attendance,true);
 	xmlhttp.send();
 }
 </script>
