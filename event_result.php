@@ -99,11 +99,12 @@ if(isset($_GET['event_id']))
           </div></center>
         </div>
         <div class="col-md-12">
-<form action="" method="post" name="frmevent_result" id="frmevent_result" enctype="multipart/form-data">
+<form action="" method="post" name="frmevent_result" id="frmevent_result" enctype="multipart/form-data" onsubmit="return validateform()">
           <div class="login_form">
 			<div class="row">
 				  <div style="text-align: left;" class="col-md-6">
 					<label class="labelproperty">Reported by</label>
+					<span class="errormessage" id="id_staff_id"></span>
 					<select name="staff_id" id="staff_id" class="form-control" >
 						<option value="">Select Staff</option>
 						<?php
@@ -125,10 +126,12 @@ if(isset($_GET['event_id']))
 				  </div>
 				  <div style="text-align: left;" class="col-md-12">
 					<label class="labelproperty">About  Event Result</label>
+					<span class="errormessage" id="id_result_detail"></span>
 					<textarea name="result_detail" id="result_detail" class="form-control" ><?php echo $rsedit['result_detail']; ?></textarea>
 				  </div>
 				  <div style="text-align: left;" class="col-md-12">
 					<label class="labelproperty">Event Images & Videos</label>
+					<span class="errormessage" id="id_event_documentry[]"></span>
 					<input type="file" multiple name="event_documentry[]" id="event_documentry" class="form-control" accept="image/*,video/mp4" >
 					<div class="row">
 					<?php
@@ -301,6 +304,34 @@ if(isset($_GET['event_id']))
 include("footer.php");
 ?>
 <script>
+function validateform()
+{
+	$('.errormessage').html('');
+	var errmsg = "No";
+	if($('#staff_id').val() == "")
+	{
+		$('#id_staff_id').html("Kindly select staff name..");
+		errmsg = "Yes";
+	}
+	if($('#result_detail').val() == "")
+	{
+		$('#id_result_detail').html("Kindly fill result details..");
+		errmsg = "Yes";
+	}
+	if($('#event_documentry[]').val() == "")
+	{
+		$('#id_event_documentry[]').html("Kindly input image/video..");
+		errmsg = "Yes";
+	}
+	if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+}
 function loadrec(result_status_id,rank)
 {
 	$.post("js_loadpoints.php",

@@ -71,30 +71,35 @@ if(isset($_GET['editid']))
             <h5>
               Kindly Enter Student Detail
             </h5>
-            <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data">
+            <form action="" method="post" name="registration" id="registration" enctype="multipart/form-data" onsubmit="return validateform()">
 			
               <div>
 				<label class="labelproperty">Name</label>
+				<span class="errormessage" id="id_student_name"></span>
 				<input type="text" name="student_name" id="student_name" placeholder="Enter your Name" value="<?php echo $rsedit['student_name']; ?>" />
               </div>
 			  
               <div>
                 <label class="labelproperty">Roll Number</label>
+				<span class="errormessage" id="id_student_rollno"></span>
 				<input type="text" name="student_rollno" id="student_rollno" class="form-control" placeholder="Enter your Roll Number" value="<?php echo $rsedit['student_rollno']; ?>"  />
               </div>
 			  
               <div>
 				<label class="labelproperty">Password</label>
+				<span class="errormessage" id="id_student_password"></span>
 				<input type="password" name="student_password" id="student_password" class="form-control" placeholder="Enter your Password" />
               </div>
 			  
               <div>
 				<label class="labelproperty">Confirm Password</label>
+				<span class="errormessage" id="id_cpassword"></span>
 				<input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm Password"  />
               </div>
 			  
               <div>
 				<label class="labelproperty">Course</label>
+				<span class="errormessage" id="id_course_id"></span>
 				<select name="course_id" id="course_id" class="form-control" >
 				<option value="">All Course</option>
 				<?php
@@ -118,6 +123,7 @@ if(isset($_GET['editid']))
 			  
 			  <div>
 				<label class="labelproperty">Class</label>
+				<span class="errormessage" id="id_st_class"></span>
 				<select name="st_class" id="st_class" class="form-control" >
 				<option value="">All Class</option>
                 <?php
@@ -139,6 +145,7 @@ if(isset($_GET['editid']))
 			  
 			  <div>
                 <label class="labelproperty">Gender</label>
+				<span class="errormessage" id="id_gender"></span>
                 <select name="gender" id="gender" class="form-control" >
 				<option hidden value="">--Select--</option>
                 <?php
@@ -160,11 +167,13 @@ if(isset($_GET['editid']))
 
 			  <div>
                 <label class="labelproperty">Date of Birth</label>
+				<span class="errormessage" id="id_dob"></span>
                 <input type="date" name="dob" id="dob" placeholder="Enter your DOB" value="<?php echo $rsedit['dob']; ?>"  />
               </div>
 			  
 			  <div>
                 <label class="labelproperty">Language</label>
+				<span class="errormessage" id="id_language"></span>
 				<select name="language" id="language" class="form-control" required="">
 				<option value="">--Select--</option>
 				<?php
@@ -184,9 +193,9 @@ if(isset($_GET['editid']))
 				</select>
               </div>
 			  
-              
               <div>
 				<label class="labelproperty">Elective Paper </label>
+				<span class="errormessage" id="id_elective_paper"></span>
 				<select name="elective_paper" id="elective_paper" class="form-control" required="">
 				<option hidden value="">--Select--</option>
 				<?php
@@ -208,6 +217,7 @@ if(isset($_GET['editid']))
               
               <div>
 				<label class="labelproperty">Extension Activities</label>
+				<span class="errormessage" id="id_extension_activities"></span>
 					<select name="extension_activities" id="extension_activities" class="form-control" required="">
 					<option hidden value="">--Select--</option>
 					<?php
@@ -229,6 +239,7 @@ if(isset($_GET['editid']))
               
               <div>
 				<label class="labelproperty">Upload Image</label>
+				<span class="errormessage" id="id_student_image"></span>
 					<input type="file" name="student_image" id="student_image" placeholder="Upload Image" class="form-control"/>
 					<?php
 					if(isset($_GET['editid']))
@@ -251,6 +262,7 @@ if(isset($_GET['editid']))
               
               <div>
 				<label class="labelproperty">Student Account Status</label>
+				<span class="errormessage" id="id_student_status"></span>
 				<select name="student_status" id="student_status" class="form-control" >
 				<option value="">Select Status</option>
                 <?php
@@ -270,7 +282,6 @@ if(isset($_GET['editid']))
 				</select>
               </div>
 			  
-			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
               </div>
@@ -281,8 +292,116 @@ if(isset($_GET['editid']))
       </div>
     </div>
   </section>
-
   <!-- end contact section -->
 <?php
 include("footer.php");
 ?>
+<script>
+function validateform()
+{
+	//Regex Starts Here
+	var numericExpression = /^[0-9]+$/;
+	var alphaExp = /^[a-zA-Z]+$/;
+	var alphaSpaceExp = /^[a-zA-Z\s]+$/;
+	var alphaNumericExp = /^[0-9a-zA-Z]+$/;
+	var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+	//Regex Ends Here
+	$('.errormessage').html('');
+	var errmsg = "No";
+	if(!$('#student_name').val().match(alphaSpaceExp))
+	{
+		$('#id_student_name').html("Student name should contain charcter values...");
+		errmsg = "Yes";
+	} 
+	if($('#student_name').val() == "")
+	{
+		$('#id_student_name').html("Student Name should not be empty..");
+		errmsg = "Yes";
+	} 
+	if(!$('#student_rollno').val().match(numericExpression))
+	{
+		$('#id_student_rollno').html("Roll Number should contain numeric values..");
+		errmsg = "Yes";
+	} 
+	if($('#student_rollno').val() == "")
+	{
+		$('#id_student_rollno').html("Student Roll Number should not be empty..");
+		errmsg = "Yes";
+	}
+	
+	if($('#student_password').val().length < 8 )
+	{
+		$('#id_student_password').html("Password should contain more than 8 characters..");
+		errmsg = "Yes";
+	} 
+	if($('#student_password').val() == "")
+	{
+		$('#id_student_password').html("Student Password should not be empty..");
+		errmsg = "Yes";
+	} 
+	if($('#student_password').val()  != $('#cpassword').val())
+	{
+		$('#id_cpassword').html("Password and Confirm Password not matching...");
+		errmsg = "Yes";
+	}
+	if($('#cpassword').val() == "")
+	{
+		$('#id_cpassword').html("Confirm Password should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#course_id').val() == "")
+	{
+		$('#id_course_id').html("Kindly select the course..");
+		errmsg = "Yes";
+	} 
+	    
+	if($('#st_class').val() == "")
+	{
+		$('#id_st_class').html("Student class should not be empty..");
+		errmsg = "Yes";
+	}  
+	if($('#gender').val() == "")
+	{
+		$('#id_gender').html("Gender should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#dob').val() == "")
+	{
+		$('#id_dob').html("Date of Birth should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#language').val() == "")
+	{
+		$('#id_language').html("Kindly select language..");
+		errmsg = "Yes";
+	}
+	if($('#elective_paper').val() == "")
+	{
+		$('#id_elective_paper').html("Kindly select Elective paper..");
+		errmsg = "Yes";
+	}       
+	if($('#extension_activities').val() == "")
+	{
+		$('#id_extension_activities').html("Kindly select extension activities ...");
+		errmsg = "Yes";
+	}
+	if($('#student_image').val() == "")
+	{
+		$('#id_student_image').html("Student Image should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#student_status').val() == "")
+	{
+		$('#id_student_status').html("Student Status should not be empty..");
+		errmsg = "Yes";
+	}
+	if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+} 
+</script>

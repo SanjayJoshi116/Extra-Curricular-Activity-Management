@@ -63,36 +63,39 @@ $participation_point = $row['participation_point'];
             <h5>
               Kindly update student points
             </h5>
-            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data">
+            <form action="" method="post" name="frmevent_type" id="frmevent_type" enctype="multipart/form-data" onsubmit="return validateform()">
 			
               <div class="row">
 			  
               <div class="col-md-6">
 				<label class="labelproperty">Firstplace Points</label>
+				<span class="errormessage" id="id_firstplace_point"></span>
                 <input type="number" name="firstplace_point" id="firstplace_point" placeholder="Enter Firstplace Points" 
 				value="<?php echo $firstplace_point ?>" />
               </div>
               <div class="col-md-6">
                 <label class="labelproperty">Secondplace Points</label>
+				<span class="errormessage" id="id_secondplace_point"></span>
 				<input type="text" name="secondplace_point" id="secondplace_point" placeholder="Enter Secondplace Points"
 				value="<?php echo $secondplace_point ?>" />
               </div>
 			  
 			  <div class="col-md-6">
                 <label class="labelproperty">Thirdplace Points</label>
+				<span class="errormessage" id="id_thirdplace_point"></span>
 				<input type="text" name="thirdplace_point" id="thirdplace_point" placeholder="Enter Thirdplace Points"
 				value="<?php echo $thirdplace_point ?>" />
               </div>
 			  
 			  <div class="col-md-6">
                 <label class="labelproperty">Participation Points</label>
+				<span class="errormessage" id="id_participation_point"></span>
 				<input type="text" name="participation_point" id="participation_point" placeholder="Enter Participation Points"
 				value="<?php echo $participation_point ?>" />
               </div>
 			  </div>
              </div>
 			  
-			 
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn btn-info">Click Here to Submit</button>
               </div>
@@ -104,7 +107,6 @@ $participation_point = $row['participation_point'];
       </div>
     </div>
   </section>
-
   <!-- end contact section -->
 <?php
 if(isset($_POST['submit']))
@@ -115,8 +117,43 @@ if(isset($_POST['submit']))
 	if(mysqli_affected_rows($con) == 1)
 	{
 		echo "<script>alert('Points updated successfully..');</script>";
-		
+		echo "<script>window.location='point_update.php';</script>";
 	}
 }
 include("footer.php");
 ?>
+<script>
+function validateform()
+{
+	$('.errormessage').html('');
+	var errmsg = "No"; 
+	if($('#firstplace_point').val() == "")
+	{
+		$('#id_firstplace_point').html("Firstplace point should not be empty..");
+		errmsg = "Yes";
+	} 
+	if($('#secondplace_point').val() == "")
+	{
+		$('#id_secondplace_point').html("Secondplace point should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#thirdplace_point').val() == "")
+	{
+		$('#id_thirdplace_point').html("Thirdplace point should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#participation_point').val() == "")
+	{
+		$('#id_participation_point').html("Participation point should not be empty..");
+		errmsg = "Yes";
+	}
+	if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+}
+</script>

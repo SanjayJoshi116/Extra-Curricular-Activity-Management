@@ -60,20 +60,23 @@ if(isset($_GET['editid']))
             <h5>
               Kindly enter Event Category 
             </h5>
-            <form action="" method="post" name="frmevent_type" id="frmevent_type">
+            <form action="" method="post" name="frmevent_type" id="frmevent_type" onsubmit="return validateform()">
 			
               <div>
 				<label class="labelproperty">Event Category</label>
+				<span class="errormessage" id="id_event_type"></span>
                 <input type="text" name="event_type" id="event_type" placeholder="Enter Event Category" value="<?php echo $rsedit['event_type'];?>" />
               </div>
 			  
               <div>
                 <label class="labelproperty">Info about Event Category</label>
+				<span class="errormessage" id="id_event_type_info"></span>
 				<textarea name="event_type_info" id="event_type_info" class="form-control"><?php echo $rsedit['event_type_info'];?></textarea>
               </div>
 			  
               <div>
 				<label class="labelproperty">Status</label>
+				<span class="errormessage" id="id_event_type_status"></span>
                 <select name="event_type_status" id="event_type_status" class="form-control">
 					<option value="">Select Status</option>
 					<?php
@@ -93,8 +96,6 @@ if(isset($_GET['editid']))
 				</select>
               </div>
 			  
-			  
-			  
               <div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
               </div>
@@ -109,3 +110,39 @@ if(isset($_GET['editid']))
 <?php
 include("footer.php");
 ?>
+<script>
+function validateform()
+{
+	var alphaSpaceExp = /^[a-zA-Z\s]+$/;
+	$('.errormessage').html('');
+	var errmsg = "No";
+	if(!$('#event_type').val().match(alphaSpaceExp))
+	{
+		$('#id_event_type').html("Event type name should contain charcter values...");
+		errmsg = "Yes";
+	} 
+	if($('#event_type').val() == "")
+	{
+		$('#id_event_type').html("Event type name should not be empty..");
+		errmsg = "Yes";
+	}
+	if($('#event_type_info').val() == "")
+	{
+		$('#id_event_type_info').html("Kindly fill the event type details..");
+		errmsg = "Yes";
+	}
+	if($('#event_type_status').val() == "")
+	{
+		$('#id_event_type_status').html("Kindly select the event type status..");
+		errmsg = "Yes";
+	}
+	if(errmsg == "Yes")
+	{
+		return false;
+	}
+	if(errmsg == "No")
+	{
+		return true;
+	}
+}
+</script>
