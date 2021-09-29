@@ -88,27 +88,6 @@ if(isset($_GET['editid']))
 		<span class="errormessage" id="id_staff_name"></span>
 		<input type="text" name="staff_name" id="staff_name" placeholder="Enter Name" class="form-control" value="<?php echo $rsedit['staff_name']; ?>" />
 	  </div>
-	  <div class="col-md-6">
-		<label class="labelproperty">Upload Image</label>
-		<input type="file" name="staff_dp" id="staff_dp" placeholder="Upload Image" class="form-control"/>
-		<?php
-			if(isset($_GET['editid']))
-			{
-				if($rsedit['staff_dp'] == "")
-				{
-					echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
-				}
-				else if(file_exists("staffimg/" . $rsedit['staff_dp']))
-				{
-					echo "<img src='staffimg/" . $rsedit['staff_dp'] . "' style='width: 170px;height:200px;' />";
-				}
-				else
-				{
-					echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
-				}
-			}
-			?>
-	</div>
 			  
 			  <div class="col-md-6">
 				<label class="labelproperty">Department</label>
@@ -160,10 +139,6 @@ if(isset($_GET['editid']))
 		<label class="labelproperty">Staff ID</label>
 		<span class="errormessage" id="id_login_id"></span>
 		<input type="text" name="login_id" id="login_id" class="form-control" placeholder="Enter Staff ID" required="" value="<?php echo $rsedit['staff_id']; ?>"/>
-	  </div>
-	  
-	  <div class="col-md-6">
-
 	  </div>
 	  <div class="col-md-6">
 		<label class="labelproperty">Password</label>
@@ -228,6 +203,27 @@ if(isset($_GET['editid']))
 				?>
 				</select>
               </div>
+                <div class="col-md-6">
+		<label class="labelproperty">Upload Image</label>
+		<input type="file" name="staff_dp" id="staff_dp" placeholder="Upload Image" class="form-control"/>
+		<?php
+			if(isset($_GET['editid']))
+			{
+				if($rsedit['staff_dp'] == "")
+				{
+					echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
+				}
+				else if(file_exists("staffimg/" . $rsedit['staff_dp']))
+				{
+					echo "<img src='staffimg/" . $rsedit['staff_dp'] . "' style='width: 170px;height:200px;' />";
+				}
+				else
+				{
+					echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
+				}
+			}
+			?>
+	</div>
 			</div>
 			<div class="d-flex justify-content-center">
                 <button type="submit" name="submit" id="submit" class="btn_on-hover">Click Here to Submit</button>
