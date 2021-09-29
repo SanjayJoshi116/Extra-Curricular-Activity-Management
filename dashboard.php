@@ -39,12 +39,11 @@ if($rsstaffprofile['staff_type'] == "Admin")
 <h2 style = "position:relative;left:500px; top:-36px;font-family:Times New Roman, Times,serif;"><b>STAFF</b></h2>
 <h2 style = "position:relative;left:750px; top:-83px;font-family:Times New Roman, Times,serif;"><b>EVENTS</b></h2>
 <h2 style = "position:relative;left:1000px; top:-130px;font-family:Times New Roman, Times,serif;"><b>DEPARTMENT</b></h2>
-<<<<<<< HEAD
  <?php 
 }
     if(isset($_SESSION['staff_id']))
     {
-   ?><br><br>
+   ?>
     <!-- event section -->
     <hr>
   <section class="event_section">

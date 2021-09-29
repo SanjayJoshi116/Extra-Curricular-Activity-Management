@@ -11,7 +11,7 @@ if(isset($_SESSION['staff_id']))
   $rsedit = mysqli_fetch_array($qsqledit);
 }
 ?>
-<br>
+<section class="login_section layout_padding">
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
@@ -28,8 +28,8 @@ if(isset($_SESSION['staff_id']))
         else
         {
           echo "<img src='images/defaultimage.png' style='width: 300px;height:300px;' />";
-        } ?>
-      <b><h1 style="font-size: 400%";><br><b><?php echo $rsedit['staff_name']; ?></b></h1>
+        } ?><br>
+      <b><h1 style="font-size: 300%";><br><b><?php echo $rsedit['staff_name']; ?></b></h1><br>
       <h1><?php
         $sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
         $qsqldepartment = mysqli_query($con,$sqldepartment);
@@ -46,7 +46,7 @@ if(isset($_SESSION['staff_id']))
       <p>department</p></b>
     </div>
     <div class="flip-card-back">
-      <b><h1><?php
+     <br> <b><h1><?php
     $arr = array("Admin","HOD","Assistant Professor","Lecturer","Guest Lecturer","Lab Assistant");
     foreach($arr as $val)
     {
@@ -56,9 +56,9 @@ if(isset($_SESSION['staff_id']))
     }
   }
 ?></h1>
-      <p>Staff Type</p>
+      <p>Staff Type</p><br>
       <h1><?php echo $rsedit['login_id']; ?></h1>
-      <p>Email Id</p>
+      <p>Email Id</p><br>
       <h1>
           <?php 
         $arr = array("Male","Female");
@@ -70,12 +70,12 @@ if(isset($_SESSION['staff_id']))
         }
       }
     ?></h1>
-    <p>Gender</p>
+    <p>Gender</p><br>
     <h1><?php echo $rsedit['dob']; ?></h1>
     <p>Date of Birth</p></b>
     </div>
   </div>
-</div><!-- HTML !-->
+</div>
 <style>
 .button-3 {
   appearance: none;
@@ -140,7 +140,7 @@ if(isset($_SESSION['staff_id']))
   height: 700px;
    position: relative;
    left: 450px;
-  border: 10px solid #96c8ff;
+  border: 0px solid #96c8ff;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -186,7 +186,7 @@ if(isset($_SESSION['staff_id']))
   font-family: "Lucida Console", "Courier New", monospace;
 }
 </style>
-<br><br>
+</section>
 <?php
 include("footer.php");
 ?>

@@ -9,7 +9,8 @@ if(isset($_SESSION['student_id']))
 	$sqledit= "SELECT * FROM student where student_id='$_SESSION[student_id]'";
 	$qsqledit = mysqli_query($con,$sqledit);
 	$rsedit = mysqli_fetch_array($qsqledit);
-}?><br>
+}?>
+<section class="login_section layout_padding">
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
@@ -17,17 +18,17 @@ if(isset($_SESSION['student_id']))
       <?php
 					if($rsedit['student_image'] == "")
 					{
-						echo "<img src='images/defaultimage.png' alt='Avatar' style='width: 270px;height:350px;' />";
+						echo "<img src='images/defaultimage.png' alt='Avatar' style='width: 250px;height:320px;' />";
 					}
 					else if(file_exists("studentimg/" . $rsedit['student_image']))
 					{
-						echo "<img src='studentimg/" . $rsedit['student_image'] . "' alt='Avatar' style='width: 270px;height:350px;' />";
+						echo "<img src='studentimg/" . $rsedit['student_image'] . "' alt='Avatar' style='width: 200px;height:250px;' />";
 					}
 					else
 					{
-						echo "<img src='images/defaultimage.png' alt='Avatar' style='width: 270px;height:350px;' />";
+						echo "<img src='images/defaultimage.png' alt='Avatar' style='width: 250px;height:320px;' />";
 					}
-		?><br>
+		?><br><br><br>
 		      <h1><b><?php echo $rsedit['student_name']; ?></b></h1><br>
 		      <h1><b><?php echo $rsedit['student_rollno']; ?></b></h1>
 		      <p><b>Roll Number</b></p><br>
@@ -52,6 +53,13 @@ if(isset($_SESSION['student_id']))
 					}
 					?></h1>
 				<p>Class</p><br>
+				<h1 style=" color: yellow;"><?php
+				$sqlpoint= "SELECT ifnull(sum(point),0) FROM event_result_status WHERE student_id='$_SESSION[student_id]' ";
+				$qsqlpoint = mysqli_query($con,$sqlpoint);
+				$rspoint = mysqli_fetch_array($qsqlpoint);
+				echo $rspoint[0];
+				?> </h1>
+				<p style=" color: yellow;">Student Points</p> 
 			</div>
 					<div class="flip-card-back">
    			<h1><?php
@@ -64,9 +72,9 @@ if(isset($_SESSION['student_id']))
 					}
 				}
 			?></h1>
-			<p>Gender</p>
+			<p>Gender</p><br>
 			<h1><b><?php echo $rsedit['dob']; ?></b></h1>
-					<p>Date of birth</p>
+					<p>Date of birth</p><br>
 			<h1><?php
 				$arr = array("Sanskrit","Hindi","Kannada");
 				foreach($arr as $val)
@@ -77,7 +85,7 @@ if(isset($_SESSION['student_id']))
 					}
 				}?>
 				</h1>
-				<p>Language</p>
+				<p>Language</p><br>
 				<h1><?php
 				$arr = array("Sanskrit","Hindi","Kannada","English","History","Economics and Rural Development","Political Science","Journalism","Home Science","Physics","Chemistry");
 				foreach($arr as $val)
@@ -88,7 +96,7 @@ if(isset($_SESSION['student_id']))
 					}
 				}
 				?></h1>
-				<p>Elective Paper</p>
+				<p>Elective Paper</p><br>
 				<h1>
 					<?php
 					$arr = array("NCC","NSS","Rovers & Rangers","Cultural","Sports","None");
@@ -100,11 +108,12 @@ if(isset($_SESSION['student_id']))
 						}
 					}
 				?></h1>
-				<p>Extension Activities</p></b>
+				<p>Extension Activities</p></b><br>
 
 		  </div>
 		</div>
 	</div>
+</section>
 	<style>
   /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
@@ -113,7 +122,7 @@ if(isset($_SESSION['student_id']))
   height: 800px;
    position: relative;
    left: 450px;
- border: 10px solid #96c8ff;
+ border: 0px solid #96c8ff;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -156,7 +165,6 @@ if(isset($_SESSION['student_id']))
   font-family: "Lucida Console", "Courier New", monospace;
 }
 </style>
-<br><br>
 <?php
 include("footer.php");
 ?>
