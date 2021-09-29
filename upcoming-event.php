@@ -158,8 +158,11 @@ ul.dropdown ul li a:hover{
         }
         $sqlview = $sqlview. " ORDER BY event_date_time DESC";
 		    $qsqlview = mysqli_query($con,$sqlview);
+                  $flag=0;
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {
+          
+          $flag=1;
           ?>
       <div class="event_container">
         <div class="box">
@@ -190,7 +193,16 @@ ul.dropdown ul li a:hover{
     </div>
         <?php
       }
+      if($flag==0)
+      {
         ?>
+        <hr><br>
+        <div style="  font-family: Lucida Console, Courier New, monospace;">
+         <h1 style=" color : red">Currently there is no upcomming events... Events will be added soon...</h1>
+       </div>
+      <?php
+      } 
+      ?>
   </section>
 
   <!-- end event section -->
