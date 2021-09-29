@@ -101,7 +101,7 @@ if(isset($_GET['editid']))
 				<label class="labelproperty">Course</label>
 				<span class="errormessage" id="id_course_id"></span>
 				<select name="course_id" id="course_id" class="form-control" >
-				<option value="">All Course</option>
+				<option value="">Select Course</option>
 				<?php
 					$sqlcourse = "SELECT * FROM course WHERE course_status='Active'";
 					$qsqlcourse = mysqli_query($con,$sqlcourse);
@@ -239,7 +239,6 @@ if(isset($_GET['editid']))
               
               <div>
 				<label class="labelproperty">Upload Image</label>
-				<span class="errormessage" id="id_student_image"></span>
 					<input type="file" name="student_image" id="student_image" placeholder="Upload Image" class="form-control"/>
 					<?php
 					if(isset($_GET['editid']))
@@ -383,11 +382,6 @@ function validateform()
 	if($('#extension_activities').val() == "")
 	{
 		$('#id_extension_activities').html("Kindly select extension activities ...");
-		errmsg = "Yes";
-	}
-	if($('#student_image').val() == "")
-	{
-		$('#id_student_image').html("Student Image should not be empty..");
 		errmsg = "Yes";
 	}
 	if($('#student_status').val() == "")
