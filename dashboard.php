@@ -4,9 +4,7 @@ if(!isset($_SESSION['staff_id']))
 {
   echo "<script>window.location='login.php';</script>";
 }
-  if($rsstaffprofile['staff_type'] == "Admin")
-    {
- ?>
+?>
 <a href="viewstudent.php"><div id="countingbox" style = "position:relative;left:200px; top:20px;"><span class="count">
         <?php
         $sqlcount = "SELECT * FROM student";
@@ -39,9 +37,6 @@ if(!isset($_SESSION['staff_id']))
 <h2 style = "position:relative;left:500px; top:-36px;font-family:Times New Roman, Times,serif;"><b>STAFF</b></h2>
 <h2 style = "position:relative;left:750px; top:-83px;font-family:Times New Roman, Times,serif;"><b>EVENTS</b></h2>
 <h2 style = "position:relative;left:1000px; top:-130px;font-family:Times New Roman, Times,serif;"><b>DEPARTMENT</b></h2>
- <?php 
-    }
-   ?>
   <!-- course section -->
 
   <section class="course_section layout_padding-bottom">
