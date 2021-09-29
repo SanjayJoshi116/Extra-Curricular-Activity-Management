@@ -18,8 +18,10 @@ include("header.php");
 	  $dt = date("Y-m-d");
 		    $sqlview = "SELECT * FROM  event where event_date_time BETWEEN '$dt 00:00:00' AND '$dt 23:59:59'";
 		    $qsqlview = mysqli_query($con,$sqlview);
+        $flag=0;
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {
+          $flag=1;
           ?>
       <div class="event_container">
         <div class="box">
@@ -47,7 +49,16 @@ include("header.php");
         </div>
         <?php
       }
+      if($flag==0)
+      {
         ?>
+        <hr><br>
+        <div style="  font-family: Lucida Console, Courier New, monospace;">
+         <h1 style=" color : red">Currently there is no live events... </h1>
+       </div><hr>
+      <?php
+      } 
+      ?>
     </div>
   </section>
 

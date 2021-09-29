@@ -197,9 +197,9 @@ ul.dropdown ul li a:hover{
       {
         ?>
         <hr><br>
-        <div style="  font-family: Lucida Console, Courier New, monospace;">
+        <div >
          <h1 style=" color : red">Currently there is no upcomming events... Events will be added soon...</h1>
-       </div>
+       </div><hr>
       <?php
       } 
       ?>
