@@ -200,6 +200,7 @@ if(isset($_SESSION['staff_id']))
 		<li><a href="javascript:void(0)">My Stats<span class="arrow-down"></span></a>
 			<ul class="dropdown">
 				<li><a href="display_event_result_report.php">My Result</a></li>
+				<li><a href="about_student_points.php">Student Points</a></li>
 				<li><a href="pointshistory.php">Points History</a></li>
 			</ul>
 		</li>
