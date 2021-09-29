@@ -15,7 +15,7 @@ include("header.php");
         </p>
       </div>
 <?php
-$sqlview = "SELECT * FROM  event where event_date_time <= CURDATE() ORDER BY event_id DESC";
+$sqlview = "SELECT * FROM  event where event_date_time <= CURDATE() AND staff_id='$_SESSION[staff_id]' ORDER BY event_id DESC";
 $qsqlview = mysqli_query($con,$sqlview);
 while($rsview = mysqli_fetch_array($qsqlview))
 {

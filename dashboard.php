@@ -41,7 +41,77 @@ if(!isset($_SESSION['staff_id']))
 <h2 style = "position:relative;left:1000px; top:-130px;font-family:Times New Roman, Times,serif;"><b>DEPARTMENT</b></h2>
  <?php 
     }
-   ?>
+    if(isset($_SESSION['staff_id']))
+    {
+   ?><br><br>
+    <!-- event section -->
+    <hr>
+  <section class="event_section">
+    <div class="container">
+      <div class="heading_container">
+       <h3>
+          My Upmcoming Events
+        </h3>
+      </div>
+<?php
+$flag=0;
+$sqlview = "SELECT * FROM  event where staff_id='$_SESSION[staff_id]'";
+$qsqlview = mysqli_query($con,$sqlview);
+while($rsview = mysqli_fetch_array($qsqlview))
+{
+  if(date("d-m-Y",strtotime($rsview['event_date_time'])) > date('d-m-Y',strtotime('now')))
+  {
+    $flag=1;
+    ?>
+<div class="event_container">
+  <div class="box">
+    <div class="img-box">
+    <h5>
+      <?php
+      $imge=$rsview['event_banner'];
+      echo '<img src="imgbanner/' .$imge .'" width="150" height="150">';
+      ?>
+    </h5>
+    </div>
+    <div class="detail-box">
+      <h4>
+        <?php echo $rsview['event_title'];?>
+      </h4>
+    <h6>
+      <?php echo $rsview['event_venue'];?>
+    </h6>
+    </div>
+    <div class="date-box">
+    <h3>
+    <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
+    </h3>
+        <a href="event_more_det.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info">View More</a>
+            (<?php echo $rsview['event_participation_type'];?> Event)
+    </div>
+  </div>
+</div>
+<?php
+}
+}
+if($flag==0)
+{
+  ?>
+  <div style="  font-family: Lucida Console, Courier New, monospace;">
+    <br><h3 style=" color : red">You dont have any new upcoming events ...</h3>
+  <a href="addevent.php">Click here to add new event</a>
+      <br><br>
+  </div>
+  <?php
+}
+?>
+    </div>
+  </section>
+  <hr>
+  <?php
+}
+?>
+
+  <!-- end event section -->
   <!-- course section -->
 
   <section class="course_section layout_padding-bottom">
