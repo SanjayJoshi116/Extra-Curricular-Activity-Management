@@ -4,6 +4,8 @@ if(!isset($_SESSION['staff_id']))
 {
   echo "<script>window.location='login.php';</script>";
 }
+if($rsstaffprofile['staff_type'] == "Admin")
+    {
 ?>
 <a href="viewstudent.php"><div id="countingbox" style = "position:relative;left:200px; top:20px;"><span class="count">
         <?php
@@ -39,7 +41,7 @@ if(!isset($_SESSION['staff_id']))
 <h2 style = "position:relative;left:1000px; top:-130px;font-family:Times New Roman, Times,serif;"><b>DEPARTMENT</b></h2>
 <<<<<<< HEAD
  <?php 
-    }
+}
     if(isset($_SESSION['staff_id']))
     {
    ?><br><br>
@@ -111,8 +113,6 @@ if($flag==0)
 ?>
 
   <!-- end event section -->
-=======
->>>>>>> b02cc57734791a45931a6df3e11fd18b74a77ab9
   <!-- course section -->
 
   <section class="course_section layout_padding-bottom">
