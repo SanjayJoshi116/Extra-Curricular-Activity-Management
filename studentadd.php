@@ -101,7 +101,7 @@ if(isset($_GET['editid']))
 				<label class="labelproperty">Course</label>
 				<span class="errormessage" id="id_course_id"></span>
 				<select name="course_id" id="course_id" class="form-control" >
-				<option value="">Select Course</option>
+				<option value="">All Course</option>
 				<?php
 					$sqlcourse = "SELECT * FROM course WHERE course_status='Active'";
 					$qsqlcourse = mysqli_query($con,$sqlcourse);
@@ -125,7 +125,7 @@ if(isset($_GET['editid']))
 				<label class="labelproperty">Class</label>
 				<span class="errormessage" id="id_st_class"></span>
 				<select name="st_class" id="st_class" class="form-control" >
-				<option value="">Select Class</option>
+				<option value="">All Class</option>
                 <?php
 				$arr = array("First Year","Second Year","Third Year");
 				foreach($arr as $val)
