@@ -104,11 +104,13 @@ function fun_copy_to_clipboard() {
         </h3>
       </div>
 <?php
+$flag=0;
 $sqlview = "SELECT * FROM  event_participation LEFT JOIN event ON event_participation.event_id=event.event_id where event.event_date_time > '$dttim' AND student_id='$_SESSION[student_id]'";
 $sqlview = $sqlview. " ORDER BY event_date_time DESC limit 1";
 $qsqlview = mysqli_query($con,$sqlview);
 while($rsview = mysqli_fetch_array($qsqlview))
 {
+  $flag=1;
 ?>
 <div class="event_container">
 	<div class="box">
@@ -139,6 +141,16 @@ while($rsview = mysqli_fetch_array($qsqlview))
 </div>
 <?php
 }
+if($flag==0)
+{
+  ?>
+  <div style="  font-family: Lucida Console, Courier New, monospace;">
+    <br><h3 style=" color : red"> You dont have any upcoming events...</h3>
+  <a href="upcoming-event.php">Click here to check new events to participate...</a>
+      <br><br>
+  </div>
+  <?php
+}
 ?>
     </div>
   </section>
@@ -159,8 +171,10 @@ while($rsview = mysqli_fetch_array($qsqlview))
 $sqlview = "SELECT * FROM  event_participation LEFT JOIN event ON event_participation.event_id=event.event_id where event.event_date_time < '$dttim' AND student_id='$_SESSION[student_id]'";
 $sqlview = $sqlview. " ORDER BY event_date_time DESC limit 1";
 $qsqlview = mysqli_query($con,$sqlview);
+$flag=0;
 while($rsview = mysqli_fetch_array($qsqlview))
 {
+  $flag=1;
 ?>
 <div class="event_container">
 	<div class="box">
@@ -190,6 +204,16 @@ while($rsview = mysqli_fetch_array($qsqlview))
 	</div>
 </div>
 <?php
+}
+if($flag==0)
+{
+  ?>
+  <div style="  font-family: Lucida Console, Courier New, monospace;">
+    <br><h3 style=" color : red"> You are not partcipated in any events...</h3>
+  <a href="upcoming-event.php">Click here to check new events to participate...</a>
+      <br><br>
+  </div>
+  <?php
 }
 ?>
     </div>

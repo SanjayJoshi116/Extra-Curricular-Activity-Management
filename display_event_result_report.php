@@ -21,8 +21,10 @@ $sqlview = $sqlview  . " AND student_id='$_SESSION[student_id]'";
 }
 $sqlview = $sqlview. " ORDER BY event_date_time";
 $qsqlview = mysqli_query($con,$sqlview);
+$flag=0;
 while($rsview = mysqli_fetch_array($qsqlview))
 {
+	$flag=1;
 	$sqlevent_result_status = "SELECT * FROM event_result_status where event_id='$rsview[event_id]' and student_id='$_SESSION[student_id]'";
 	$qsqlevent_result_status = mysqli_query($con,$sqlevent_result_status);
 	$rsevent_result_status = mysqli_fetch_array($qsqlevent_result_status);
@@ -81,6 +83,16 @@ while($rsview = mysqli_fetch_array($qsqlview))
 	</div>
 </div>
 <?php
+}
+if($flag==0)
+{
+  ?>
+  <div style="  font-family: Lucida Console, Courier New, monospace;">
+    <br><h3 style=" color : red"> You are not partcipated in any events...</h3>
+  <a href="upcoming-event.php">Click here to check new events to participate...</a>
+      <br><br>
+  </div>
+  <?php
 }
 ?>
     </div>
