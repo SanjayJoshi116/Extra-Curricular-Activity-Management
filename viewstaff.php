@@ -84,7 +84,7 @@ if(isset($_GET['acid']))
 				<td>$rsview[staff_status] <br>";
 				if($rsview['staff_status'] == "Active")
 {
-	echo "<a href='viewstaff.php?st=Suspended&acid=$rsview[staff_id]' class='btn btn-secondary' onclick='return confirmst()' >Suspend</a>";
+	echo "<a href='viewstaff.php?st=Suspended&acid=$rsview[staff_id]' class='btn btn-secondary' onclick='return confirmst()' >Inactive</a>";
 }
 else
 {
