@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 05:50 AM
+-- Generation Time: Sep 30, 2021 at 12:27 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -53,12 +53,25 @@ CREATE TABLE `complaint_report` (
   `complaint_report_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `staff_id` int(11) NOT NULL,
+  `event_id` int(40) NOT NULL,
   `reply_complaint_report_id` int(11) NOT NULL,
   `complaint_date_tim` datetime NOT NULL,
   `complaint_detail` text NOT NULL,
   `complain_doc` varchar(300) NOT NULL,
   `complaint_status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `complaint_report`
+--
+
+INSERT INTO `complaint_report` (`complaint_report_id`, `student_id`, `staff_id`, `event_id`, `reply_complaint_report_id`, `complaint_date_tim`, `complaint_detail`, `complain_doc`, `complaint_status`) VALUES
+(1, 2, 0, 6, 0, '2021-09-30 13:18:37', 'Error in displaying result', '1662593132', 'Closed'),
+(4, 0, 14, 0, 1, '2021-09-30 14:52:29', 'will be sort down soon', '648634319', 'Processing'),
+(5, 0, 14, 0, 1, '2021-09-30 15:07:47', '', '460633998', 'Closed'),
+(6, 0, 14, 0, 1, '2021-09-30 15:16:00', '', '1592026786', 'Closed'),
+(7, 5, 0, 6, 0, '2021-09-30 15:53:31', 'points are not distributed properly', '1897345846', 'Processing'),
+(8, 0, 11, 0, 7, '2021-09-30 15:56:25', 'will contact you soon', '171045819', 'Processing');
 
 -- --------------------------------------------------------
 
@@ -476,7 +489,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT for table `complaint_report`
 --
 ALTER TABLE `complaint_report`
-  MODIFY `complaint_report_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `complaint_report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `course`
@@ -518,7 +531,7 @@ ALTER TABLE `event_result`
 -- AUTO_INCREMENT for table `event_result_status`
 --
 ALTER TABLE `event_result_status`
-  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `event_type`

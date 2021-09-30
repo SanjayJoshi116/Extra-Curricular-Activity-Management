@@ -35,11 +35,15 @@ include("header.php");
         <div class="">
 <!-- ####################VIEW TABLE STARTS HERE ######### ---->
 <?php
-$sqlview = "SELECT complaint_report.*,student.student_name, student.student_rollno, staff.staff_name, staff.login_id,event.event_title,event.event_date_time  FROM complaint_report LEFT JOIN student ON student.student_id=complaint_report.student_id LEFT JOIN staff ON complaint_report.staff_id=staff.staff_id LEFT JOIN event ON event.event_id=complaint_report.event_id ORDER BY complaint_report.complaint_report_id DESC";
+$sqlview = "SELECT complaint_report.*,student.student_name, student.student_rollno, staff.staff_name, staff.login_id,event.event_title,event.event_date_time,event.staff_id  FROM complaint_report LEFT JOIN student ON student.student_id=complaint_report.student_id LEFT JOIN staff ON complaint_report.staff_id=staff.staff_id LEFT JOIN event ON event.event_id=complaint_report.event_id ORDER BY complaint_report.complaint_report_id DESC";
 $qsqlview = mysqli_query($con,$sqlview);
 echo mysqli_error($con);
 while($rsview = mysqli_fetch_array($qsqlview))
 {
+  if(! $rsview['student_id'] == 0)
+  {
+    if(($rsview['student_id'] == $_SESSION['student_id']) ||  $rsview['staff_id'] == $_SESSION['staff_id'] || $rsstaffprofile['staff_type'] == "Admin")
+    {
 ?>
     <!-- Page Content -->
     <div class="container">
@@ -88,6 +92,8 @@ while($rsview = mysqli_fetch_array($qsqlview))
     </div>
     <!-- /.container -->
 <?php
+}
+}
 }
 ?>
 <!-- ####################VIEW TABLE ENDS HERE ######### ---->

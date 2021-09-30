@@ -13,7 +13,9 @@ if(isset($_POST['submit']))
 		$complaintstatus = "Student Reply";
 	}
 	$sql = "INSERT INTO complaint_report(student_id,staff_id,reply_complaint_report_id,complaint_detail,complain_doc,complaint_status,complaint_date_tim,event_id) VALUES('$_SESSION[student_id]','$_SESSION[staff_id]','$_GET[complaint_report_id]','$_POST[complaint_detail]','$complain_doc','$complaintstatus','$dttim','$_POST[event_id]')";
+	$query="update complaint_report set complaint_status='$complaintstatus' where complaint_report_id = '$_GET[complaint_report_id]'";
 	$qsql = mysqli_query($con,$sql);
+	$qquery = mysqli_query($con,$query);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con)==1)
 	{
