@@ -57,8 +57,12 @@ if(isset($_GET['acid']))
 		<?php
 		$sqlview = "SELECT event.*,department.department,event_type.event_type FROM  event LEFT JOIN department ON event.department_id=department.department_id LEFT JOIN event_type ON event.event_type_id=event_type.event_type_id ORDER BY event_date_time DESC";
 		$qsqlview = mysqli_query($con,$sqlview);
+		$flag=0;
 		while($rsview = mysqli_fetch_array($qsqlview))
 		{
+			 if($rsview['staff_id'] == $_SESSION['staff_id'] || $rsstaffprofile['staff_type'] == "Admin")
+    	{
+    		$flag=1;
 			echo "<tr>
 				<td>";
 			if($rsview['event_banner'] == "")
@@ -144,6 +148,17 @@ else
 				</td>
 			</tr>";
 		}
+	}
+	if($flag==0)
+	{
+  ?>
+  <div style="  font-family: Lucida Console, Courier New, monospace;">
+    <br><h3 style=" color : red">You are not added any events ...</h3>
+  <a href="addevent.php">Click here to add new event</a>
+      <br><br>
+  </div>
+  <?php
+	}
 		?>
 	</tbody>
 </table>

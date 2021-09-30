@@ -152,8 +152,12 @@ $sqlview = "SELECT * FROM  event where staff_id='$_SESSION[staff_id]'";
 $qsqlview = mysqli_query($con,$sqlview);
 while($rsview = mysqli_fetch_array($qsqlview))
 {
-  if(date("d-m-Y",($rsview['event_date_time'])) > date('d-m-Y'))
-  {
+ if(date('Y',strtotime($rsview['event_date_time'])) >= date('Y',strtotime('now')))
+      {
+        if(date('m',strtotime($rsview['event_date_time'])) >= date('m',strtotime('now')))
+        {
+          if(date('d',strtotime($rsview['event_date_time'])) > date('d',strtotime('now')))
+          {
     $flag=1;
     ?>
 <div class="event_container">
@@ -184,6 +188,8 @@ while($rsview = mysqli_fetch_array($qsqlview))
   </div>
 </div>
 <?php
+}
+}
 }
 }
 if($flag==0)
