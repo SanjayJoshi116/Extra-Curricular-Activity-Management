@@ -109,16 +109,30 @@ else
 				{
 					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
 				}
-			echo"<td>";
-			if(date("d-m-Y",strtotime($rsview['event_date_time'])) >= date('d-m-Y',strtotime('now')))
+			echo"  <td>";
+			if(date('Y',strtotime($rsview['event_date_time'])) <= date('Y',strtotime('now')))
 			{
-				if($rsview['event_participation_type'] == "Team")
+				if(date('m',strtotime($rsview['event_date_time'])) <= date('m',strtotime('now')))
 				{
-				echo "<a href='team_event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
+					if(date('d',strtotime($rsview['event_date_time'])) <= date('d',strtotime('now')))
+					{
+					if($rsview['event_participation_type'] == "Team")
+					{
+					echo "<a href='team_event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
+					}
+					else
+					{
+					echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
+					}
+					}
+						else
+					{
+					echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a><br><a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>";
+					}
 				}
 				else
 				{
-				echo "<a href='event_result_report.php?event_id=$rsview[event_id]' class='btn btn-success'>Result</a><br>";
+				echo "<a href='addevent.php?editid=$rsview[event_id]' class='btn btn-info'>Edit</a><br><a href='viewevent.php?delid=$rsview[event_id]' class='btn btn-danger' onclick='return confirmdel()' >Delete</a>";
 				}
 			}
 			else
