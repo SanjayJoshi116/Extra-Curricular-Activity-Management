@@ -46,6 +46,7 @@ if(isset($_GET['acid']))
 		<tr>
 			<th>Club</th>
 			<th>Department</th>
+			<th>Coordinator</th>
 			<th>Club Details</th>
 			<th>Club Status</th>
 			<th>Action</th>
@@ -53,13 +54,14 @@ if(isset($_GET['acid']))
 	</thead>
 	<tbody>
 	<?php
-			$sqlview = "SELECT club.*,department.department FROM club LEFT JOIN department ON department.department_id=club.department_id";
+			$sqlview = "SELECT club.*,department.department,staff.staff_name FROM club LEFT JOIN department ON department.department_id=club.department_id LEFT JOIN staff ON staff.staff_id=club.coordinator";
 			$qsqlview = mysqli_query($con,$sqlview);
 			while($rsview = mysqli_fetch_array($qsqlview))
 			{
 				echo "<tr>
 					<td>$rsview[club]</td>
 					<td>$rsview[department]</td>
+					<td>$rsview[staff_name]</td>
 					<td>$rsview[club_details]
 					<td>$rsview[club_status]<br>";
 					if($rsview['club_status'] == "Active")

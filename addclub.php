@@ -10,7 +10,7 @@ if(isset($_POST['submit']))
 	{
 		$sql="UPDATE club SET club='$_POST[club]'";
 		$sql = $sql . ",department_id='$_POST[department_id]',club_details='$_POST[club_details]'";
-		$sql = $sql . ",club_status='$_POST[club_status]' WHERE club_id='$_GET[editid]'";
+		$sql = $sql . ",club_status='$_POST[club_status]',coordinator='$_POST[staff_id]' WHERE club_id='$_GET[editid]'";
 		$qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);
 		if(mysqli_affected_rows($con) == 1)
@@ -21,7 +21,7 @@ if(isset($_POST['submit']))
 	}
 	else
 	{
-		$sql = "INSERT INTO club(club,department_id,club_details,club_status) VALUES('$_POST[club]','$_POST[department_id]','$_POST[club_details]','$_POST[club_status]')";
+		$sql = "INSERT INTO club(club,department_id,club_details,club_status,coordinator) VALUES('$_POST[club]','$_POST[department_id]','$_POST[club_details]','$_POST[club_status]','$_POST[staff_id]')";
 		$qsql = mysqli_query($con,$sql);
 		echo mysqli_error($con);
 		if(mysqli_affected_rows($con)==1)
@@ -70,21 +70,38 @@ if(isset($_GET['editid']))
                 <input type="text" name="club" id="club" placeholder="Enter Club Name" value="<?php echo $rsedit['club']; ?>" />
               </div>
 			  
-			  <div>
-			    <label class="labelproperty">Department</label>
-				<span class="errormessage" id="id_department_id"></span>
-				<select name="department_id" id="department_id" class="form-control" >
-				<option value="">--Select--</option>
-				<?php
-				$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
-				$qsqldepartment = mysqli_query($con,$sqldepartment);
-				echo mysqli_error($con);
-				while($rsdepartment = mysqli_fetch_array($qsqldepartment))
-				{
-					echo "<option value='$rsdepartment[department_id]'>$rsdepartment[department]</option>";
-				}
-				?>
-				</select>
+				<div>
+					<label class="labelproperty">Department</label>
+					<span class="errormessage" id="id_department_id"></span>
+					<select name="department_id" id="department_id" class="form-control" >
+					<option value="">--Select--</option>
+					<?php
+					$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
+					$qsqldepartment = mysqli_query($con,$sqldepartment);
+					echo mysqli_error($con);
+					while($rsdepartment = mysqli_fetch_array($qsqldepartment))
+					{
+						echo "<option value='$rsdepartment[department_id]'>$rsdepartment[department]</option>";
+					}
+					?>
+					</select>
+				</div>
+				
+				<div>
+					<label class="labelproperty">Coordinator</label>
+					<span class="errormessage" id="id_staff_id"></span>
+					<select name="staff_id" id="staff_id" class="form-control" >
+					<option value="">--Select Coordinator--</option>
+					<?php
+					$sqlstaff = "SELECT * FROM staff WHERE staff_status='Active'";
+					$qsqlstaff = mysqli_query($con,$sqlstaff);
+					echo mysqli_error($con);
+					while($rsstaff = mysqli_fetch_array($qsqlstaff))
+					{
+						echo "<option value='$rsstaff[staff_id]'>$rsstaff[staff_name] ($rsstaff[staff_type])</option>";
+					}
+					?>
+					</select>
 				</div>
 				
               <div>

@@ -205,53 +205,7 @@ if(isset($_GET['editid']))
 	<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules" ><?php echo $rsedit['event_rules']; ?></textarea>
   </div>
 			  
-  <div class="col-md-6">
-	<label class="labelproperty">Event Banner</label>
-	<input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" value="<?php echo $rsedit['event_banner'];?>" />
-	<?php
-		if(isset($_GET['editid']))
-		{
-			if($rsedit['event_banner'] == "")
-			{
-				echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
-			}
-			else if(file_exists("imgbanner/" . $rsedit['event_banner']))
-			{
-				echo "<img src='imgbanner/" . $rsedit['event_banner'] . "' style='width: 170px;height:200px;' />";
-			}
-			else
-			{
-				echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
-			}
-		}
-		?>
-  </div>
-			  
-			  
-              <div class="col-md-6">
-				<label class="labelproperty">Department</label>
-				<span class="errormessage" id="id_department_id"></span>
-                <select name="department_id" id="department_id" class="form-control" />
-					<option value="">All Department</option>
-		<?php
-		$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
-		$qsqldepartment = mysqli_query($con,$sqldepartment);
-		echo mysqli_error($con);
-		while($rsdepartment = mysqli_fetch_array($qsqldepartment))
-		{
-			if($rsdepartment['department_id'] == $rsedit['department_id'])
-			{
-			echo "<option value='$rsdepartment[department_id]' selected>$rsdepartment[department]</option>";
-			}
-			else
-			{
-			echo "<option value='$rsdepartment[department_id]'>$rsdepartment[department]</option>";
-			}
-		}
-		?>
-				</select>
-              </div>
-			  
+
               <div class="col-md-6">
 				<label class="labelproperty">Course 
 				<span class="errormessage" id="id_course_id"></span>
@@ -328,6 +282,73 @@ if(isset($_GET['editid']))
               </div>
 
   <div class="col-md-6">
+	<label class="labelproperty">Event Banner</label>
+	<input type="file" name="event_banner" id="event_banner" placeholder="Enter Event Banner" value="<?php echo $rsedit['event_banner'];?>" />
+	<?php
+		if(isset($_GET['editid']))
+		{
+			if($rsedit['event_banner'] == "")
+			{
+				echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
+			}
+			else if(file_exists("imgbanner/" . $rsedit['event_banner']))
+			{
+				echo "<img src='imgbanner/" . $rsedit['event_banner'] . "' style='width: 170px;height:200px;' />";
+			}
+			else
+			{
+				echo "<img src='images/defaultimage.png' style='width: 170px;height:200px;' />";
+			}
+		}
+		?>
+  </div>
+<?php
+$sqlviewclub = "SELECT club.*,department.department,staff.staff_name FROM club LEFT JOIN department ON department.department_id=club.department_id LEFT JOIN staff ON staff.staff_id=club.coordinator WHERE club.coordinator='$_SESSION[staff_id]'";
+$qsqlviewclub = mysqli_query($con,$sqlviewclub);
+$rsviewclub = mysqli_fetch_array($qsqlviewclub);
+if(mysqli_num_rows($qsqlviewclub) == 0)
+{
+?>
+<input type="hidden" name="department_id" id="department_id" value="<?php echo $rsstaffprofile['department_id']; ?>">
+<input type="hidden" name="club_id" id="club_id" value="0">
+<?php
+}
+else
+{
+?>
+<input type="hidden" name="department_id" id="department_id" value="<?php echo $rsviewclub['department_id']; ?>">
+<input type="hidden" name="club_id" id="club_id" value="<?php echo $rsviewclub['club_id']; ?>">
+<?php
+}
+?>
+<?php
+/*			  
+              <div class="col-md-6">
+				<label class="labelproperty">Department</label>
+				<span class="errormessage" id="id_department_id"></span>
+                <select name="department_id" id="department_id" class="form-control" />
+					<option value="">All Department</option>
+		<?php
+		$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
+		$qsqldepartment = mysqli_query($con,$sqldepartment);
+		echo mysqli_error($con);
+		while($rsdepartment = mysqli_fetch_array($qsqldepartment))
+		{
+			if($rsdepartment['department_id'] == $rsedit['department_id'])
+			{
+			echo "<option value='$rsdepartment[department_id]' selected>$rsdepartment[department]</option>";
+			}
+			else
+			{
+			echo "<option value='$rsdepartment[department_id]'>$rsdepartment[department]</option>";
+			}
+		}
+		?>
+				</select>
+              </div>
+			  
+
+  <div class="col-md-6">
 	<label class="labelproperty">Club</label>
 	<span class="errormessage" id="id_club_id"></span>
 	<select class="form-control" name="club_id" id="club_id" />
@@ -350,6 +371,8 @@ if(isset($_GET['editid']))
 				?>
 				</select>
   </div>
+*/
+?>
   
 <?php
 if($rsstaffprofile['staff_type'] == "Admin")
@@ -442,12 +465,7 @@ function validateform()
 	{
 		$('#id_event_type_id').html("Event Type should not be empty..");
 		errmsg = "Yes";
-	} 
-	if(!$('#event_date_time').val().match(numericExpression))
-	{
-		$('#id_event_date_time').html("Please enter valid date..");
-		errmsg = "Yes";
-	} 
+	}
 	if($('#event_date_time').val() == "")
 	{
 		$('#id_event_date_time').html("Event date and time should not be empty..");
