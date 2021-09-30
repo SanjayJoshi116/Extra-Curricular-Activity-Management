@@ -143,7 +143,7 @@ if($rsstaffprofile['staff_type'] == "Admin")
     <div class="container">
       <div class="heading_container">
        <h3>
-          My Upmcoming Events
+          My Upcoming Events
         </h3>
       </div>
 <?php
@@ -152,7 +152,7 @@ $sqlview = "SELECT * FROM  event where staff_id='$_SESSION[staff_id]'";
 $qsqlview = mysqli_query($con,$sqlview);
 while($rsview = mysqli_fetch_array($qsqlview))
 {
-  if(date("d-m-Y",strtotime($rsview['event_date_time'])) > date('d-m-Y',strtotime('now')))
+  if(date("d-m-Y",($rsview['event_date_time'])) > date('d-m-Y'))
   {
     $flag=1;
     ?>

@@ -129,7 +129,7 @@ echo '<img src="imgbanner/' .$imge .'" >';
 					}
 					?>
 					<?php
-					if($rsviewevent['club_id'] != "")
+					if($rsviewevent['club_id'] != 0)
 					{
 					?>
 					<tr>
@@ -185,9 +185,6 @@ echo rtrim($cl, ", ");
 					</tr>
 					<tr>
 						<th>Participants Limit: </th><td>Maximum <?php echo $rsviewevent['participation_limit']; ?> </td>
-					</tr>
-					<tr>
-						<th>Club: </th><td><?php echo $rsviewevent['club']; ?> </td>
 					</tr>
 					<tr>
 						<th>Event Date & Time: </th><td> <?php echo date("d-m-Y h:i A",strtotime($rsviewevent['event_date_time'])) ?></td>
