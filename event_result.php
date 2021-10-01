@@ -24,7 +24,7 @@ if(isset($_POST['submit']))
 	{
 	$sql = $sql . ",event_documentry='$imgarr'";
 	}
-	$sql = $sql . " ,staff_id='$_POST[staff_id]' WHERE event_result_id='$rsevent_result[0]'";
+	$sql = $sql . " ,staff_id='$_SESSION[staff_id]' WHERE event_result_id='$rsevent_result[0]'";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	$sqlevent_result ="SELECT * FROM event_result_status WHERE event_id='$_GET[event_id]'";
@@ -104,21 +104,16 @@ if(isset($_GET['event_id']))
 			<div class="row">
 				  <div style="text-align: left;" class="col-md-6">
 					<label class="labelproperty">Reported by</label>
-					<span class="errormessage" id="id_staff_id"></span>
-					<select name="staff_id" id="staff_id" class="form-control" >
-						<option value="">Select Staff</option>
 						<?php
-						$sqlstaff = "SELECT * FROM staff WHERE staff_status='Active' AND staff_type!='Admin'";
+						$sqlstaff = "SELECT * FROM staff WHERE staff_status='Active'";
 						$qsqlstaff = mysqli_query($con,$sqlstaff);
 						while($rsstaff = mysqli_fetch_array($qsqlstaff))
 						{
-							if($rsstaff[0] == $rsedit['staff_id'])
+							if($rsstaff['staff_id'] == $_SESSION['staff_id'])
 							{
-							echo "<option value='$rsstaff[0]' selected>$rsstaff[staff_name]</option>";
-							}
-							else
-							{
-							echo "<option value='$rsstaff[0]'>$rsstaff[staff_name]</option>";
+								?>
+								<br><input type="text" name="staff_name" id="staff_name"  value="<?php echo $rsstaff['staff_name']; ?>" disabled />
+						<?php
 							}
 						}
 						?>

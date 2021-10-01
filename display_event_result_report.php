@@ -10,16 +10,17 @@ include("header.php");
     <div class="container">
       <div class="heading_container">
        <h3>
-          &nbsp; My Recent Participation Result
+          &nbsp; Event Results
         </h3>
       </div>
+      <hr>
 <?php
 $sqlview = "SELECT * FROM  event_participation LEFT JOIN event ON event_participation.event_id=event.event_id where event.event_date_time < '$dttim'";
 if(isset($_SESSION['student_id']))
 {
 $sqlview = $sqlview  . " AND student_id='$_SESSION[student_id]'";
 }
-$sqlview = $sqlview. " ORDER BY event_date_time";
+$sqlview = $sqlview. " ORDER BY event_date_time DESC";
 $qsqlview = mysqli_query($con,$sqlview);
 $flag=0;
 while($rsview = mysqli_fetch_array($qsqlview))
@@ -70,8 +71,18 @@ while($rsview = mysqli_fetch_array($qsqlview))
 		<div class="date-box">
 		<h3>
 		</h3>
-			<a href="team_event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info btn-lg">View Result</a><hr>
 		<?php
+		if($rsview['event_participation_type'] == 'Single')
+		{
+			?>
+			<a href="event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info btn-lg">View Result</a><hr>
+		<?php
+	}
+	else
+	{
+		?>
+			<a href="team_event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info btn-lg">View Result</a><hr>
+	}
 		if($rsevent_result_status['winning_position'] != 0)
 		{
 		?>

@@ -17,8 +17,12 @@ include("header.php");
       <?php
 		    $sqlview = "SELECT * FROM  event where event_date_time <= CURDATE()  ORDER BY event_id DESC";
 		    $qsqlview = mysqli_query($con,$sqlview);
+        $flag=0;
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {
+          if($rsview['staff_id'] == $_SESSION['staff_id'] || $rsstaffprofile['staff_type'] == "Admin")
+          {
+            $flag=1;
           ?>
       <div class="event_container">
         <div class="box">
@@ -62,6 +66,18 @@ else
         </div>
         <?php
       }
+    }
+  if($flag==0)
+  {
+  ?>
+  <div style="  font-family: Lucida Console, Courier New, monospace;">
+    <br><h3 style=" color : red">You are not added any events ...</h3>
+  <a href="addevent.php">Click here to add new event</a>
+      <br><br>
+  </div>
+  <?php
+  }
+    ?>
         ?>
     </div>
   </section>
