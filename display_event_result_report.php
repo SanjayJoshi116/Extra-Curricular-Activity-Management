@@ -82,6 +82,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
 	{
 		?>
 			<a href="team_event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info btn-lg">View Result</a><hr>
+	<?php
 	}
 		if($rsevent_result_status['winning_position'] != 0)
 		{

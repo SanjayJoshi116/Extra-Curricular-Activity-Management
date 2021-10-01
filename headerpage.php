@@ -118,6 +118,7 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="completed-event.php">Completed Events</a></li>
 				<li><a href="addevent.php">Add Event</a></li>
 				<li><a href="viewevent.php">View Events</a></li>
+				<li><a href="display_event_participant.php">View Participants</a></li>
 				<?php
 				if($rsstaffprofile['staff_type'] == "Admin")
 				{
@@ -142,8 +143,6 @@ if(isset($_SESSION['staff_id']))
 		<li><a href="javascript:void(0)">Report<span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
-				<li><a href="display_event_participant.php">View Participants</a></li>
-				<li><a href="viewstudent.php">Student Accounts</a></li>
 				<li><a href="viewpointstable.php">View Points table</a></li>
 				<li><a href="view-complaint.php">Complaint Report</a></li>
 			</ul>
@@ -162,12 +161,13 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="addclub.php">Add Club</a></li>
 				<li><a href="viewclub.php">View Club</a></li>
 				<li><a href="studentadd.php">Add Student</a></li>
+				<li><a href="viewstudent.php">Student Accounts</a></li>
 			</ul>
 		</li>
 				<?php
 				}
 				?>
-		<li><a href="javascript:void(0)">Staff Account<span class="arrow-down"></span></a>
+		<li><a href="javascript:void(0)"><?php echo $rsstaffprofile['staff_name']; ?><span class="arrow-down"></span></a>
 		<!-- drop menu -->
 			<ul class="dropdown">
 				<li><a href="dashboard.php">Dashboard</a></li>
@@ -204,7 +204,7 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="pointshistory.php">Points History</a></li>
 			</ul>
 		</li>
-		<li><a href="javascript:void(0)">My Account<span class="arrow-down"></span></a>
+		<li><a href="javascript:void(0)"><?php echo $rsstudentprofile['student_name']; ?><span class="arrow-down"></span></a>
 			<ul class="dropdown">
 				<li><a href="student-dashboard.php">My Dashboard</a></li>
 				<li><a href="view_student_profile.php">My Profile</a></li>

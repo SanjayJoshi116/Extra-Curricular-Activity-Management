@@ -72,7 +72,6 @@ if(isset($_GET['editid']))
 			  
 				<div>
 					<label class="labelproperty">Department</label>
-					<span class="errormessage" id="id_department_id"></span>
 					<select name="department_id" id="department_id" class="form-control" >
 					<option value="">--Select--</option>
 					<?php
@@ -163,11 +162,6 @@ function validateform()
 	{
 		$('#id_club').html("Club Name should not be empty..");
 		errmsg = "Yes";
-	}
-	if($('#department_id').val() == "")
-	{
-		$('#id_department_id').html("Kindly select the department..");
-		errmsg= "Yes";
 	}
 	if($('#club_details').val() == "")
 	{

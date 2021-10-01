@@ -181,7 +181,7 @@ echo rtrim($cl, ", ");
 						<th>Staff Incharge : </th><td><?php echo  $rsviewevent['staff_name']; ?> (<?php echo  $rsviewevent['staff_type']; ?>) </td>
 					</tr>
 					<tr>
-						<th>Last date for Participation: </th><td><?php echo $stop_date = date('d-m-Y', strtotime($rsviewevent['event_date_time'] . ' -2 day')); ?> </td>
+						<th style="color : red">Last date for Registration: </th><td style="color : red"><?php echo $stop_date = date('d-m-Y', strtotime($rsviewevent['event_date_time'] . ' -2 day')); ?> </td>
 					</tr>
 					<tr>
 						<th>Participants Limit: </th><td>Maximum <?php echo $rsviewevent['participation_limit']; ?> </td>
