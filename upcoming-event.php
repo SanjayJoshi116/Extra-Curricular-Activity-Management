@@ -156,7 +156,7 @@ ul.dropdown ul li a:hover{
         {
           $sqlview = $sqlview . " AND  event.event_participation_type='Team' ";
         }
-        $sqlview = $sqlview. " ORDER BY event_date_time DESC";
+        $sqlview = $sqlview. " ORDER BY event_date_time";
 		    $qsqlview = mysqli_query($con,$sqlview);
                   $flag=0;
 	    	while($rsview = mysqli_fetch_array($qsqlview))
