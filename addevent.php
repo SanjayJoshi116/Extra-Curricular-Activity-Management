@@ -30,8 +30,26 @@ if(isset($_POST['submit']))
 		echo mysqli_error($con);
 		if(mysqli_affected_rows($con) == 1)
 		{
+//####################################################
+//####################################################
+$subject="Event details modified by Staff";
+$sqlevent_participation = "SELECT * FROM event_participation LEFT JOIN event ON event_participation.event_id=event.event_id LEFT JOIN student ON student.student_id=event_participation.student_id where event_participation.event_id='$_GET[editid]'";
+$qsqlevent_participation = mysqli_query($con,$sqlevent_participation);
+while($rsevent_participation = mysqli_fetch_array($qsqlevent_participation))
+{
+	$strollno = $rsevent_participation['student_rollno'] . "@sdmcujire.in";
+	$participationemailids[] = array("name"=>$rsevent_participation['student_name'],"student_rollno"=>$strollno);
+}
+include("phpmailer.php");
+$protocol = 'http'.(!empty($_SERVER['HTTPS']) ? 's' : '');
+$root = $protocol.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+$link = $root . "/event_more_det.php?event_id=" . $_GET['editid'];
+$message = "Hello,<br> This event $_POST[event_title] has been modified by staff. Kindly check updates in the website.<br><br><a href='$link'></a><br><br>Thank you...";
+sendbulkmail($participationemailids,$subject,$message);
+//####################################################
+//####################################################
 			echo "<script>alert('Event record updated successfully...');</script>";
-			echo "<script>window.location='viewevent.php';</script>";
+			//echo "<script>window.location='viewevent.php';</script>";
 		}
 		//Update statement starts here
 	}
@@ -43,13 +61,12 @@ if(isset($_POST['submit']))
 		$insid = mysqli_insert_id($con);
 		if(mysqli_affected_rows($con)==1)
 		{
-	//#################################################################
-	$sqladminstaff = "SELECT * FROM staff where staff_type ='Admin'";
-	$qsqladminstaff = mysqli_query($con,$sqladminstaff);
-	echo mysqli_error($con);
-	$rsadminstaff = mysqli_fetch_array($qsqladminstaff);
-	//#################################################################
-			
+			//#################################################################
+			$sqladminstaff = "SELECT * FROM staff where staff_type ='Admin'";
+			$qsqladminstaff = mysqli_query($con,$sqladminstaff);
+			echo mysqli_error($con);
+			$rsadminstaff = mysqli_fetch_array($qsqladminstaff);
+			//#################################################################
 			$_SESSION['sessioncode'] = rand(111111,999999);
 			include("phpmailer.php");
 			$protocol = 'http'.(!empty($_SERVER['HTTPS']) ? 's' : '');
@@ -89,6 +106,11 @@ if(isset($_GET['editid']))
 	$st_class = unserialize($rsedit['st_class']);
 }
 //Step2: for edit statement ends here
+function br2nl($string)
+{
+    $breaks = array("<br />","<br>","<br/>");  
+    return str_ireplace($breaks, "", $string); 
+}
 ?>
 </div>
 <style>
@@ -196,13 +218,13 @@ if(isset($_GET['editid']))
   <div class="col-md-6">
 	<label class="labelproperty">Event Description</label>
 	<span class="errormessage" id="id_event_description"></span>
-	<textarea name="event_description" id="event_description" class="form-control" placeholder="Enter Event Description" ><?php echo $rsedit['event_description']; ?></textarea>
+	<textarea name="event_description" id="event_description" class="form-control" placeholder="Enter Event Description" ><?php echo br2nl($rsedit['event_description']); ?></textarea>
   </div>
   
   <div class="col-md-6">
 	<label class="labelproperty">Event Rules</label>
 	<span class="errormessage" id="id_event_rules"></span>
-	<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules" ><?php echo $rsedit['event_rules']; ?></textarea>
+	<textarea name="event_rules" id="event_rules" class="form-control" placeholder="Enter Event Rules" ><?php echo br2nl($rsedit['event_rules']); ?></textarea>
   </div>
 			  
 
