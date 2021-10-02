@@ -44,100 +44,7 @@ if($rsstaffprofile['staff_type'] == "Admin")
     if(isset($_SESSION['staff_id']))
     {
    ?>
- 
-  <!-- course section -->
-
-  <section class="course_section layout_padding-bottom">
-    <div class="side_img">
-      <img src="images/side-img.png" alt="" />
-    </div>
-    <div class="container">
-   
-      <div class="course_container">
-        <div class="course_content">
-          <div class="box">
-            <img src="images/complaint.cms" style="width: 353px;height: 322px;" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-        $sqlcount = "SELECT * FROM complaint_report";
-        $qsqlcount = mysqli_query($con,$sqlcount);
-        echo mysqli_num_rows($qsqlcount);
-        ?>
-        <br />
-              Complaint Reports
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/course.jpg" alt="" style="height: 322px;" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5  style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-      <?php
-        $sqlcount = "SELECT * FROM course";
-        $qsqlcount = mysqli_query($con,$sqlcount);
-        echo mysqli_num_rows($qsqlcount);
-        ?>
-              <br />
-              Courses
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/application.jpg" style="width: 353px;height: 322px;" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-        $sqlcount = "SELECT * FROM event_participation";
-        $qsqlcount = mysqli_query($con,$sqlcount);
-        echo mysqli_num_rows($qsqlcount);
-        ?>
-        <br />
-              Event Applications
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/eventresult.jpg" style="width: 353px;height: 322px;" alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-        $sqlcount = "SELECT * FROM event_result";
-        $qsqlcount = mysqli_query($con,$sqlcount);
-        echo mysqli_num_rows($qsqlcount);
-        ?>
-        <br />
-        Event Results Uploaded
-            </h5>
-          </div>
-          <div class="box">
-            <img src="images/sportsandgames.jpg" style="width: 353px;height: 322px;"  alt="" />
-            <a href="" class="">
-              <img src="images/link.png" alt="" />
-            </a>
-            <h5 style="background-color: black;opacity: 0.6;text-align: center; padding: 10px;width: 75%;">
-              <?php
-        $sqlcount = "SELECT * FROM event_type";
-        $qsqlcount = mysqli_query($con,$sqlcount);
-        echo mysqli_num_rows($qsqlcount);
-        ?>
-        <br />
-        Event Types
-            </h5>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- end course section -->
-   <!-- event section -->
+    <!-- event section -->
     <hr>
   <section class="event_section">
     <div class="container">
@@ -211,10 +118,90 @@ if($flag==0)
 ?>
 
   <!-- end event section -->
+  <br><br>
+  <!-- dashboard body starts here -->
+  <!--Section: Block Content-->
+<section>
+
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-lg-4 col-md-12 mb-4">
+
+      <!-- Card -->
+      <div class="card" id="shadow">
+
+        <div class="card-body">
+
+          <div class="heading_container"><p class="text-uppercase small mb-2"><strong><h3>Add Events Online</h3></strong></p></div>
+          <h5 class="font-weight-bold mb-0" style="font-family :monospace">
+           Now you can conduct all events through online...<br><br>You can easily organize events through online and students from the college can join to your event ...
+          </h5><br>
+          <a href="addevent.php"><button class="button-3" role="button"><h1 >Add Events</h1></button></a>
+        </div>
+      </div>
+     </div>
+      <!-- Card -->
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-4 col-md-6 mb-4">
+
+      
+      <!-- Card -->
+      <div class="card" id="shadow">
+
+        <div class="card-body">
+
+          <div class="heading_container"><p class="text-uppercase small mb-2"><strong><h3>Add Result Online</h3></strong></p></div>
+          <h5 class="font-weight-bold mb-0" style="font-family :monospace">
+           Now you can publish event results online...<br><br>You can easily publish the result of the event you have added and students from the college can view the result of your event ...
+          </h5><br>
+          <a href="display_eventforresult.php"><button class="button-3" role="button"><h1 >Add Result</h1></button></a>
+        </div>
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-4 col-md-6 mb-4">
+
+     <!-- Card -->
+      <div class="card" id="shadow">
+
+        <div class="card-body">
+
+          <div class="heading_container"><p class="text-uppercase small mb-2"><strong><h3>View Complaints</h3></strong></p></div>
+          <h5 class="font-weight-bold mb-0" style="font-family :monospace">
+           Now you can view complaints and give reply...<br><br>You can view compaints and reply to the student who sent the complaints and students from the college can add the complaint ...
+          </h5><br>
+          <a href="view-complaint.php"><button class="button-3" role="button"><h1 >Complaint</h1></button></a>
+        </div>
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!--Grid row-->
+
+</section>
+<!--Section: Block Content-->
+  <!-- Ends here -->
+  <br><br><br>
 <?php
 include("footer.php");
 ?>
 <style>
+#shadow {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px #888888;
+}
   #countingbox
 {
   width: 150px;
@@ -235,8 +222,60 @@ include("footer.php");
 }
 .linker
 {
-  font-size : 20px;
+  font-size : 10px;
   font-color: black;
+}
+.button-3 {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 5px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-weight: 600;
+  line-height: 20px;
+  padding: inherit;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  width:50%;
+    margin-left:25%;
+    margin-right:75%;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
 </style>
 <script>
