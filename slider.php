@@ -33,7 +33,7 @@
           <p>Taking part in these out-of-the-classroom activities helps students to understand the importance of critical thinking skills, time management, etc</p>
         </div>
       </div>
-      <div class="carousel-item" style="background-image: url('imgslider/slider1.png')">
+      <div class="carousel-item" style="background-image: url('imgslider/slider9.jpg')">
         <div class="carousel-caption">
           <h5>Extra Curricular Activity Management</h5>
           <p>College has enough opportunities and extracurricular activities to fill every hour of your day</p>
