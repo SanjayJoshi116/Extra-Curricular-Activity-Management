@@ -16,7 +16,7 @@ include("header.php");
                 About Student Points
               </h3>
                <h2> What is Student Points?</h2>
-                 Student Points is a unique reward program by SDM COllege, where students get rewarded for winning and participating in different events. Student points is distributed both for individual and team events. However, the best student title will be awarded to the student according to the student points he or she collected.
+                 Student Points is a unique reward program by SDM College, where students get rewarded for winning and participating in different events. Student points is distributed both for individual and team events. However, the best student title will be awarded to the student according to the student points he or she collected.
 <br>
 <br>
 <h2> How to earn Student Points?</h2>

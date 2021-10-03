@@ -231,7 +231,16 @@ if(!isset($_SESSION['staff_id']))
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
+			  <?php 
+  if(isset($_SESSION['staff_id']))
+  {
+	  if(isset($_SESSION['student_id']))
+	  {
+  ?>
 			      <a href="event_more_det.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info btn-lg">View More</a>
+	  <?php }
+  }
+  ?>
             (<?php echo $rsview['event_participation_type'];?> Event)
           </div>
         </div>
@@ -241,6 +250,7 @@ if(!isset($_SESSION['staff_id']))
         ?>
 	</div>
   </section>
+
   <!-- end event section -->
   
 
