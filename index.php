@@ -137,7 +137,12 @@ include("slider.php");
   <!-- end course section -->
 
   <!-- login section -->
-
+<?php 
+if(!isset($_SESSION['staff_id']))
+{
+	if(!isset($_SESSION['student_id']))
+	{
+?>
   <section class="login_section layout_padding">
     <div class="container">
       <div class="row">
@@ -174,6 +179,10 @@ include("slider.php");
       </div>
     </div>
   </section>
+  <?php
+}
+}
+?>
 
   <!-- end login section -->
 
