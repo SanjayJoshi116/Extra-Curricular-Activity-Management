@@ -106,6 +106,18 @@ ul.dropdown ul li a:hover{
   border-top: 5px solid #fff;
   border-right: 5px solid transparent;
 }
+.boxd {
+  background: white;
+}
+
+.boxd:hover {
+  background-color: #febfb9;
+  cursor: pointer;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+}
 </style>
 <table class="table table-bordered">
   <tr>
@@ -164,6 +176,7 @@ ul.dropdown ul li a:hover{
           
           $flag=1;
           ?>
+    <div class="boxd">
       <div class="event_container">
         <div class="box">
           <div class="img-box">
@@ -191,6 +204,7 @@ ul.dropdown ul li a:hover{
           </div>
         </div>
     </div>
+  </div>
         <?php
       }
       if($flag==0)

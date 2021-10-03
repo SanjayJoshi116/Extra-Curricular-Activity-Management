@@ -177,7 +177,12 @@ function br2nl($string)
 <div class="col-md-6">
 	<label class="labelproperty">Event Type</label>
 	<span class="errormessage" id="id_event_participation_type"></span>
-	<select name="event_participation_type" id="event_participation_type" class="form-control" onchange="fun_check_event_type(this.value)" >
+	<select name="event_participation_type" id="event_participation_type" class="form-control" onchange="fun_check_event_type(this.value)" 
+	<?php
+	if(isset($_GET['editid']))
+	{
+	?>
+	disabled <?php } ?>>
 	<option value="">Select Type</option>
 	<?php
 	$arr = array("Single","Team");
@@ -199,7 +204,12 @@ function br2nl($string)
 <div class="col-md-6">
 	<label class="labelproperty">No. of Members in Team</label>
 	<span class="errormessage" id="id_no_of_participants"></span>
-	<input type="number" name="no_of_participants" id="no_of_participants" value="<?php echo $rsedit['no_of_participants']; ?>" > 
+	<input type="number" name="no_of_participants" id="no_of_participants" value="<?php echo $rsedit['no_of_participants']; ?>" 
+	<?php
+	if(isset($_GET['editid']))
+	{
+	?>
+	disabled <?php } ?>> 
 </div>
 
   

@@ -20,7 +20,7 @@ if(isset($_GET['unenroll_id']))
     <div class="container">
       <div class="heading_container">
        <h3>
-          &nbsp; Event Results
+          &nbsp; My Upcoming Events
         </h3>
       </div>
       <hr>
@@ -41,6 +41,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
 	$qsqlevent_result_status = mysqli_query($con,$sqlevent_result_status);
 	$rsevent_result_status = mysqli_fetch_array($qsqlevent_result_status);
 ?>
+<div class="boxd">
 <div class="event_container">
 	<div class="box">
 		<div class="img-box">
@@ -68,6 +69,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
 		</div>
 	</div>
 </div>
+</div>
 <?php
 }
 if($flag==0)
@@ -84,6 +86,20 @@ if($flag==0)
     </div>
   </section>
 
+<style>
+.boxd {
+  background: white;
+}
+
+.boxd:hover {
+  background-color: #febfb9;
+  cursor: pointer;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+}
+</style>
   <!-- end event section -->
 <?php
 include("footer.php");

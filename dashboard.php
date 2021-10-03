@@ -67,6 +67,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
           {
     $flag=1;
     ?>
+<div class="boxd">
 <div class="event_container">
   <div class="box">
     <div class="img-box">
@@ -93,6 +94,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
             (<?php echo $rsview['event_participation_type'];?> Event)
     </div>
   </div>
+</div>
 </div>
 <?php
 }
@@ -122,7 +124,6 @@ if($flag==0)
   <!-- dashboard body starts here -->
   <!--Section: Block Content-->
 <section>
-
   <!--Grid row-->
   <div class="row">
 
@@ -131,6 +132,7 @@ if($flag==0)
 
       <!-- Card -->
       <div class="card" id="shadow">
+        <div class="boxc">
 
         <div class="card-body">
 
@@ -141,6 +143,7 @@ if($flag==0)
           <a href="addevent.php"><button class="button-3" role="button"><h1 >Add Events</h1></button></a>
         </div>
       </div>
+    </div>
      </div>
       <!-- Card -->
     <!--Grid column-->
@@ -151,6 +154,7 @@ if($flag==0)
       
       <!-- Card -->
       <div class="card" id="shadow">
+        <div class="boxc">
 
         <div class="card-body">
 
@@ -160,6 +164,7 @@ if($flag==0)
           </h5><br>
           <a href="display_eventforresult.php"><button class="button-3" role="button"><h1 >Add Result</h1></button></a>
         </div>
+      </div>
       </div>
       <!-- Card -->
 
@@ -171,7 +176,7 @@ if($flag==0)
 
      <!-- Card -->
       <div class="card" id="shadow">
-
+          <div class="boxc">
         <div class="card-body">
 
           <div class="heading_container"><p class="text-uppercase small mb-2"><strong><h3>View Complaints</h3></strong></p></div>
@@ -181,6 +186,7 @@ if($flag==0)
           <a href="view-complaint.php"><button class="button-3" role="button"><h1 >Complaint</h1></button></a>
         </div>
       </div>
+      </div>
       <!-- Card -->
 
     </div>
@@ -188,7 +194,6 @@ if($flag==0)
 
   </div>
   <!--Grid row-->
-
 </section>
 <!--Section: Block Content-->
   <!-- Ends here -->
@@ -197,6 +202,30 @@ if($flag==0)
 include("footer.php");
 ?>
 <style>
+.boxc {
+  background: #00dcff;
+}
+
+.boxc:hover {
+  background-color: #ff002f73;
+  cursor: pointer;
+  -webkit-transition: background-color 1s ease-out;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
+}
+.boxd {
+  background: white;
+}
+
+.boxd:hover {
+  background-color: #febfb9;
+  cursor: pointer;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+}
 #shadow {
   border: 1px solid;
   padding: 10px;
