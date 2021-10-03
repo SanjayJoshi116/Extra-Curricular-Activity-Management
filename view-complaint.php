@@ -30,6 +30,7 @@ include("header.php");
 <center><a class="btn btn-info"  href="complaint.php">New Complaint</a></center><hr>
 <?php
 	}
+  $flag=0;
 ?>
       <div class="event_container">
         <div class="">
@@ -44,6 +45,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
   {
     if(($rsview['student_id'] == $_SESSION['student_id']) ||  $rsview['staff_id'] == $_SESSION['staff_id'] || $rsstaffprofile['staff_type'] == "Admin")
     {
+      $flag=1;
 ?>
     <!-- Page Content -->
     <div class="container">
@@ -101,10 +103,19 @@ while($rsview = mysqli_fetch_array($qsqlview))
 		
       </div>
     </div>
+ <?php
+      if($flag==0)
+      {
+        ?>
+        <hr><br>
+        <div >
+         <center><h1 style=" color : red ;font-family :monospace">You dont have any complaints to views...</h1></center>
+       </div><hr>
+        <?php 
+}?>
   </section>
-
   <!-- end event section -->
-<?php
+  <?php 
 include("footer.php");
 ?>
 <script>

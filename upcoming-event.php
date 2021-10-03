@@ -156,7 +156,7 @@ ul.dropdown ul li a:hover{
         {
           $sqlview = $sqlview . " AND  event.event_participation_type='Team' ";
         }
-        $sqlview = $sqlview. " ORDER BY event_date_time DESC";
+        $sqlview = $sqlview. " ORDER BY event_date_time";
 		    $qsqlview = mysqli_query($con,$sqlview);
                   $flag=0;
 	    	while($rsview = mysqli_fetch_array($qsqlview))
@@ -198,7 +198,7 @@ ul.dropdown ul li a:hover{
         ?>
         <hr><br>
         <div >
-         <h1 style=" color : red">Currently there is no upcomming events...<br> Events will be added soon...</h1>
+         <h1 style=" color : red ;font-family :monospace">Currently there is no upcoming events...<br> Events will be added soon...</h1>
        </div><hr>
       <?php
       } 

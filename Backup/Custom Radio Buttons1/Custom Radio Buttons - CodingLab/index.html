@@ -1,0 +1,13 @@
+<link href="radiostyle.css" rel="stylesheet" type="text/css">
+<input type="radio" name="radio" id="radio" value="first" onchange="loadrec()"/> 1 <br/>
+<input type="radio" name="radio" id="radio" value="second" onchange="loadrec()"/> 2 <br/>
+</form>
+
+
+
+<script>
+function loadrec()
+{
+alert($('input:radio[name=radio]:checked').val());
+}
+</script>
