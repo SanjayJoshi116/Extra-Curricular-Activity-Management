@@ -1,11 +1,8 @@
 <?php
 include("header.php");
-if(!isset($_SESSION['staff_id']))
+if(!isset($_SESSION['student_id']) && !isset($_SESSION['staff_id']))
 {
-	if(!isset($_SESSION['student_id']))
-	{
-		echo "<script>window.location='login.php';</script>";
-	}
+	echo "<script>window.location='login.php';</script>";
 }
 if(isset($_GET['st']))
 {

@@ -1,5 +1,9 @@
 <?php
 include("header.php");
+if(!isset($_SESSION['student_id']) && !isset($_SESSION['staff_id']))
+{
+	echo "<script>window.location='login.php';</script>";
+}
 if(isset($_POST['submit']))
 {
 	$sqlevent_result ="SELECT * FROM event_result WHERE event_id='$_GET[event_id]'";

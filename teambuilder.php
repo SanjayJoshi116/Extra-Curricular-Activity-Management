@@ -1,5 +1,9 @@
 <?php
 include("header.php");
+if(!isset($_SESSION['student_id']))
+{
+	echo "<script>window.location='login.php';</script>";
+}
 if(isset($_POST['submit']))
 {
 	$arr_student_rollno = $_POST['student_rollno'];

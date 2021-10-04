@@ -1,5 +1,9 @@
 <?php
 include("header.php");
+if(!isset($_SESSION['student_id']))
+{
+	echo "<script>window.location='login.php';</script>";
+}
 //Approve or Suspend course ends here
 $sqlview = "SELECT * FROM  event_participation LEFT JOIN event ON event_participation.event_id=event.event_id LEFT JOIN student ON student.student_id=event_participation.student_id  where event.event_id='$_GET[event_id]' AND event_participation.student_id='$_SESSION[student_id]'";
 $sqlview = $sqlview. " ORDER BY event_date_time DESC limit 1";

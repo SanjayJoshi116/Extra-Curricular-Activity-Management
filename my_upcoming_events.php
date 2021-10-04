@@ -1,5 +1,9 @@
 <?php
 include("header.php");
+if(!isset($_SESSION['student_id']))
+{
+	echo "<script>window.location='login.php';</script>";
+}
 if(isset($_GET['unenroll_id']))
 {
 	$sqlevent_participation = "DELETE FROM event_participation WHERE event_participation_id='" . $_GET['unenroll_id'] ."'";
