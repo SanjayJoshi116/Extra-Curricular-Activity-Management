@@ -1,5 +1,9 @@
 <?php
 include("header.php");
+if(!isset($_SESSION['staff_id']))
+{
+	echo "<script>window.location='login.php';</script>";
+}
 ?>
 </div>
   <!-- login section -->
@@ -109,7 +113,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
         ?>
         <hr><br>
         <div >
-         <center><h1 style=" color : red ;font-family :monospace">You dont have any complaints to views...</h1></center>
+         <center><h1 style=" color : red ;font-family :monospace">You don't have any complaints to view...</h1></center>
        </div><hr>
         <?php 
 }?>
