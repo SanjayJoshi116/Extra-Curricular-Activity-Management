@@ -1,5 +1,9 @@
 <?php
 include("header.php");
+if(!isset($_SESSION['staff_id']))
+{
+	echo "<script>window.location='login.php';</script>";
+}
 if(isset($_GET['delid']))
 {
 	$sqldel ="DELETE FROM course where course_id='$_GET[delid]'";
