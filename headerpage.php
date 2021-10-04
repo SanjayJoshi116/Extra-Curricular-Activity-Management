@@ -162,6 +162,7 @@ if(isset($_SESSION['staff_id']))
 				<li><a href="viewclub.php">View Club</a></li>
 				<li><a href="studentadd.php">Add Student</a></li>
 				<li><a href="viewstudent.php">Student Accounts</a></li>
+				<li><a href="student_promotion.php">Promote Students</a></li>
 			</ul>
 		</li>
 				<?php
