@@ -4,9 +4,9 @@ if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
 }
-if(isset($_POST['submit1']))
+if(isset($_GET['submit1']))
 {
-	$sql = "UPDATE student SET st_class='Passed Out' AND student_status='Inactive'";
+	$sql = "UPDATE student SET st_class='Passed Out' AND student_status='Inactive' WHERE st_class='Third Year'";
 	$qsql = mysqli_query($con,$sql);
 	echo mysqli_error($con);
 	if(mysqli_affected_rows($con) == 1)
@@ -15,7 +15,7 @@ if(isset($_POST['submit1']))
 		echo "<script>window.location='student_promotion.php';</script>";
 	}
 }
-if(isset($_POST['submit2']))
+if(isset($_GET['submit2']))
 {
 	$sqll = "UPDATE student SET st_class='Third Year' WHERE st_class='Second Year'";
 	$qsqll = mysqli_query($con,$sqll);
@@ -26,7 +26,7 @@ if(isset($_POST['submit2']))
 		echo "<script>window.location='student_promotion.php';</script>";
 	}
 }
-if(isset($_POST['submit3']))
+if(isset($_GET['submit3']))
 {
 	$sel = "UPDATE student SET st_class='Second Year' WHERE st_class='First Year'";
 	$qsel = mysqli_query($con,$sel);
@@ -105,7 +105,7 @@ echo "<button type='button' class='btn btn-warning' data-toggle='modal' data-tar
 </table>
 <!-- ####################VIEW TABLE ENDS HERE ######### ---->
         </div>
-	   <button type="submit" name="submit1" class="btn btn-success">Promote</button>
+	   <button type="submit" name="submit1" id="submit1" class="btn btn-success">Promote</button>
       </div>
     </div>
 	</form>
@@ -176,7 +176,7 @@ echo "<button type='button' class='btn btn-warning' data-toggle='modal' data-tar
 </table>
 <!-- ####################VIEW TABLE ENDS HERE ######### ---->
         </div>
-		<button type="submit" name="submit2" class="btn btn-success" onclick>Promote</button>
+		<button type="submit" name="submit2" id="submit2" class="btn btn-success" onclick>Promote</button>
       </div>
     </div>
 	</form>
@@ -246,7 +246,7 @@ echo "<button type='button' class='btn btn-warning' data-toggle='modal' data-tar
 </table>
 <!-- ####################VIEW TABLE ENDS HERE ######### ---->
         </div>
-		<button type="submit" name="submit3" class="btn btn-success">Promote</button>
+		<button type="submit" name="submit3" id="submit3" class="btn btn-success">Promote</button>
       </div>
     </div>
 	</form>
