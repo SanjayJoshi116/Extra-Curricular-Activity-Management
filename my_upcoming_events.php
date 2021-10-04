@@ -20,7 +20,7 @@ if(isset($_GET['unenroll_id']))
     <div class="container">
       <div class="heading_container">
        <h3>
-          &nbsp; My Upcoming Events
+          &nbsp; My Events
         </h3>
       </div>
       <hr>
@@ -65,7 +65,7 @@ while($rsview = mysqli_fetch_array($qsqlview))
 		<div class="date-box">
 		<h3>
 		</h3>
-			<a href="my_upcoming_events.php?unenroll_id=<?php echo $rsview[0]; ?>" class="btn btn-primary btn-lg" onclick="return fununenroll()">Unenroll</a>
+			<a href="my_upcoming_events.php?unenroll_id=<?php echo $rsview[0]; ?>" class="btn btn-danger btn-lg" onclick="return fununenroll()">UnEnroll</a>
 		</div>
 	</div>
 </div>

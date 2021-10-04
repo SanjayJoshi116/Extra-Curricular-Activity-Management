@@ -190,7 +190,6 @@ if(isset($_POST['btnsubmit']))
 				</div>
 				<div class="col-md-6">
 					<label class="labelproperty" id="id_student_rollno">Upload Image</label>
-					<span class="errormessage" id="id_student_image"></span>
 					<input type="file" name="student_image" id="student_image" placeholder="Upload Image" class="form-control"/>
 				</div>
             </div>
@@ -293,11 +292,6 @@ function validateform()
 	if($('#extension_activities').val() == "")
 	{
 		$('#id_extension_activities').html("Kindly select extension activities ...");
-		errmsg = "Yes";
-	}
-	if($('#student_image').val() == "")
-	{
-		$('#id_student_image').html("Student Image should not be empty..");
 		errmsg = "Yes";
 	}
 	if(errmsg == "Yes")

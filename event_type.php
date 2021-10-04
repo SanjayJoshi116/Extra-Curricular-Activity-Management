@@ -25,7 +25,7 @@ if(isset($_POST['submit']))
 		if(mysqli_affected_rows($con)==1)
 		{
 			echo "<script>alert('Event Type record inserted successfully...');</script>";
-			echo "<script>window.location='event_type.php';</script>";
+			echo "<script>window.location='view_event_type.php';</script>";
 		}
 	}
 }

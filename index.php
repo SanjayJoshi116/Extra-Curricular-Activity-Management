@@ -137,7 +137,12 @@ include("slider.php");
   <!-- end course section -->
 
   <!-- login section -->
-
+<?php 
+if(!isset($_SESSION['staff_id']))
+{
+	if(!isset($_SESSION['student_id']))
+	{
+?>
   <section class="login_section layout_padding">
     <div class="container">
       <div class="row">
@@ -174,6 +179,10 @@ include("slider.php");
       </div>
     </div>
   </section>
+  <?php
+}
+}
+?>
 
   <!-- end login section -->
 
@@ -222,7 +231,16 @@ include("slider.php");
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
+			  <?php 
+  if(isset($_SESSION['staff_id']))
+  {
+	  if(isset($_SESSION['student_id']))
+	  {
+  ?>
 			      <a href="event_more_det.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info btn-lg">View More</a>
+	  <?php }
+  }
+  ?>
             (<?php echo $rsview['event_participation_type'];?> Event)
           </div>
         </div>
@@ -232,6 +250,7 @@ include("slider.php");
         ?>
 	</div>
   </section>
+
   <!-- end event section -->
   
 

@@ -78,7 +78,6 @@ else
   <?php
   }
     ?>
-        ?>
     </div>
   </section>
 

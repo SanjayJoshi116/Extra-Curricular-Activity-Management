@@ -49,7 +49,7 @@ sendbulkmail($participationemailids,$subject,$message);
 //####################################################
 //####################################################
 			echo "<script>alert('Event record updated successfully...');</script>";
-			//echo "<script>window.location='viewevent.php';</script>";
+			echo "<script>window.location='viewevent.php';</script>";
 		}
 		//Update statement starts here
 	}
@@ -86,6 +86,7 @@ sendbulkmail($participationemailids,$subject,$message);
 			if($rsstaffprofile['staff_type'] == "Admin")
 			{
 				echo "<script>alert('Event published successfully...');</script>";
+				echo "<script>window.location='upcoming-event.php';</script>";
 			}
 			else
 			{
