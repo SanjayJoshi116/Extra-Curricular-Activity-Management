@@ -1,9 +1,9 @@
 <?php
 include "header.php";
-if(!isset($_SESSION['staff_id']))
+/*if(!isset($_SESSION['staff_id']))
 {
 	echo "<script>window.location='login.php';</script>";
-}
+}*/
 if(isset($_POST['submit']))
 {	
 	if(isset($_GET['editid']))
@@ -72,7 +72,7 @@ if(isset($_GET['editid']))
 			  
 				<div>
 					<label class="labelproperty">Department</label>
-					<select name="department_id" id="department_id" class="form-control" >
+					<select name="department_id" id="department_id" class="form-control" onchange="load_coordinator(this.value)" >
 					<option value="">--Select--</option>
 					<?php
 					$sqldepartment = "SELECT * FROM department WHERE department_status='Active'";
@@ -80,28 +80,20 @@ if(isset($_GET['editid']))
 					echo mysqli_error($con);
 					while($rsdepartment = mysqli_fetch_array($qsqldepartment))
 					{
+						if($rsdepartment['department_id'] == $rsedit['department_id'])
+						{
+						echo "<option value='$rsdepartment[department_id]' selected>$rsdepartment[department]</option>";
+						}
+						else
+						{
 						echo "<option value='$rsdepartment[department_id]'>$rsdepartment[department]</option>";
+						}
 					}
 					?>
 					</select>
 				</div>
 				
-				<div>
-					<label class="labelproperty">Coordinator</label>
-					<span class="errormessage" id="id_staff_id"></span>
-					<select name="staff_id" id="staff_id" class="form-control" >
-					<option value="">--Select Coordinator--</option>
-					<?php
-					$sqlstaff = "SELECT * FROM staff WHERE staff_status='Active'";
-					$qsqlstaff = mysqli_query($con,$sqlstaff);
-					echo mysqli_error($con);
-					while($rsstaff = mysqli_fetch_array($qsqlstaff))
-					{
-						echo "<option value='$rsstaff[staff_id]'>$rsstaff[staff_name] ($rsstaff[staff_type])</option>";
-					}
-					?>
-					</select>
-				</div>
+				<div id="divclub"><?php include("js_loadcoordinator.php"); ?></div>
 				
               <div>
                 <label class="labelproperty">Description</label>
@@ -181,5 +173,17 @@ function validateform()
 	{
 		return true;
 	}
+}
+</script>
+<script>
+function load_coordinator(department_id)
+{
+	$.post("js_loadcoordinator.php",
+	{
+		department_id: department_id
+	},
+	function(data){
+		$("#divclub").html(data);
+	});
 }
 </script>
