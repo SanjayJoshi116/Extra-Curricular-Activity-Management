@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2021 at 12:27 PM
+-- Generation Time: Oct 05, 2021 at 05:37 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -41,7 +41,7 @@ CREATE TABLE `club` (
 --
 
 INSERT INTO `club` (`club_id`, `department_id`, `club`, `club_details`, `coordinator`, `club_status`) VALUES
-(86, 1, 'IT CLUB', 'this club comes under Computer', 0, 'Active');
+(86, 1, 'IT CLUB', 'this club comes under Computer', 13, 'Active');
 
 -- --------------------------------------------------------
 
@@ -66,12 +66,9 @@ CREATE TABLE `complaint_report` (
 --
 
 INSERT INTO `complaint_report` (`complaint_report_id`, `student_id`, `staff_id`, `event_id`, `reply_complaint_report_id`, `complaint_date_tim`, `complaint_detail`, `complain_doc`, `complaint_status`) VALUES
-(1, 2, 0, 6, 0, '2021-09-30 13:18:37', 'Error in displaying result', '1662593132', 'Closed'),
-(4, 0, 14, 0, 1, '2021-09-30 14:52:29', 'will be sort down soon', '648634319', 'Processing'),
-(5, 0, 14, 0, 1, '2021-09-30 15:07:47', '', '460633998', 'Closed'),
-(6, 0, 14, 0, 1, '2021-09-30 15:16:00', '', '1592026786', 'Closed'),
-(7, 5, 0, 6, 0, '2021-09-30 15:53:31', 'points are not distributed properly', '1897345846', 'Processing'),
-(8, 0, 11, 0, 7, '2021-09-30 15:56:25', 'will contact you soon', '171045819', 'Processing');
+(12, 2, 0, 16, 0, '2021-10-05 08:06:31', 'Result is not announcing', '396263481', 'Processing'),
+(13, 0, 16, 0, 12, '2021-10-05 08:07:42', 'should check', '934598121', 'Processing'),
+(14, 4, 0, 16, 0, '2021-10-05 08:09:03', 'sdvsxzcvds', '277794705', 'New');
 
 -- --------------------------------------------------------
 
@@ -191,12 +188,7 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`event_id`, `event_type_id`, `event_participation_type`, `no_of_participants`, `event_title`, `event_description`, `event_rules`, `event_banner`, `department_id`, `club_id`, `course_id`, `st_class`, `event_date_time`, `event_venue`, `staff_id`, `participation_limit`, `event_status`) VALUES
-(1, 1, 'Single', 1, 'Dancing Competition', 'In this event students can participate in dancing competitions where they have to perform their classic dancing skills. ', '*Only Classic dance has to be performed<br />\r\n*Competitors are not allowed to play any other musics than classic<br />\r\n*Music should be submitted before starting the events<br />\r\n*Fire, knife or anything that is harmful is prohibuted', '1389879318Danceposter.jpg', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-13 14:30:00', 'AV Room', 14, 20, 'Active'),
-(2, 2, 'Single', 1, 'Coding Competition', 'This competition is about  programming knowledge in C and C++. Students who are interested in programming can participate.', '*Programming languages is used to this competition are C and C++.<br />\r\n*Students are not allowed to bring any books, sheets etc. <br />\r\n*Covid rules should be followed compulsory.', '525519386blue-programming-competition-custom-template-design-01efe9889793f251eab8080aa652010e.jpg', 1, 86, 'a:1:{i:0;s:1:\"0\";}', 'a:2:{i:0;s:11:\"Second Year\";i:1;s:10:\"Third Year\";}', '2021-09-20 15:30:00', 'Computer Lab, 2nd Floor.', 13, 20, 'Active'),
-(3, 3, 'Single', 1, 'Music Competition', 'This is a classic music competition . Interested students can participate.', '*Musical instruments are not allowed<br />\r\n*NO BGM<br />\r\n*Maximum 5 min are allowed to each participants', '360915919music.jfif', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-09-30 10:30:00', 'AV Room, ground floor', 14, 20, 'Active'),
-(4, 3, 'Team', 6, 'Music Competition', 'Interested students can participate to this group music competition', '*NO background music are allowed<br />\r\n*Students should wear uniform<br />\r\n*Participants must report before the event is going live', '778880590IMG-20210329-WA00001617137912.jpg', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-10-02 12:30:00', 'AV Room', 14, 20, 'Active'),
-(5, 3, 'Team', 6, 'Music Competition', 'Interested participants can join to this group event', '*No Background music is allowed<br />\r\n*Every participants must wear uniform<br />\r\n*Participants must report before the event is going live', '1753069612IMG-20210329-WA00001617137912.jpg', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-10-02 12:30:00', 'AV Room', 14, 20, 'Inactive'),
-(6, 5, 'Single', 1, 'Drawing Competition', 'Students who are interested in drawing and art can participate', '*Participates must bring their drawing tools with them<br />\r\n*Only drawing paper will be provided <br />\r\n*Every participants must wear college ID Card', '841074848cecf6ed2cf25f2a6d0f0ec920225ec58.jpg', 3, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-10-20 12:45:00', 'Classroom 1.25', 14, 25, 'Active');
+(14, 5, 'Single', 1, 'drawing competition 2021', 'This is a drawing competion.', '*drawing paper will be given by the college.', '1191531029cecf6ed2cf25f2a6d0f0ec920225ec58.jpg', 2, 0, 'a:1:{i:0;s:1:\"0\";}', 'a:1:{i:0;s:1:\"0\";}', '2021-10-12 11:00:00', 'classroom - 1:10', 16, 20, 'Active');
 
 -- --------------------------------------------------------
 
@@ -219,14 +211,19 @@ CREATE TABLE `event_participation` (
 --
 
 INSERT INTO `event_participation` (`event_participation_id`, `event_id`, `student_id`, `event_participation_type`, `team`, `apply_dt_tim`, `event_participation_status`) VALUES
-(1, 1, 1, 'Single', '0', '2021-09-11 13:24:30', 'Present'),
-(2, 2, 2, 'Single', '0', '2021-09-16 16:57:29', 'Present'),
-(3, 2, 1, 'Single', '0', '2021-09-16 17:14:09', 'Present'),
-(4, 3, 1, 'Single', '0', '2021-09-17 16:06:39', 'Present'),
-(5, 6, 1, 'Single', '0', '2021-09-30 10:06:02', 'Present'),
-(6, 6, 5, 'Single', '0', '2021-09-30 10:06:49', 'Present'),
-(7, 6, 6, 'Single', '0', '2021-09-30 10:09:52', 'Present'),
-(8, 6, 2, 'Single', '0', '2021-09-30 10:10:27', 'Present');
+(23, 14, 2, 'Single', '0', '2021-10-04 19:11:36', 'Present'),
+(24, 14, 8, 'Single', '0', '2021-10-04 19:12:05', 'Present'),
+(25, 14, 10, 'Single', '0', '2021-10-04 19:19:00', 'Present'),
+(26, 14, 9, 'Single', '0', '2021-10-04 19:19:35', 'Absent'),
+(27, 14, 4, 'Single', '0', '2021-10-04 19:20:07', 'Present'),
+(28, 15, 8, 'Team', 'Team Leader', '2021-11-04 11:43:48', 'Entered'),
+(29, 15, 2, 'Team', '28', '2021-11-04 11:43:48', 'Entered'),
+(30, 15, 4, 'Team', 'Team Leader', '2021-11-04 11:46:13', 'Entered'),
+(31, 15, 0, 'Team', '30', '2021-11-04 11:46:13', 'Entered'),
+(32, 16, 2, 'Team', 'Team Leader', '2021-11-04 12:05:10', 'Entered'),
+(33, 16, 4, 'Team', '32', '2021-11-04 12:05:10', 'Entered'),
+(36, 16, 8, 'Team', 'Team Leader', '2021-10-05 07:34:37', 'Entered'),
+(37, 16, 7, 'Team', '36', '2021-10-05 07:34:37', 'Entered');
 
 -- --------------------------------------------------------
 
@@ -247,10 +244,7 @@ CREATE TABLE `event_result` (
 --
 
 INSERT INTO `event_result` (`event_result_id`, `event_id`, `result_detail`, `event_documentry`, `staff_id`) VALUES
-(1, 3, '', '', 0),
-(2, 2, '', '', 0),
-(3, 1, '', '', 14),
-(4, 6, 'Event is about music competition', '', 14);
+(6, 14, 'This is a good event.', 'a:1:{i:0;s:19:\"20210312_153054.jpg\";}', 16);
 
 -- --------------------------------------------------------
 
@@ -275,14 +269,11 @@ CREATE TABLE `event_result_status` (
 --
 
 INSERT INTO `event_result_status` (`result_status_id`, `event_result_id`, `event_id`, `student_id`, `event_participation_id`, `winning_position`, `point`, `event_participation_type`, `team`) VALUES
-(1, 1, 3, 1, 4, '0', 3, 'Single', '0'),
-(2, 2, 2, 2, 2, '0', 3, 'Single', '0'),
-(3, 2, 2, 1, 3, '0', 3, 'Single', '0'),
-(4, 3, 1, 1, 1, '1', 25, 'Single', '0'),
-(5, 4, 6, 1, 5, '1', 25, 'Single', '0'),
-(6, 4, 6, 5, 6, '3', 10, 'Single', '0'),
-(7, 4, 6, 6, 7, '0', 3, 'Single', '0'),
-(8, 4, 6, 2, 8, '2', 15, 'Single', '0');
+(13, 6, 14, 2, 23, '2', 15, 'Single', '0'),
+(14, 6, 14, 8, 24, '1', 25, 'Single', '0'),
+(15, 6, 14, 10, 25, '3', 10, 'Single', '0'),
+(16, 6, 14, 9, 26, '', 0, 'Single', '0'),
+(17, 6, 14, 4, 27, '0', 3, 'Single', '0');
 
 -- --------------------------------------------------------
 
@@ -353,10 +344,11 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dp`, `staff_type`, `department_id`, `login_id`, `password`, `gender`, `dob`, `staff_status`) VALUES
-(11, 'Super Admin', '29844347images (2).jfif', 'Admin', 1, 'sajiththomas162631@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Male', '1992-07-27', 'Active'),
-(13, 'Shailesh', '1727587416', 'HOD', 1, 'shailesh', '81dc9bdb52d04dc20036dbd8313ed055', 'Male', '1887-08-12', 'Active'),
+(11, 'Super Admin', '29844347images (2).jfif', 'Admin', 1, 'project111213@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Male', '1992-07-27', 'Active'),
 (14, 'Pavitra', '1986491062', 'Lecturer', 3, 'bladesaji1234@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Male', '1993-11-09', 'Active'),
-(15, 'Raghav', '605641646', 'Lecturer', 6, 'Raghav@sdmcujire.in', '25d55ad283aa400af464c76d713c07ad', 'Male', '1995-10-10', 'Active');
+(15, 'Raghav', '605641646', 'Lecturer', 6, 'Raghav@sdmcujire.in', '25d55ad283aa400af464c76d713c07ad', 'Male', '1995-10-10', 'Active'),
+(16, 'yash', '10596866789795cc3c78cce2e3aa33480863dab519.jpg', 'Assistant Professor', 2, 'staff180924@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Male', '1990-11-12', 'Active'),
+(17, 'rashmika', '13739429784.jpg', 'Lecturer', 4, 'rashmika123@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Female', '1990-11-11', 'Active');
 
 -- --------------------------------------------------------
 
@@ -385,11 +377,12 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_name`, `course_id`, `student_rollno`, `student_password`, `st_class`, `student_image`, `gender`, `dob`, `language`, `elective_paper`, `extension_activities`, `student_status`) VALUES
-(1, 'Sajith Thomas', 1, '180937', 'e95aad3a10b270ef22560dae9c2b0817', 'Third Year', '19623721420210320_180759.jpg', 'Male', '2000-09-04', 'Kannada', 'Hindi', 'None', 'Active'),
-(2, 'mahesh', 1, '180924', '25d55ad283aa400af464c76d713c07ad', 'Third Year', '553978729DSC_0710.JPG', 'Male', '2000-12-04', 'Kannada', 'Sanskrit', 'None', 'Active'),
+(2, 'Mahesh', 1, '180924', '25d55ad283aa400af464c76d713c07ad', 'Third Year', '553978729DSC_0710.JPG', 'Male', '2000-12-04', 'Kannada', 'Sanskrit', 'None', 'Active'),
 (4, 'Kousthub Shetty', 1, '180923', '25d55ad283aa400af464c76d713c07ad', 'Third Year', '1230483184Kousthub.jpeg', 'Male', '2000-06-05', 'Kannada', 'Political Science', 'None', 'Active'),
-(5, 'Swathi', 2, '170945', '25d55ad283aa400af464c76d713c07ad', 'Second Year', '55948467320210312_153054.jpg', 'Female', '2001-02-05', 'Hindi', 'Chemistry', 'NCC', 'Active'),
-(6, 'Rani', 3, '120145', '25d55ad283aa400af464c76d713c07ad', 'First Year', '1983800920', 'Female', '2002-07-02', 'Sanskrit', 'Physics', 'Sports', 'Active');
+(7, 'jish', 1, '180921', '25d55ad283aa400af464c76d713c07ad', 'Third Year', '1969130035mobile_58408-_eafe9010-74fe-11e7-a55a-ab3ca1304be3.jpg', 'Male', '2001-04-15', 'Hindi', 'English', 'None', 'Active'),
+(8, 'Sajith Thomas', 1, '180937', '25d55ad283aa400af464c76d713c07ad', 'Third Year', '50591634820210320_180759.jpg', 'Male', '2000-08-05', 'Kannada', 'Physics', 'None', 'Active'),
+(9, 'ramesh', 2, '12345', '25d55ad283aa400af464c76d713c07ad', 'Second Year', '868656150', 'Male', '2000-11-11', 'Sanskrit', 'Chemistry', 'None', 'Active'),
+(10, 'suresh', 3, '1234', '25d55ad283aa400af464c76d713c07ad', 'First Year', '1953043850actor-chace-crawford-arrives-at-the-2008-world-music-awards-at-the-D4H915.jpg', 'Male', '2000-12-11', 'Hindi', 'Home Science', 'Cultural', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -489,7 +482,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT for table `complaint_report`
 --
 ALTER TABLE `complaint_report`
-  MODIFY `complaint_report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `complaint_report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `course`
@@ -513,25 +506,25 @@ ALTER TABLE `dept_course`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `event_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `event_participation`
 --
 ALTER TABLE `event_participation`
-  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `event_participation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `event_result`
 --
 ALTER TABLE `event_result`
-  MODIFY `event_result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `event_result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `event_result_status`
 --
 ALTER TABLE `event_result_status`
-  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `result_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `event_type`
@@ -549,13 +542,13 @@ ALTER TABLE `point_settings`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
