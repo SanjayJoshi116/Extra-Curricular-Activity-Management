@@ -1,9 +1,5 @@
 <?php
 include("header.php");
-if(!isset($_SESSION['student_id']) && !isset($_SESSION['staff_id']))
-{
-	echo "<script>window.location='login.php';</script>";
-}
 ?>
 </div>
   <!-- event section -->
@@ -30,7 +26,11 @@ $flag=0;
 while($rsview = mysqli_fetch_array($qsqlview))
 {
 	$flag=1;
-	$sqlevent_result_status = "SELECT * FROM event_result_status where event_id='$rsview[event_id]' and student_id='$_SESSION[student_id]'";
+	$sqlevent_result_status = "SELECT * FROM event_result_status where event_id='$rsview[event_id]'";
+	if(isset($_SESSION['student_id']))
+{
+$sqlevent_result_status = $sqlevent_result_status  . " AND student_id='$_SESSION[student_id]'";
+}
 	$qsqlevent_result_status = mysqli_query($con,$sqlevent_result_status);
 	$rsevent_result_status = mysqli_fetch_array($qsqlevent_result_status);
 ?>
@@ -61,10 +61,16 @@ while($rsview = mysqli_fetch_array($qsqlview))
 			<b style="color: green;">Your ranking is <?php echo $rsevent_result_status['winning_position']; ?> and you have scored <?php echo $rsevent_result_status['point']; ?> Points</b>
 			<?php
 			}
-			else
+			if($rsevent_result_status['winning_position'] == "")
 			{
 			?>
 			<b style="color: red;">Absent</b>
+			<?php
+			}
+			elseif($rsevent_result_status['winning_position'] == 0)
+			{
+				?>
+			<b style="color: green;">You have participated</b>
 			<?php
 			}
 		}
@@ -88,12 +94,15 @@ while($rsview = mysqli_fetch_array($qsqlview))
 			<a href="team_event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info btn-lg">View Result</a><hr>
 	<?php
 	}
-		if($rsevent_result_status['winning_position'] != 0)
+	if(isset($_SESSION['student_id']))
+	{
+		if($rsevent_result_status['winning_position'] != "")
 		{
 		?>
 			<a href="certificate.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-warning btn-lg">Download Certificate</a>
 		<?php
 		}
+	}
 		?>
 		</div>
 	</div>
@@ -102,6 +111,16 @@ while($rsview = mysqli_fetch_array($qsqlview))
 }
 if($flag==0)
 {
+	if(isset($_SESSION['staff_id']))
+	{
+	?>
+<div style="  font-family: Lucida Console, Courier New, monospace;">
+    <br><h3 style=" color : red"> No results are added...</h3>
+      <br><br>
+	<?php	
+	}
+	else
+	{
   ?>
   <div style="  font-family: Lucida Console, Courier New, monospace;">
     <br><h3 style=" color : red"> You are not partcipated in any events...</h3>
@@ -109,6 +128,7 @@ if($flag==0)
       <br><br>
   </div>
   <?php
+}
 }
 ?>
     </div>

@@ -41,7 +41,7 @@ if(isset($_POST['submit']))
 		mysqli_query($con,$sqle_r_s);
 	}
 	echo "<script>alert('Event Result Published successfully...');</script>";
-	echo "<script>window.location='event_result.php?event_id=$_GET[event_id]';</script>";
+	echo "<script>window.location='display_event_result_report.php';</script>";
 	//Step: 3 - Update statement Ends here
 }
 /*

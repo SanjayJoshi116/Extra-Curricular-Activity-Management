@@ -24,7 +24,7 @@ if(isset($_GET['unenroll_id']))
     <div class="container">
       <div class="heading_container">
        <h3>
-          &nbsp; My Events
+          &nbsp; My Upcoming Events
         </h3>
       </div>
       <hr>

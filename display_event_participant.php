@@ -19,7 +19,7 @@ if(!isset($_SESSION['staff_id']))
         </p>
       </div>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time > CURDATE()  ORDER BY event_id DESC";
+		    $sqlview = "SELECT * FROM  event where event_date_time > CURDATE()  ORDER BY event_id";
 		    $qsqlview = mysqli_query($con,$sqlview);
 	    	while($rsview = mysqli_fetch_array($qsqlview))
 		    {
@@ -51,7 +51,7 @@ if(!isset($_SESSION['staff_id']))
 			if($rsview['event_participation_type'] == "Team")
 			{
 				echo " Teams - ";
-			$sqlpart = "SELECT * FROM event_participation where event_id='38' AND event_participation_type='Team' AND team='Team Leader' and event_id='$rsview[event_id]'";
+			$sqlpart = "SELECT * FROM event_participation where event_participation_type='Team' AND team='Team Leader' and event_id='$rsview[event_id]'";
 			}
 			else
 			{

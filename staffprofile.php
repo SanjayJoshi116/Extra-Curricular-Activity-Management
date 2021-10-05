@@ -21,6 +21,7 @@ if(isset($_POST['submit']))
 	if(mysqli_affected_rows($con) == 1)
 	{
 		echo "<script>alert('Staff Profile updated successfully..');</script>";
+		echo "<script>window.location='view_staff_profile.php';</script>";
 	}
 }
 if(isset($_SESSION['staff_id']))

@@ -120,7 +120,23 @@ $rsviewclub = mysqli_fetch_array($qsqlviewclub);
 					echo " MS. ";
 				}
 				?>
-				<u><?php echo $rsview['student_name']; ?></u> of <u><?php echo $rsviewcourse['course_title']; ?></u> has won the first ranking in <U><?php echo $rsview['event_title']; ?></u> organized by <u><?php 
+				<u><?php echo $rsview['student_name']; ?></u> of <u><?php echo $rsviewcourse['course_title']; ?></u> has  
+                <?php 
+                if($rsevent_result_status['winning_position'] == 1)
+                {
+                echo " won the first ranking in";
+                }
+                elseif ($rsevent_result_status['winning_position'] == 2) {
+                     echo " won the second ranking in";
+                 } 
+                 elseif ($rsevent_result_status['winning_position'] == 3){
+                    echo " won the Third ranking in";
+                 }
+                 elseif ($rsevent_result_status['winning_position'] == 0) {
+                      echo "participated in";
+                 }?>
+
+                <U><?php echo $rsview['event_title']; ?></u> organized by <u><?php 
 				if($rsview['department_id'] != 0)
 				{
 				echo $rsviewdepartment['department'] . " department"; 

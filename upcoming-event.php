@@ -2,10 +2,10 @@
 include("header.php");
 if(!isset($_SESSION['staff_id']))
 {
-	if(!isset($_SESSION['student_id']))
-	{
-		echo "<script>window.location='login.php';</script>";
-	}
+  if(!isset($_SESSION['student_id']))
+  {
+    echo "<script>window.location='login.php';</script>";
+  }
 }
 ?>
 </div>
@@ -166,7 +166,7 @@ ul.dropdown ul li a:hover{
   </tr>
 </table>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time > '$dttim' AND event_status='Active' ";
+        $sqlview = "SELECT * FROM  event where event_date_time > '$dttim' AND event_status='Active' ";
         if($_GET['eventtype'] == "Single")
         {
           $sqlview = $sqlview . " AND  event.event_participation_type='Single' ";
@@ -176,23 +176,66 @@ ul.dropdown ul li a:hover{
           $sqlview = $sqlview . " AND  event.event_participation_type='Team' ";
         }
         $sqlview = $sqlview. " ORDER BY event_date_time";
-		    $qsqlview = mysqli_query($con,$sqlview);
+        $qsqlview = mysqli_query($con,$sqlview);
                   $flag=0;
-	    	while($rsview = mysqli_fetch_array($qsqlview))
-		    {
+        while($rsview = mysqli_fetch_array($qsqlview))
+        {
           
           $flag=1;
+        $arrcoursesids = unserialize($rsview['course_id']);
+        $coursexid = 0;
+        $iexist = 0;
+        if($arrcoursesids[0] == "0")
+        {
+          $iexist =1;
+        }
+        else
+        {
+          foreach($arrcoursesids as $arrcidrec)
+          {
+            if($arrcidrec == $rsstudentprofile['course_id'])
+            {
+              $iexist =1;
+              if($coursexid != 0)
+              {
+              $coursexid = $arrcidrec;
+              }
+            }
+          }
+        }
+        //##############################################
+        if($coursexid == $rsstudentprofile['course_id'])
+        {
+          $arrst_class = unserialize($rsview['st_class']);
+          if($arrst_class[0] == "0")
+          {
+            $iexist =1;
+          }
+          else
+          {
+            foreach($arrst_class as $arrclsrec)
+            {
+              if($arrclsrec == $rsstudentprofile['st_class'])
+              {
+                $iexist =1;
+              }
+            }
+          }
+        }
+        //##############################################
+        if($iexist == 1)
+        {
           ?>
     <div class="boxd">
       <div class="event_container">
         <div class="box">
           <div class="img-box">
            <h5>
-		  <?php
+      <?php
       $imge=$rsview['event_banner'];
       echo '<img src="imgbanner/' .$imge .'" width="150" height="150">';
       ?>
-		   </h5>
+       </h5>
           </div>
           <div class="detail-box">
             <h4>
@@ -206,13 +249,14 @@ ul.dropdown ul li a:hover{
             <h3>
             <?php echo date("d-M-Y h:i A",strtotime($rsview['event_date_time']));?>
             </h3>
-			      <a href="event_more_det.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info">View More</a>
+            <a href="event_more_det.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-info">View More</a>
             (<?php echo $rsview['event_participation_type'];?> Event)
           </div>
         </div>
     </div>
   </div>
         <?php
+      }
       }
       if($flag==0)
       {

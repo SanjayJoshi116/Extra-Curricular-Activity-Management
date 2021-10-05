@@ -216,7 +216,7 @@ ul.dropdown ul li a:hover{
                           <td><input type="text" name="student_rollno[]" id="student_rollno<?php echo $i; ?>" size="15" class="form-control" /></td>
                           <td><input type="text" name="token_key[]" id="token_key<?php echo $i; ?>" size="15"  class="form-control" /></td>
                           <td>
-                            <input type="button" name="validate" id="validate" onclick="fun_validate_student(<?php echo "student_rollno" . $i; ?>.value,<?php echo "token_key" . $i; ?>.value,<?php echo $i; ?>,'<?php echo $_GET['event_id']; ?>')" value="Verify" class="btn btn-info" >
+                            <input type="button" name="validate" id="validate" onclick="fun_validate_student(<?php echo "student_rollno" . $i; ?>.value,<?php echo "token_key" . $i; ?>.value,<?php echo $i; ?>)" value="Verify" class="btn btn-info" >
                           </td>
                           <td>
                             <div id="divstudent<?php echo $i; ?>"></div>
@@ -241,25 +241,16 @@ ul.dropdown ul li a:hover{
 include("footer.php");
 ?>
 <script>
-function fun_validate_student(student_rollno,token_key,ivalue,event_id)
+function fun_validate_student(student_rollno,token_key,ivalue)
 {
     $.post("js_validate_student.php",
     {
       student_rollno: student_rollno,
-      token_key: token_key,
-      event_id: event_id
+      token_key: token_key
     },
     function(data){
-      if(data == "-")
+      if(data == 0)
 	  {
-		  alert("Student already participated for this event..");
-		  $('#divstudent'+ivalue).html("<i class='btn btn-danger fa fa fa-thumbs-down fa-lg' aria-hidden='true'> Rejected</i>");
-		  $('#student_id'+ivalue).val(0);
-		  $('#student_rollno'+ivalue).val('');
-		  $('#token_key'+ivalue).val('');
-	  }
-      else if(data == 0)	  
-      {
 		  alert("Not valid...");
 		  $('#divstudent'+ivalue).html("<i class='btn btn-danger fa fa fa-thumbs-down fa-lg' aria-hidden='true'> Failed to Verify</i>");
 		  $('#student_id'+ivalue).val(0);

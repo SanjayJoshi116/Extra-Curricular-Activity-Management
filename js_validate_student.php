@@ -12,8 +12,17 @@ echo mysqli_error($con);
 $rsprofile = mysqli_fetch_array($qsqlprofile);
 //###################
 if(md5($rsprofile['student_id'].$hr) == $_POST['token_key'])
-{
+{	
+	$sqlview = "SELECT * FROM  event_participation WHERE event_id='" . $_POST['event_id'] . "' AND student_id='" . $rsprofile[0] . "'  ";
+	$qsqlview = mysqli_query($con,$sqlview);
+	if(mysqli_num_rows($qsqlview) >= 1)
+	{
+	echo "-";
+	}
+	else
+	{
 	echo $rsprofile[0];
+	}
 }
 else
 {

@@ -203,11 +203,11 @@ include("footer.php");
 ?>
 <style>
 .boxc {
-  background: #00dcff;
+  background: #bbeadd;
 }
 
 .boxc:hover {
-  background-color: #ff002f73;
+  background-color: #47848e;
   cursor: pointer;
   -webkit-transition: background-color 1s ease-out;
   -moz-transition: background-color 1s ease-out;
@@ -256,7 +256,7 @@ include("footer.php");
 }
 .button-3 {
   appearance: none;
-  background-color: #2ea44f;
+  background-color: #468673;
   border: 5px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
