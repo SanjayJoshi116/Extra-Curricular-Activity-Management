@@ -60,7 +60,7 @@ if(!isset($_SESSION['staff_id']))
         <?php
         $sqlres = "SELECT * FROM  event_result where event_id=" .$rsview['event_id'];
         $qsqlres = mysqli_query($con,$sqlres);
-             if($rsview['event_id'] == $rsres['event_id'])
+             if(!$rsview['event_id'] == $rsres['event_id'])
               {
           ?>
       <a href="event_result_report.php?event_id=<?php echo $rsview['event_id']; ?>" class="btn btn-success">View Result</a>

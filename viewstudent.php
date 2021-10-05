@@ -171,11 +171,9 @@ function funloadstudentprofile(jsonarr)
     tbl += "<tr><th>Roll No.</th><td>" + jsonarr.student_rollno +"</td></tr>";
     tbl += "<tr><th>Course</th><td>" + jsonarr.course_title +"</td></tr>";
     tbl += "<tr><th>Class</th><td>" + jsonarr.st_class +"</td></tr>";
-    tbl += "<tr><th>Course</th><td>" + jsonarr.course_title +"</td></tr>";
     tbl += "<tr><th>Gender</th><td>" + jsonarr.gender +"</td></tr>";
     tbl += "<tr><th>Date of Birth</th><td>" + jsonarr.dob +"</td></tr>";
     tbl += "<tr><th>Language</th><td>" + jsonarr.language +"</td></tr>";
-    tbl += "<tr><th>Course</th><td>" + jsonarr.course_title +"</td></tr>";
     tbl += "<tr><th>Elective Paper</th><td>" + jsonarr.elective_paper +"</td></tr>";
     tbl += "<tr><th>Extension Activities</th><td>" + jsonarr.extension_activities +"</td></tr>";
     tbl += "<tr><th>Account Status</th><td>" + jsonarr.student_status +"</td></tr>";

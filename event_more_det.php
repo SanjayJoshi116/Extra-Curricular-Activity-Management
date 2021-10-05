@@ -1,9 +1,5 @@
 <?php
 include("header.php");
-if(!isset($_SESSION['student_id']) && !isset($_SESSION['staff_id']))
-{
-	echo "<script>window.location='login.php';</script>";
-}
 if(isset($_GET['st']))
 {
 	$sql = "UPDATE event SET event_status='$_GET[st]' WHERE event_id='$_GET[event_id]'";
@@ -185,7 +181,7 @@ echo rtrim($cl, ", ");
 						<th>Staff Incharge : </th><td><?php echo  $rsviewevent['staff_name']; ?> (<?php echo  $rsviewevent['staff_type']; ?>) </td>
 					</tr>
 					<tr>
-						<th style="color : red">Last date for Participation: </th><td ><?php echo $stop_date = date('d-m-Y', strtotime($rsviewevent['event_date_time'] . ' -2 day')); ?> </td>
+						<th>Last date for Participation: </th><td><?php echo $stop_date = date('d-m-Y', strtotime($rsviewevent['event_date_time'] . ' -2 day')); ?> </td>
 					</tr>
 					<tr>
 						<th>Participants Limit: </th><td>Maximum <?php echo $rsviewevent['participation_limit']; ?> </td>
@@ -353,10 +349,6 @@ else
 if($rsstaffprofile['staff_type'] == "Admin")
 {
 ?><hr>
-<?php 
-if($rsviewevent['event_status'] == 'Active' )
-{
-?>
 <center>Current Status - <?php echo $rsviewevent['event_status']; ?> | <a href="event_more_det.php?event_id=<?php echo $_GET['event_id']; ?>&st=Active" class="btn btn-success">Approve</a> | <a href="event_more_det.php?event_id=<?php echo $_GET['event_id']; ?>&st=Rejected" class="btn btn-danger">Reject</a></center>
 <hr>
 <?php
