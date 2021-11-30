@@ -110,7 +110,7 @@ else
 					echo "<a href='viewevent.php?st=Active&acid=$rsview[event_id]' class='btn btn-secondary' onclick='return confirmst()'  >Activate</a>";
 				}
 			echo"<td>";
-			if(date("d-m-Y",strtotime($rsview['event_date_time'])) <= date('d-m-Y',strtotime('now')))
+			if(date("d-m-Y",strtotime($rsview['event_date_time'])) >= date('d-m-Y',strtotime('now')))
 			{
 				if($rsview['event_participation_type'] == "Team")
 				{

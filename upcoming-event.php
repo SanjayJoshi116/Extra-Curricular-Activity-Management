@@ -147,7 +147,7 @@ ul.dropdown ul li a:hover{
   </tr>
 </table>
       <?php
-		    $sqlview = "SELECT * FROM  event where event_date_time > '$dttim' ";
+		    $sqlview = "SELECT * FROM  event where event_date_time > '$dttim' AND event_status='Active' ";
         if($_GET['eventtype'] == "Single")
         {
           $sqlview = $sqlview . " AND  event.event_participation_type='Single' ";
