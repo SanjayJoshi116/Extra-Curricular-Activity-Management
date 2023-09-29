@@ -110,7 +110,7 @@ if(isset($_GET['editid']))
 function br2nl($string)
 {
     $breaks = array("<br />","<br>","<br/>");  
-    return str_ireplace($breaks, "", $string); 
+    return str_ireplace($breaks," ", $string); 
 }
 ?>
 </div>

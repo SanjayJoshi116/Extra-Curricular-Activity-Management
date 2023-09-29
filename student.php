@@ -50,7 +50,7 @@ if(isset($_POST['btnsubmit']))
     <div class="container"><br>
       <div class="row">
         <div class="col-md-12"><br>
-          <centeR><div class="detail-box">
+          <center><div class="detail-box">
             <h3>
               Registration Panel
             </h3>
@@ -202,9 +202,7 @@ if(isset($_POST['btnsubmit']))
   </section>
 
   <!-- end login section -->
-<?php
-include("footer.php");
-?>
+
 <script>
 function validateform()
 {
